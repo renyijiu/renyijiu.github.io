@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>renyijiu</title>
+    <link>https://yijiu.ren/</link>
+    <description>Recent content on renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; &lt;a href=&#34;https://yijiu.ren&#34;&gt;renyijiu&lt;/a&gt; 2017</copyright>
+    <lastBuildDate>Thu, 01 Jun 2017 22:55:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://yijiu.ren/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一道面试题的思考</title>
+      <link>https://yijiu.ren/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</link>
+      <pubDate>Thu, 01 Jun 2017 22:55:37 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</guid>
+      <description>面试时碰到的一道题目，题目的要求是：
+ The definition of a Fibonacci sequence is like this:
+ F(0) = 0
+ F(1) = 1
+ F(n) = F(n-1) + F(n-2)
+  Now let&amp;rsquo;s define G(n) = F(n)/F(n+1).
+Golden ratio is the limit of G(n) when n approaches infinity.
+With all the above information, we have a way to estimating golden ratio g:
+Find the first n that matches |G(n+1) - G(n)| &amp;lt; t, where t is the precision threshold, then the corresponding G(n) is considered as the estimated value of golden ratio.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://yijiu.ren/about/</link>
+      <pubDate>Fri, 12 May 2017 22:24:50 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/about/</guid>
+      <description> 多读书，多看报，少吃零食，多睡觉
+ 我们总是说得太多，做的太少
+ 唯有梦想与爱情，不可辜负
+  </description>
+    </item>
+    
+    <item>
+      <title>JavaScript学习笔记</title>
+      <link>https://yijiu.ren/post/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 15 Apr 2017 17:07:40 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;这个是自己在跟着&lt;a href=&#34;http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000&#34;&gt;廖雪峰的JavaScript教程&lt;/a&gt;学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>node.js开发指南---学习笔记</title>
+      <link>https://yijiu.ren/post/node.js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97---%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 05 Apr 2017 16:59:15 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/node.js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97---%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;前面在看&lt;code&gt;node.js开发指南&lt;/code&gt;学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rails中自定义错误页面</title>
+      <link>https://yijiu.ren/post/rails%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/</link>
+      <pubDate>Sun, 30 Oct 2016 15:18:49 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/rails%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/</guid>
+      <description>&lt;p&gt;Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部项目中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ActionCable的使用分析</title>
+      <link>https://yijiu.ren/post/actioncable%E7%9A%84%E4%BD%BF%E7%94%A8%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 26 Oct 2016 17:21:00 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/actioncable%E7%9A%84%E4%BD%BF%E7%94%A8%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;p&gt;Action Cable是Rails5中为了类似聊天、通知之类的实时通讯而引入的新功能，是这个版本的一个重大特性吧，也可以说是基于websocket进行的一个服务。下面通过ruby china中对Action Cable的使用进行一定的解释。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>写在毕业之际</title>
+      <link>https://yijiu.ren/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/</link>
+      <pubDate>Tue, 07 Jun 2016 17:26:31 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/</guid>
+      <description>&lt;h2 id=&#34;回顾&#34;&gt;回顾&lt;/h2&gt;
+
+&lt;p&gt;毕设的主要工作已经完成了，离毕业还有一个月的时间，所以有着较多空闲的时间。回想起这个博客，已经有一年多的时间没有更新了，其中主要因为秋招找工作，后面去公司实习，然后今年主要在学校做毕设，中间虽然遇到了较多的问题，但是因为自己偷懒，许多的内容都直接记录在印象笔记中，没有进行整理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GET和POST的区别</title>
+      <link>https://yijiu.ren/post/get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Thu, 14 May 2015 17:12:03 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>&lt;p&gt;写这篇文章的原因是因为在面试时被问到了这个问题，结果因为自己只了解了一点，被深入询问时就彻底的崩盘了 &lt;em&gt;心态真的很重要啊&lt;/em&gt; ，然后就不知道说什么了，所以结束后就自己查询了下资料，记录下来，也算是在这个过程中学到了一些东西。
+ &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu下搭建LAMP服务器</title>
+      <link>https://yijiu.ren/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Fri, 28 Nov 2014 15:12:05 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>&lt;p&gt;本文主要记录下在Ubuntu下搭建LAMP服务器的大致流程&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LAMP = Linux + Apache + Mysql + PHP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python学习---八皇后问题</title>
+      <link>https://yijiu.ren/post/python%E5%AD%A6%E4%B9%A0---%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 19 Nov 2014 16:15:46 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/python%E5%AD%A6%E4%B9%A0---%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;h2 id=&#34;八皇后问题&#34;&gt;八皇后问题&lt;/h2&gt;
+
+&lt;p&gt;在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python学习---递归</title>
+      <link>https://yijiu.ren/post/python%E5%AD%A6%E4%B9%A0---%E9%80%92%E5%BD%92/</link>
+      <pubDate>Mon, 10 Nov 2014 16:13:43 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/python%E5%AD%A6%E4%B9%A0---%E9%80%92%E5%BD%92/</guid>
+      <description>&lt;p&gt;递归的方法虽然效率不高，但是有些地方的使用( &lt;em&gt;对时间的要求不高时&lt;/em&gt; )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 &lt;strong&gt;二叉查找方法&lt;/strong&gt; ，让自己对递归更好的理解。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdown的语法说明</title>
+      <link>https://yijiu.ren/post/markdown%E7%9A%84%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/</link>
+      <pubDate>Mon, 06 Oct 2014 17:03:38 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/markdown%E7%9A%84%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/</guid>
+      <description>&lt;p&gt;写这篇文章主要是博客需要用到这种语言，所以就参考网上的一些资料，记录下来方便自己用到时的查阅和学习，不过看着这个写东西确实方便，觉得值得一学。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Beginning</title>
+      <link>https://yijiu.ren/post/the_beginning/</link>
+      <pubDate>Sun, 05 Oct 2014 22:31:07 +0800</pubDate>
+      
+      <guid>https://yijiu.ren/post/the_beginning/</guid>
+      <description>&lt;p&gt;这个博客有了大致的样子，对于这些框架和主题，我只是个使用者，(&lt;strong&gt;这是本博客使用参考的主题&lt;/strong&gt;&amp;mdash;-&lt;a href=&#34;https://github.com/daisygao/hexo-themes-cover&#34;&gt;daisygao的github&lt;/a&gt;,&lt;strong&gt;感谢下这些奉献的人&lt;/strong&gt;）但对于一个我这种对前端完全没有知识储备的小白也是一个艰难的过程。这几天的不断的百度，不断的谷歌&lt;strong&gt;（&lt;/strong&gt;这里不得不夸下&lt;strong&gt;google浏览器&lt;/strong&gt;，这真是浏览器的王者，使用体验非常好。顺带说下，翻墙真的太爽了，外面的世界很精彩&lt;strong&gt;）&lt;/strong&gt;，慢慢的也都有所了解了，也大致知道了自己后面需要做的。毕竟刚刚开始，后面自己会学着慢慢的增加一些功能。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

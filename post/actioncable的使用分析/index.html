@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="zh"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta content="Rubyist, Python, JavaScript" name="keywords"><meta name="description" content="renyijiu&#39;s blog!"><meta content="ActionCable的使用分析 - renyijiu" property="og:title"><title>ActionCable的使用分析 | renyijiu</title><link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><section class="section"><div class="container"><nav class="nav"><div class="nav-left"><a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a></div><div class="nav-right"><nav class="nav-item level is-mobile"><a class="level-item" href="https://github.com/renyijiu"><span class="icon"><i class="fa fa-github"></i></span></a><a class="level-item" href="/about"><span class="icon"><i class="fa fa-user"></i></span></a><a class="level-item" href="/index.xml"><span class="icon"><i class="fa fa-rss"></i></span></a></nav></div></nav></div></section><section class="section"><div class="container"><h2 class="subtitle is-6">October 26, 2016</h2><h1 class="title">ActionCable的使用分析</h1><div class="content"><p>Action Cable是Rails5中为了类似聊天、通知之类的实时通讯而引入的新功能，是这个版本的一个重大特性吧，也可以说是基于websocket进行的一个服务。下面通过ruby china中对Action Cable的使用进行一定的解释。</p><h2 id="背景">背景</h2><ul><li>轮询：客户端采用AJAX向服务器发送请求，服务器接收到请求后立即返回响应信息并关闭连接。</li><li>长轮询：客户端采用AJAX向服务器发送请求，服务器保持连接，等到有新消息时返回响应信息并关闭连接，客户端处理完响应信息后发送新的请求。</li><li>长连接：客户端向服务器发送请求，建立一条持久化TCP连接，服务器写入数据后并不会关闭连接，之后的数据返回仍旧使用这条连接，客户端发起新请求时也是使用这条连接。但其中使用的是http请求，头部带有较多信息，相对来说，会有部分浪费。值得一说的是，<strong>由于HTTP协议特性，它是被动的，一个request只能有一个response，而response是被动的，不能够主动发起</strong></li><li>websocket：一种基于TCP的协议，可以进行双向通信。在握手阶段，使用http协议发送一个请求，头部带有下列类似信息</li></ul><pre><code>Connection:Upgrade
+Sec-WebSocket-Extensions:permessage-deflate; client_max_window_bits
+Sec-WebSocket-Key:SbBf9EC5xV/w90MBFG9ptg==
+Sec-WebSocket-Protocol:actioncable-v1-json, actioncable-unsupported
+Sec-WebSocket-Version:13
+Upgrade:websocket
+</code></pre><p>这样子的信息，告诉服务器端我要使用websocket协议，如果服务器支持websocket协议，会返回一个确认信息，表示已经使用websocket协议通信，如下显示</p><pre><code>Connection:upgrade
+Sec-WebSocket-Accept:......
+Sec-WebSocket-Protocol:actioncable-v1-json
+Upgrade:websocket
+</code></pre><p>在这里之后就与http协议没有关系了，而这个连接的状态码应该是101，这也是一个协议转换的表现。</p><h2 id="使用">使用</h2><p>Action Cable就是基于websocket开发的一个实时通讯的全栈解决方案，下面使用Ruby China的源码进行分析，对Action Cable的使用进行一定的说明，这个分析的话是从客户端请求开始解释，可能与实际开发过程不太一致。</p><h4 id="客户端">客户端</h4><p>Action Cable默认提供了一个文件<code>app/assets/javascripts/cable.js</code>可以用来开启websocket服务，而Ruby China中对代码进行了整合，放在了<code>app/assets/javascripts/app.coffee</code>这个文件中</p><pre><code class="language-ruby">......
+#= require action_cable
+......
+window.App =
+  cable: ActionCable.createConsumer()
+......
+</code></pre><p>这里的话调用后客户端就会新建一个websocket连接，其中在<code>layout/application.html.erb</code>文件中头部添加了 <code>&lt;%= action_cable_meta_tag %&gt;</code> 的标签，函数源码如下</p><pre><code class="language-ruby">def action_cable_meta_tag
+  tag &quot;meta&quot;, name: &quot;action-cable-url&quot;, content: (
+    ActionCable.server.config.url ||
+    ActionCable.server.config.mount_path ||
+    raise(&quot;No Action Cable URL configured -- please configure this at config.action_cable.url&quot;)
+  )
+end
+</code></pre><p>这个会生成一个html标签，包含了<code>ActionCable.server</code>的url地址，被<code>createConsumer</code>函数利用。</p><p>这里使用Ruby China中新回复提醒的功能进行解释，在<code>app/assets/javascripts/topics.coffee</code>中定义了下列函数</p><pre><code class="language-coffeescript">initialize: (opts) -&gt;
+  @initCableUpdate()
+  ......
+
+
+initCableUpdate: () -&gt;
+  self = @
+
+  if not Topics.topic_id
+    return
+
+  if !window.repliesChannel
+    console.log &quot;init repliesChannel&quot;
+    window.repliesChannel = App.cable.subscriptions.create 'RepliesChannel',
+      connected: -&gt;
+        setTimeout =&gt;
+          @followCurrentTopic()
+          $(window).on 'unload', -&gt; window.repliesChannel.unfollow()
+          $(document).on 'page:change', -&gt; window.repliesChannel.followCurrentTopic()
+        , 1000
+
+      received: (json) =&gt;
+        if json.user_id == App.current_user_id
+          return false
+        if json.action == 'create'
+          if App.windowInActive
+            @updateReplies()
+          else
+            $(&quot;.notify-updated&quot;).show()
+
+      followCurrentTopic: -&gt;
+        @perform 'follow', topic_id: Topics.topic_id
+
+      unfollow: -&gt;
+        @perform 'unfollow'
+</code></pre><p><code>App.cable.subscriptions.create</code>这个操作会向RepliesChannel这个频道产生一个新的订阅，connected定义了连接时进行的操作，先执行<code>followCurrentTopic</code>这个函数，而根据这个函数的定义是去调用<code>RepliesChannel#follow</code>，这个类似于远程调用，调用的是服务端的函数，（服务端会主动暴露这些公开的方法，因此可以通过<code>perform</code>方法去调用），其中<code>follow</code>函数的定义如下</p><pre><code class="language-ruby">  def follow(data)
+    stop_all_streams
+    stream_from &quot;topics/#{data['topic_id']}/replies&quot;
+  end
+</code></pre><p>stream_from 函数查代码显示 <code>logger.info &quot;#{self.class.name} is streaming from #{broadcasting}&quot;</code>， ActionCable 收发信息的最小单位是 stream ，这个函数主要是对连接下的stream进行标记。</p><p>上述是客户端对服务器端进行了频道的订阅，当然订阅后也可以通过这样调用 <code>window.repliesChannel.send({ sent_by: &quot;test&quot;, body: &quot;This is a test.&quot; })</code>向服务器端发送消息，服务器端需要设定<code>received</code>函数进行接收，Ruby China没有用到这个功能，所以没有定义。</p><h4 id="服务器端">服务器端</h4><p>首先在<code>app/channels/application_cable/connection.rb</code>这个文件中对客户端的连接进行认证</p><pre><code class="language-ruby">identified_by :current_user_id
+
+def connect
+  self.current_user_id = find_verified_user_id
+end
+
+protected
+
+def find_verified_user_id
+  cookies.signed[:user_id] || nil
+end
+</code></pre><p>当用户没有登录时可以选择拒绝连接<code>reject_unauthorized_connection</code>，这里没有这么做。</p><p>然后呢在<code>app/channels/application_cable/channel.rb</code>中定义<code>ApplicationCable::Channel</code>类，在这个里面可以写一些多个channel共用的代码。剩下的就是定义自己需要使用的channel，Ruby China中定义了<code>notifications_channel</code>和<code>replies_channel</code>。</p><p>然后呢，当用户对一个topic进行回复之后，在数据成功创建后，<code>app/models/reply.rb</code>model中定义的</p><pre><code class="language-ruby">after_commit :async_create_reply_notify, on: :create, unless: -&gt; { system_event? }
+def async_create_reply_notify
+  NotifyReplyJob.perform_later(id)
+end
+</code></pre><p>这里使用了activejob进行处理，<code>perform_later</code>会调用<code>perform</code>函数，查看<code>app/jobs/notify_reply_job.rb</code>的代码可以发现 <code>NotifyReplyJob#perform</code>又调用了一个类方法</p><pre><code class="language-ruby">def perform(reply_id)
+  Reply.notify_reply_created(reply_id)
+end
+</code></pre><p>而其中<code>notify_reply_created</code>函数定义如下，部分省略</p><pre><code class="language-ruby">def self.notify_reply_created(reply_id)
+  ......
+  self.broadcast_to_client(reply)
+
+  true
+end
+
+def self.broadcast_to_client(reply)
+  ActionCable.server.broadcast(&quot;topics/#{reply.topic_id}/replies&quot;, id: reply.id, user_id: reply.user_id, action: :create)
+end
+</code></pre><p>通过方法调用可以发现，最后使用<code>ActionCable.server.broadcast</code>进行消息的广播，向客户端传播消息。</p><h4 id="回到客户端">回到客户端</h4><p>再回到客户端，前面的coffee代码中定义了接收操作</p><pre><code class="language-ruby">received: (json) =&gt;
+  if json.user_id == App.current_user_id
+    return false
+  if json.action == 'create'
+    if App.windowInActive
+      @updateReplies()
+    else
+      $(&quot;.notify-updated&quot;).show()
+</code></pre><p>对传输数据进行一些验证，然后将<code>class=&quot;notify-updated&quot;</code>的div模块显示，而模块代码如下</p><pre><code class="language-html">&lt;div class=&quot;notify-updated&quot;&gt;
+  &lt;a class=&quot;update&quot; href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-bell-o&quot;&gt;&lt;/i&gt; &lt;b&gt;有新回复！&lt;/b&gt;点击这里立即载入&lt;/a&gt;
+&lt;/div&gt;
+</code></pre><p>最终就得到了下图的效果，当有新回复时，处于当前页面的用户会收到提醒。<img src="/images/new_reply.png" alt=""></p><p>最后附上一张曹力在RubyConf China 2016上关于 <strong><a href="https://speakerdeck.com/shiningray/actioncablehe-shi-shi-jiao-hu">ActionCable 与实时交互</a></strong>中的PPT的一张截图，全面的解析了整体过程<img src="/images/actioncable.png" alt=""></p></div></div></section><section class="section"><div class="container has-text-centered"><p>Live For Dream, Dream For Love</p><p>&copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p></div></section><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload='"all"!=media&&(media="all")'><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload='"all"!=media&&(media="all")'><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-78885477-1","auto"),ga("send","pageview")</script><script async src="//www.google-analytics.com/analytics.js"></script></html>
