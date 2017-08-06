@@ -1,4 +1,69 @@
-<!DOCTYPE html><html lang="zh"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta content="Rubyist, Python, JavaScript" name="keywords"><meta name="description" content="renyijiu&#39;s blog!"><meta content="Python学习---递归 - renyijiu" property="og:title"><title>Python学习---递归 | renyijiu</title><link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><section class="section"><div class="container"><nav class="nav"><div class="nav-left"><a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a></div><div class="nav-right"><nav class="nav-item level is-mobile"><a class="level-item" href="https://github.com/renyijiu"><span class="icon"><i class="fa fa-github"></i></span></a><a class="level-item" href="/about"><span class="icon"><i class="fa fa-user"></i></span></a><a class="level-item" href="/index.xml"><span class="icon"><i class="fa fa-rss"></i></span></a></nav></div></nav></div></section><section class="section"><div class="container"><h2 class="subtitle is-6">November 10, 2014</h2><h1 class="title">Python学习---递归</h1><div class="content"><p>递归的方法虽然效率不高，但是有些地方的使用( <em>对时间的要求不高时</em> )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 <strong>二叉查找方法</strong> ，让自己对递归更好的理解。</p><h2 id="二分查找的关键">二分查找的关键</h2><ol><li>如果上下限相同，那么就是数字所在的位置，返回</li><li>否则找到两者的中点(上下限的平均值)，查找数字是在左侧还是在右侧，继续查找数字所在的那半部分</li><li>关键的是查找的序列是*有序*且为<em>升序</em></li></ol><p><strong><em>提示：标准库中的 bisect 模块可以非常有效的实现二分查找 。</em></strong></p><pre><code class="language-python">def search (sequence,number,lower,upper) :
+
+<!DOCTYPE html>
+<html lang="zh">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="Rubyist, Python, JavaScript" name="keywords">
+<meta name="description" content="renyijiu&#39;s blog!">
+
+<meta content="Python学习---递归 - renyijiu" property="og:title">
+<title>Python学习---递归 | renyijiu</title>
+<link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/renyijiu">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/about">
+            <span class="icon">
+              <i class="fa fa-user"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle is-6">November 10, 2014</h2>
+    <h1 class="title">Python学习---递归</h1>
+    
+    <div class="content">
+      <p>递归的方法虽然效率不高，但是有些地方的使用( <em>对时间的要求不高时</em> )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 <strong>二叉查找方法</strong> ，让自己对递归更好的理解。
+</p>
+
+<h2 id="二分查找的关键">二分查找的关键</h2>
+
+<ol>
+<li>如果上下限相同，那么就是数字所在的位置，返回</li>
+<li>否则找到两者的中点(上下限的平均值)，查找数字是在左侧还是在右侧，继续查找数字所在的那半部分</li>
+<li>关键的是查找的序列是*有序*且为<em>升序</em></li>
+</ol>
+
+<p><strong><em>提示：标准库中的 bisect 模块可以非常有效的实现二分查找 。</em></strong></p>
+
+<pre><code class="language-python">def search (sequence,number,lower,upper) :
        if lower == uppper :
            assert number == sequence[upper]  #断言，用来判断数字是否为找到的数，否的话引起一个错误
            return upper
@@ -8,4 +73,41 @@
                  return search(sequence,number,middle+1,upper)
            else :
                  return search(sequence,number,lower,middle)
-</code></pre></div></div></section><section class="section"><div class="container has-text-centered"><p>Live For Dream, Dream For Love</p><p>&copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p></div></section><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload='"all"!=media&&(media="all")'><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload='"all"!=media&&(media="all")'><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-78885477-1","auto"),ga("send","pageview")</script><script async src="//www.google-analytics.com/analytics.js"></script></html>
+</code></pre>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <P>Live For Dream, Dream For Love</P>
+    <p>Hosted by <a href='https://pages.coding.me' style='font-weight: bold'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
+  </div>
+</section>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload="if(media!='all')media='all'">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload="if(media!='all')media='all'">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-78885477-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+

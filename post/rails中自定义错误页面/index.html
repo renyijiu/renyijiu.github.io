@@ -1,19 +1,95 @@
-<!DOCTYPE html><html lang="zh"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta content="Rubyist, Python, JavaScript" name="keywords"><meta name="description" content="renyijiu&#39;s blog!"><meta content="Rails中自定义错误页面 - renyijiu" property="og:title"><title>Rails中自定义错误页面 | renyijiu</title><link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><section class="section"><div class="container"><nav class="nav"><div class="nav-left"><a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a></div><div class="nav-right"><nav class="nav-item level is-mobile"><a class="level-item" href="https://github.com/renyijiu"><span class="icon"><i class="fa fa-github"></i></span></a><a class="level-item" href="/about"><span class="icon"><i class="fa fa-user"></i></span></a><a class="level-item" href="/index.xml"><span class="icon"><i class="fa fa-rss"></i></span></a></nav></div></nav></div></section><section class="section"><div class="container"><h2 class="subtitle is-6">October 30, 2016</h2><h1 class="title">Rails中自定义错误页面</h1><div class="content"><p>Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部项目中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。</p><h2 id="修改配置">修改配置</h2><p>首先需要在config中开启这个设定，使用自定义的错误方式。</p><pre><code class="language-ruby"># config/application.rb   
+
+<!DOCTYPE html>
+<html lang="zh">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="Rubyist, Python, JavaScript" name="keywords">
+<meta name="description" content="renyijiu&#39;s blog!">
+
+<meta content="Rails中自定义错误页面 - renyijiu" property="og:title">
+<title>Rails中自定义错误页面 | renyijiu</title>
+<link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/renyijiu">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/about">
+            <span class="icon">
+              <i class="fa fa-user"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle is-6">October 30, 2016</h2>
+    <h1 class="title">Rails中自定义错误页面</h1>
+    
+    <div class="content">
+      <p>Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部项目中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。</p>
+
+<h2 id="修改配置">修改配置</h2>
+
+<p>首先需要在config中开启这个设定，使用自定义的错误方式。</p>
+
+<pre><code class="language-ruby"># config/application.rb   
 config.exceptions_app = self.routes
-</code></pre><p>设定后应该就是使用自己的错误定义了，也可以将public下的错误页面删了，不删也没什么关系。</p><h2 id="定义错误动作">定义错误动作</h2><p>使用自己的错误定义后，那就和其他的操作一样，首先定义路由跳转</p><pre><code class="language-ruby">#通过数组定义错误代码，自己定制 
+</code></pre>
+
+<p>设定后应该就是使用自己的错误定义了，也可以将public下的错误页面删了，不删也没什么关系。</p>
+
+<h2 id="定义错误动作">定义错误动作</h2>
+
+<p>使用自己的错误定义后，那就和其他的操作一样，首先定义路由跳转</p>
+
+<pre><code class="language-ruby">#通过数组定义错误代码，自己定制 
 %w(404 500).each do |code|
      match code, to: &quot;error#show&quot;, code: code, :via =&gt; [:get, :post, :put, :patch, :delete]
  end
 
 #正则表达式匹配路由，这个是项目使用的一种，将服务器错误（5XX）进行跳转
 match '/:code', to: &quot;error#show&quot;, code: :code, via: :all, :constraints =&gt; { :code =&gt; /5(10|0\d){1}/ }
-</code></pre><p><strong>这里需要说一下</strong>，当请求出错，使用路由跳转时，原来的请求方式和请求参数会被携带着转向错误处理。例如，当使用get时，参数为params={&ldquo;test&rdquo;:&ldquo;测试&rdquo;}，这个请求服务器出错，路由跳转错误处理时，使用的依旧是get方式，并带有原来的参数，所以需要确定自己需要对那些请求方式进行处理，简单的使用via: :all对所有的http请求进行匹配。</p><p>在写好route后，需要相对应的cotroller文件</p><pre><code class="language-ruby">class ErrorController &lt; ApplicationController
+</code></pre>
+
+<p><strong>这里需要说一下</strong>，当请求出错，使用路由跳转时，原来的请求方式和请求参数会被携带着转向错误处理。例如，当使用get时，参数为params={&ldquo;test&rdquo;:&ldquo;测试&rdquo;}，这个请求服务器出错，路由跳转错误处理时，使用的依旧是get方式，并带有原来的参数，所以需要确定自己需要对那些请求方式进行处理，简单的使用via: :all对所有的http请求进行匹配。</p>
+
+<p>在写好route后，需要相对应的cotroller文件</p>
+
+<pre><code class="language-ruby">class ErrorController &lt; ApplicationController
   def show
     #自定义错误处理代码
     ......
   end
 end
-</code></pre><p>如果需要将错误的log信息显示，可以通过环境变量去进行提取</p><pre><code class="language-ruby">#获取错误log信息，进行自定义显示
+</code></pre>
+
+<p>如果需要将错误的log信息显示，可以通过环境变量去进行提取</p>
+
+<pre><code class="language-ruby">#获取错误log信息，进行自定义显示
 def env_exception
   @ex ||= env['action_dispatch.exception']
 end
@@ -21,6 +97,55 @@ end
 @err_mess = env_exception ? env_exception.message : ''
 @err_info = env_exception ? env_exception.backtrace.join(&quot;\n&quot;) : ''
 
-</code></pre><h2 id="rails内自带的500错误提示">Rails内自带的500错误提示</h2><pre><code class="language-ruby">&quot;500 Internal Server Error\n&quot; 
+</code></pre>
+
+<h2 id="rails内自带的500错误提示">Rails内自带的500错误提示</h2>
+
+<pre><code class="language-ruby">&quot;500 Internal Server Error\n&quot; 
 &quot;If you are the administrator of this website, then please read this web application's log file and/or the web server's log file to find out what went wrong.&quot;
-</code></pre><p>这个是Rails自带的错误提示，当你自定义的错误页面代码出错时，无法展示了，就会转向这个告诉你出问题了，这是你就需要检查自己的错误信息页面哪里出问题了。</p><h2 id="其它的思路">其它的思路</h2><p>自定义错误信息也不一定去展示，在<code>error#show</code>中可以进行一些有趣的操作，常见的是加入邮件发送，通知管理员出问题了。另外也可以去调用一些消息通知，例如，添加一个钉钉的消息通知接口，出现错误后调用接口，将错误日志发给管理员，更加方便快捷。</p><p>总的来说，这个自定义错误还是比较实用的，可以提高错误的通知效率，使得错误快速定位并解决，而不是说用户无法使用抱怨了，这才发现线上环境出现了错误。</p></div></div></section><section class="section"><div class="container has-text-centered"><p>Live For Dream, Dream For Love</p><p>&copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p></div></section><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload='"all"!=media&&(media="all")'><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload='"all"!=media&&(media="all")'><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-78885477-1","auto"),ga("send","pageview")</script><script async src="//www.google-analytics.com/analytics.js"></script></html>
+</code></pre>
+
+<p>这个是Rails自带的错误提示，当你自定义的错误页面代码出错时，无法展示了，就会转向这个告诉你出问题了，这是你就需要检查自己的错误信息页面哪里出问题了。</p>
+
+<h2 id="其它的思路">其它的思路</h2>
+
+<p>自定义错误信息也不一定去展示，在<code>error#show</code>中可以进行一些有趣的操作，常见的是加入邮件发送，通知管理员出问题了。另外也可以去调用一些消息通知，例如，添加一个钉钉的消息通知接口，出现错误后调用接口，将错误日志发给管理员，更加方便快捷。</p>
+
+<p>总的来说，这个自定义错误还是比较实用的，可以提高错误的通知效率，使得错误快速定位并解决，而不是说用户无法使用抱怨了，这才发现线上环境出现了错误。</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <P>Live For Dream, Dream For Love</P>
+    <p>Hosted by <a href='https://pages.coding.me' style='font-weight: bold'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
+  </div>
+</section>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload="if(media!='all')media='all'">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload="if(media!='all')media='all'">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-78885477-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+

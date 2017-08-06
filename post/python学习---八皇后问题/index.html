@@ -1,4 +1,69 @@
-<!DOCTYPE html><html lang="zh"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta content="Rubyist, Python, JavaScript" name="keywords"><meta name="description" content="renyijiu&#39;s blog!"><meta content="Python学习---八皇后问题 - renyijiu" property="og:title"><title>Python学习---八皇后问题 | renyijiu</title><link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><section class="section"><div class="container"><nav class="nav"><div class="nav-left"><a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a></div><div class="nav-right"><nav class="nav-item level is-mobile"><a class="level-item" href="https://github.com/renyijiu"><span class="icon"><i class="fa fa-github"></i></span></a><a class="level-item" href="/about"><span class="icon"><i class="fa fa-user"></i></span></a><a class="level-item" href="/index.xml"><span class="icon"><i class="fa fa-rss"></i></span></a></nav></div></nav></div></section><section class="section"><div class="container"><h2 class="subtitle is-6">November 19, 2014</h2><h1 class="title">Python学习---八皇后问题</h1><div class="content"><h2 id="八皇后问题">八皇后问题</h2><p>在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？</p><h2 id="分析">分析</h2><p>首先尝试放置第一个皇后(在第一行)，然后放置第二个皇后，以此类推。如果发现不能放下最后一个皇后，就回溯到上一步，试着将皇后放到其他的位置。</p><h2 id="方案">方案</h2><p>使用生成器。生成器是逐渐产生结果的复杂递归算法的理想实现工具。本解决方法是 &lt;<strong>pyhton基础教程</strong> &gt;中的代码。</p><pre><code class="language-python">#定义冲突函数,用于判断下一个皇后的位置会不会有冲突。
+
+<!DOCTYPE html>
+<html lang="zh">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="Rubyist, Python, JavaScript" name="keywords">
+<meta name="description" content="renyijiu&#39;s blog!">
+
+<meta content="Python学习---八皇后问题 - renyijiu" property="og:title">
+<title>Python学习---八皇后问题 | renyijiu</title>
+<link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/renyijiu">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/about">
+            <span class="icon">
+              <i class="fa fa-user"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle is-6">November 19, 2014</h2>
+    <h1 class="title">Python学习---八皇后问题</h1>
+    
+    <div class="content">
+      <h2 id="八皇后问题">八皇后问题</h2>
+
+<p>在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？
+</p>
+
+<h2 id="分析">分析</h2>
+
+<p>首先尝试放置第一个皇后(在第一行)，然后放置第二个皇后，以此类推。如果发现不能放下最后一个皇后，就回溯到上一步，试着将皇后放到其他的位置。</p>
+
+<h2 id="方案">方案</h2>
+
+<p>使用生成器。生成器是逐渐产生结果的复杂递归算法的理想实现工具。本解决方法是 &lt;<strong>pyhton基础教程</strong> &gt;中的代码。</p>
+
+<pre><code class="language-python">#定义冲突函数,用于判断下一个皇后的位置会不会有冲突。
 def conflict (state , nextX) :       #nextX代表下一个皇后的水平位置(列)，nextY代表垂直位置
 	nextY = len (state)         #state[0] = 0,表示皇后处于第一行第一列(从0开始计数)
 	for i in range (nextY) :    #range  包括起始，不包括结尾，后面的数为下个序列第一个数的编号
@@ -38,4 +103,41 @@ def queens(num = 8,state = ()) :
 				for return in queens(num,state + (pos,)) :
 					yield (pos,) + result
 
-</code></pre></div></div></section><section class="section"><div class="container has-text-centered"><p>Live For Dream, Dream For Love</p><p>&copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p></div></section><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload='"all"!=media&&(media="all")'><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload='"all"!=media&&(media="all")'><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-78885477-1","auto"),ga("send","pageview")</script><script async src="//www.google-analytics.com/analytics.js"></script></html>
+</code></pre>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <P>Live For Dream, Dream For Love</P>
+    <p>Hosted by <a href='https://pages.coding.me' style='font-weight: bold'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
+  </div>
+</section>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload="if(media!='all')media='all'">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload="if(media!='all')media='all'">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-78885477-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+

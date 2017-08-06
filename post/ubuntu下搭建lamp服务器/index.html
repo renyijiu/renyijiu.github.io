@@ -1,18 +1,171 @@
-<!DOCTYPE html><html lang="zh"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta content="Rubyist, Python, JavaScript" name="keywords"><meta name="description" content="renyijiu&#39;s blog!"><meta content="Ubuntu下搭建LAMP服务器 - renyijiu" property="og:title"><title>Ubuntu下搭建LAMP服务器 | renyijiu</title><link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><section class="section"><div class="container"><nav class="nav"><div class="nav-left"><a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a></div><div class="nav-right"><nav class="nav-item level is-mobile"><a class="level-item" href="https://github.com/renyijiu"><span class="icon"><i class="fa fa-github"></i></span></a><a class="level-item" href="/about"><span class="icon"><i class="fa fa-user"></i></span></a><a class="level-item" href="/index.xml"><span class="icon"><i class="fa fa-rss"></i></span></a></nav></div></nav></div></section><section class="section"><div class="container"><h2 class="subtitle is-6">November 28, 2014</h2><h1 class="title">Ubuntu下搭建LAMP服务器</h1><div class="content"><p>本文主要记录下在Ubuntu下搭建LAMP服务器的大致流程</p><pre><code>LAMP = Linux + Apache + Mysql + PHP
-</code></pre><p></p><h2 id="安装apache2">安装Apache2</h2><p>第一步是安装Apache2，在Ubuntu下只需要使用 apt-get install 命令即可</p><pre><code>$ sudo apt-get install apache2
-</code></pre><h2 id="安装php">安装PHP</h2><p>安装PHP需要安装两个包，一个是 <code>PHP5</code> 本身，二是Apache2的 <code>PHP模块</code> ，安装命令如下：</p><pre><code>$ sudo apt-get install php5 libapache2-mod-php5
-</code></pre><h2 id="配置mysql的root密码">配置Mysql的root密码</h2><p>如果你在用上述的命令安装完Mysql后使用命令：</p><pre><code>$ mysql -uroot -p
-</code></pre><p><strong>注意</strong>：这里不用输入密码，直接敲回车键就能进入Mysql中</p><p>进入后我们可以使用命令来重新设置root密码，也可以同样地新建用户</p><pre><code>&gt;USE mysql;
+
+<!DOCTYPE html>
+<html lang="zh">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="Rubyist, Python, JavaScript" name="keywords">
+<meta name="description" content="renyijiu&#39;s blog!">
+
+<meta content="Ubuntu下搭建LAMP服务器 - renyijiu" property="og:title">
+<title>Ubuntu下搭建LAMP服务器 | renyijiu</title>
+<link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/renyijiu">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/about">
+            <span class="icon">
+              <i class="fa fa-user"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle is-6">November 28, 2014</h2>
+    <h1 class="title">Ubuntu下搭建LAMP服务器</h1>
+    
+    <div class="content">
+      <p>本文主要记录下在Ubuntu下搭建LAMP服务器的大致流程</p>
+
+<pre><code>LAMP = Linux + Apache + Mysql + PHP
+</code></pre>
+
+<p></p>
+
+<h2 id="安装apache2">安装Apache2</h2>
+
+<p>第一步是安装Apache2，在Ubuntu下只需要使用  apt-get install  命令即可</p>
+
+<pre><code>$ sudo apt-get install apache2
+</code></pre>
+
+<h2 id="安装php">安装PHP</h2>
+
+<p>安装PHP需要安装两个包，一个是 <code>PHP5</code> 本身，二是Apache2的 <code>PHP模块</code> ，安装命令如下：</p>
+
+<pre><code>$ sudo apt-get install php5 libapache2-mod-php5
+</code></pre>
+
+<h2 id="配置mysql的root密码">配置Mysql的root密码</h2>
+
+<p>如果你在用上述的命令安装完Mysql后使用命令：</p>
+
+<pre><code>$ mysql -uroot -p
+</code></pre>
+
+<p><strong>注意</strong>：这里不用输入密码，直接敲回车键就能进入Mysql中</p>
+
+<p>进入后我们可以使用命令来重新设置root密码，也可以同样地新建用户</p>
+
+<pre><code>&gt;USE mysql;
 &gt;UPDATE user SET password = PASSWORD('你要设置的密码') WHERE user= 'root';
 &gt;flush privilege;
 &gt;exit;
 
-</code></pre><p>登录Mysql的操作就是上面的命令：</p><pre><code>$ mysql -u('你的用户名') -p
-</code></pre><p>回车后输入你的密码即可</p><h2 id="启动apache2">启动Apache2</h2><p>现在我们用命令启动<code>apache2</code>服务：</p><pre><code>$ sudo service apache2 start
-</code></pre><p>然后我们通过浏览器访问<a href="http://localhost/">http://localhost/</a>,应该能看到一个关于apache2的网页，有一行是：</p><pre><code>It Works!
-</code></pre><p>到这，一台基于Ubuntu能够正常使用的服务器已经搭好了。</p><h2 id="安装phpmyadmin">安装PHPMyAdmin</h2><p>PHPMyAdmin是一款基于PHP的数据库管理网站，在Ubuntu下安装也比较简单：</p><pre><code>$ sudo apt-get install phpmyadmin
-</code></pre><p>然后我们将PHPMyAdmin的配置复制到apache2的配置文件夹下：</p><pre><code>$ sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/sites-available/phpmyadmin.conf
+</code></pre>
+
+<p>登录Mysql的操作就是上面的命令：</p>
+
+<pre><code>$ mysql -u('你的用户名') -p
+</code></pre>
+
+<p>回车后输入你的密码即可</p>
+
+<h2 id="启动apache2">启动Apache2</h2>
+
+<p>现在我们用命令启动<code>apache2</code>服务：</p>
+
+<pre><code>$ sudo service apache2 start
+</code></pre>
+
+<p>然后我们通过浏览器访问<a href="http://localhost/">http://localhost/</a>,应该能看到一个关于apache2的网页，有一行是：</p>
+
+<pre><code>It Works!
+</code></pre>
+
+<p>到这，一台基于Ubuntu能够正常使用的服务器已经搭好了。</p>
+
+<h2 id="安装phpmyadmin">安装PHPMyAdmin</h2>
+
+<p>PHPMyAdmin是一款基于PHP的数据库管理网站，在Ubuntu下安装也比较简单：</p>
+
+<pre><code>$ sudo apt-get install phpmyadmin
+</code></pre>
+
+<p>然后我们将PHPMyAdmin的配置复制到apache2的配置文件夹下：</p>
+
+<pre><code>$ sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/sites-available/phpmyadmin.conf
 
 $ sudo ln -s /etc/apache2/sites-available/phpmyadmin.conf /etc/apache2/sites-enabled/phpmyadmin.conf
-</code></pre><p>最后，我们重启apapche2:</p><pre><code>$ sudo service apache2 restart
-</code></pre><p>然后我们访问<a href="http://localhost/phpmyadmin/">http://localhost/phpmyadmin/</a>,用你的数据库帐号密码登录</p><p><strong>提醒</strong>:这里存在着一个问题，用你新建的账户无法登录，我自己测试只能用root账户登录，不知道原因，待找到解决办法再更新本文！</p></div></div></section><section class="section"><div class="container has-text-centered"><p>Live For Dream, Dream For Love</p><p>&copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p></div></section><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload='"all"!=media&&(media="all")'><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload='"all"!=media&&(media="all")'><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-78885477-1","auto"),ga("send","pageview")</script><script async src="//www.google-analytics.com/analytics.js"></script></html>
+</code></pre>
+
+<p>最后，我们重启apapche2:</p>
+
+<pre><code>$ sudo service apache2 restart
+</code></pre>
+
+<p>然后我们访问<a href="http://localhost/phpmyadmin/">http://localhost/phpmyadmin/</a>,用你的数据库帐号密码登录</p>
+
+<p><strong>提醒</strong>:这里存在着一个问题，用你新建的账户无法登录，我自己测试只能用root账户登录，不知道原因，待找到解决办法再更新本文！</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <P>Live For Dream, Dream For Love</P>
+    <p>Hosted by <a href='https://pages.coding.me' style='font-weight: bold'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
+  </div>
+</section>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload="if(media!='all')media='all'">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload="if(media!='all')media='all'">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-78885477-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
