@@ -6,11 +6,20 @@
     <description>Recent content in Posts on renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <copyright>Hosted by &lt;a href=&#39;https://pages.coding.me&#39; style=&#39;font-weight: bold&#39;&gt;Coding Pages&lt;/a&gt; &amp;copy; &lt;a href=&#34;https://yijiu.ren&#34;&gt;renyijiu&lt;/a&gt; 2017</copyright>
-    <lastBuildDate>Thu, 01 Jun 2017 22:55:37 +0800</lastBuildDate>
+    <copyright>Hosted by &lt;a href=&#39;https://pages.coding.me&#39;&gt;Coding Pages&lt;/a&gt; &amp;copy; &lt;a href=&#34;https://yijiu.ren&#34;&gt;renyijiu&lt;/a&gt; 2017</copyright>
+    <lastBuildDate>Sun, 13 Aug 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://yijiu.ren/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>readpartial函数</title>
+      <link>https://yijiu.ren/post/readpartial%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sun, 13 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://yijiu.ren/post/readpartial%E5%87%BD%E6%95%B0/</guid>
+      <description>&lt;p&gt;前面在调试一个接口时，自己在本地跑测试没有发现问题，部署到测试环境后测试发现报编码错误，&lt;code&gt;Encoding::UndefinedConversionError: &amp;quot;\xE6&amp;quot; from ASCII-8BIT to UTF-8&lt;/code&gt;。自己也比较奇怪问题的发生，因为ruby在编码问题上其实做了很多的自动转换，所以碰到的并不多（当然如果你要是你用python2写过网页的抓取，就知道网页编码错误给新手带来的恐惧感😱 )。另外这个也与所运行的机器设置有关，这个在这就不探讨了。这里应该就是机器文件配置不一致，所以本地测试并没有发现。这里主要通过修改输出编码进行问题修复。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>一道面试题的思考</title>

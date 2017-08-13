@@ -47,6 +47,24 @@
   <div class="container">
     
     <article>
+      <h2 class="subtitle is-6">August 13, 2017</h2>
+      <h1 class="title"><a href="https://yijiu.ren/post/readpartial%E5%87%BD%E6%95%B0/">readpartial函数</a></h1>
+      
+      <div class="content">
+        前面在调试一个接口时，自己在本地跑测试没有发现问题，部署到测试环境后测试发现报编码错误，Encoding::UndefinedConversionError: &quot;\xE6&quot; from ASCII-8BIT to UTF-8。自己也比较奇怪问题的发生，因为ruby在编码问题上其实做了很多的自动转换，所以碰到的并不多（当然如果你要是你用python2写过网页的抓取，就知道网页编码错误给新手带来的恐惧感😱 )。另外这个也与所运行的机器设置有关，这个在这就不探讨了。这里应该就是机器文件配置不一致，所以本地测试并没有发现。这里主要通过修改输出编码进行问题修复。
+
+        
+        ...<a class="button is-link" href="https://yijiu.ren/post/readpartial%E5%87%BD%E6%95%B0/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
       <h2 class="subtitle is-6">June 1, 2017</h2>
       <h1 class="title"><a href="https://yijiu.ren/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/">一道面试题的思考</a></h1>
       
@@ -198,23 +216,6 @@ LAMP = Linux + Apache + Mysql + PHP
       </div>
     </article>
     
-    <article>
-      <h2 class="subtitle is-6">November 19, 2014</h2>
-      <h1 class="title"><a href="https://yijiu.ren/post/python%E5%AD%A6%E4%B9%A0---%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">Python学习---八皇后问题</a></h1>
-      
-      <div class="content">
-        八皇后问题 在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？ 
-        
-        ...<a class="button is-link" href="https://yijiu.ren/post/python%E5%AD%A6%E4%B9%A0---%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" style="height:28px">
-          Read more
-          <span class="icon is-small">
-            <i class="fa fa-angle-double-right"></i>
-          </span>
-        </a>
-        
-      </div>
-    </article>
-    
   </div>
 </section>
 <section class="section">
@@ -251,7 +252,7 @@ LAMP = Linux + Apache + Mysql + PHP
 <section class="section">
   <div class="container has-text-centered">
     <P>Live For Dream, Dream For Love</P>
-    <p>Hosted by <a href='https://pages.coding.me' style='font-weight: bold'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
+    <p>Hosted by <a href='https://pages.coding.me'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
   </div>
 </section>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload="if(media!='all')media='all'">

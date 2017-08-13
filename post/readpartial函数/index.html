@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="Rubyist, Python, JavaScript" name="keywords">
+<meta name="description" content="renyijiu&#39;s blog!">
+
+<meta content="readpartial函数 - renyijiu" property="og:title">
+<title>readpartial函数 | renyijiu</title>
+<link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/renyijiu">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/about">
+            <span class="icon">
+              <i class="fa fa-user"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle is-6">August 13, 2017</h2>
+    <h1 class="title">readpartial函数</h1>
+    
+    <div class="content">
+      <p>前面在调试一个接口时，自己在本地跑测试没有发现问题，部署到测试环境后测试发现报编码错误，<code>Encoding::UndefinedConversionError: &quot;\xE6&quot; from ASCII-8BIT to UTF-8</code>。自己也比较奇怪问题的发生，因为ruby在编码问题上其实做了很多的自动转换，所以碰到的并不多（当然如果你要是你用python2写过网页的抓取，就知道网页编码错误给新手带来的恐惧感😱 )。另外这个也与所运行的机器设置有关，这个在这就不探讨了。这里应该就是机器文件配置不一致，所以本地测试并没有发现。这里主要通过修改输出编码进行问题修复。</p>
+
+<h4 id="问题过程">问题过程</h4>
+
+<p>查看代码定位到下面一段代码，</p>
+
+<pre><code class="language-ruby">...
+res_body = HTTP.get('http://news.baidu.com').body
+res = ''
+
+while tmp = res_body.readpartial
+  res &lt;&lt; tmp
+end
+
+res
+</code></pre>
+
+<p>代码上比较简单，使用了<code>http</code>这个gem包，然后读取请求的返回数据作为函数的返回值。而其中readpartial函数就是读取数据流的过程，查看文档可以发现</p>
+
+<pre><code>readpartial(maxlen) → string
+Reads at most maxlen bytes from the I/O stream.
+
+从stream中读取读取设定的字节，默认值应该是4096.
+</code></pre>
+
+<p>下面是示例：</p>
+
+<pre><code>irb(main):001:0&gt; require 'http'
+=&gt; true
+irb(main):002:0&gt; a = HTTP.get('http://news.baidu.com')
+=&gt; #&lt;HTTP::Response/1.1 200 OK {&quot;Content-Type&quot;=&gt;&quot;text/html;charset=utf-8&quot;, &quot;Date&quot;=&gt;&quot;Sun, 13 Aug 2017 07:13:38 GMT&quot;, &quot;P3p&quot;=&gt;&quot;CP=\&quot; OTI DSP COR IVA OUR IND COM \&quot;&quot;, &quot;Server&quot;=&gt;&quot;Apache&quot;, &quot;Set-Cookie&quot;=&gt;&quot;BAIDUID=2566632A5C67FBC740BA9306D2FCB7FD:FG=1; expires=Mon, 13-Aug-18 07:13:38 GMT; max-age=31536000; path=/; domain=.baidu.com; version=1&quot;, &quot;Tracecode&quot;=&gt;[&quot;08188671830454104842081315&quot;, &quot;08188390610572470282081315&quot;], &quot;Vary&quot;=&gt;[&quot;Accept-Encoding&quot;, &quot;Accept-Encoding&quot;], &quot;Connection&quot;=&gt;&quot;close&quot;, &quot;Transfer-Encoding&quot;=&gt;&quot;chunked&quot;}&gt;
+irb(main):003:0&gt; a.body
+=&gt; #&lt;HTTP::Response::Body:3feb13b4e3b0 @streaming=false&gt;
+
+</code></pre>
+
+<p>这里就出现了几个问题:</p>
+
+<ol>
+<li><p>这是以字节模式读取数据，编码格式是<code>ASCII-8BIT</code></p>
+
+<pre><code>irb(main):005:0&gt; c = a.body.readpartial
+=&gt; &quot;&lt;!doctype html&gt;\n&lt;html class=\&quot;expanded\&quot;&gt;\n&lt;head&gt;\n\n&lt;!--STATUS OK--&gt;...&quot;
+irb(main):006:0&gt; c.encoding
+=&gt; #&lt;Encoding:ASCII-8BIT&gt;
+</code></pre></li>
+
+<li><p>设定maxlen后会截断数据</p>
+
+<p>当你设定了最大的读取长度后，函数会直接将数据截断，最明显的是存在汉字时，汉字为&rsquo;\xE5&hellip;&lsquo;格式，如果长度到了设定值，会被直接截断，不论是不是完整的数据，因此会导致出错。尤其是当你边读边进行解析时，这个问题就会展现出来了。</p></li>
+</ol>
+
+<h4 id="解决办法">解决办法</h4>
+
+<ol>
+<li><p>直接粗暴</p>
+
+<p>使用<code>force_encoding('utf-8')</code>方法将对象的编码转换成<code>utf-8</code>(这应该是目前最适用的编码格式)，这个方法非常直接，但是如果存在一些无法转换的字符，会导致函数转换错误。</p></li>
+
+<li><p>修改配置</p>
+
+<ol>
+<li>可以修改机器的配置，设置<code>utf-8</code>作为默认的编码格式；</li>
+<li>在文件的开头加上<code>#coding: utf-8</code>设置文件的默认编码，不过新版本的ruby已经将<code>utf-8</code>作为默认的文件编码，所以现在几乎都忽略</li>
+</ol></li>
+
+<li><p>使用&rsquo;http&rsquo;这个gem包</p>
+
+<p>根据&rsquo;http&rsquo;这个gem包的指引，可以发现，除了readpartial这个获取body信息方法外，可以直接调用<code>to_s</code>获取，获取到的格式为<code>utf-8</code></p>
+
+<pre><code>irb(main):027:0&gt; a.body.to_s.encoding
+=&gt; #&lt;Encoding:UTF-8&gt;
+</code></pre></li>
+</ol>
+
+<h4 id="最后">最后</h4>
+
+<p>这里只是简单的对这个问题进行了分析，未涉及到相关的编码知识，如果需要了解学习，请自己查找资料学习，编码这一块也是比较复杂的，加油吧！</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <P>Live For Dream, Dream For Love</P>
+    <p>Hosted by <a href='https://pages.coding.me'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
+  </div>
+</section>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload="if(media!='all')media='all'">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload="if(media!='all')media='all'">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-78885477-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
