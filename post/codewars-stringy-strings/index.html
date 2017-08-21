@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="zh"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta content="Rubyist, Python, JavaScript" name="keywords"><meta name="description" content="renyijiu&#39;s blog!"><meta content="[Codewars] Stringy Strings - renyijiu" property="og:title"><title>[Codewars] Stringy Strings | renyijiu</title><link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><section class="section"><div class="container"><nav class="nav"><div class="nav-left"><a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a></div><div class="nav-right"><nav class="nav-item level is-mobile"><a class="level-item" href="https://github.com/renyijiu"><span class="icon"><i class="fa fa-github"></i></span></a><a class="level-item" href="/about"><span class="icon"><i class="fa fa-user"></i></span></a><a class="level-item" href="/index.xml"><span class="icon"><i class="fa fa-rss"></i></span></a></nav></div></nav></div></section><section class="section"><div class="container"><h2 class="subtitle is-6">August 21, 2017</h2><h1 class="title">[Codewars] Stringy Strings</h1><div class="content"><pre><code>write me a function stringy that takes a size and returns a string of alternating '1s' and '0s'.
+
+the string should start with a 1.
+
+a string with size 6 should return :'101010'.
+
+with size 4 should return : '1010'.
+
+with size 12 should return : '101010101010'.
+
+The size will always be positive and will only use whole numbers.
+</code></pre><p></p><h4 id="题目">题目</h4><p>题目意思很简单，函数输入一个正整数，返回对应长度的&rdquo;1010&hellip;&ldquo;字符串，字符串总是以&rsquo;1&rsquo;开头。</p><h4 id="解法">解法</h4><p>自己的开始想到的第一解法就是遍历长度，每一位判断为1或者0，最后组装成字符串</p><pre><code class="language-ruby">def stringy(size)
+  size.times.map{|n| n.even? ? '1' : '0' }.join
+end
+</code></pre><p>另一种解法，因为是&rdquo;10&rdquo;的循环，所以</p><pre><code class="language-ruby">def stringy(size)
+  &quot;10&quot; * (size / 2) + &quot;1&quot; * (size % 2)
+end
+</code></pre><p>但是看别人的解法时发现ruby有提供一个<code>rjust</code>函数，因此更简单的解法：</p><pre><code class="language-ruby">def stringy(s)
+  &quot;&quot;.rjust(s, &quot;10&quot;)
+end
+</code></pre></div></div></section><section class="section"><div class="container has-text-centered"><p>Live For Dream, Dream For Love</p><p>Hosted by <a href="https://pages.coding.me">Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p></div></section><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload='"all"!=media&&(media="all")'><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload='"all"!=media&&(media="all")'><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-78885477-1","auto"),ga("send","pageview")</script><script async src="//www.google-analytics.com/analytics.js"></script></html>

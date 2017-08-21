@@ -1,17 +1,111 @@
-<!DOCTYPE html><html lang="zh"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta content="Rubyist, Python, JavaScript" name="keywords"><meta name="description" content="renyijiu&#39;s blog!"><meta content="node.js开发指南---学习笔记 - renyijiu" property="og:title"><title>node.js开发指南---学习笔记 | renyijiu</title><link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><section class="section"><div class="container"><nav class="nav"><div class="nav-left"><a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a></div><div class="nav-right"><nav class="nav-item level is-mobile"><a class="level-item" href="https://github.com/renyijiu"><span class="icon"><i class="fa fa-github"></i></span></a><a class="level-item" href="/about"><span class="icon"><i class="fa fa-user"></i></span></a><a class="level-item" href="/index.xml"><span class="icon"><i class="fa fa-rss"></i></span></a></nav></div></nav></div></section><section class="section"><div class="container"><h2 class="subtitle is-6">April 5, 2017</h2><h1 class="title">node.js开发指南---学习笔记</h1><div class="content"><p>前面在看<code>node.js开发指南</code>学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。</p><h4 id="运行">运行</h4><p>书中写的<code>npm app.js</code>，这个按照<code>express 4</code>的文档应该是<code>npm start</code>，另外在<code>package.json</code>中也有定义</p><pre><code class="language-javascript">  &quot;scripts&quot;: {
+
+<!DOCTYPE html>
+<html lang="zh">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="Rubyist, Python, JavaScript" name="keywords">
+<meta name="description" content="renyijiu&#39;s blog!">
+
+<meta content="node.js开发指南---学习笔记 - renyijiu" property="og:title">
+<title>node.js开发指南---学习笔记 | renyijiu</title>
+<link rel="shortcut ico" href="/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://yijiu.ren"><h1 class="title is-4">renyijiu</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/renyijiu">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/about">
+            <span class="icon">
+              <i class="fa fa-user"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle is-6">April 5, 2017</h2>
+    <h1 class="title">node.js开发指南---学习笔记</h1>
+    
+    <div class="content">
+      <p>前面在看<code>node.js开发指南</code>学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。</p>
+
+<h4 id="运行">运行</h4>
+
+<p>书中写的<code>npm app.js</code>，这个按照<code>express 4</code>的文档应该是<code>npm start</code>，另外在<code>package.json</code>中也有定义</p>
+
+<pre><code class="language-javascript">  &quot;scripts&quot;: {
     &quot;start&quot;: &quot;node ./bin/www&quot;
   }
-</code></pre><p>所以也可以使用<code>node ./bin/www</code></p><h4 id="模板">模板</h4><p>在<code>express 4</code>中<code>&lt;%- body %&gt;</code>这种模板直接使用会报错误，可以使用<code>&lt;%- include .... %&gt;</code>的方式，</p><p>如果需要使用原来的方法，可以使用<code>express-ejs-layouts</code>这个包.</p><h4 id="报错信息">报错信息</h4><h6 id="1-typeerror">1. TypeError</h6><pre><code class="language-javascript">TypeError: Cannot read property 'Store' of undefined
-</code></pre><p>如果遇到这个报错信息，可以使用下面的代码方式解决</p><pre><code class="language-javascript">var expressSession = require('express-session');
+</code></pre>
+
+<p>所以也可以使用<code>node ./bin/www</code></p>
+
+<h4 id="模板">模板</h4>
+
+<p>在<code>express 4</code>中<code>&lt;%- body %&gt;</code>这种模板直接使用会报错误，可以使用<code>&lt;%- include .... %&gt;</code>的方式，</p>
+
+<p>如果需要使用原来的方法，可以使用<code>express-ejs-layouts</code>这个包.</p>
+
+<h4 id="报错信息">报错信息</h4>
+
+<h6 id="1-typeerror">1. TypeError</h6>
+
+<pre><code class="language-javascript">TypeError: Cannot read property 'Store' of undefined
+</code></pre>
+
+<p>如果遇到这个报错信息，可以使用下面的代码方式解决</p>
+
+<pre><code class="language-javascript">var expressSession = require('express-session');
 var MongoStore = require('connect-mongo')(expressSession);
-</code></pre><h6 id="2-mongo-error">2. Mongo Error</h6><pre><code class="language-javascript">Error: Connection strategy not found
-</code></pre><p>书中<code>connect-mongo</code>使用的是旧的写法建立新的连接，改成下列方式</p><pre><code class="language-javascript">app.use(expressSession({
+</code></pre>
+
+<h6 id="2-mongo-error">2. Mongo Error</h6>
+
+<pre><code class="language-javascript">Error: Connection strategy not found
+</code></pre>
+
+<p>书中<code>connect-mongo</code>使用的是旧的写法建立新的连接，改成下列方式</p>
+
+<pre><code class="language-javascript">app.use(expressSession({
     secret: setting.cookieSecret,
     store: new MongoStore({
       url: 'mongodb://localhost/microblog'
     })
 }));
-</code></pre><h6 id="3-form">3. Form</h6><p>POST的表单数据为空，纠结了自己好久才发现，表单<code>input</code>的<code>name</code>属性没有填写，所以导致了<code>POST</code>过来的数据一直为空</p><h6 id="4-helpers">4. Helpers</h6><p>新版本的Express已经不支持<code>app.dynamicHelpers</code>方法，需要使用<code>locals</code>来代替</p><pre><code class="language-javascript">app.use(function(req, res, next) {
+</code></pre>
+
+<h6 id="3-form">3. Form</h6>
+
+<p>POST的表单数据为空，纠结了自己好久才发现，表单<code>input</code>的<code>name</code>属性没有填写，所以导致了<code>POST</code>过来的数据一直为空</p>
+
+<h6 id="4-helpers">4. Helpers</h6>
+
+<p>新版本的Express已经不支持<code>app.dynamicHelpers</code>方法，需要使用<code>locals</code>来代替</p>
+
+<pre><code class="language-javascript">app.use(function(req, res, next) {
   res.locals.user = req.session.user;
   var err = req.flash('error');
   var success = req.flash(&quot;success&quot;);
@@ -20,4 +114,53 @@ var MongoStore = require('connect-mongo')(expressSession);
   res.locals.success = success.length ? success : null;
   next();
 });
-</code></pre><p>另外，需要将上述代码放在路由定义之前，不然在页面上中是无法获取到<code>user, error, success</code>参数的。</p><h6 id="5-mongo-port">5. Mongo Port</h6><p><code>Cannot read property 'DEFAULT_PORT' of undefined。</code></p><p>需要将这个直接替换成mongodb的端口，一般默认是<code>27017</code>；但推荐是写在配置文件中引入。</p><h4 id="结语">结语</h4><p>上面是在这本书学习过程中遇到的几个主要的问题，写出来也算为后来的学习者提供点资料吧，因为在自己的查询过程中，发现这个错误信息的资料，尤其是中文资料真的不多，对新手不是很友好。</p></div></div></section><section class="section"><div class="container has-text-centered"><p>Live For Dream, Dream For Love</p><p>Hosted by <a href="https://pages.coding.me">Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p></div></section><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload='"all"!=media&&(media="all")'><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload='"all"!=media&&(media="all")'><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-78885477-1","auto"),ga("send","pageview")</script><script async src="//www.google-analytics.com/analytics.js"></script></html>
+</code></pre>
+
+<p>另外，需要将上述代码放在路由定义之前，不然在页面上中是无法获取到<code>user, error, success</code>参数的。</p>
+
+<h6 id="5-mongo-port">5. Mongo Port</h6>
+
+<p><code>Cannot read property 'DEFAULT_PORT' of undefined。</code></p>
+
+<p>需要将这个直接替换成mongodb的端口，一般默认是<code>27017</code>；但推荐是写在配置文件中引入。</p>
+
+<h4 id="结语">结语</h4>
+
+<p>上面是在这本书学习过程中遇到的几个主要的问题，写出来也算为后来的学习者提供点资料吧，因为在自己的查询过程中，发现这个错误信息的资料，尤其是中文资料真的不多，对新手不是很友好。</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <P>Live For Dream, Dream For Love</P>
+    <p>Hosted by <a href='https://pages.coding.me'>Coding Pages</a> &copy; <a href="https://yijiu.ren">renyijiu</a> 2017</p>
+  </div>
+</section>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" media="none" onload="if(media!='all')media='all'">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-light.min.css" media="none" onload="if(media!='all')media='all'">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/go.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/ruby.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-78885477-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
