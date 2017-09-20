@@ -61,18 +61,6 @@ Find the first n that matches |G(n+1) - G(n)| &amp;lt; t, where t is the precisi
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://yijiu.ren/about/</link>
-      <pubDate>Fri, 12 May 2017 22:24:50 +0800</pubDate>
-      
-      <guid>https://yijiu.ren/about/</guid>
-      <description> 多读书，多看报，少吃零食，多睡觉
- 我们总是说得太多，做的太少
- 唯有梦想与爱情，不可辜负
-  </description>
-    </item>
-    
-    <item>
       <title>JavaScript学习笔记</title>
       <link>https://yijiu.ren/posts/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sat, 15 Apr 2017 17:07:40 +0800</pubDate>
