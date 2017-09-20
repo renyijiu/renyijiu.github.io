@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>renyijiu</title>
-    <link>https://yijiu.ren/</link>
-    <description>Recent content on renyijiu</description>
+    <title>Posts on renyijiu</title>
+    <link>https://yijiu.ren/posts/</link>
+    <description>Recent content in Posts on renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
     <lastBuildDate>Mon, 21 Aug 2017 22:08:36 +0800</lastBuildDate>
     
-	<atom:link href="https://yijiu.ren/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yijiu.ren/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -58,18 +58,6 @@ The size will always be positive and will only use whole numbers.
 Golden ratio is the limit of G(n) when n approaches infinity.
 With all the above information, we have a way to estimating golden ratio g:
 Find the first n that matches |G(n+1) - G(n)| &amp;lt; t, where t is the precision threshold, then the corresponding G(n) is considered as the estimated value of golden ratio.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://yijiu.ren/about/</link>
-      <pubDate>Fri, 12 May 2017 22:24:50 +0800</pubDate>
-      
-      <guid>https://yijiu.ren/about/</guid>
-      <description> 多读书，多看报，少吃零食，多睡觉
- 我们总是说得太多，做的太少
- 唯有梦想与爱情，不可辜负
-  </description>
     </item>
     
     <item>
