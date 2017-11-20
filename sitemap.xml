@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yijiu.ren/posts/form%E8%A1%A8%E5%8D%95%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-11-18T22:24:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yijiu.ren/posts/form%E8%A1%A8%E5%8D%95%E9%81%87%E5%88%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-11-12T17:12:55+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yijiu.ren/posts/codewars-stringy-strings/</loc>
     <lastmod>2017-08-21T22:08:36+08:00</lastmod>
   </url>
@@ -84,7 +94,7 @@
   
   <url>
     <loc>https://yijiu.ren/posts/</loc>
-    <lastmod>2017-08-21T22:08:36+08:00</lastmod>
+    <lastmod>2017-11-18T22:24:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -95,7 +105,7 @@
   
   <url>
     <loc>https://yijiu.ren/</loc>
-    <lastmod>2017-08-21T22:08:36+08:00</lastmod>
+    <lastmod>2017-11-18T22:24:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
