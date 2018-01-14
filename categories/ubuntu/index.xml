@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/categories/ubuntu/</link>
+    <description>Recent content in Ubuntu on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Fri, 28 Nov 2014 15:43:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu下搭建LAMP服务器</title>
+      <link>https://blog.renyijiu.com/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Fri, 28 Nov 2014 15:43:00 +0000</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>&lt;p&gt;本文主要记录下在Ubuntu下搭建LAMP服务器的大致流程&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    LAMP = Linux + Apache + Mysql + PHP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

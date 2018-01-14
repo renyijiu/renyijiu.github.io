@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Rails中自定义错误页面 - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" />
+  <meta name="description" content="Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部应用中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。
+" />
+
+  <meta name="keywords" content="Rubyist, Pythoner, learn" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.32.4" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/rails%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+<meta property="og:title" content="Rails中自定义错误页面" />
+<meta property="og:description" content="Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部应用中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/rails%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/" />
+
+
+
+<meta property="article:published_time" content="2016-10-30T14:24:10&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-01-14T20:57:32&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Rails中自定义错误页面">
+<meta itemprop="description" content="Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部应用中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。">
+
+
+<meta itemprop="datePublished" content="2016-10-30T14:24:10&#43;00:00" />
+<meta itemprop="dateModified" content="2016-10-30T14:24:10&#43;00:00" />
+<meta itemprop="wordCount" content="954">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Rails中自定义错误页面"/>
+<meta name="twitter:description" content="Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部应用中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Rails中自定义错误页面</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-10-30 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    
+    <div class="post-content">
+      <p>Rails中当出现500和404错误时，默认使用的是Public下的错误页面，如500.html。在开发过程中或者是一些内部应用中，我们希望可以将错误信息暴露出来，以方便我们快速定位及解决问题。那么我们可以对错误页面的信息进行自定义。</p>
+
+<h2 id="修改配置">修改配置</h2>
+
+<p>首先需要在config中开启这个设定，使用自定义的错误方式。</p>
+
+<pre><code class="language-ruby"># config/application.rb   
+config.exceptions_app = self.routes
+</code></pre>
+
+<p>设定后应该就是使用自己的错误定义了，也可以将public下的错误页面删了，不删也没什么关系。</p>
+
+<h2 id="定义错误动作">定义错误动作</h2>
+
+<p>使用自己的错误定义后，那就和其他的操作一样，首先定义路由跳转</p>
+
+<pre><code class="language-ruby">#通过数组定义错误代码，自己定制 
+%w(404 500).each do |code|
+     match code, to: &quot;error#show&quot;, code: code, :via =&gt; [:get, :post, :put, :patch, :delete]
+ end
+
+#正则表达式匹配路由，这个是项目使用的一种，将服务器错误（5XX）进行跳转
+match '/:code', to: &quot;error#show&quot;, code: :code, via: :all, :constraints =&gt; { :code =&gt; /5(10|0\d){1}/ }
+</code></pre>
+
+<p><strong>这里需要说一下</strong>，当请求出错，使用路由跳转时，原来的请求方式和请求参数会被携带着转向错误处理。例如，当使用get时，参数为params={&ldquo;test&rdquo;:&ldquo;测试&rdquo;}，这个请求服务器出错，路由跳转错误处理时，使用的依旧是get方式，并带有原来的参数，所以需要确定自己需要对那些请求方式进行处理，简单的使用via: :all对所有的http请求进行匹配。</p>
+
+<p>在写好route后，需要相对应的cotroller文件</p>
+
+<pre><code class="language-ruby">class ErrorController &lt; ApplicationController
+  def show
+    #自定义错误处理代码
+    ......
+  end
+end
+</code></pre>
+
+<p>如果需要将错误的log信息显示，可以通过环境变量去进行提取</p>
+
+<pre><code class="language-ruby">#获取错误log信息，进行自定义显示
+def env_exception
+  @ex ||= env['action_dispatch.exception']
+end
+
+@err_mess = env_exception ? env_exception.message : ''
+@err_info = env_exception ? env_exception.backtrace.join(&quot;\n&quot;) : ''
+
+</code></pre>
+
+<h2 id="rails内自带的500错误提示">Rails内自带的500错误提示</h2>
+
+<pre><code class="language-ruby">&quot;500 Internal Server Error\n&quot; 
+&quot;If you are the administrator of this website, then please read this web application's log file and/or the web server's log file to find out what went wrong.&quot;
+</code></pre>
+
+<p>这个是Rails自带的错误提示，当你自定义的错误页面代码出错时，无法展示了，就会转向这个告诉你出问题了，这是你就需要检查自己的错误信息页面哪里出问题了。</p>
+
+<h2 id="其它的思路">其它的思路</h2>
+
+<p>自定义错误信息也不一定去展示，在<code>error#show</code>中可以进行一些有趣的操作，常见的是加入邮件发送，通知管理员出问题了。另外也可以去调用一些消息通知，例如，添加一个钉钉的消息通知接口，出现错误后调用接口，将错误日志发给管理员，更加方便快捷。</p>
+
+<p>总的来说，这个自定义错误还是比较实用的，可以提高错误的通知效率，使得错误快速定位并解决，而不是说用户无法使用抱怨了，这才发现线上环境出现了错误。</p>
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Node Js开发指南 学习笔记</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/action-cable%E7%9A%84%E4%BD%BF%E7%94%A8%E5%88%86%E6%9E%90/">
+            <span class="next-text nav-default">Action Cable的使用分析</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+    <span class="division">|</span>
+    <span class="coding-ad">
+        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+    </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+
+
+
+
+</body>
+</html>

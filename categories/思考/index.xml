@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>思考 on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/categories/%E6%80%9D%E8%80%83/</link>
+    <description>Recent content in 思考 on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Thu, 01 Jun 2017 22:55:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/categories/%E6%80%9D%E8%80%83/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一道面试题的思考</title>
+      <link>https://blog.renyijiu.com/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</link>
+      <pubDate>Thu, 01 Jun 2017 22:55:37 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</guid>
+      <description>面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2) Now let&amp;rsquo;s define G(n) = F(n)/F(n+1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find</description>
+    </item>
+    
+  </channel>
+</rss>

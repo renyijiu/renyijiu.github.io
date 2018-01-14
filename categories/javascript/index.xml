@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/categories/javascript/</link>
+    <description>Recent content in Javascript on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Sat, 15 Apr 2017 17:58:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JavaScript 学习笔记</title>
+      <link>https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 15 Apr 2017 17:58:24 +0000</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;这个是自己在跟着&lt;a href=&#34;http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000&#34;&gt;廖雪峰的JavaScript教程&lt;/a&gt;学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node Js开发指南 学习笔记</title>
+      <link>https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 05 Apr 2017 11:15:35 +0000</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;前面在看&lt;code&gt;node.js开发指南&lt;/code&gt;学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

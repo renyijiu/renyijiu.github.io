@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>一道面试题的思考 - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" />
+  <meta name="description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&amp;rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find" />
+
+  <meta name="keywords" content="Rubyist, Pythoner, learn" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.32.4" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+<meta property="og:title" content="一道面试题的思考" />
+<meta property="og:description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/" />
+
+
+
+<meta property="article:published_time" content="2017-06-01T22:55:37&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-01-14T21:02:51&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="一道面试题的思考">
+<meta itemprop="description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find">
+
+
+<meta itemprop="datePublished" content="2017-06-01T22:55:37&#43;08:00" />
+<meta itemprop="dateModified" content="2017-06-01T22:55:37&#43;08:00" />
+<meta itemprop="wordCount" content="844">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="一道面试题的思考"/>
+<meta name="twitter:description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">一道面试题的思考</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-06-01 </span>
+        <div class="post-category">
+            
+              <a href="/categories/%E6%80%9D%E8%80%83/"> 思考 </a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    
+    <div class="post-content">
+      <p>面试时碰到的一道题目，题目的要求是：</p>
+
+<blockquote>
+<p>The definition of a Fibonacci sequence is like this:</p>
+
+<ul>
+<li><p>F(0) = 0</p></li>
+
+<li><p>F(1) = 1</p></li>
+
+<li><p>F(n) = F(n-1) + F(n-2)</p></li>
+</ul>
+
+<p>Now let&rsquo;s define G(n) = F(n)/F(n+1).</p>
+
+<p>Golden ratio is the limit of G(n) when n approaches infinity.</p>
+
+<p>With all the above information, we have a way to estimating golden ratio g:</p>
+
+<p>Find the first n that matches |G(n+1) - G(n)| &lt; t, where t is the precision threshold, then the corresponding G(n) is considered as the estimated value of golden ratio.</p>
+</blockquote>
+
+<p>第一眼看到这题的时候，脑子里蹦出来的就是“递归”实现<a href="https://zh.wikipedia.org/zh/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97">斐波那契数列</a>，然后去计算G(n)的值，去计算判断一下即可，所以代码如下：</p>
+
+<pre><code class="language-ruby">def estimate_golden_ratio(t)
+  return nil if t &lt;= 0
+
+  n = 2
+  while n do
+    result = (cal_g(n+1) - cal_g(n)).abs
+
+    if (result &lt; t)
+        return n
+    else
+        n += 1
+    end
+  end
+end
+
+def fibonacci(n)
+    return n if n &lt;= 1
+    (fibonacci(n-1) + fibonacci(n-2))
+end
+
+def cal_g(n)
+    return (fibonacci(n).to_f / fibonacci(n+1).to_f)
+end
+
+puts estimate_golden_ratio(1e-6)
+puts estimate_golden_ratio(1e-8)
+puts estimate_golden_ratio(1e-10)
+puts estimate_golden_ratio(1e-15)
+puts estimate_golden_ratio(1e-20)
+</code></pre>
+
+<p>然后理所当然的会有问题，递归实现的问题就是计算度高的时候会导致超时。面试官问了下有没有什么想法去优化，我的反应就是使用循环去替代递归实现，这样子可以提高计算。</p>
+
+<p>但后面<strong>经过提醒</strong>仔细想了下，这个不是单纯的计算数列，它是需要获得一个期望的n值，不断的循环去获得所期望的值，其实呢也就是不断循环的计算F()，这里面重复的计算其实也是一个影响因素，当然修改斐波那契数列也是提高计算速度的。所以自己的想法是使用一个数组去保存计算的值，减少重复计算。</p>
+
+<pre><code class="language-ruby">FI_ARRAY = [0, 1]
+
+def estimate_golden_ratio(t)
+  return nil if t &lt;= 0
+
+  n = 2
+  while n do
+    result = (cal_g(n+1) - cal_g(n)).abs
+
+    if (result &lt; t)
+        return n
+    else
+        n += 1
+    end
+  end
+end
+
+def fibonacci(n)
+    arr_length = FI_ARRAY.length
+
+    if n &gt;= arr_length
+        for i in arr_length..n
+            FI_ARRAY[i] = FI_ARRAY[i-1] + FI_ARRAY[i-2]
+        end
+    end
+
+    return FI_ARRAY[n]
+end
+
+def cal_g(n)
+    return (fibonacci(n).to_f / fibonacci(n+1).to_f)
+end
+
+puts estimate_golden_ratio(1e-6)
+puts estimate_golden_ratio(1e-8)
+puts estimate_golden_ratio(1e-10)
+puts estimate_golden_ratio(1e-15)
+puts estimate_golden_ratio(1e-20)
+</code></pre>
+
+<p>当然这个也是有它的问题，当计算度变高时，需要保存的值增多，数组也会变大，空间消耗也会增多。后面想了下，也写了个普通的解法，当然呢这里面还是存在大量重复计算，所以计算应该还是上面那个更快。</p>
+
+<pre><code class="language-ruby">def estimate_golden_ratio(t)
+  return nil if t &lt;= 0
+
+  n = 2
+  while n do
+    tmp_g, tmp_g_1 = cal_g(n)
+    result = (tmp_g_1 - tmp_g).abs
+
+    if (result &lt; t)
+        return n
+    else
+        n += 1
+    end
+  end
+end
+
+def fibonacci(n)
+    result_array = [0, 1]
+    first, second = result_array
+
+    for i in 2..n+1
+        third = first + second
+        first = second
+        second = third
+    end
+
+    result_array = [first, second]
+    return result_array
+end
+
+def cal_g(n)
+    tmp_n, tmp_n_1 = fibonacci(n)
+    tmp_n_2 = tmp_n + tmp_n_1
+
+    tmp_g = tmp_n.to_f / tmp_n_1.to_f
+    tmp_g_1 = tmp_n_1.to_f / tmp_n_2.to_f
+    return [tmp_g, tmp_g_1]
+end
+
+puts estimate_golden_ratio(1e-6)
+puts estimate_golden_ratio(1e-8)
+puts estimate_golden_ratio(1e-10)
+puts estimate_golden_ratio(1e-15)
+puts estimate_golden_ratio(1e-20)
+</code></pre>
+
+<p>上面的代码是满足了题目设定的计算，但是自己考虑，当给出的t过小时，浮点数的精度损失大于了t时，这个就会产生结果上的误差，此时就需要考虑其他的方案了。</p>
+
+<p>从此可以看出来，一道简单的题其实可以引申出来探讨的内容还是很多的，有时还是需要自己多思考，多探索，还是多努力加油吧！</p>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/codewars-stringy-strings/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Stringy Strings</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+            <span class="next-text nav-default">JavaScript 学习笔记</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+    <span class="division">|</span>
+    <span class="coding-ad">
+        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+    </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+
+
+
+
+</body>
+</html>

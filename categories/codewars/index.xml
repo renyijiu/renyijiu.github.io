@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Codewars on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/categories/codewars/</link>
+    <description>Recent content in Codewars on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Mon, 21 Aug 2017 22:08:36 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/categories/codewars/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Stringy Strings</title>
+      <link>https://blog.renyijiu.com/post/codewars-stringy-strings/</link>
+      <pubDate>Mon, 21 Aug 2017 22:08:36 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/codewars-stringy-strings/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;write me a function stringy that takes a size and returns a string of alternating &#39;1s&#39; and &#39;0s&#39;.
+
+the string should start with a 1.
+
+a string with size 6 should return :&#39;101010&#39;.
+
+with size 4 should return : &#39;1010&#39;.
+
+with size 12 should return : &#39;101010101010&#39;.
+
+The size will always be positive and will only use whole numbers.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

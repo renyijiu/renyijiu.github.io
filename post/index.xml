@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog - renyijiu</title>
-    <link>https://blog.renyijiu.com/</link>
-    <description>Recent content on Blog - renyijiu</description>
+    <title>Posts on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/post/</link>
+    <description>Recent content in Posts on Blog - renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Sun, 14 Jan 2018 21:09:14 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 18 Nov 2017 22:24:05 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.renyijiu.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.renyijiu.com/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>About</title>
-      <link>https://blog.renyijiu.com/about/</link>
-      <pubDate>Sun, 14 Jan 2018 21:09:14 +0800</pubDate>
-      
-      <guid>https://blog.renyijiu.com/about/</guid>
-      <description>多读书，多看报，少吃零食，多睡觉 我们总是说得太多，做的太少 脚踏实地，方能仰望星空🌃 唯有梦想与爱情，不可辜负</description>
-    </item>
     
     <item>
       <title>Form表单上传文件的问题</title>

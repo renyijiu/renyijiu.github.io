@@ -3,7 +3,127 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.renyijiu.com/about/</loc>
+    <lastmod>2018-01-14T21:09:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/form%E8%A1%A8%E5%8D%95%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-01-14T21:04:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/form%E8%A1%A8%E5%8D%95%E9%81%87%E5%88%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-01-14T21:04:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/codewars-stringy-strings/</loc>
+    <lastmod>2018-01-14T21:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2018-01-14T21:02:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-01-14T20:50:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-01-14T20:54:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/rails%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/</loc>
+    <lastmod>2018-01-14T20:57:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/action-cable%E7%9A%84%E4%BD%BF%E7%94%A8%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2018-01-14T17:21:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/</loc>
+    <lastmod>2018-01-14T17:19:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2018-01-14T20:25:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2018-01-14T20:58:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%BA%8C-%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-01-14T20:56:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%B8%80-%E9%80%92%E5%BD%92/</loc>
+    <lastmod>2018-01-14T20:55:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-01-14T20:45:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/markdown%E7%9A%84%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/</loc>
+    <lastmod>2018-01-14T20:52:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/the-beginning/</loc>
+    <lastmod>2018-01-14T17:14:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/</loc>
+    <lastmod>2018-01-14T21:09:14+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -15,7 +135,70 @@
   </url>
   
   <url>
+    <loc>https://blog.renyijiu.com/categories/codewars/</loc>
+    <lastmod>2018-01-14T21:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/javascript/</loc>
+    <lastmod>2018-01-14T20:50:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/</loc>
+    <lastmod>2018-01-14T21:04:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/python/</loc>
+    <lastmod>2018-01-14T20:56:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/rails/</loc>
+    <lastmod>2018-01-14T21:04:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/tags/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/ubuntu/</loc>
+    <lastmod>2018-01-14T20:58:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2018-01-14T21:02:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2018-01-14T17:19:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2018-01-14T20:25:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

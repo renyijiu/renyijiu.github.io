@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生活杂谈 on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/</link>
+    <description>Recent content in 生活杂谈 on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Tue, 07 Jun 2016 22:24:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>写在毕业之际</title>
+      <link>https://blog.renyijiu.com/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/</link>
+      <pubDate>Tue, 07 Jun 2016 22:24:53 +0000</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>博客的开始之旅</title>
+      <link>https://blog.renyijiu.com/post/the-beginning/</link>
+      <pubDate>Sun, 05 Oct 2014 20:36:53 +0000</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/the-beginning/</guid>
+      <description>&lt;p&gt;这个博客有了大致的样子，对于这些框架和主题，我只是个使用者，(&lt;strong&gt;这是本博客使用参考的主题&lt;/strong&gt;&amp;mdash;-&lt;a href=&#34;https://github.com/daisygao/hexo-themes-cover&#34;&gt;daisygao的github&lt;/a&gt;,&lt;strong&gt;感谢下这些奉献的人&lt;/strong&gt;）但对于一个我这种对前端完全没有知识储备的小白也是一个艰难的过程。这几天的不断的百度，不断的谷歌&lt;strong&gt;（&lt;/strong&gt;这里不得不夸下&lt;strong&gt;google浏览器&lt;/strong&gt;，这真是浏览器的王者，使用体验非常好。顺带说下，翻墙真的太爽了，外面的世界很精彩&lt;strong&gt;）&lt;/strong&gt;，慢慢的也都有所了解了，也大致知道了自己后面需要做的。毕竟刚刚开始，后面自己会学着慢慢的增加一些功能。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
