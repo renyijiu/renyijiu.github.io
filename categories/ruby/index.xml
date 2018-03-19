@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/categories/ruby/</link>
+    <description>Recent content in Ruby on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Mon, 19 Mar 2018 21:56:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/categories/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac更换壁纸小脚本</title>
+      <link>https://blog.renyijiu.com/post/mac%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E5%B0%8F%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Mon, 19 Mar 2018 21:56:17 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/mac%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E5%B0%8F%E8%84%9A%E6%9C%AC/</guid>
+      <description>&lt;p&gt;最近偶然逛到&lt;a href=&#34;https://unsplash.com/&#34;&gt;unsplash&lt;/a&gt;这个免费的图片网站，发现图片质量不错，另外还友好的提供API接口，就想着顺带写一个小脚本去自动更换电脑壁纸（换一张壁纸，换一个心情😊）。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
