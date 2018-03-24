@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.renyijiu.com/post/stimulus%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</loc>
+    <lastmod>2018-03-24T14:18:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/post/mac%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E5%B0%8F%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2018-03-19T21:56:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -137,7 +144,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/</loc>
-    <lastmod>2018-03-19T21:56:17+08:00</lastmod>
+    <lastmod>2018-03-24T14:18:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -164,7 +171,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/post/</loc>
-    <lastmod>2018-03-19T21:56:17+08:00</lastmod>
+    <lastmod>2018-03-24T14:18:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -199,6 +206,13 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/ubuntu/</loc>
     <lastmod>2018-01-14T20:58:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2018-03-24T14:18:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
