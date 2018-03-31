@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Stimulus踩坑记 - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" /><meta name="description" content="Stimulus踩坑" />
+
+  <meta name="keywords" content="Rubyist, Pythoner, learn" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+<meta property="og:title" content="Stimulus踩坑记" />
+<meta property="og:description" content="Stimulus踩坑" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/" />
+
+
+
+<meta property="article:published_time" content="2018-03-31T11:14:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-03-31T11:14:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Stimulus踩坑记">
+<meta itemprop="description" content="Stimulus踩坑">
+
+
+<meta itemprop="datePublished" content="2018-03-31T11:14:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-03-31T11:14:00&#43;08:00" />
+<meta itemprop="wordCount" content="813">
+
+
+
+<meta itemprop="keywords" content="stimulus," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Stimulus踩坑记"/>
+<meta name="twitter:description" content="Stimulus踩坑"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Stimulus踩坑记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-31 </span>
+        <div class="post-category">
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    
+    <div class="post-content">
+      <p>上一篇在介绍Stimulus时，有说到部分插件会使用<code>data-target</code>类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。</p>
+
+<p></p>
+
+<p>例如，在使用Bootstrap的tabs时，tabs可以通过自定义<code>data-target</code>属性去关联对应的panel，这就会与框架产生冲突导致tab切换功能的失效（前提是你在tab元素上设置了<code>data-target</code>属性）。自己想到的有两种方式（当然你要是开口就是修改bootstrap框架源码之类的，那就没必要往下看了，手动斜眼）去解决问题。</p>
+
+<h3 id="一-修改属性名称">一、修改属性名称</h3>
+
+<p>在框架初始化时手动传入Schema作为第二个参数去自定义名称。当然不推荐这么做，因为你自己了解缘由，但是当其他人接手代码后很容易入坑，尤其是没有相关文档说明的情况下。</p>
+
+<pre><code class="language-javascript">const application = new Application(document.documentElement, {
+  controllerAttribute: &quot;data-controller&quot;,
+  actionAttribute: &quot;data-action&quot;
+  targetAttribute: &quot;data-target&quot;
+})
+// ...
+application.start()
+</code></pre>
+
+<p>不过如果像你使用<code>datetimepicker</code>这类的插件，它们在实现上使用了<code>data-action</code>属性，而你自己又不能去修改插件代码，所以在一开始引入Stimulus框架时就去修改对应的参数名称，直接避开这类的兼容问题，不失为一种最佳的方案（但是请说明清楚防止别人掉坑）。</p>
+
+<h3 id="二-重新实现">二、重新实现</h3>
+
+<p>这一种的话都是基于我们的功能相对较为简单或者是为了以后的复用，我们可以基于Stimulus自己去实现相对应的功能。下面举个例子，简单实现对应的tab切换功能。</p>
+
+<pre><code class="language-html">&lt;!-- HTML页面代码 --&gt;
+
+&lt;div data-controller=&quot;tabs&quot;&gt;
+  &lt;div class=&quot;tabs&quot;&gt;
+    &lt;ul&gt;
+      &lt;li data-target=&quot;tabs.tab&quot; data-action=&quot;click-&gt;tabs#change&quot;&gt;
+        &lt;a&gt;Tab 1&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li data-target=&quot;tabs.tab&quot; data-action=&quot;click-&gt;tabs#change&quot;&gt;
+        &lt;a&gt;Tab 2&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  
+  &lt;div class=&quot;hidden&quot; data-target=&quot;tabs.panel&quot;&gt;
+    Tab panel 1
+  &lt;/div&gt;
+  
+  &lt;div class=&quot;hidden&quot; data-target=&quot;tabs.panel&quot;&gt;
+    Tab panel 2
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+<p>对应的JavaScript代码：</p>
+
+<pre><code class="language-javascript">const stilumus = Stimulus.Application.start();
+stimulus.register(&quot;tabs&quot;, class extends Stimulus.Controller {
+
+  static get targets() {
+    return [&quot;tab&quot;, &quot;panel&quot;];
+  }
+
+  initialize() {
+    this.showTab();
+  }
+
+  change(event) {
+    this.index = this.tabTargets.indexOf(event.currentTarget);
+  }
+
+  showTab() {
+    this.tabTargets.forEach((tab, index) =&gt; {
+      const panel = this.panelTargets[index];
+      tab.classList.toggle(&quot;active&quot;, index === this.index);
+      panel.classList.toggle(&quot;hidden&quot;, index !== this.index);
+    })
+  }
+
+  get index() {
+    return parseInt(this.data.get(&quot;index&quot;) || 0);
+  }
+
+  set index(value) {
+    this.data.set(&quot;index&quot;, value);
+    this.showTab();
+  }
+})
+
+</code></pre>
+
+<p>这样子就是一个简单的tab切换功能，好处就是慢慢积累成自己的“组件库”，复用也是极为方便的。</p>
+
+<p>所以总结来说，一种是从开始去避开问题的出现，另一种算是曲线救国的方案，主要还是看具体项目去决定怎么处理类似出现的问题的吧。</p>
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/stimulus/">stimulus</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/stimulus%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/">
+            <span class="next-text nav-default">Stimulus框架简介</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+    <span class="division">|</span>
+    <span class="coding-ad">
+        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+    </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+
+
+
+
+</body>
+</html>

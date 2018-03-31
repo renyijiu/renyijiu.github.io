@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Sat, 24 Mar 2018 14:18:58 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 31 Mar 2018 11:14:00 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Stimulus踩坑记</title>
+      <link>https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/</link>
+      <pubDate>Sat, 31 Mar 2018 11:14:00 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/</guid>
+      <description>&lt;p&gt;上一篇在介绍Stimulus时，有说到部分插件会使用&lt;code&gt;data-target&lt;/code&gt;类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Stimulus框架简介</title>

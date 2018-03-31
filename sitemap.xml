@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/</loc>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/post/stimulus%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</loc>
     <lastmod>2018-03-24T14:18:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -144,7 +151,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/</loc>
-    <lastmod>2018-03-24T14:18:58+08:00</lastmod>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -171,7 +178,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/post/</loc>
-    <lastmod>2018-03-24T14:18:58+08:00</lastmod>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -198,7 +205,15 @@
   </url>
   
   <url>
+    <loc>https://blog.renyijiu.com/tags/stimulus/</loc>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/tags/</loc>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -212,7 +227,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/categories/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2018-03-24T14:18:58+08:00</lastmod>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
