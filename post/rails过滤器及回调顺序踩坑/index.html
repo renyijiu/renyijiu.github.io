@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Rails过滤器及回调顺序踩坑 - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" />
+  <meta name="description" content="最近在做项目时碰到了一个问题，自己在model中定义了几个after_commit回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。
+
+" />
+<meta name="keywords" content="Rails, 回调, 过滤器" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.40.3" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+<meta property="og:title" content="Rails过滤器及回调顺序踩坑" />
+<meta property="og:description" content="最近在做项目时碰到了一个问题，自己在model中定义了几个after_commit回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/" />
+
+
+
+<meta property="article:published_time" content="2018-05-19T13:38:36&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-05-19T13:38:36&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Rails过滤器及回调顺序踩坑">
+<meta itemprop="description" content="最近在做项目时碰到了一个问题，自己在model中定义了几个after_commit回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。
+
+">
+
+
+<meta itemprop="datePublished" content="2018-05-19T13:38:36&#43;08:00" />
+<meta itemprop="dateModified" content="2018-05-19T13:38:36&#43;08:00" />
+<meta itemprop="wordCount" content="845">
+
+
+
+<meta itemprop="keywords" content="Rails," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rails过滤器及回调顺序踩坑"/>
+<meta name="twitter:description" content="最近在做项目时碰到了一个问题，自己在model中定义了几个after_commit回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。
+
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Rails过滤器及回调顺序踩坑</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-05-19 </span>
+        <div class="post-category">
+            
+              <a href="/categories/rails/"> Rails </a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    
+    <div class="post-content">
+      <p>最近在做项目时碰到了一个问题，自己在model中定义了几个<code>after_commit</code>回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。</p>
+
+<p></p>
+
+<p>本文测试代码基于Rails 5.2.0， Ruby 2.5.1版本，其他版本结果不确保一定一致。</p>
+
+<h3 id="过滤器">过滤器</h3>
+
+<p>过滤器（filter）是一种方法，在控制器动作运行之前、之后，或者前后运行。每类过滤器有着自己常用的使用场景，这里就不具体介绍了，下面看看过滤器的执行顺序。</p>
+
+<pre><code class="language-ruby">class HomeController &lt; ApplicationController
+  before_action :before1
+  around_action :around1
+  after_action :after1
+
+  around_action :around2
+  before_action :before2
+  after_action :after2
+  
+  before_action :before3
+  after_action :after3
+  around_action :around3
+
+  def index
+    render plain: &quot;Hello World&quot;
+  end
+
+  def before1
+    puts &quot;before1&quot;
+  end
+
+  def before2
+    puts &quot;before2&quot;
+  end
+  
+  def before3
+    puts &quot;before3&quot;
+  end
+
+  def after1
+    puts &quot;after1&quot;
+  end
+
+  def after2
+    puts &quot;after2&quot;
+  end
+  
+  def after3
+    puts &quot;after3&quot;
+  end
+
+  def around1
+    puts &quot;around1 (before)&quot;
+    yield
+    puts &quot;around1 (after)&quot;
+  end
+
+  def around2
+    puts &quot;around2 (before)&quot;
+    yield
+    puts &quot;around2 (after)&quot;
+  end
+  
+  def around3
+    puts &quot;around3 (before)&quot;
+    yield
+    puts &quot;around3 (after)&quot;
+  end
+end
+</code></pre>
+
+<p>运行一下测试代码输出日志如下：</p>
+
+<pre><code>before1
+around1 (before)
+around2 (before)
+before2
+before3
+around3 (before)
+around3 (after)
+after3
+after2
+around2 (after)
+after1
+around1 (after)
+</code></pre>
+
+<p>从输出日志可以明确地看出 <strong>过滤器是按照定义的顺序执行的</strong>，对应日志理解这个逻辑应该不难</p>
+
+<h3 id="回调">回调</h3>
+
+<p>Rails提供了十几种回调操作，这里具体就不介绍每个回调的作用了，在官方文档中都有着具体的说明，这里说一下自己对于回调执行顺序的了解。</p>
+
+<p>测试代码如下：</p>
+
+<pre><code class="language-ruby"># home_controller.rb
+
+class HomeController &lt; ApplicationController
+  def index
+    User.create(user_key: 'hello_world', name: 'test')
+
+    render plain: &quot;Hello World&quot;
+  end
+end
+
+# user.rb
+
+class User &lt; ApplicationRecord
+  after_commit :commit_log_1
+  after_commit :commit_log_2
+
+  after_save :save_log_1
+  after_save :save_log_2
+
+  private
+
+  def save_log_1
+    p &quot;save log 1&quot;
+  end
+
+  def save_log_2
+    p &quot;save log 2&quot;
+  end
+
+  def commit_log_1
+    p &quot;commit log 1&quot;
+  end
+
+  def commit_log_2
+    p &quot;commit log 2&quot;
+  end
+end
+</code></pre>
+
+<p>代码运行输出日志如下：</p>
+
+<pre><code>&quot;save log 1&quot;
+&quot;save log 2&quot;
+&quot;commit log 2&quot;
+&quot;commit log 1&quot;
+</code></pre>
+
+<p>这里就可以明显的看出来，<code>after_save</code>回调是按照<strong>定义顺序</strong>执行的，而<code>after_commit</code>回调是按照<strong>定义顺序逆序</strong>执行的，其实官方文档中有所解释，只是自己一直没有注意到这方面，所以踩坑了。</p>
+
+<blockquote>
+<p>非事务性回调按照定义顺序执行，事务性回调按照定义顺序<strong>逆序</strong>执行(后定义的先执行)</p>
+</blockquote>
+
+<p>而按照文档中给的事务性回调目前只有两个：<code>after_commit</code>以及<code>after_rollback</code>，所以这里问题原因就已经明白，<code>after_commit</code>按照定义顺序相反的执行，修改一下顺序即可达到预期效果。</p>
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/rails/">Rails</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/">
+            <span class="next-text nav-default">Stimulus踩坑记</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+    <span class="division">|</span>
+    <span class="coding-ad">
+        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+    </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+
+
+
+
+</body>
+</html>

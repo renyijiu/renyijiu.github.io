@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Sat, 31 Mar 2018 11:14:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 May 2018 13:38:36 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rails过滤器及回调顺序踩坑</title>
+      <link>https://blog.renyijiu.com/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/</link>
+      <pubDate>Sat, 19 May 2018 13:38:36 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/</guid>
+      <description>&lt;p&gt;最近在做项目时碰到了一个问题，自己在model中定义了几个&lt;code&gt;after_commit&lt;/code&gt;回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Stimulus踩坑记</title>
