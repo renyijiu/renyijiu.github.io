@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Sat, 19 May 2018 13:38:36 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 May 2018 17:40:53 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Float的精度问题</title>
+      <link>https://blog.renyijiu.com/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 22 May 2018 17:40:53 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;最近在写测试时，某一个数据随机生成了一个很大的值，然后跑测试发现一直不过，后面仔细排查发现数据存入数据库前与读取出来的值不一致，最后确定应该是对应数据类型设置为Float导致精度不准的问题，这里回顾下float的精度问题。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Rails过滤器及回调顺序踩坑</title>
