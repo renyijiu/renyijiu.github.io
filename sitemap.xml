@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.renyijiu.com/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-06-05T18:17:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2018-05-22T17:40:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -165,7 +172,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/</loc>
-    <lastmod>2018-05-22T17:40:53+08:00</lastmod>
+    <lastmod>2018-06-05T18:17:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -192,7 +199,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/post/</loc>
-    <lastmod>2018-05-22T17:40:53+08:00</lastmod>
+    <lastmod>2018-06-05T18:17:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -206,14 +213,14 @@
   
   <url>
     <loc>https://blog.renyijiu.com/tags/rails/</loc>
-    <lastmod>2018-05-19T13:38:36+08:00</lastmod>
+    <lastmod>2018-06-05T18:17:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/rails/</loc>
-    <lastmod>2018-05-19T13:38:36+08:00</lastmod>
+    <lastmod>2018-06-05T18:17:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -241,7 +248,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/tags/</loc>
-    <lastmod>2018-05-19T13:38:36+08:00</lastmod>
+    <lastmod>2018-06-05T18:17:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
