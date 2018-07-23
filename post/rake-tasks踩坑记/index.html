@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Rake tasks踩坑记 - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" />
+  <meta name="description" content="最近在工作中编写Rake tasks时碰到了一个以前没有注意的问题，不同命名空间下定义的同名methods出现了覆盖的情况导致bug的产生，自己也是排查很久后才发现重名的问题，所以就把这个记录下来，避免以后再次踩坑。
+" />
+<meta name="keywords" content="Rake, Rails" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.44" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/rake-tasks%E8%B8%A9%E5%9D%91%E8%AE%B0/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+<meta property="og:title" content="Rake tasks踩坑记" />
+<meta property="og:description" content="最近在工作中编写Rake  tasks时碰到了一个以前没有注意的问题，不同命名空间下定义的同名methods出现了覆盖的情况导致bug的产生，自己也是排查很久后才发现重名的问题，所以就把这个记录下来，避免以后再次踩坑。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/rake-tasks%E8%B8%A9%E5%9D%91%E8%AE%B0/" />
+
+
+
+<meta property="article:published_time" content="2018-07-21T17:47:53&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-07-21T17:47:53&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Rake tasks踩坑记">
+<meta itemprop="description" content="最近在工作中编写Rake  tasks时碰到了一个以前没有注意的问题，不同命名空间下定义的同名methods出现了覆盖的情况导致bug的产生，自己也是排查很久后才发现重名的问题，所以就把这个记录下来，避免以后再次踩坑。">
+
+
+<meta itemprop="datePublished" content="2018-07-21T17:47:53&#43;08:00" />
+<meta itemprop="dateModified" content="2018-07-21T17:47:53&#43;08:00" />
+<meta itemprop="wordCount" content="853">
+
+
+
+<meta itemprop="keywords" content="Rake,Rails," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rake tasks踩坑记"/>
+<meta name="twitter:description" content="最近在工作中编写Rake  tasks时碰到了一个以前没有注意的问题，不同命名空间下定义的同名methods出现了覆盖的情况导致bug的产生，自己也是排查很久后才发现重名的问题，所以就把这个记录下来，避免以后再次踩坑。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Rake tasks踩坑记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-21 </span>
+        <div class="post-category">
+            
+              <a href="/categories/rails/"> Rails </a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    
+    <div class="post-content">
+      <p>最近在工作中编写Rake  tasks时碰到了一个以前没有注意的问题，不同命名空间下定义的同名methods出现了覆盖的情况导致bug的产生，自己也是排查很久后才发现重名的问题，所以就把这个记录下来，避免以后再次踩坑。</p>
+
+<h3 id="示例一">示例一</h3>
+
+<pre><code class="language-ruby"># lib/tasks/hello_one.rake
+
+desc &quot;puts hello world one&quot;
+task :hello_one do
+  hello_world
+end
+
+def hello_world
+  p &quot;hello tasks one!&quot;
+end
+</code></pre>
+
+<p>运行上面的task，结果也是和我们期望的一样</p>
+
+<pre><code>$ rake 'hello_one'
+
+&quot;hello world one&quot;    
+</code></pre>
+
+<p>然后写下另外一个task进行测试</p>
+
+<pre><code class="language-ruby"># lib/tasks/hello_two.rake
+
+desc &quot;puts hello world two&quot;
+task :hello_two do
+  hello_world
+end
+
+def hello_world
+  p &quot;hello world two&quot;
+end
+</code></pre>
+
+<p>运行也得到了期望的结果</p>
+
+<pre><code>$ rake 'hello_two'
+
+&quot;hello world two&quot;
+</code></pre>
+
+<p>但是现在重新运行<code>rake 'hello_one'</code>时却发现输出也变成了<code>hello world two</code>，问题就出来了。当你运行rake任务时，过程是这样的：</p>
+
+<ol>
+<li><code>rake 'hello_one'</code></li>
+<li>Rails按照文件名称顺序自动加载所有的rake文件</li>
+<li><code>lib/tasks/hello_one.rake</code>文件被加载，定义<code>hello_world</code>方法</li>
+<li><code>lib/tasks/hello_two.rake</code>文件被加载，<code>hello_world</code>方法被重新定义</li>
+<li>运行task代码，最后定义的<code>hello world</code>方法被调用</li>
+</ol>
+
+<p>上述示例可以简单的说明问题，但是一般我们编写时会带有<code>namespace</code>，那现在看看是否会出现上面的情况呢？</p>
+
+<h3 id="示例二">示例二</h3>
+
+<pre><code class="language-ruby"># lib/tasks/hello_one.rake
+namespace :one do
+  desc &quot;puts hello world one&quot;
+  task :hello_one do
+    hello_world
+  end
+  
+  def hello_world
+    p &quot;hello tasks one!&quot;
+  end
+end
+
+# lib/tasks/hello_two.rake
+namespace :two do
+  desc &quot;puts hello world two&quot;
+  task :hello_two do
+    hello_world
+  end
+
+  def hello_world
+    p &quot;hello world two&quot;
+  end
+end
+</code></pre>
+
+<p>运行上述代码，结果如下：</p>
+
+<pre><code>$ rake 'one:hello_one'
+&quot;hello world two&quot;
+
+$ rake 'two:hello_two'
+&quot;hello world two&quot;
+</code></pre>
+
+<p>从运行结果可以看出来，<code>namespace</code>对于方法定义没有影响，方法依旧是全局性质的，问题依旧存在。</p>
+
+<p>对于这个一般有几个常用的解决办法：</p>
+
+<ol>
+<li>确保每一个定义的方法名称唯一（最直接也最简单，但是后续容易重名踩坑）</li>
+<li>把方法的逻辑写回到task中去，不单独定义相关的method（当然这是相反的操作，如果方法简单那是可以这么操作的）</li>
+<li>将方法逻辑抽离，单独封装成Class或者是Module，然后在task中调用即可（当然若与model相关，可以写成对应的实例方法或者类方法，这都是可以的）</li>
+</ol>
+
+<p>第三个相对是一个较好的解决方案，但是呢具体的使用还是需要根据当时的业务场景及代码复杂度等因素去选择判断，解决问题的方案才是好方案。</p>
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/rake/">Rake</a>
+          
+          <a href="/tags/rails/">Rails</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/">
+            <span class="next-text nav-default">记一次生产环境事故</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+    <span class="division">|</span>
+    <span class="coding-ad">
+        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+    </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+
+
+
+
+</body>
+</html>

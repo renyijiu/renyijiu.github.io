@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Tue, 05 Jun 2018 18:17:53 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Jul 2018 17:47:53 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,18 @@
     <item>
       <title>Rails</title>
       <link>https://blog.renyijiu.com/tags/rails/</link>
-      <pubDate>Tue, 05 Jun 2018 18:17:53 +0800</pubDate>
+      <pubDate>Sat, 21 Jul 2018 17:47:53 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/tags/rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rake</title>
+      <link>https://blog.renyijiu.com/tags/rake/</link>
+      <pubDate>Sat, 21 Jul 2018 17:47:53 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/tags/rake/</guid>
       <description></description>
     </item>
     
