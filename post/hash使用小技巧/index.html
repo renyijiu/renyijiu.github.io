@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hash使用小技巧 - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" /><meta name="description" content="Ruby中的Hash使用技巧" />
+<meta name="keywords" content="Ruby, Hash" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.46" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+<meta property="og:title" content="Hash使用小技巧" />
+<meta property="og:description" content="Ruby中的Hash使用技巧" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" />
+
+
+
+<meta property="article:published_time" content="2018-08-01T16:40:58&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-08-01T16:40:58&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Hash使用小技巧">
+<meta itemprop="description" content="Ruby中的Hash使用技巧">
+
+
+<meta itemprop="datePublished" content="2018-08-01T16:40:58&#43;08:00" />
+<meta itemprop="dateModified" content="2018-08-01T16:40:58&#43;08:00" />
+<meta itemprop="wordCount" content="744">
+
+
+
+<meta itemprop="keywords" content="Ruby,Hash," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hash使用小技巧"/>
+<meta name="twitter:description" content="Ruby中的Hash使用技巧"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hash使用小技巧</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-01 </span>
+        <div class="post-category">
+            
+              <a href="/categories/ruby/"> ruby </a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    
+    <div class="post-content">
+      <p>Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。</p>
+
+<p></p>
+
+<h3 id="1-初始化">1. 初始化</h3>
+
+<p>常见的方式就不在赘述了，一次查资料时看到一个比较少用的方式：</p>
+
+<pre><code class="language-ruby">Hash[:a, :b]
+=&gt; {:a=&gt;:b}
+
+Hash[[:a, :b], [:c, :d]]
+=&gt; {[:a, :b]=&gt;[:c, :d]}
+</code></pre>
+
+<h3 id="2-设置默认值">2. 设置默认值</h3>
+
+<p>我们可以在创建Hash的时候通过设置代码块来实现自定义默认值</p>
+
+<pre><code class="language-ruby">irb&gt; hash = Hash.new { |hash, key| hash[key] = key }
+=&gt; {}
+irb&gt; hash[:a]
+=&gt; :a
+
+# 或者使用default_proc设置
+a.default_proc = Proc.new do |hash, key|
+  hash[key] = key
+end
+=&gt; #&lt;Proc:0x00007feaf00ba738@(irb):19&gt;
+irb&gt; a
+=&gt; {}
+irb&gt; a[:a]
+=&gt; :a
+</code></pre>
+
+<p>这里的<code>default_proc</code>很有意思，我们可以深入的利用一下去生成一个树形结构的hash</p>
+
+<pre><code class="language-ruby">irb&gt; tree = Hash.new{|hash, key| hash[key] = Hash.new(&amp;hash.default_proc)}
+=&gt; {}
+irb&gt; tree[:a][:b][:c]
+{}
+irb&gt; tree[:a][:b][:d] = ['hello', 'world']
+[
+    [0] &quot;hello&quot;,
+    [1] &quot;world&quot;
+]
+irb&gt; tree[:a][:e] = 'hello world'
+&quot;hello world&quot;
+irb&gt; tree
+{
+    :a =&gt; {
+        :b =&gt; {
+            :c =&gt; {},
+            :d =&gt; [
+                [0] &quot;hello&quot;,
+                [1] &quot;world&quot;
+            ]
+        },
+        :e =&gt; &quot;hello world&quot;
+    }
+}
+</code></pre>
+
+<h3 id="3-替换">3. 替换</h3>
+
+<p>String中的<code>%</code>大家比较熟悉，<code>str % arg → new_str</code>，但其实我们也可以结合hash去做一些有意思的操作。</p>
+
+<pre><code class="language-ruby">irb&gt; list = {language: 'Ruby'}
+{
+    :language =&gt; &quot;Ruby&quot;
+}
+irb&gt; string = &quot;The best language is %{language}&quot;
+&quot;The best language is %{language}&quot;
+irb&gt; string % list
+&quot;The best language is Ruby&quot;	
+</code></pre>
+
+<p>正则替换<code>gsub</code>也是同理哈</p>
+
+<pre><code class="language-ruby">irb&gt; string = &quot;The best language is PHP&quot;
+&quot;The best language is PHP&quot;
+irb&gt; language = {&quot;PHP&quot; =&gt; &quot;Ruby&quot;}
+{
+    &quot;PHP&quot; =&gt; &quot;Ruby&quot;
+}
+# 使用default_proc确保只替换hash存在的单词
+irb&gt; language.default_proc = Proc.new{|hash, key| key}
+#&lt;Proc:0x00007fe5729d73f8@(irb):3&gt;
+irb&gt; string.gsub(/\w+/, language)
+&quot;The best language is Ruby&quot;
+</code></pre>
+
+<h3 id="4-合并">4. 合并</h3>
+
+<p>合并两个hash，当存在对应新的value时，覆盖原来的值；若无，则保留原来的值</p>
+
+<pre><code class="language-ruby">def custom_merge(old_hash, new_hash)
+  old_hash.merge(new_hash){|_, old_val, new_val| new_val.nil? ? old_val : new_val}
+end
+
+# 示例
+irb&gt; a = {a: 'hello', b: 'world'}
+{
+    :a =&gt; &quot;hello&quot;,
+    :b =&gt; &quot;world&quot;
+}
+irb&gt; b = {a: 'hello world', c: 'Ruby'}
+{
+    :a =&gt; &quot;hello world&quot;,
+    :c =&gt; &quot;Ruby&quot;
+}
+irb&gt; custom_merge(a, b)
+{
+    :a =&gt; &quot;hello world&quot;,
+    :b =&gt; &quot;world&quot;,
+    :c =&gt; &quot;Ruby&quot;
+}
+</code></pre>
+
+<h3 id="5-格式化">5. 格式化</h3>
+
+<p>将hash中的key转成symbol格式，采用递归确保所有的key转换</p>
+
+<pre><code class="language-ruby">def symbolize(obj)
+  if obj.is_a? ::Hash
+    return obj.inject({}) do |memo, (k, v)|
+      memo.tap { |m| m[k.to_sym] = symbolize(v) }
+    end
+  elsif obj.is_a? ::Array
+    return obj.map { |memo| symbolize(memo) }
+  end
+
+  obj
+end
+
+#示例
+irb&gt; a = {'1' =&gt; 'a', '2' =&gt; 'b', '3' =&gt; 'c', d: {'hello' =&gt; &quot;world&quot;, 'test' =&gt; [1, 2, 3]}}
+{
+    &quot;1&quot; =&gt; &quot;a&quot;,
+    &quot;2&quot; =&gt; &quot;b&quot;,
+    &quot;3&quot; =&gt; &quot;c&quot;,
+     :d =&gt; {
+        &quot;hello&quot; =&gt; &quot;world&quot;,
+         &quot;test&quot; =&gt; [
+            [0] 1,
+            [1] 2,
+            [2] 3
+        ]
+    }
+}
+irb(main):030:0&gt; symbolize(a)
+{
+    :&quot;1&quot; =&gt; &quot;a&quot;,
+    :&quot;2&quot; =&gt; &quot;b&quot;,
+    :&quot;3&quot; =&gt; &quot;c&quot;,
+      :d =&gt; {
+        :hello =&gt; &quot;world&quot;,
+         :test =&gt; [
+            [0] 1,
+            [1] 2,
+            [2] 3
+        ]
+    }
+}
+</code></pre>
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/ruby/">Ruby</a>
+          
+          <a href="/tags/hash/">Hash</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/rake-tasks%E8%B8%A9%E5%9D%91%E8%AE%B0/">
+            <span class="next-text nav-default">Rake tasks踩坑记</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+    <span class="division">|</span>
+    <span class="coding-ad">
+        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+    </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+
+
+
+
+</body>
+</html>

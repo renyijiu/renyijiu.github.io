@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.renyijiu.com/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/post/rake-tasks%E8%B8%A9%E5%9D%91%E8%AE%B0/</loc>
     <lastmod>2018-07-21T17:47:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -179,7 +186,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/</loc>
-    <lastmod>2018-07-21T17:47:53+08:00</lastmod>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -198,6 +205,13 @@
   </url>
   
   <url>
+    <loc>https://blog.renyijiu.com/tags/hash/</loc>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/categories/javascript/</loc>
     <lastmod>2018-01-14T20:50:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -206,7 +220,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/post/</loc>
-    <lastmod>2018-07-21T17:47:53+08:00</lastmod>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -241,14 +255,14 @@
   
   <url>
     <loc>https://blog.renyijiu.com/tags/ruby/</loc>
-    <lastmod>2018-05-22T17:40:53+08:00</lastmod>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/ruby/</loc>
-    <lastmod>2018-05-22T17:40:53+08:00</lastmod>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -262,7 +276,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/tags/</loc>
-    <lastmod>2018-07-21T17:47:53+08:00</lastmod>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
