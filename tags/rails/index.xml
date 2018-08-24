@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Sat, 21 Jul 2018 17:47:53 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 24 Aug 2018 09:58:12 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/tags/rails/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rails Controller中的concerns测试编写</title>
+      <link>https://blog.renyijiu.com/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/</link>
+      <pubDate>Fri, 24 Aug 2018 09:58:12 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/</guid>
+      <description>&lt;p&gt;最近在完善项目中的测试代码，常见的&lt;code&gt;Controller&lt;/code&gt;以及&lt;code&gt;Model&lt;/code&gt;层的测试代码写的比较熟悉了。在查看测试覆盖率报告时发现&lt;code&gt;Controller&lt;/code&gt;中&lt;code&gt;concerns&lt;/code&gt;下文件基本没有测试，然后自己对如何测试&lt;code&gt;concerns&lt;/code&gt;也不是很了解，就搜索了资料记录下来，方便后续回顾。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Rake tasks踩坑记</title>
