@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,49 +16,42 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="renyijiu" />
-  <meta name="description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&amp;rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find" />
-
-  <meta name="keywords" content="Rubyist, Pythoner, Ruby on Rails" />
+<meta name="author" content="renyijiu" /><meta name="description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&amp;rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.47" />
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/" />
-
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" href="/favicon.ico" />
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
 
 
-
-
-
-
-<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 <meta property="og:title" content="一道面试题的思考" />
 <meta property="og:description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/" /><meta property="article:published_time" content="2017-06-01T22:55:37&#43;08:00"/>
 <meta property="article:modified_time" content="2018-01-14T21:02:51&#43;08:00"/>
+
 <meta itemprop="name" content="一道面试题的思考">
 <meta itemprop="description" content="面试时碰到的一道题目，题目的要求是： The definition of a Fibonacci sequence is like this: F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2) Now let&rsquo;s define G(n) = F(n)/F(n&#43;1). Golden ratio is the limit of G(n) when n approaches infinity. With all the above information, we have a way to estimating golden ratio g: Find">
 
 
 <meta itemprop="datePublished" content="2017-06-01T22:55:37&#43;08:00" />
-<meta itemprop="dateModified" content="2017-06-01T22:55:37&#43;08:00" />
-<meta itemprop="wordCount" content="844">
+<meta itemprop="dateModified" content="2018-01-14T21:02:51&#43;08:00" />
+<meta itemprop="wordCount" content="955">
 
 
 
@@ -133,17 +126,11 @@
       <div class="post-meta">
         <span class="post-time"> 2017-06-01 </span>
         <div class="post-category">
-            
-              <a href="/categories/%E6%80%9D%E8%80%83/"> 思考 </a>
-            
-          </div>
-        
+            <a href="/categories/%E6%80%9D%E8%80%83/"> 思考 </a>
+            </div>
         
       </div>
     </header>
-
-    
-    
 
     
     <div class="post-content">
@@ -170,157 +157,267 @@
 </blockquote>
 
 <p>第一眼看到这题的时候，脑子里蹦出来的就是“递归”实现<a href="https://zh.wikipedia.org/zh/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97">斐波那契数列</a>，然后去计算G(n)的值，去计算判断一下即可，所以代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">estimate_golden_ratio</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+  <span class="k">return</span> <span class="kp">nil</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">0</span>
 
-<pre><code class="language-ruby">def estimate_golden_ratio(t)
-  return nil if t &lt;= 0
+  <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="k">while</span> <span class="n">n</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">cal_g</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">cal_g</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">abs</span>
 
-  n = 2
-  while n do
-    result = (cal_g(n+1) - cal_g(n)).abs
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">else</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-    if (result &lt; t)
-        return n
-    else
-        n += 1
-    end
-  end
-end
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+    <span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">end</span>
 
-def fibonacci(n)
-    return n if n &lt;= 1
-    (fibonacci(n-1) + fibonacci(n-2))
-end
-
-def cal_g(n)
-    return (fibonacci(n).to_f / fibonacci(n+1).to_f)
-end
-
-puts estimate_golden_ratio(1e-6)
-puts estimate_golden_ratio(1e-8)
-puts estimate_golden_ratio(1e-10)
-puts estimate_golden_ratio(1e-15)
-puts estimate_golden_ratio(1e-20)
-</code></pre>
-
+<span class="k">def</span> <span class="nf">cal_g</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to_f</span> <span class="sr">/ fibonacci(n+1).to_f)
+</span><span class="sr">end
+</span><span class="sr">
+</span><span class="sr">puts estimate_golden_ratio(1e-6)
+</span><span class="sr">puts estimate_golden_ratio(1e-8)
+</span><span class="sr">puts estimate_golden_ratio(1e-10)
+</span><span class="sr">puts estimate_golden_ratio(1e-15)
+</span><span class="sr">puts estimate_golden_ratio(1e-20)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后理所当然的会有问题，递归实现的问题就是计算度高的时候会导致超时。面试官问了下有没有什么想法去优化，我的反应就是使用循环去替代递归实现，这样子可以提高计算。</p>
 
 <p>但后面<strong>经过提醒</strong>仔细想了下，这个不是单纯的计算数列，它是需要获得一个期望的n值，不断的循环去获得所期望的值，其实呢也就是不断循环的计算F()，这里面重复的计算其实也是一个影响因素，当然修改斐波那契数列也是提高计算速度的。所以自己的想法是使用一个数组去保存计算的值，减少重复计算。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">FI_ARRAY</span> <span class="o">=</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span>
 
-<pre><code class="language-ruby">FI_ARRAY = [0, 1]
+<span class="k">def</span> <span class="nf">estimate_golden_ratio</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+  <span class="k">return</span> <span class="kp">nil</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">0</span>
 
-def estimate_golden_ratio(t)
-  return nil if t &lt;= 0
+  <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="k">while</span> <span class="n">n</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">cal_g</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">cal_g</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">abs</span>
 
-  n = 2
-  while n do
-    result = (cal_g(n+1) - cal_g(n)).abs
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">else</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-    if (result &lt; t)
-        return n
-    else
-        n += 1
-    end
-  end
-end
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">arr_length</span> <span class="o">=</span> <span class="no">FI_ARRAY</span><span class="o">.</span><span class="n">length</span>
 
-def fibonacci(n)
-    arr_length = FI_ARRAY.length
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">arr_length</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">arr_length</span><span class="o">..</span><span class="n">n</span>
+            <span class="no">FI_ARRAY</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="no">FI_ARRAY</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="no">FI_ARRAY</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="o">]</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
 
-    if n &gt;= arr_length
-        for i in arr_length..n
-            FI_ARRAY[i] = FI_ARRAY[i-1] + FI_ARRAY[i-2]
-        end
-    end
+    <span class="k">return</span> <span class="no">FI_ARRAY</span><span class="o">[</span><span class="n">n</span><span class="o">]</span>
+<span class="k">end</span>
 
-    return FI_ARRAY[n]
-end
-
-def cal_g(n)
-    return (fibonacci(n).to_f / fibonacci(n+1).to_f)
-end
-
-puts estimate_golden_ratio(1e-6)
-puts estimate_golden_ratio(1e-8)
-puts estimate_golden_ratio(1e-10)
-puts estimate_golden_ratio(1e-15)
-puts estimate_golden_ratio(1e-20)
-</code></pre>
-
+<span class="k">def</span> <span class="nf">cal_g</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to_f</span> <span class="sr">/ fibonacci(n+1).to_f)
+</span><span class="sr">end
+</span><span class="sr">
+</span><span class="sr">puts estimate_golden_ratio(1e-6)
+</span><span class="sr">puts estimate_golden_ratio(1e-8)
+</span><span class="sr">puts estimate_golden_ratio(1e-10)
+</span><span class="sr">puts estimate_golden_ratio(1e-15)
+</span><span class="sr">puts estimate_golden_ratio(1e-20)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>当然这个也是有它的问题，当计算度变高时，需要保存的值增多，数组也会变大，空间消耗也会增多。后面想了下，也写了个普通的解法，当然呢这里面还是存在大量重复计算，所以计算应该还是上面那个更快。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">estimate_golden_ratio</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+  <span class="k">return</span> <span class="kp">nil</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">0</span>
 
-<pre><code class="language-ruby">def estimate_golden_ratio(t)
-  return nil if t &lt;= 0
+  <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="k">while</span> <span class="n">n</span> <span class="k">do</span>
+    <span class="n">tmp_g</span><span class="p">,</span> <span class="n">tmp_g_1</span> <span class="o">=</span> <span class="n">cal_g</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp_g_1</span> <span class="o">-</span> <span class="n">tmp_g</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span>
 
-  n = 2
-  while n do
-    tmp_g, tmp_g_1 = cal_g(n)
-    result = (tmp_g_1 - tmp_g).abs
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">else</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-    if (result &lt; t)
-        return n
-    else
-        n += 1
-    end
-  end
-end
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">result_array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span>
+    <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">result_array</span>
 
-def fibonacci(n)
-    result_array = [0, 1]
-    first, second = result_array
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">2</span><span class="o">..</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">third</span> <span class="o">=</span> <span class="n">first</span> <span class="o">+</span> <span class="n">second</span>
+        <span class="n">first</span> <span class="o">=</span> <span class="n">second</span>
+        <span class="n">second</span> <span class="o">=</span> <span class="n">third</span>
+    <span class="k">end</span>
 
-    for i in 2..n+1
-        third = first + second
-        first = second
-        second = third
-    end
+    <span class="n">result_array</span> <span class="o">=</span> <span class="o">[</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="o">]</span>
+    <span class="k">return</span> <span class="n">result_array</span>
+<span class="k">end</span>
 
-    result_array = [first, second]
-    return result_array
-end
+<span class="k">def</span> <span class="nf">cal_g</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">tmp_n</span><span class="p">,</span> <span class="n">tmp_n_1</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">tmp_n_2</span> <span class="o">=</span> <span class="n">tmp_n</span> <span class="o">+</span> <span class="n">tmp_n_1</span>
 
-def cal_g(n)
-    tmp_n, tmp_n_1 = fibonacci(n)
-    tmp_n_2 = tmp_n + tmp_n_1
+    <span class="n">tmp_g</span> <span class="o">=</span> <span class="n">tmp_n</span><span class="o">.</span><span class="n">to_f</span> <span class="sr">/ tmp_n_1.to_f
+</span><span class="sr">    tmp_g_1 = tmp_n_1.to_f /</span> <span class="n">tmp_n_2</span><span class="o">.</span><span class="n">to_f</span>
+    <span class="k">return</span> <span class="o">[</span><span class="n">tmp_g</span><span class="p">,</span> <span class="n">tmp_g_1</span><span class="o">]</span>
+<span class="k">end</span>
 
-    tmp_g = tmp_n.to_f / tmp_n_1.to_f
-    tmp_g_1 = tmp_n_1.to_f / tmp_n_2.to_f
-    return [tmp_g, tmp_g_1]
-end
-
-puts estimate_golden_ratio(1e-6)
-puts estimate_golden_ratio(1e-8)
-puts estimate_golden_ratio(1e-10)
-puts estimate_golden_ratio(1e-15)
-puts estimate_golden_ratio(1e-20)
-</code></pre>
-
+<span class="nb">puts</span> <span class="n">estimate_golden_ratio</span><span class="p">(</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">estimate_golden_ratio</span><span class="p">(</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">estimate_golden_ratio</span><span class="p">(</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">estimate_golden_ratio</span><span class="p">(</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">15</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">estimate_golden_ratio</span><span class="p">(</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>上面的代码是满足了题目设定的计算，但是自己考虑，当给出的t过小时，浮点数的精度损失大于了t时，这个就会产生结果上的误差，此时就需要考虑其他的方案了。</p>
 
 <p>从此可以看出来，一道简单的题其实可以引申出来探讨的内容还是很多的，有时还是需要自己多思考，多探索，还是多努力加油吧！</p>
 
     </div>
 
-    
-    
-
-    
-    
-
     <footer class="post-footer">
       
-
-      
       <nav class="post-nav">
-        
-          <a class="prev" href="/post/codewars-stringy-strings/">
+        <a class="prev" href="/post/codewars-stringy-strings/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Stringy Strings</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        
-          <a class="next" href="/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        <a class="next" href="/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
             <span class="next-text nav-default">JavaScript 学习笔记</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -328,6 +425,7 @@ puts estimate_golden_ratio(1e-20)
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -351,15 +449,14 @@ puts estimate_golden_ratio(1e-20)
   
     <span class="division">|</span>
     <span class="coding-ad">
-        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+      Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
     </span>
 
   
 
   <span class="copyright-year">
     &copy; 
-    
-      2014 - 
+    2014 - 
     2018
     <span class="heart">
       <i class="iconfont icon-heart"></i>
@@ -374,14 +471,16 @@ puts estimate_golden_ratio(1e-20)
     </div>
   </div>
   
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
 
 
 
 
+
+
+<script type="text/javascript" src="https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js" crossorigin="anonymous" data-no-instant></script> <script type="text/javascript" crossorigin="anonymous" data-no-instant>InstantClick.init(100);</script>
 </body>
 </html>

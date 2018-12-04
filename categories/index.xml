@@ -5,23 +5,14 @@
     <link>https://blog.renyijiu.com/categories/</link>
     <description>Recent content in Categories on Blog - renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
     
 	<atom:link href="https://blog.renyijiu.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Codewars</title>
-      <link>https://blog.renyijiu.com/categories/codewars/</link>
-      <pubDate>Mon, 21 Aug 2017 22:08:36 +0800</pubDate>
-      
-      <guid>https://blog.renyijiu.com/categories/codewars/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Javascript</title>
+      <title>JavaScript</title>
       <link>https://blog.renyijiu.com/categories/javascript/</link>
       <pubDate>Sat, 15 Apr 2017 17:58:24 +0000</pubDate>
       
@@ -50,7 +41,7 @@
     <item>
       <title>Ruby</title>
       <link>https://blog.renyijiu.com/categories/ruby/</link>
-      <pubDate>Wed, 01 Aug 2018 16:40:58 +0800</pubDate>
+      <pubDate>Tue, 22 May 2018 17:40:53 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/categories/ruby/</guid>
       <description></description>
@@ -62,6 +53,33 @@
       <pubDate>Fri, 28 Nov 2014 15:43:00 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/categories/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>codewars</title>
+      <link>https://blog.renyijiu.com/categories/codewars/</link>
+      <pubDate>Mon, 21 Aug 2017 22:08:36 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/categories/codewars/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rails</title>
+      <link>https://blog.renyijiu.com/categories/rails/</link>
+      <pubDate>Fri, 24 Aug 2018 09:58:12 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/categories/rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ruby</title>
+      <link>https://blog.renyijiu.com/categories/ruby/</link>
+      <pubDate>Wed, 01 Aug 2018 16:40:58 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/categories/ruby/</guid>
       <description></description>
     </item>
     

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,49 +16,43 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="renyijiu" />
-  <meta name="description" content="Live For Dream, Dream For Love." />
-  <meta name="keywords" content="Rubyist, Pythoner, Ruby on Rails" />
+<meta name="author" content="renyijiu" /><meta name="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.47" />
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/" />
-<link href="https://blog.renyijiu.com/index.xml" rel="alternate" type="application/rss+xml" title="Blog - renyijiu" />
+  <link href="https://blog.renyijiu.com/index.xml" rel="alternate" type="application/rss+xml" title="Blog - renyijiu" />
   <link href="https://blog.renyijiu.com/index.xml" rel="feed" type="application/rss+xml" title="Blog - renyijiu" />
-
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" href="/favicon.ico" />
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
 
 
-
-
-
-
-<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 <meta property="og:title" content="Blog - renyijiu" />
-<meta property="og:description" content="Live For Dream, Dream For Love." />
+<meta property="og:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.renyijiu.com/" />
 <meta property="og:updated_time" content="2018-08-24T09:58:12&#43;08:00"/>
+
 <meta itemprop="name" content="Blog - renyijiu">
-<meta itemprop="description" content="Live For Dream, Dream For Love.">
+<meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽">
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Blog - renyijiu"/>
-<meta name="twitter:description" content="Live For Dream, Dream For Love."/>
+<meta name="twitter:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -118,30 +112,21 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          
-  <section id="posts" class="posts">
-    
-    
-    
-      <article class="post">
+          <section id="posts" class="posts">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/">Rails Controller中的concerns测试编写</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-08-24 </span>
       <div class="post-category">
-          
-            <a href="/categories/rails/"> Rails </a>
-          
-        </div>
-      
+          <a href="/categories/rails/"> Rails </a>
+          </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
       <p>最近在完善项目中的测试代码，常见的<code>Controller</code>以及<code>Model</code>层的测试代码写的比较熟悉了。在查看测试覆盖率报告时发现<code>Controller</code>中<code>concerns</code>下文件基本没有测试，然后自己对如何测试<code>concerns</code>也不是很了解，就搜索了资料记录下来，方便后续回顾。</p>
-
-<p></p>
     </div>
     <div class="read-more">
       <a href="/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/" class="read-more-link">阅读更多</a>
@@ -149,26 +134,20 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">Hash使用小技巧</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-08-01 </span>
       <div class="post-category">
-          
-            <a href="/categories/ruby/"> ruby </a>
-          
-        </div>
-      
+          <a href="/categories/ruby/"> ruby </a>
+          </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
       <p>Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。</p>
-
-<p></p>
     </div>
     <div class="read-more">
       <a href="/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="read-more-link">阅读更多</a>
@@ -176,18 +155,14 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/rake-tasks%E8%B8%A9%E5%9D%91%E8%AE%B0/">Rake tasks踩坑记</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-07-21 </span>
       <div class="post-category">
-          
-            <a href="/categories/rails/"> Rails </a>
-          
-        </div>
-      
+          <a href="/categories/rails/"> Rails </a>
+          </div>
     </div>
   </header>
   
@@ -201,26 +176,20 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/">记一次生产环境事故</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-06-05 </span>
       <div class="post-category">
-          
-            <a href="/categories/rails/"> rails </a>
-          
-        </div>
-      
+          <a href="/categories/rails/"> rails </a>
+          </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
       <p>这篇文章拖了有点久，今天终于想起来把它写完了。记录一次生产环境的事故，也算是对自己的警示吧！</p>
-
-<p></p>
     </div>
     <div class="read-more">
       <a href="/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
@@ -228,18 +197,14 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">Float的精度问题</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-05-22 </span>
       <div class="post-category">
-          
-            <a href="/categories/ruby/"> Ruby </a>
-          
-        </div>
-      
+          <a href="/categories/ruby/"> Ruby </a>
+          </div>
     </div>
   </header>
   
@@ -253,26 +218,20 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/">Rails过滤器及回调顺序踩坑</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-05-19 </span>
       <div class="post-category">
-          
-            <a href="/categories/rails/"> Rails </a>
-          
-        </div>
-      
+          <a href="/categories/rails/"> Rails </a>
+          </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
       <p>最近在做项目时碰到了一个问题，自己在model中定义了几个<code>after_commit</code>回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。</p>
-
-<p></p>
     </div>
     <div class="read-more">
       <a href="/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/" class="read-more-link">阅读更多</a>
@@ -280,26 +239,20 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/">Stimulus踩坑记</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-03-31 </span>
       <div class="post-category">
-          
-            <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
-          
-        </div>
-      
+          <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+          </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
       <p>上一篇在介绍Stimulus时，有说到部分插件会使用<code>data-target</code>类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。</p>
-
-<p></p>
     </div>
     <div class="read-more">
       <a href="/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/" class="read-more-link">阅读更多</a>
@@ -307,18 +260,14 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/stimulus%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/">Stimulus框架简介</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-03-24 </span>
       <div class="post-category">
-          
-            <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
-          
-        </div>
-      
+          <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+          </div>
     </div>
   </header>
   
@@ -327,8 +276,6 @@
       <p>Stimulus是2018年年初Basecamp开源的一个新的前端框架，是一个轻量级的框架（所做的事情很简洁）。</p>
 
 <p>从官方介绍可以看出，它的出现是Basecamp目前对于Rails服务端渲染中如何优雅的组织Javascript代码的一种实践，这也表明了它与目前的前端三大框架（Vue、React、Angular）完全不是一个路子，毕竟诞生原因和目标都不一样。这一点在<a href="https://stimulusjs.org/handbook/origin">origin</a>详细地说明了，有兴趣的可以看一看。</p>
-
-<p></p>
     </div>
     <div class="read-more">
       <a href="/post/stimulus%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/" class="read-more-link">阅读更多</a>
@@ -336,26 +283,20 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/mac%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E5%B0%8F%E8%84%9A%E6%9C%AC/">Mac更换壁纸小脚本</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-03-19 </span>
       <div class="post-category">
-          
-            <a href="/categories/ruby/"> ruby </a>
-          
-        </div>
-      
+          <a href="/categories/ruby/"> ruby </a>
+          </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
       <p>最近偶然逛到<a href="https://unsplash.com/">unsplash</a>这个免费的图片网站，发现图片质量不错，另外还友好的提供API接口，就想着顺带写一个小脚本去自动更换电脑壁纸（换一张壁纸，换一个心情😊）。</p>
-
-<p></p>
     </div>
     <div class="read-more">
       <a href="/post/mac%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E5%B0%8F%E8%84%9A%E6%9C%AC/" class="read-more-link">阅读更多</a>
@@ -363,25 +304,20 @@
   </div>
 </article>
 
-    
-      <article class="post">
+    <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/2017%E5%B9%B4%E6%80%BB%E7%BB%93/">2017年总结</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-01-14 </span>
       <div class="post-category">
-          
-            <a href="/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/"> 生活杂谈 </a>
-          
-        </div>
-      
+          <a href="/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/"> 生活杂谈 </a>
+          </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      <p>这是一篇晚到的总结，在元旦结束后就准备写一篇回顾总结，但是中间因为各种事情向后推了一段时间，不过该写的还是要写的。回顾一下对自己的成长也是有益的。
-</p>
+      <p>这是一篇晚到的总结，在元旦结束后就准备写一篇回顾总结，但是中间因为各种事情向后推了一段时间，不过该写的还是要写的。回顾一下对自己的成长也是有益的。</p>
     </div>
     <div class="read-more">
       <a href="/post/2017%E5%B9%B4%E6%80%BB%E7%BB%93/" class="read-more-link">阅读更多</a>
@@ -389,19 +325,18 @@
   </div>
 </article>
 
-    
-  </section>
+    </section>
   
   <nav class="pagination">
     
-      <a class="next" href="/page/2/">
+    <a class="next" href="/page/2/">
         <span class="next-text">下一页</span>
         <i class="iconfont icon-right"></i>
       </a>
   </nav>
-
         </div>
         
+
       </div>
     </main>
 
@@ -425,15 +360,14 @@
   
     <span class="division">|</span>
     <span class="coding-ad">
-        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+      Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
     </span>
 
   
 
   <span class="copyright-year">
     &copy; 
-    
-      2014 - 
+    2014 - 
     2018
     <span class="heart">
       <i class="iconfont icon-heart"></i>
@@ -448,14 +382,16 @@
     </div>
   </div>
   
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
 
 
 
 
+
+
+<script type="text/javascript" src="https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js" crossorigin="anonymous" data-no-instant></script> <script type="text/javascript" crossorigin="anonymous" data-no-instant>InstantClick.init(100);</script>
 </body>
 </html>

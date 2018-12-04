@@ -5,7 +5,7 @@
     <link>https://blog.renyijiu.com/tags/hash/</link>
     <description>Recent content in Hash on Blog - renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
     <lastBuildDate>Wed, 01 Aug 2018 16:40:58 +0800</lastBuildDate>
     
@@ -18,9 +18,7 @@
       <pubDate>Wed, 01 Aug 2018 16:40:58 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
-      <description>&lt;p&gt;Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,64 +16,50 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="renyijiu" />
-  <meta name="description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。
-
-" />
-
-  <meta name="keywords" content="Rubyist, Pythoner, Ruby on Rails" />
+<meta name="author" content="renyijiu" /><meta name="description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。
+" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.47" />
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
-
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" href="/favicon.ico" />
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
 
 
-
-
-
-
-<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 <meta property="og:title" content="JavaScript 学习笔记" />
-<meta property="og:description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。
-
-" />
+<meta property="og:description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><meta property="article:published_time" content="2017-04-15T17:58:24&#43;00:00"/>
 <meta property="article:modified_time" content="2018-01-14T20:50:47&#43;08:00"/>
-<meta itemprop="name" content="JavaScript 学习笔记">
-<meta itemprop="description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。
 
-">
+<meta itemprop="name" content="JavaScript 学习笔记">
+<meta itemprop="description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。">
 
 
 <meta itemprop="datePublished" content="2017-04-15T17:58:24&#43;00:00" />
-<meta itemprop="dateModified" content="2017-04-15T17:58:24&#43;00:00" />
-<meta itemprop="wordCount" content="3227">
+<meta itemprop="dateModified" content="2018-01-14T20:50:47&#43;08:00" />
+<meta itemprop="wordCount" content="3312">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaScript 学习笔记"/>
-<meta name="twitter:description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。
-
-"/>
+<meta name="twitter:description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -141,45 +127,52 @@
       <div class="post-meta">
         <span class="post-time"> 2017-04-15 </span>
         <div class="post-category">
-            
-              <a href="/categories/javascript/"> JavaScript </a>
-            
-          </div>
-        
+            <a href="/categories/javascript/"> JavaScript </a>
+            </div>
         
       </div>
     </header>
 
     
-    
-
-    
     <div class="post-content">
       <p>这个是自己在跟着<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">廖雪峰的JavaScript教程</a>学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。</p>
-
-<p></p>
 
 <h4 id="数据类型和变量">数据类型和变量</h4>
 
 <ol>
 <li>&ldquo;use strict&rdquo;，在strict模式下运行的JavaScript代码，强制使用<code>var</code>申明变量，未使用<code>var</code>申明变量就使用的，将会导致运行错误；未声明可能导致成为全局变量，污染全局变量环境。</li>
 </ol>
-
-<pre><code class="language-javascript">   ReferenceError: xxx is not defined
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="nx">ReferenceError</span><span class="o">:</span> <span class="nx">xxx</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">defined</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="字符串">字符串</h4>
 
 <ol>
 <li>ES6新增了一种模板字符串（若不支持，使用<code>+</code>连接字符串）</li>
 </ol>
-
-<pre><code class="language-javascript">   var name = 'hello world';
-   var time = '2017-01-01';
-   var message = `${name}, 今天是${time}!`;
-   alert(message); // hello world, 今天是2017-01-01!
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
+   <span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;2017-01-01&#39;</span><span class="p">;</span>
+   <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, 今天是</span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+   <span class="nx">alert</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span> <span class="c1">// hello world, 今天是2017-01-01!
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="数组">数组</h4>
 
 <ol>
@@ -227,32 +220,61 @@
 </ol>
 
 <p>假定我们想统计一下代码一共调用了多少次<code>parseInt()</code>，可以把所有的调用都找出来，然后手动加上<code>count += 1</code>，不过这样做太傻了。最佳方案是用我们自己的函数替换掉默认的<code>parseInt()</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="kd">var</span> <span class="nx">oldParseInt</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">;</span> <span class="c1">// 保存原函数
+</span><span class="c1"></span>
+   <span class="nb">window</span><span class="p">.</span><span class="nb">parseInt</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+       <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+       <span class="k">return</span> <span class="nx">oldParseInt</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="c1">// 调用原函数
+</span><span class="c1"></span>   <span class="p">};</span>
 
-<pre><code class="language-javascript">   var count = 0;
-   var oldParseInt = parseInt; // 保存原函数
-
-   window.parseInt = function () {
-       count += 1;
-       return oldParseInt.apply(null, arguments); // 调用原函数
-   };
-
-   // 测试:
-   parseInt('10');
-   parseInt('20');
-   parseInt('30');
-   count; // 3
-</code></pre>
-
+   <span class="c1">// 测试:
+</span><span class="c1"></span>   <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">);</span>
+   <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;20&#39;</span><span class="p">);</span>
+   <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;30&#39;</span><span class="p">);</span>
+   <span class="nx">count</span><span class="p">;</span> <span class="c1">// 3
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="map">map</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
+<span class="nx">r</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">);</span>
 
-<pre><code class="language-javascript">'use strict';
-var arr = ['1', '2', '3'];
-var r;
-r = arr.map(parseInt);
-
-// 结果返回为[1, NaN, NaN]
-</code></pre>
-
+<span class="c1">// 结果返回为[1, NaN, NaN]
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <p>原因是在调用<code>arr.map(parseInt)</code>的时候，传给<code>map</code>的参数为三个：</p>
 
 <ul>
@@ -262,12 +284,20 @@ r = arr.map(parseInt);
 </ul>
 
 <p>而每次调用parseInt函数时，函数接受两个参数，因此只传入了两个值(<code>currentValue, currentIndex</code>)</p>
-
-<pre><code class="language-javascript">parseInt('1', 0) // 1，当第二个参数转换后为0或者NaN时，会被忽略
-parseInt('2', 1) // NaN
-parseInt('3', 2) // NaN
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// 1，当第二个参数转换后为0或者NaN时，会被忽略
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// NaN
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// NaN
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <p>所以有效的写法是<code>arr.map(function(x) { return parseInt(x)});</code></p>
 
 <h4 id="sort">sort</h4>
@@ -281,29 +311,53 @@ parseInt('3', 2) // NaN
 <ol>
 <li>包装对象看上去和原来的值一样，但是他们的类型已经发生了改变，变成了<code>object</code>，并且使用<code>===</code>与原始值比较会返回<code>false</code></li>
 </ol>
-
-<pre><code class="language-javascript">   typeof new Number(123); // 'object'
-   new Number(123) === 123; // false
-
-   typeof new Boolean(true); // 'object'
-   new Boolean(true) === true; // false
-
-   typeof new String('str'); // 'object'
-   new String('str') === 'str'; // false
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="k">typeof</span> <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span> <span class="c1">// &#39;object&#39;
+</span><span class="c1"></span>   <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="o">===</span> <span class="mi">123</span><span class="p">;</span> <span class="c1">// false
+</span><span class="c1"></span>
+   <span class="k">typeof</span> <span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// &#39;object&#39;
+</span><span class="c1"></span>   <span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="o">===</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// false
+</span><span class="c1"></span>
+   <span class="k">typeof</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">);</span> <span class="c1">// &#39;object&#39;
+</span><span class="c1"></span>   <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;str&#39;</span><span class="p">;</span> <span class="c1">// false
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="箭头函数">箭头函数</h4>
 
 <p>易犯的错误：<strong>箭头函数没有自己的<code>this</code></strong>，总是指向定义时所在的作用域的<code>this</code>值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">bar</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">)</span>
+<span class="p">}</span>
 
-<pre><code class="language-javascript">let a = {
-  foo: 1,
-  bar: () =&gt; console.log(this.foo)
-}
-
-a.bar()  //undefined
-</code></pre>
-
+<span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">()</span>  <span class="c1">//undefined
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <p>上述代码中，箭头函数中的<code>this</code>并不是指向<code>a</code>这个对象的，<strong>使用的是词法作用域内的this</strong>；对象<code>a</code>并不能构建自身的作用域，不能够新建自己的<code>this</code>值，所以向上查找到达全局作用域，<code>this</code>就是指向全局作用域，而全局作用域不存在相应的属性值，因此为<code>undefined</code></p>
 
 <p>下述代码中，如果使用普通函数时，输出结果就是符合预期的，这是因为</p>
@@ -313,18 +367,32 @@ a.bar()  //undefined
 </blockquote>
 
 <p>也就是<code>a.bar()</code>函数执行时作用域绑到了<code>a</code>对象，<code>this</code>就是指向了<code>a</code>对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">bar</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
 
-<pre><code class="language-javascript">let a = {
-  foo: 1,
-  bar: function() { console.log(this.foo) }
-}
-
-a.bar()  // 1
-
-var c = a.bar;
-c(); // undefined
-</code></pre>
-
+<span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">()</span>  <span class="c1">// 1
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">;</span>
+<span class="nx">c</span><span class="p">();</span> <span class="c1">// undefined
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <p>此时调用函数<code>bar</code>的是<code>window</code>对象，所以函数<code>bar</code>的<code>this</code>被指向了<code>window</code>，而<code>window</code>不存在<code>foo</code>属性，所以结果是<code>undefined</code></p>
 
 <h4 id="面向对象编程">面向对象编程</h4>
@@ -342,41 +410,80 @@ c(); // undefined
 
 <li><p>使用<code>new</code>，变成了一个构造函数，他绑定的<code>this</code>指向新创建的对象，并默认返回<code>this</code></p></li>
 </ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">function</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+           <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello, &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">);</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
 
-<pre><code class="language-javascript">   function Student(name) {
-       this.name = name;
-       this.hello = function () {
-           alert('Hello, ' + this.name + '!');
-       }
-   }
-
-   var xiaoming = new Student('小明')；
-   xiaoming.name; // &quot;小明&quot;
-   xiaoming.hello(); // &quot;Hello,小明!&quot;
-</code></pre>
-
-<pre><code class="language-javascript">   var xiaohong = new Student(&quot;小红&quot;)；
-   xiaohong.name; // &quot;小红&quot;
-
-   // 注意这里
-   xiaohong.hello; // function Student/this.hello()
-   xiaoming.hello; // function Student/this.hello()
-   xiaohong.hello === xiaoming.hello // false
-</code></pre>
-
+   <span class="kd">var</span> <span class="nx">xiaoming</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s1">&#39;小明&#39;</span><span class="p">)</span><span class="err">；</span>
+   <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// &#34;小明&#34;
+</span><span class="c1"></span>   <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span><span class="p">();</span> <span class="c1">// &#34;Hello,小明!&#34;
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">var</span> <span class="nx">xiaohong</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s2">&#34;小红&#34;</span><span class="p">)</span><span class="err">；</span>
+   <span class="nx">xiaohong</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// &#34;小红&#34;
+</span><span class="c1"></span>
+   <span class="c1">// 注意这里
+</span><span class="c1"></span>   <span class="nx">xiaohong</span><span class="p">.</span><span class="nx">hello</span><span class="p">;</span> <span class="c1">// function Student/this.hello()
+</span><span class="c1"></span>   <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span><span class="p">;</span> <span class="c1">// function Student/this.hello()
+</span><span class="c1"></span>   <span class="nx">xiaohong</span><span class="p">.</span><span class="nx">hello</span> <span class="o">===</span> <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span> <span class="c1">// false
+</span><span class="c1"></span></code></pre></td></tr></table>
+</div>
+</div>
 <p>从上述代码可以看出，<code>xiaoming.hello</code>和<code>xiaohong.hello</code>都是函数，但是它们是不同的函数，虽然函数名称和代码是相同的！</p>
 
 <p>所以，当我们通过<code>new Student()</code>创建了较多对象时，每个对象都有一个自己的<code>hello</code>函数，这样子来说是比较耗费内存的，实际上只需要共享同一个函数就可以了，这样子可以节省资源。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">function</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+   <span class="p">}</span>
 
-<pre><code class="language-javascript">   function Student(name) {
-     this.name = name;
-   }
-
-   Student.prototype.hello = function() {
-     alert(&quot;Hello,&quot; + this.name + &quot;!&quot;);
-   };
-</code></pre>
-
+   <span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Hello,&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&#34;!&#34;</span><span class="p">);</span>
+   <span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p><em>为了区分普通函数和构造函数，按照约定，构造函数首字母应该大写，而普通函数首字母应该小写</em></p>
 
 <h4 id="原型继承">原型继承</h4>
@@ -443,27 +550,17 @@ c(); // undefined
 </ol>
     </div>
 
-    
-    
-
-    
-    
-
     <footer class="post-footer">
       
-
-      
       <nav class="post-nav">
-        
-          <a class="prev" href="/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/">
+        <a class="prev" href="/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">一道面试题的思考</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        
-          <a class="next" href="/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        <a class="next" href="/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
             <span class="next-text nav-default">Node Js开发指南 学习笔记</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -471,6 +568,7 @@ c(); // undefined
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -494,15 +592,14 @@ c(); // undefined
   
     <span class="division">|</span>
     <span class="coding-ad">
-        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+      Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
     </span>
 
   
 
   <span class="copyright-year">
     &copy; 
-    
-      2014 - 
+    2014 - 
     2018
     <span class="heart">
       <i class="iconfont icon-heart"></i>
@@ -517,14 +614,16 @@ c(); // undefined
     </div>
   </div>
   
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
 
 
 
 
+
+
+<script type="text/javascript" src="https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js" crossorigin="anonymous" data-no-instant></script> <script type="text/javascript" crossorigin="anonymous" data-no-instant>InstantClick.init(100);</script>
 </body>
 </html>

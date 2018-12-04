@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,59 +16,50 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="renyijiu" />
-  <meta name="description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。 " />
-
-  <meta name="keywords" content="Rubyist, Pythoner, Ruby on Rails" />
+<meta name="author" content="renyijiu" /><meta name="description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。
+" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.47" />
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%B8%80-%E9%80%92%E5%BD%92/" />
-
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" href="/favicon.ico" />
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
 
 
-
-
-
-
-<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 <meta property="og:title" content="Python学习 一 递归" />
-<meta property="og:description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。
-" />
+<meta property="og:description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%B8%80-%E9%80%92%E5%BD%92/" /><meta property="article:published_time" content="2014-11-10T23:11:48&#43;00:00"/>
 <meta property="article:modified_time" content="2018-01-14T20:55:16&#43;08:00"/>
+
 <meta itemprop="name" content="Python学习 一 递归">
-<meta itemprop="description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。
-">
+<meta itemprop="description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。">
 
 
 <meta itemprop="datePublished" content="2014-11-10T23:11:48&#43;00:00" />
-<meta itemprop="dateModified" content="2014-11-10T23:11:48&#43;00:00" />
-<meta itemprop="wordCount" content="284">
+<meta itemprop="dateModified" content="2018-01-14T20:55:16&#43;08:00" />
+<meta itemprop="wordCount" content="294">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python学习 一 递归"/>
-<meta name="twitter:description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。
-"/>
+<meta name="twitter:description" content="递归的方法虽然效率不高，但是有些地方的使用( 对时间的要求不高时 )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 二叉查找方法 ，让自己对递归更好的理解。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -136,22 +127,15 @@
       <div class="post-meta">
         <span class="post-time"> 2014-11-10 </span>
         <div class="post-category">
-            
-              <a href="/categories/python/"> Python </a>
-            
-          </div>
-        
+            <a href="/categories/python/"> Python </a>
+            </div>
         
       </div>
     </header>
 
     
-    
-
-    
     <div class="post-content">
-      <p>递归的方法虽然效率不高，但是有些地方的使用( <em>对时间的要求不高时</em> )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 <strong>二叉查找方法</strong> ，让自己对递归更好的理解。
-</p>
+      <p>递归的方法虽然效率不高，但是有些地方的使用( <em>对时间的要求不高时</em> )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 <strong>二叉查找方法</strong> ，让自己对递归更好的理解。</p>
 
 <h2 id="二分查找的关键">二分查找的关键</h2>
 
@@ -162,41 +146,45 @@
 </ol>
 
 <p><strong><em>提示：标准库中的 bisect 模块可以非常有效的实现二分查找 。</em></strong></p>
-
-<pre><code class="language-python">def search (sequence,number,lower,upper) :
-       if lower == uppper :
-           assert number == sequence[upper]  #断言，用来判断数字是否为找到的数，否的话引起一个错误
-           return upper
-       else :
-           middle = (lower + upper) //2   #整除
-           if number &gt; sequence[middle]
-                 return search(sequence,number,middle+1,upper)
-           else :
-                 return search(sequence,number,lower,middle)
-</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">search</span> <span class="p">(</span><span class="n">sequence</span><span class="p">,</span><span class="n">number</span><span class="p">,</span><span class="n">lower</span><span class="p">,</span><span class="n">upper</span><span class="p">)</span> <span class="p">:</span>
+       <span class="k">if</span> <span class="n">lower</span> <span class="o">==</span> <span class="n">uppper</span> <span class="p">:</span>
+           <span class="k">assert</span> <span class="n">number</span> <span class="o">==</span> <span class="n">sequence</span><span class="p">[</span><span class="n">upper</span><span class="p">]</span>  <span class="c1">#断言，用来判断数字是否为找到的数，否的话引起一个错误</span>
+           <span class="k">return</span> <span class="n">upper</span>
+       <span class="k">else</span> <span class="p">:</span>
+           <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">lower</span> <span class="o">+</span> <span class="n">upper</span><span class="p">)</span> <span class="o">//</span><span class="mi">2</span>   <span class="c1">#整除</span>
+           <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="n">sequence</span><span class="p">[</span><span class="n">middle</span><span class="p">]</span>
+                 <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span><span class="n">number</span><span class="p">,</span><span class="n">middle</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">upper</span><span class="p">)</span>
+           <span class="k">else</span> <span class="p">:</span>
+                 <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span><span class="n">number</span><span class="p">,</span><span class="n">lower</span><span class="p">,</span><span class="n">middle</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
-
-    
-    
-
-    
-    
 
     <footer class="post-footer">
       
-
-      
       <nav class="post-nav">
-        
-          <a class="prev" href="/post/python%E5%AD%A6%E4%B9%A0-%E4%BA%8C-%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">
+        <a class="prev" href="/post/python%E5%AD%A6%E4%B9%A0-%E4%BA%8C-%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Python学习 二 八皇后问题</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        
-          <a class="next" href="/post/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
+        <a class="next" href="/post/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
             <span class="next-text nav-default">Hexo的基本命令</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -204,6 +192,7 @@
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -227,15 +216,14 @@
   
     <span class="division">|</span>
     <span class="coding-ad">
-        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+      Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
     </span>
 
   
 
   <span class="copyright-year">
     &copy; 
-    
-      2014 - 
+    2014 - 
     2018
     <span class="heart">
       <i class="iconfont icon-heart"></i>
@@ -250,14 +238,16 @@
     </div>
   </div>
   
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
 
 
 
 
+
+
+<script type="text/javascript" src="https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js" crossorigin="anonymous" data-no-instant></script> <script type="text/javascript" crossorigin="anonymous" data-no-instant>InstantClick.init(100);</script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,48 +16,42 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="renyijiu" /><meta name="description" content="Rails Controller下concerns测试" />
-<meta name="keywords" content="测试, Rails" />
+<meta name="author" content="renyijiu" /><meta name="description" content="Rails Controller下concerns测试" /><meta name="keywords" content="测试, Rails" />
 
 
 
 
 
 
-
-<meta name="generator" content="Hugo 0.47" />
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/" />
-
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" href="/favicon.ico" />
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
 
 
-
-
-
-
-<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 <meta property="og:title" content="Rails Controller中的concerns测试编写" />
 <meta property="og:description" content="Rails Controller下concerns测试" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/" /><meta property="article:published_time" content="2018-08-24T09:58:12&#43;08:00"/>
 <meta property="article:modified_time" content="2018-08-24T09:58:12&#43;08:00"/>
+
 <meta itemprop="name" content="Rails Controller中的concerns测试编写">
 <meta itemprop="description" content="Rails Controller下concerns测试">
 
 
 <meta itemprop="datePublished" content="2018-08-24T09:58:12&#43;08:00" />
 <meta itemprop="dateModified" content="2018-08-24T09:58:12&#43;08:00" />
-<meta itemprop="wordCount" content="582">
+<meta itemprop="wordCount" content="612">
 
 
 
@@ -132,110 +126,126 @@
       <div class="post-meta">
         <span class="post-time"> 2018-08-24 </span>
         <div class="post-category">
-            
-              <a href="/categories/rails/"> Rails </a>
-            
-          </div>
-        
+            <a href="/categories/rails/"> Rails </a>
+            </div>
         
       </div>
     </header>
 
     
-    
-
-    
     <div class="post-content">
       <p>最近在完善项目中的测试代码，常见的<code>Controller</code>以及<code>Model</code>层的测试代码写的比较熟悉了。在查看测试覆盖率报告时发现<code>Controller</code>中<code>concerns</code>下文件基本没有测试，然后自己对如何测试<code>concerns</code>也不是很了解，就搜索了资料记录下来，方便后续回顾。</p>
 
-<p></p>
-
 <p><code>concerns</code>目录下一般来说是一些独立的逻辑模块或者是重复使用的功能模块，这样可以提升代码的可读性以及维护性。下面是一个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># /app/controllers/concerns/error_trackable.rb</span>
 
-<pre><code class="language-ruby"># /app/controllers/concerns/error_trackable.rb
-
-module ErrorTrackable
-  extend ActiveSupport::Concern
+<span class="k">module</span> <span class="nn">ErrorTrackable</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
     
-  def error
-    p &quot;Hello, Ruby!&quot;
+  <span class="k">def</span> <span class="nf">error</span>
+    <span class="nb">p</span> <span class="s2">&#34;Hello, Ruby!&#34;</span>
     
-    true
-  end
-end
-</code></pre>
-
+    <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>我们在使用的时候可以在<code>controller</code>中引入即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">AdminController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="kp">include</span> <span class="no">ErrorTrackable</span>    
 
-<pre><code class="language-ruby">class AdminController &lt; ApplicationController
-  include ErrorTrackable    
-
-end		
-</code></pre>
-
+<span class="k">end</span>		</code></pre></td></tr></table>
+</div>
+</div>
 <p>然后通过编写<code>AdminController</code>的测试代码也可以对<code>concerns</code>进行测试，但是现在这样就会导致代码<strong>过于耦合</strong>，一旦<code>AdminController</code>中不再引入相关文件，就会导致测试代码无法通过。另外一点我们可能需要在所有引入相关文件的地方都对此编写测试代码，保证逻辑正确性，但是这不符合DRY的原则啊。</p>
 
 <p>所以我们通过构建一个假的<code>controller</code>，引入相关的文件功能，然后对这个构建的&rdquo;假的&rdquo;<code>controller</code>编写测试代码进行相关的测试，测试代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;test_helper&#39;</span>
 
-<pre><code class="language-ruby">require 'test_helper'
+<span class="k">class</span> <span class="nc">ErrorTrackableTestController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="kp">include</span> <span class="no">ErrorTrackable</span>
+<span class="k">end</span>
 
-class ErrorTrackableTestController &lt; ApplicationController
-  include ErrorTrackable
-end
+<span class="k">class</span> <span class="nc">ErrorTrackableTestControllerTest</span> <span class="o">&lt;</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">IntegrationTest</span>
 
-class ErrorTrackableTestControllerTest &lt; ActionDispatch::IntegrationTest
+  <span class="nb">test</span> <span class="s2">&#34;should get error&#34;</span> <span class="k">do</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="no">ErrorTrackableTestController</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">error</span>
 
-  test &quot;should get error&quot; do
-    res = ErrorTrackableTestController.new.error
-
-    assert_equal true, res
-  end
+    <span class="n">assert_equal</span> <span class="kp">true</span><span class="p">,</span> <span class="n">res</span>
+  <span class="k">end</span>
   
-end
-</code></pre>
-
+<span class="k">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这样子我们就可以对<code>concerns</code>中的代码进行相关的测试了，代码也不会依赖于我们原来的逻辑，另外保证了代码的测试覆盖率，终于可以愉快的玩耍了。</p>
     </div>
 
-    
-    
-
-    
-    
-<div class="post-reward">
+    <div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
     
-    
-      <label class="qr-code-image" for="reward">
+    <label class="qr-code-image" for="reward">
         <img class="image" src="/img/reward/wechat.png">
         <span>微信打赏</span>
       </label>
-    
-      <label class="qr-code-image" for="reward">
+    <label class="qr-code-image" for="reward">
         <img class="image" src="/img/reward/alipay.jpg">
         <span>支付宝打赏</span>
       </label>
   </div>
-</div>
-
-    <footer class="post-footer">
+</div><footer class="post-footer">
       <div class="post-tags">
-          
           <a href="/tags/rails/">Rails</a>
-          
           <a href="/tags/test/">Test</a>
-          
-        </div>
-
-      
+          </div>
       <nav class="post-nav">
         
-        
-          <a class="next" href="/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+        <a class="next" href="/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">
             <span class="next-text nav-default">Hash使用小技巧</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -243,6 +253,7 @@ end
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -266,15 +277,14 @@ end
   
     <span class="division">|</span>
     <span class="coding-ad">
-        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+      Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
     </span>
 
   
 
   <span class="copyright-year">
     &copy; 
-    
-      2014 - 
+    2014 - 
     2018
     <span class="heart">
       <i class="iconfont icon-heart"></i>
@@ -289,14 +299,16 @@ end
     </div>
   </div>
   
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
 
 
 
 
+
+
+<script type="text/javascript" src="https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js" crossorigin="anonymous" data-no-instant></script> <script type="text/javascript" crossorigin="anonymous" data-no-instant>InstantClick.init(100);</script>
 </body>
 </html>

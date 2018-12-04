@@ -5,7 +5,7 @@
     <link>https://blog.renyijiu.com/</link>
     <description>Recent content on Blog - renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
     <lastBuildDate>Fri, 24 Aug 2018 09:58:12 +0800</lastBuildDate>
     
@@ -18,9 +18,7 @@
       <pubDate>Fri, 24 Aug 2018 09:58:12 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/</guid>
-      <description>&lt;p&gt;最近在完善项目中的测试代码，常见的&lt;code&gt;Controller&lt;/code&gt;以及&lt;code&gt;Model&lt;/code&gt;层的测试代码写的比较熟悉了。在查看测试覆盖率报告时发现&lt;code&gt;Controller&lt;/code&gt;中&lt;code&gt;concerns&lt;/code&gt;下文件基本没有测试，然后自己对如何测试&lt;code&gt;concerns&lt;/code&gt;也不是很了解，就搜索了资料记录下来，方便后续回顾。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近在完善项目中的测试代码，常见的&lt;code&gt;Controller&lt;/code&gt;以及&lt;code&gt;Model&lt;/code&gt;层的测试代码写的比较熟悉了。在查看测试覆盖率报告时发现&lt;code&gt;Controller&lt;/code&gt;中&lt;code&gt;concerns&lt;/code&gt;下文件基本没有测试，然后自己对如何测试&lt;code&gt;concerns&lt;/code&gt;也不是很了解，就搜索了资料记录下来，方便后续回顾。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,9 +27,7 @@
       <pubDate>Wed, 01 Aug 2018 16:40:58 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
-      <description>&lt;p&gt;Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -49,9 +45,7 @@
       <pubDate>Tue, 05 Jun 2018 18:17:53 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;p&gt;这篇文章拖了有点久，今天终于想起来把它写完了。记录一次生产环境的事故，也算是对自己的警示吧！&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;这篇文章拖了有点久，今天终于想起来把它写完了。记录一次生产环境的事故，也算是对自己的警示吧！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -69,9 +63,7 @@
       <pubDate>Sat, 19 May 2018 13:38:36 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/</guid>
-      <description>&lt;p&gt;最近在做项目时碰到了一个问题，自己在model中定义了几个&lt;code&gt;after_commit&lt;/code&gt;回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近在做项目时碰到了一个问题，自己在model中定义了几个&lt;code&gt;after_commit&lt;/code&gt;回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -80,9 +72,7 @@
       <pubDate>Sat, 31 Mar 2018 11:14:00 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/</guid>
-      <description>&lt;p&gt;上一篇在介绍Stimulus时，有说到部分插件会使用&lt;code&gt;data-target&lt;/code&gt;类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;上一篇在介绍Stimulus时，有说到部分插件会使用&lt;code&gt;data-target&lt;/code&gt;类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -93,9 +83,7 @@
       <guid>https://blog.renyijiu.com/post/stimulus%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</guid>
       <description>&lt;p&gt;Stimulus是2018年年初Basecamp开源的一个新的前端框架，是一个轻量级的框架（所做的事情很简洁）。&lt;/p&gt;
 
-&lt;p&gt;从官方介绍可以看出，它的出现是Basecamp目前对于Rails服务端渲染中如何优雅的组织Javascript代码的一种实践，这也表明了它与目前的前端三大框架（Vue、React、Angular）完全不是一个路子，毕竟诞生原因和目标都不一样。这一点在&lt;a href=&#34;https://stimulusjs.org/handbook/origin&#34;&gt;origin&lt;/a&gt;详细地说明了，有兴趣的可以看一看。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;从官方介绍可以看出，它的出现是Basecamp目前对于Rails服务端渲染中如何优雅的组织Javascript代码的一种实践，这也表明了它与目前的前端三大框架（Vue、React、Angular）完全不是一个路子，毕竟诞生原因和目标都不一样。这一点在&lt;a href=&#34;https://stimulusjs.org/handbook/origin&#34;&gt;origin&lt;/a&gt;详细地说明了，有兴趣的可以看一看。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -104,9 +92,7 @@
       <pubDate>Mon, 19 Mar 2018 21:56:17 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/mac%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E5%B0%8F%E8%84%9A%E6%9C%AC/</guid>
-      <description>&lt;p&gt;最近偶然逛到&lt;a href=&#34;https://unsplash.com/&#34;&gt;unsplash&lt;/a&gt;这个免费的图片网站，发现图片质量不错，另外还友好的提供API接口，就想着顺带写一个小脚本去自动更换电脑壁纸（换一张壁纸，换一个心情😊）。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近偶然逛到&lt;a href=&#34;https://unsplash.com/&#34;&gt;unsplash&lt;/a&gt;这个免费的图片网站，发现图片质量不错，另外还友好的提供API接口，就想着顺带写一个小脚本去自动更换电脑壁纸（换一张壁纸，换一个心情😊）。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -115,8 +101,7 @@
       <pubDate>Sun, 14 Jan 2018 22:31:01 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/2017%E5%B9%B4%E6%80%BB%E7%BB%93/</guid>
-      <description>&lt;p&gt;这是一篇晚到的总结，在元旦结束后就准备写一篇回顾总结，但是中间因为各种事情向后推了一段时间，不过该写的还是要写的。回顾一下对自己的成长也是有益的。
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;这是一篇晚到的总结，在元旦结束后就准备写一篇回顾总结，但是中间因为各种事情向后推了一段时间，不过该写的还是要写的。回顾一下对自己的成长也是有益的。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -143,8 +128,7 @@
       <pubDate>Sun, 12 Nov 2017 17:12:55 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/form%E8%A1%A8%E5%8D%95%E9%81%87%E5%88%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;p&gt;在做后台管理页面时，有一个小需求，提供一个下拉框可以手动修改状态值，为了简单就直接使用form表单去实现，当然也不希望刷新整个页面，大致代码如下：
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;在做后台管理页面时，有一个小需求，提供一个下拉框可以手动修改状态值，为了简单就直接使用form表单去实现，当然也不希望刷新整个页面，大致代码如下：&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -153,20 +137,34 @@
       <pubDate>Mon, 21 Aug 2017 22:08:36 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/codewars-stringy-strings/</guid>
-      <description>&lt;pre&gt;&lt;code&gt;write me a function stringy that takes a size and returns a string of alternating &#39;1s&#39; and &#39;0s&#39;.
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;write me a function stringy that takes a size and returns a string of alternating &amp;#39;1s&amp;#39; and &amp;#39;0s&amp;#39;.
 
 the string should start with a 1.
 
-a string with size 6 should return :&#39;101010&#39;.
+a string with size 6 should return :&amp;#39;101010&amp;#39;.
 
-with size 4 should return : &#39;1010&#39;.
+with size 4 should return : &amp;#39;1010&amp;#39;.
 
-with size 12 should return : &#39;101010101010&#39;.
+with size 12 should return : &amp;#39;101010101010&amp;#39;.
 
-The size will always be positive and will only use whole numbers.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+The size will always be positive and will only use whole numbers.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -184,9 +182,7 @@ The size will always be positive and will only use whole numbers.
       <pubDate>Sat, 15 Apr 2017 17:58:24 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
-      <description>&lt;p&gt;这个是自己在跟着&lt;a href=&#34;http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000&#34;&gt;廖雪峰的JavaScript教程&lt;/a&gt;学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;这个是自己在跟着&lt;a href=&#34;http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000&#34;&gt;廖雪峰的JavaScript教程&lt;/a&gt;学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -222,7 +218,7 @@ The size will always be positive and will only use whole numbers.
       <pubDate>Tue, 07 Jun 2016 22:24:53 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/</guid>
-      <description>&lt;p&gt;&lt;/p&gt;</description>
+      <description>回顾 毕设的主要工作已经完成了，离毕业还有一个月的时间，所以有着较多空闲的时间。回想起这个博客，已经有一年多的时间没有更新了，其中主要因为秋招</description>
     </item>
     
     <item>
@@ -231,8 +227,7 @@ The size will always be positive and will only use whole numbers.
       <pubDate>Thu, 14 May 2015 22:43:49 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
-      <description>&lt;p&gt;写这篇文章的原因是因为在面试时被问到了这个问题，结果因为自己只了解了一点，被深入询问时就彻底的崩盘了*（心态真的很重要啊）*，然后就不知道说什么了，所以结束后就自己查询了下资料，记录下来，也算是在这个过程中学到了一些东西。
- &lt;/p&gt;</description>
+      <description>&lt;p&gt;写这篇文章的原因是因为在面试时被问到了这个问题，结果因为自己只了解了一点，被深入询问时就彻底的崩盘了*（心态真的很重要啊）*，然后就不知道说什么了，所以结束后就自己查询了下资料，记录下来，也算是在这个过程中学到了一些东西。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -242,11 +237,14 @@ The size will always be positive and will only use whole numbers.
       
       <guid>https://blog.renyijiu.com/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>&lt;p&gt;本文主要记录下在Ubuntu下搭建LAMP服务器的大致流程&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    LAMP = Linux + Apache + Mysql + PHP
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    LAMP = Linux + Apache + Mysql + PHP&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -257,8 +255,7 @@ The size will always be positive and will only use whole numbers.
       <guid>https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%BA%8C-%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</guid>
       <description>&lt;h2 id=&#34;八皇后问题&#34;&gt;八皇后问题&lt;/h2&gt;
 
-&lt;p&gt;在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？
-&lt;/p&gt;</description>
+&lt;p&gt;在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -267,8 +264,7 @@ The size will always be positive and will only use whole numbers.
       <pubDate>Mon, 10 Nov 2014 23:11:48 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%B8%80-%E9%80%92%E5%BD%92/</guid>
-      <description>&lt;p&gt;递归的方法虽然效率不高，但是有些地方的使用( &lt;em&gt;对时间的要求不高时&lt;/em&gt; )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 &lt;strong&gt;二叉查找方法&lt;/strong&gt; ，让自己对递归更好的理解。
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;递归的方法虽然效率不高，但是有些地方的使用( &lt;em&gt;对时间的要求不高时&lt;/em&gt; )还是可以轻松的解决一些问题的，也能够用来替代一些循环，在自己的做题中使用还是可以的。这里是使用递归实现的 &lt;strong&gt;二叉查找方法&lt;/strong&gt; ，让自己对递归更好的理解。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -277,8 +273,7 @@ The size will always be positive and will only use whole numbers.
       <pubDate>Tue, 28 Oct 2014 21:39:13 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</guid>
-      <description>&lt;p&gt;这个博客使用的就是hexo，一些命令可能随时间会有部分遗忘，所以写一篇文章记录下来方便自己下次查询。
-   &lt;/p&gt;</description>
+      <description>&lt;p&gt;这个博客使用的就是hexo，一些命令可能随时间会有部分遗忘，所以写一篇文章记录下来方便自己下次查询。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -287,9 +282,7 @@ The size will always be positive and will only use whole numbers.
       <pubDate>Mon, 06 Oct 2014 16:17:43 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/markdown%E7%9A%84%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/</guid>
-      <description>&lt;p&gt;写这篇文章主要是博客需要用到这种语言，所以就参考网上的一些资料，记录下来方便自己用到时的查阅和学习，不过看着这个写东西确实方便，觉得值得一学。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;写这篇文章主要是博客需要用到这种语言，所以就参考网上的一些资料，记录下来方便自己用到时的查阅和学习，不过看着这个写东西确实方便，觉得值得一学。&lt;/p&gt;</description>
     </item>
     
     <item>

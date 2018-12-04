@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ruby on Blog - renyijiu</title>
+    <title>ruby on Blog - renyijiu</title>
     <link>https://blog.renyijiu.com/categories/ruby/</link>
-    <description>Recent content in Ruby on Blog - renyijiu</description>
+    <description>Recent content in ruby on Blog - renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
     <lastBuildDate>Wed, 01 Aug 2018 16:40:58 +0800</lastBuildDate>
     
@@ -18,18 +18,7 @@
       <pubDate>Wed, 01 Aug 2018 16:40:58 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/hash%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
-      <description>&lt;p&gt;Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Float的精度问题</title>
-      <link>https://blog.renyijiu.com/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Tue, 22 May 2018 17:40:53 +0800</pubDate>
-      
-      <guid>https://blog.renyijiu.com/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;p&gt;最近在写测试时，某一个数据随机生成了一个很大的值，然后跑测试发现一直不过，后面仔细排查发现数据存入数据库前与读取出来的值不一致，最后确定应该是对应数据类型设置为Float导致精度不准的问题，这里回顾下float的精度问题。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Ruby中的Hash是经常使用的，每天写代码几乎都要和它打交道。自己在使用中以及日常查资料中看到一些Hash的使用技巧，这里记录一下，希望对大家有用。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -38,9 +27,7 @@
       <pubDate>Mon, 19 Mar 2018 21:56:17 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/mac%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E5%B0%8F%E8%84%9A%E6%9C%AC/</guid>
-      <description>&lt;p&gt;最近偶然逛到&lt;a href=&#34;https://unsplash.com/&#34;&gt;unsplash&lt;/a&gt;这个免费的图片网站，发现图片质量不错，另外还友好的提供API接口，就想着顺带写一个小脚本去自动更换电脑壁纸（换一张壁纸，换一个心情😊）。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近偶然逛到&lt;a href=&#34;https://unsplash.com/&#34;&gt;unsplash&lt;/a&gt;这个免费的图片网站，发现图片质量不错，另外还友好的提供API接口，就想着顺带写一个小脚本去自动更换电脑壁纸（换一张壁纸，换一个心情😊）。&lt;/p&gt;</description>
     </item>
     
   </channel>

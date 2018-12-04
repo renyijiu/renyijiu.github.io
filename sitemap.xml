@@ -205,13 +205,6 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/categories/codewars/</loc>
-    <lastmod>2018-01-14T21:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.renyijiu.com/tags/hash/</loc>
     <lastmod>2018-08-01T16:40:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -240,14 +233,14 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/rails/</loc>
+    <loc>https://blog.renyijiu.com/categories/rails/</loc>
     <lastmod>2018-08-24T09:58:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/categories/rails/</loc>
+    <loc>https://blog.renyijiu.com/tags/rails/</loc>
     <lastmod>2018-08-24T09:58:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
@@ -261,22 +254,15 @@
   </url>
   
   <url>
+    <loc>https://blog.renyijiu.com/categories/ruby/</loc>
+    <lastmod>2018-05-22T17:40:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/tags/ruby/</loc>
     <lastmod>2018-08-01T16:40:58+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/categories/ruby/</loc>
-    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/tags/stimulus/</loc>
-    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -298,6 +284,48 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/ubuntu/</loc>
     <lastmod>2018-01-14T20:58:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/codewars/</loc>
+    <lastmod>2018-01-14T21:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/rails/</loc>
+    <lastmod>2018-08-24T09:58:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/rails/</loc>
+    <lastmod>2018-08-24T09:58:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/ruby/</loc>
+    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/ruby/</loc>
+    <lastmod>2018-05-22T17:40:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/stimulus/</loc>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

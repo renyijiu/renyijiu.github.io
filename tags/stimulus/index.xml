@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Stimulus on Blog - renyijiu</title>
+    <title>stimulus on Blog - renyijiu</title>
     <link>https://blog.renyijiu.com/tags/stimulus/</link>
-    <description>Recent content in Stimulus on Blog - renyijiu</description>
+    <description>Recent content in stimulus on Blog - renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
     <lastBuildDate>Sat, 31 Mar 2018 11:14:00 +0800</lastBuildDate>
     
@@ -18,9 +18,7 @@
       <pubDate>Sat, 31 Mar 2018 11:14:00 +0800</pubDate>
       
       <guid>https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/</guid>
-      <description>&lt;p&gt;上一篇在介绍Stimulus时，有说到部分插件会使用&lt;code&gt;data-target&lt;/code&gt;类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;上一篇在介绍Stimulus时，有说到部分插件会使用&lt;code&gt;data-target&lt;/code&gt;类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。&lt;/p&gt;</description>
     </item>
     
   </channel>

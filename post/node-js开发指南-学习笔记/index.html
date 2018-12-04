@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,50 +16,43 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="renyijiu" />
-  <meta name="description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。
-" />
-
-  <meta name="keywords" content="Rubyist, Pythoner, Ruby on Rails" />
+<meta name="author" content="renyijiu" /><meta name="description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。
+" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.47" />
+<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
-
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" href="/favicon.ico" />
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
 
 
-
-
-
-
-<link href="/dist/even.min.css?v=2.7.2" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 <meta property="og:title" content="Node Js开发指南 学习笔记" />
 <meta property="og:description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><meta property="article:published_time" content="2017-04-05T11:15:35&#43;00:00"/>
 <meta property="article:modified_time" content="2018-01-14T20:54:12&#43;08:00"/>
+
 <meta itemprop="name" content="Node Js开发指南 学习笔记">
 <meta itemprop="description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。">
 
 
 <meta itemprop="datePublished" content="2017-04-05T11:15:35&#43;00:00" />
-<meta itemprop="dateModified" content="2017-04-05T11:15:35&#43;00:00" />
-<meta itemprop="wordCount" content="709">
+<meta itemprop="dateModified" content="2018-01-14T20:54:12&#43;08:00" />
+<meta itemprop="wordCount" content="737">
 
 
 
@@ -134,17 +127,11 @@
       <div class="post-meta">
         <span class="post-time"> 2017-04-05 </span>
         <div class="post-category">
-            
-              <a href="/categories/javascript/"> JavaScript </a>
-            
-          </div>
-        
+            <a href="/categories/javascript/"> JavaScript </a>
+            </div>
         
       </div>
     </header>
-
-    
-    
 
     
     <div class="post-content">
@@ -153,12 +140,20 @@
 <h4 id="运行">运行</h4>
 
 <p>书中写的<code>npm app.js</code>，这个按照<code>express 4</code>的文档应该是<code>npm start</code>，另外在<code>package.json</code>中也有定义</p>
-
-<pre><code class="language-javascript">  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;node ./bin/www&quot;
-  }
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">  <span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;start&#34;</span><span class="o">:</span> <span class="s2">&#34;node ./bin/www&#34;</span>
+  <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>所以也可以使用<code>node ./bin/www</code></p>
 
 <h4 id="模板">模板</h4>
@@ -170,31 +165,61 @@
 <h4 id="报错信息">报错信息</h4>
 
 <h6 id="1-typeerror">1. TypeError</h6>
-
-<pre><code class="language-javascript">TypeError: Cannot read property 'Store' of undefined
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">TypeError</span><span class="o">:</span> <span class="nx">Cannot</span> <span class="nx">read</span> <span class="nx">property</span> <span class="s1">&#39;Store&#39;</span> <span class="k">of</span> <span class="kc">undefined</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>如果遇到这个报错信息，可以使用下面的代码方式解决</p>
-
-<pre><code class="language-javascript">var expressSession = require('express-session');
-var MongoStore = require('connect-mongo')(expressSession);
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">expressSession</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express-session&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">MongoStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;connect-mongo&#39;</span><span class="p">)(</span><span class="nx">expressSession</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h6 id="2-mongo-error">2. Mongo Error</h6>
-
-<pre><code class="language-javascript">Error: Connection strategy not found
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Error</span><span class="o">:</span> <span class="nx">Connection</span> <span class="nx">strategy</span> <span class="nx">not</span> <span class="nx">found</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>书中<code>connect-mongo</code>使用的是旧的写法建立新的连接，改成下列方式</p>
-
-<pre><code class="language-javascript">app.use(expressSession({
-    secret: setting.cookieSecret,
-    store: new MongoStore({
-      url: 'mongodb://localhost/microblog'
-    })
-}));
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">expressSession</span><span class="p">({</span>
+    <span class="nx">secret</span><span class="o">:</span> <span class="nx">setting</span><span class="p">.</span><span class="nx">cookieSecret</span><span class="p">,</span>
+    <span class="nx">store</span><span class="o">:</span> <span class="k">new</span> <span class="nx">MongoStore</span><span class="p">({</span>
+      <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;mongodb://localhost/microblog&#39;</span>
+    <span class="p">})</span>
+<span class="p">}));</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h6 id="3-form">3. Form</h6>
 
 <p>POST的表单数据为空，纠结了自己好久才发现，表单<code>input</code>的<code>name</code>属性没有填写，所以导致了<code>POST</code>过来的数据一直为空</p>
@@ -202,18 +227,32 @@ var MongoStore = require('connect-mongo')(expressSession);
 <h6 id="4-helpers">4. Helpers</h6>
 
 <p>新版本的Express已经不支持<code>app.dynamicHelpers</code>方法，需要使用<code>locals</code>来代替</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s2">&#34;success&#34;</span><span class="p">);</span>
 
-<pre><code class="language-javascript">app.use(function(req, res, next) {
-  res.locals.user = req.session.user;
-  var err = req.flash('error');
-  var success = req.flash(&quot;success&quot;);
-
-  res.locals.error = err.length ? err : null;
-  res.locals.success = success.length ? success : null;
-  next();
-});
-</code></pre>
-
+  <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="nx">err</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">err</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="nx">success</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">success</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>另外，需要将上述代码放在路由定义之前，不然在页面上中是无法获取到<code>user, error, success</code>参数的。</p>
 
 <h6 id="5-mongo-port">5. Mongo Port</h6>
@@ -227,27 +266,17 @@ var MongoStore = require('connect-mongo')(expressSession);
 <p>上面是在这本书学习过程中遇到的几个主要的问题，写出来也算为后来的学习者提供点资料吧，因为在自己的查询过程中，发现这个错误信息的资料，尤其是中文资料真的不多，对新手不是很友好。</p>
     </div>
 
-    
-    
-
-    
-    
-
     <footer class="post-footer">
       
-
-      
       <nav class="post-nav">
-        
-          <a class="prev" href="/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        <a class="prev" href="/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">JavaScript 学习笔记</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        
-          <a class="next" href="/post/rails%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/">
+        <a class="next" href="/post/rails%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/">
             <span class="next-text nav-default">Rails中自定义错误页面</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -255,6 +284,7 @@ var MongoStore = require('connect-mongo')(expressSession);
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -278,15 +308,14 @@ var MongoStore = require('connect-mongo')(expressSession);
   
     <span class="division">|</span>
     <span class="coding-ad">
-        Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
+      Hosted by <a class="coding-link" href="https://pages.coding.me">Coding Pages</a>
     </span>
 
   
 
   <span class="copyright-year">
     &copy; 
-    
-      2014 - 
+    2014 - 
     2018
     <span class="heart">
       <i class="iconfont icon-heart"></i>
@@ -301,14 +330,16 @@ var MongoStore = require('connect-mongo')(expressSession);
     </div>
   </div>
   
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=2.7.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
 
 
 
 
+
+
+<script type="text/javascript" src="https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js" crossorigin="anonymous" data-no-instant></script> <script type="text/javascript" crossorigin="anonymous" data-no-instant>InstantClick.init(100);</script>
 </body>
 </html>
