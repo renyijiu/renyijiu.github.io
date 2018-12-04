@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="renyijiu" /><meta name="description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。
-" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
+" /><meta name="keywords" content="javascript, 笔记" />
 
 
 
@@ -133,7 +133,51 @@
       </div>
     </header>
 
-    
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#数据类型和变量">数据类型和变量</a></li>
+<li><a href="#字符串">字符串</a></li>
+<li><a href="#数组">数组</a></li>
+<li><a href="#对象">对象</a></li>
+<li><a href="#条件判断">条件判断</a></li>
+<li><a href="#循环">循环</a></li>
+<li><a href="#函数">函数</a></li>
+<li><a href="#方法">方法</a></li>
+<li><a href="#map">map</a></li>
+<li><a href="#sort">sort</a></li>
+<li><a href="#包装对象">包装对象</a></li>
+<li><a href="#箭头函数">箭头函数</a></li>
+<li><a href="#面向对象编程">面向对象编程</a></li>
+<li><a href="#创建对象">创建对象</a></li>
+<li><a href="#原型继承">原型继承</a></li>
+<li><a href="#浏览器对象">浏览器对象</a>
+<ul>
+<li><a href="#location">location</a></li>
+</ul></li>
+<li><a href="#扩展">扩展</a>
+<ul>
+<li><a href="#编写jquery插件">编写jQuery插件</a></li>
+</ul></li>
+<li><a href="#模块">模块</a></li>
+<li><a href="#stream">Stream</a></li>
+<li><a href="#http">HTTP</a></li>
+<li><a href="#mvvm">MVVM</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
     <div class="post-content">
       <p>这个是自己在跟着<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">廖雪峰的JavaScript教程</a>学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。</p>
 
@@ -567,7 +611,21 @@
     </footer>
   </article>
         </div>
-        
+        <div id="gitalk-container"></div>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2017-04-15 17:58:24 \x2b0000 UTC',
+        title: 'JavaScript 学习笔记',
+        clientID: '221a0444deadac33d361',
+        clientSecret: '1db15d112545ece8a8783c4c5a80c8da260d60cc',
+        repo: 'hugo_blog',
+        owner: 'renyijiu',
+        admin: ['renyijiu'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
       </div>
     </main>

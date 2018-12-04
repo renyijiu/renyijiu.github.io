@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="renyijiu" /><meta name="description" content="后台优化时，需要增加一个给用户发送图片消息的功能，为了兼容原有代码，使用了form表单上传图片文件，大致代码如下：
-" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
+" /><meta name="keywords" content="rails, form" />
 
 
 
@@ -259,7 +259,21 @@
     </footer>
   </article>
         </div>
-        
+        <div id="gitalk-container"></div>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2017-11-18 22:24:05 \x2b0800 CST',
+        title: 'Form表单上传文件的问题',
+        clientID: '221a0444deadac33d361',
+        clientSecret: '1db15d112545ece8a8783c4c5a80c8da260d60cc',
+        repo: 'hugo_blog',
+        owner: 'renyijiu',
+        admin: ['renyijiu'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
       </div>
     </main>

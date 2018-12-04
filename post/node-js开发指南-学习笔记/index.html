@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="renyijiu" /><meta name="description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。
-" /><meta name="keywords" content="Rubyist, Ruby, Python, Pythoner, Ruby on Rails" />
+" /><meta name="keywords" content="node, js, 笔记" />
 
 
 
@@ -133,7 +133,38 @@
       </div>
     </header>
 
-    
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#运行">运行</a></li>
+<li><a href="#模板">模板</a></li>
+<li><a href="#报错信息">报错信息</a>
+<ul>
+<li>
+<ul>
+<li><a href="#1-typeerror">1. TypeError</a></li>
+<li><a href="#2-mongo-error">2. Mongo Error</a></li>
+<li><a href="#3-form">3. Form</a></li>
+<li><a href="#4-helpers">4. Helpers</a></li>
+<li><a href="#5-mongo-port">5. Mongo Port</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#结语">结语</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
     <div class="post-content">
       <p>前面在看<code>node.js开发指南</code>学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。</p>
 
@@ -283,7 +314,21 @@
     </footer>
   </article>
         </div>
-        
+        <div id="gitalk-container"></div>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2017-04-05 11:15:35 \x2b0000 UTC',
+        title: 'Node Js开发指南 学习笔记',
+        clientID: '221a0444deadac33d361',
+        clientSecret: '1db15d112545ece8a8783c4c5a80c8da260d60cc',
+        repo: 'hugo_blog',
+        owner: 'renyijiu',
+        admin: ['renyijiu'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
       </div>
     </main>
