@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Thu, 06 Dec 2018 18:29:07 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Dec 2018 17:42:28 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rails测试中@app变量问题</title>
+      <link>https://blog.renyijiu.com/post/rails%E6%B5%8B%E8%AF%95%E4%B8%ADapp%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 09 Dec 2018 17:42:28 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/rails%E6%B5%8B%E8%AF%95%E4%B8%ADapp%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;前段时间在写项目的测试时，碰到了一个比较奇怪的问题，一个比较普通的测试代码一直无法通过，当时也是花费了较多的时间在进行排查。现在来记录一下这个问题，防止下次再次踩坑。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Net Http的encode_www_form问题</title>
