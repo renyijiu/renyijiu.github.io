@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2018-08-01T16:40:58&#43;08:00" />
 <meta itemprop="dateModified" content="2018-08-01T16:40:58&#43;08:00" />
-<meta itemprop="wordCount" content="868">
+<meta itemprop="wordCount" content="1091">
 
 
 
@@ -146,6 +146,7 @@
 <li><a href="#3-替换">3. 替换</a></li>
 <li><a href="#4-合并">4. 合并</a></li>
 <li><a href="#5-格式化">5. 格式化</a></li>
+<li><a href="#6-删除空值">6. 删除空值</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -373,7 +374,7 @@
 </div>
 <h3 id="5-格式化">5. 格式化</h3>
 
-<p>将hash中的key转成symbol格式，采用递归确保所有的key转换</p>
+<p>将hash中的<code>key</code>转成<code>symbol</code>格式，采用递归确保所有的key转换</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
@@ -446,7 +447,7 @@
         <span class="o">]</span>
     <span class="p">}</span>
 <span class="p">}</span>
-<span class="n">irb</span><span class="p">(</span><span class="n">main</span><span class="p">):</span><span class="mo">030</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">symbolize</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">irb</span><span class="o">&gt;</span> <span class="n">symbolize</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="ss">:&#34;1&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span>
     <span class="ss">:&#34;2&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span>
@@ -458,6 +459,83 @@
             <span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="mi">2</span><span class="p">,</span>
             <span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="mi">3</span>
         <span class="o">]</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>当然呢同理，使用上述方法也可以将<code>key</code>转成<code>string</code>格式。</p>
+
+<h3 id="6-删除空值">6. 删除空值</h3>
+
+<p>如果是在单层的<code>hash</code>中需要去除<code>value</code>为空的<code>key</code>，可以直接使用ruby自带的<code>compact</code>方法。但是如果存在多层嵌套呢？就需要我们改造一下了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">deep_compact</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nb">hash</span> <span class="k">unless</span> <span class="nb">hash</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="o">::</span><span class="no">Hash</span><span class="p">)</span>
+
+  <span class="nb">hash</span><span class="o">.</span><span class="n">each_with_object</span><span class="p">({})</span> <span class="k">do</span> <span class="o">|</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">compact_hash</span><span class="o">|</span>
+    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="o">::</span><span class="no">Hash</span><span class="p">)</span>
+      <span class="n">compact_hash</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">deep_compact</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="n">compact_hash</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">v</span> <span class="k">unless</span> <span class="n">v</span><span class="o">.</span><span class="n">nil?</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># 示例</span>
+
+<span class="n">irb</span><span class="o">&gt;</span> <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="o">=&gt;</span> <span class="kp">nil</span><span class="p">,</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;renyijiu&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="mi">4</span> <span class="o">=&gt;</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="mi">6</span> <span class="o">=&gt;</span> <span class="kp">nil</span><span class="p">}}</span>
+<span class="p">{</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="kp">nil</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s2">&#34;renyijiu&#34;</span><span class="p">,</span>
+    <span class="mi">3</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="mi">4</span> <span class="o">=&gt;</span> <span class="s2">&#34;world&#34;</span><span class="p">,</span>
+        <span class="mi">6</span> <span class="o">=&gt;</span> <span class="kp">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 输出</span>
+
+<span class="n">irb</span><span class="o">&gt;</span> <span class="n">deep_compact</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s2">&#34;renyijiu&#34;</span><span class="p">,</span>
+    <span class="mi">3</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="mi">4</span> <span class="o">=&gt;</span> <span class="s2">&#34;world&#34;</span>
     <span class="p">}</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
