@@ -45,7 +45,7 @@
 <meta property="og:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.renyijiu.com/" />
-<meta property="og:updated_time" content="2018-03-31T11:14:00&#43;08:00"/>
+<meta property="og:updated_time" content="2018-05-19T13:38:36&#43;08:00"/>
 
 <meta itemprop="name" content="Blog - renyijiu">
 <meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽">
@@ -113,6 +113,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/">Rails过滤器及回调顺序踩坑</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-05-19 </span>
+      <div class="post-category">
+          <a href="/categories/rails/"> Rails </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>最近在做项目时碰到了一个问题，自己在model中定义了几个<code>after_commit</code>回调（有一个依赖于上一个回调的数据结果），但是运行结果并没有达到预期的效果。开始以为是没有触发导致的问题，但实际后来查看日志发现已经触发了，只是呢顺序没有自己预期的那样，看来自己对于这个回调顺序没有完全了解，所以写一篇文章记录下这个问题。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/">Stimulus踩坑记</a></h1>
@@ -327,27 +348,6 @@ The size will always be positive and will only use whole numbers.</pre></td></tr
     </div>
     <div class="read-more">
       <a href="/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Node Js开发指南 学习笔记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2017-04-05 </span>
-      <div class="post-category">
-          <a href="/categories/javascript/"> JavaScript </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>前面在看<code>node.js开发指南</code>学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

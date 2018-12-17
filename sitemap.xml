@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.renyijiu.com/post/ruby%E7%9A%84gui%E7%BC%96%E7%A8%8B%E5%B0%9D%E8%AF%95/</loc>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/post/rails%E4%B8%ADscope%E9%97%AE%E9%A2%98%E8%B8%A9%E5%9D%91/</loc>
     <lastmod>2018-12-13T11:56:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -221,13 +228,20 @@
   
   <url>
     <loc>https://blog.renyijiu.com/</loc>
-    <lastmod>2018-12-13T11:56:48+08:00</lastmod>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/gui/</loc>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -248,7 +262,7 @@
   
   <url>
     <loc>https://blog.renyijiu.com/post/</loc>
-    <lastmod>2018-12-13T11:56:48+08:00</lastmod>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -283,21 +297,21 @@
   
   <url>
     <loc>https://blog.renyijiu.com/tags/ruby/</loc>
-    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/ruby/</loc>
-    <lastmod>2018-05-22T17:40:53+08:00</lastmod>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/</loc>
-    <lastmod>2018-08-01T16:40:58+08:00</lastmod>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

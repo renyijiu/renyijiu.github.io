@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Thu, 13 Dec 2018 11:56:48 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 16 Dec 2018 19:54:22 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ruby的GUI编程尝试</title>
+      <link>https://blog.renyijiu.com/post/ruby%E7%9A%84gui%E7%BC%96%E7%A8%8B%E5%B0%9D%E8%AF%95/</link>
+      <pubDate>Sun, 16 Dec 2018 19:54:22 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/ruby%E7%9A%84gui%E7%BC%96%E7%A8%8B%E5%B0%9D%E8%AF%95/</guid>
+      <description>&lt;p&gt;最近天气也是冷的可以，周末正好也没有什么事情，就把以前留的一个坑给补上了，完成了一个前段时间很火的抖音表白软件。然后在写的过程中，也算是对&lt;code&gt;Ruby&lt;/code&gt;图形界面编程的一个尝试，这里记录一下自己的使用感受。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Rails中scope问题踩坑</title>
