@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.54.0 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
@@ -43,7 +43,8 @@
 <meta property="og:title" content="Node Js开发指南 学习笔记" />
 <meta property="og:description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><meta property="article:published_time" content="2017-04-05T11:15:35&#43;00:00"/>
+<meta property="og:url" content="https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+<meta property="article:published_time" content="2017-04-05T11:15:35&#43;00:00"/>
 <meta property="article:modified_time" content="2018-01-14T20:54:12&#43;08:00"/>
 
 <meta itemprop="name" content="Node Js开发指南 学习笔记">
@@ -52,7 +53,7 @@
 
 <meta itemprop="datePublished" content="2017-04-05T11:15:35&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-14T20:54:12&#43;08:00" />
-<meta itemprop="wordCount" content="737">
+<meta itemprop="wordCount" content="731">
 
 
 
@@ -176,7 +177,6 @@
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">  <span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
@@ -199,7 +199,6 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
-</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">TypeError</span><span class="o">:</span> <span class="nx">Cannot</span> <span class="nx">read</span> <span class="nx">property</span> <span class="s1">&#39;Store&#39;</span> <span class="k">of</span> <span class="kc">undefined</span>
@@ -211,7 +210,6 @@
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">expressSession</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express-session&#39;</span><span class="p">);</span>
@@ -223,7 +221,6 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
-</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Error</span><span class="o">:</span> <span class="nx">Connection</span> <span class="nx">strategy</span> <span class="nx">not</span> <span class="nx">found</span>
@@ -239,7 +236,6 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">expressSession</span><span class="p">({</span>
@@ -260,16 +256,15 @@
 <p>新版本的Express已经不支持<code>app.dynamicHelpers</code>方法，需要使用<code>locals</code>来代替</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>

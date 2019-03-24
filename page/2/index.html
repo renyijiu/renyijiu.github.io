@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.52 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.54.0 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/" />
@@ -45,7 +45,8 @@
 <meta property="og:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.renyijiu.com/" />
-<meta property="og:updated_time" content="2018-06-05T18:17:53&#43;08:00"/>
+
+<meta property="og:updated_time" content="2018-07-21T17:47:53&#43;08:00"/>
 
 <meta itemprop="name" content="Blog - renyijiu">
 <meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽">
@@ -113,6 +114,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/rake-tasks%E8%B8%A9%E5%9D%91%E8%AE%B0/">Rake tasks踩坑记</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-07-21 </span>
+      <div class="post-category">
+          <a href="/categories/rails/"> Rails </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>最近在工作中编写Rake  tasks时碰到了一个以前没有注意的问题，不同命名空间下定义的同名methods出现了覆盖的情况导致bug的产生，自己也是排查很久后才发现重名的问题，所以就把这个记录下来，避免以后再次踩坑。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/rake-tasks%E8%B8%A9%E5%9D%91%E8%AE%B0/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/">记一次生产环境事故</a></h1>
@@ -300,54 +322,6 @@
     </div>
     <div class="read-more">
       <a href="/post/form%E8%A1%A8%E5%8D%95%E9%81%87%E5%88%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/codewars-stringy-strings/">Stringy Strings</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2017-08-21 </span>
-      <div class="post-category">
-          <a href="/categories/codewars/"> codewars </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">write me a function stringy that takes a size and returns a string of alternating &#39;1s&#39; and &#39;0s&#39;.
-
-the string should start with a 1.
-
-a string with size 6 should return :&#39;101010&#39;.
-
-with size 4 should return : &#39;1010&#39;.
-
-with size 12 should return : &#39;101010101010&#39;.
-
-The size will always be positive and will only use whole numbers.</pre></td></tr></table>
-</div>
-</div>
-    </div>
-    <div class="read-more">
-      <a href="/post/codewars-stringy-strings/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
