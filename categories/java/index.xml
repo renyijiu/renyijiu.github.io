@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/categories/java/</link>
+    <description>Recent content in Java on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Tue, 13 Aug 2019 12:18:07 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Spring Boot]数据库insert错误</title>
+      <link>https://blog.renyijiu.com/post/spring-boot%E6%95%B0%E6%8D%AE%E5%BA%93insert%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Tue, 13 Aug 2019 12:18:07 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/spring-boot%E6%95%B0%E6%8D%AE%E5%BA%93insert%E9%94%99%E8%AF%AF/</guid>
+      <description>&lt;p&gt;开始写Java也有两个多月了，虽然深度参与了一个项目（基于spring-boot对一个Ruby项目进行重构，使用Java重新实现），但是因为基础框架是同事搭建的，所以可能对框架其中的一些东西不甚了解，更加偏向于业务的深度。所以就决定自己从零写一个小项目，尝试去体验spring-boot的整体开发流程。&lt;/p&gt;
+
+&lt;p&gt;当然一开始就碰到了各种小问题，也都通过查资料等解决了，所以决定记录一下，大部分问题可能都很简单，但可能其他人在开始学习时也会遇到一样的问题呢，留个思路在网上，万一帮助了其他新人也是极好的。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

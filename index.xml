@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Sun, 24 Mar 2019 21:14:03 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 13 Aug 2019 12:18:07 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Spring Boot]数据库insert错误</title>
+      <link>https://blog.renyijiu.com/post/spring-boot%E6%95%B0%E6%8D%AE%E5%BA%93insert%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Tue, 13 Aug 2019 12:18:07 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/spring-boot%E6%95%B0%E6%8D%AE%E5%BA%93insert%E9%94%99%E8%AF%AF/</guid>
+      <description>&lt;p&gt;开始写Java也有两个多月了，虽然深度参与了一个项目（基于spring-boot对一个Ruby项目进行重构，使用Java重新实现），但是因为基础框架是同事搭建的，所以可能对框架其中的一些东西不甚了解，更加偏向于业务的深度。所以就决定自己从零写一个小项目，尝试去体验spring-boot的整体开发流程。&lt;/p&gt;
+
+&lt;p&gt;当然一开始就碰到了各种小问题，也都通过查资料等解决了，所以决定记录一下，大部分问题可能都很简单，但可能其他人在开始学习时也会遇到一样的问题呢，留个思路在网上，万一帮助了其他新人也是极好的。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Go指南练习题</title>
@@ -290,7 +301,7 @@ The size will always be positive and will only use whole numbers.&lt;/pre&gt;&lt
       <pubDate>Tue, 07 Jun 2016 22:24:53 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/</guid>
-      <description>回顾 毕设的主要工作已经完成了，离毕业还有一个月的时间，所以有着较多空闲的时间。回想起这个博客，已经有一年多的时间没有更新了，其中主要因为秋招</description>
+      <description></description>
     </item>
     
     <item>
