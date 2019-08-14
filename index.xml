@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Tue, 13 Aug 2019 12:18:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2019 18:48:09 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Spring Boot]insert not found问题</title>
+      <link>https://blog.renyijiu.com/post/spring-bootinsert_not_found/</link>
+      <pubDate>Wed, 14 Aug 2019 18:48:09 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/spring-bootinsert_not_found/</guid>
+      <description>&lt;p&gt;个人项目中编写了一个简单的注册接口，但是在过程中遇到了几个小问题，这里记录一下。真所谓万事开头难，一个简单的接口，搭建项目碰到了各种小问题😂。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>[Spring Boot]数据库insert错误</title>
