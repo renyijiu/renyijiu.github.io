@@ -46,7 +46,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.renyijiu.com/" />
 
-<meta property="og:updated_time" content="2019-08-18T20:30:10&#43;08:00"/>
+<meta property="og:updated_time" content="2019-08-20T16:37:12&#43;08:00"/>
 
 <meta itemprop="name" content="Blog - renyijiu">
 <meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽">
@@ -114,6 +114,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/java%E6%BA%90%E7%A0%81boolean/">[Java源码]Boolean</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-08-20 </span>
+      <div class="post-category">
+          <a href="/categories/java%E6%BA%90%E7%A0%81/"> Java源码 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>因为业务发展关系，前段时间将一个风控平台从Ruby语言迁移到了Java平台，基于Spring进行了重构，写了一段时间Java后，自己发现竟然还挺喜欢的（可能因为那段时间真的深深体会了 <strong>动态语言一时爽，重构火葬场</strong> 的玩笑）。所以后续决定阅读部分源码进行深入提升Java水平，网上搜索了一番，看到了很多的推荐，例如<code>Spring</code>框架的源码之类的，还有一些其他的开源组件项目，但是后面想想还是先从Java基础入手吧，于是就有了这篇文章，从最简单的Boolean开始。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/java%E6%BA%90%E7%A0%81boolean/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/spring-boot%E8%AF%BB%E5%8F%96excel%E6%96%87%E4%BB%B6/">[Spring Boot]读取Excel文件</a></h1>
@@ -301,27 +322,6 @@
     </div>
     <div class="read-more">
       <a href="/post/rails%E6%B5%8B%E8%AF%95%E4%B8%ADapp%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/net-http%E7%9A%84encode_www_form%E9%97%AE%E9%A2%98/">Net Http的encode_www_form问题</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-12-06 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%97%A5%E5%B8%B8%E8%B8%A9%E5%9D%91/"> 日常踩坑 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>最近业务又涉及到了支付宝小程序，所以需要更新<a href="https://github.com/renyijiu/alipay_mini">alipay_mini</a>这个gem包，增加一个创建订单的接口，去实现支付宝支付的功能模块。因为包里使用的是ruby自带的<code>net/http</code>进行网络请求，当测试的时候发现阿里那边接口返回的一直是<code>签名验证不一致</code>，但是测试其他接口却是正常的，能够获取到相关的信息。于是开始了排查之路，毕竟刚写的接口，肯定是哪里出了问题，于是与阿里返回的验证字符串进行了比较，慢慢的发现了问题所在。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/net-http%E7%9A%84encode_www_form%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

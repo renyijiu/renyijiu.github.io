@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java源码分析 on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/tags/java%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+    <description>Recent content in Java源码分析 on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Tue, 20 Aug 2019 16:37:12 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/tags/java%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Java源码]Boolean</title>
+      <link>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81boolean/</link>
+      <pubDate>Tue, 20 Aug 2019 16:37:12 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81boolean/</guid>
+      <description>&lt;p&gt;因为业务发展关系，前段时间将一个风控平台从Ruby语言迁移到了Java平台，基于Spring进行了重构，写了一段时间Java后，自己发现竟然还挺喜欢的（可能因为那段时间真的深深体会了 &lt;strong&gt;动态语言一时爽，重构火葬场&lt;/strong&gt; 的玩笑）。所以后续决定阅读部分源码进行深入提升Java水平，网上搜索了一番，看到了很多的推荐，例如&lt;code&gt;Spring&lt;/code&gt;框架的源码之类的，还有一些其他的开源组件项目，但是后面想想还是先从Java基础入手吧，于是就有了这篇文章，从最简单的Boolean开始。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
