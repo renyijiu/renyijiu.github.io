@@ -34,10 +34,9 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
 
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Python学习 一 递归" />
@@ -192,22 +191,14 @@
     </footer>
   </article>
         </div>
-        <div id="gitalk-container"></div>
-    <script type="text/javascript">
-      var gitalk = new Gitalk({
-        id: '2014-11-10 23:11:48 \x2b0000 UTC',
-        title: 'Python学习 一 递归',
-        clientID: '221a0444deadac33d361',
-        clientSecret: '1db15d112545ece8a8783c4c5a80c8da260d60cc',
-        repo: 'hugo_blog',
-        owner: 'renyijiu',
-        admin: ['renyijiu'],
-        body: decodeURI(location.href)
-      });
-      gitalk.render('gitalk-container');
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
-
+        <div id="utter-container"></div>
+        <script src="https://utteranc.es/client.js"
+            repo= 'renyijiu/hugo_blog'
+            issue-term= "title"
+            theme= 'github-light'
+            crossorigin= "anonymous"
+            async>
+        </script>
       </div>
     </main>
 
@@ -251,7 +242,7 @@
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
-  
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
 
 
@@ -259,6 +250,6 @@
 
 
 
-<script type="text/javascript" src="https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js" crossorigin="anonymous" data-no-instant></script> <script type="text/javascript" crossorigin="anonymous" data-no-instant>InstantClick.init(100);</script>
+
 </body>
 </html>
