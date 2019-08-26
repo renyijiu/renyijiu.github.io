@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[Java源码]Byte - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" /><meta name="description" content="Java源码 - Byte" /><meta name="keywords" content="Java源码, Byte" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81byte/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[Java源码]Byte" />
+<meta property="og:description" content="Java源码 - Byte" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81byte/" />
+<meta property="article:published_time" content="2019-08-22T16:48:19&#43;08:00"/>
+<meta property="article:modified_time" content="2019-08-22T16:48:19&#43;08:00"/>
+
+<meta itemprop="name" content="[Java源码]Byte">
+<meta itemprop="description" content="Java源码 - Byte">
+
+
+<meta itemprop="datePublished" content="2019-08-22T16:48:19&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-22T16:48:19&#43;08:00" />
+<meta itemprop="wordCount" content="2135">
+
+
+
+<meta itemprop="keywords" content="Java源码,Java," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Java源码]Byte"/>
+<meta name="twitter:description" content="Java源码 - Byte"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[Java源码]Byte</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-08-22 </span>
+        <div class="post-category">
+            <a href="/categories/java%E6%BA%90%E7%A0%81/"> Java源码 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p>这次我们来看看<code>Byte</code>类的源代码，基于 <em>jdk1.8.0_181.jdk</em> 版本 。</p>
+
+<h2 id="概要">概要</h2>
+
+<p>Java的<code>Byte</code>类主要是对<code>byte</code>基本数据类型的封装，有着一个字段存放着对应的<code>byte</code>数据值，另外提供了一些方法方便对<code>byte</code>进行相关的操作。</p>
+
+<h2 id="类定义">类定义</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Byte</span> <span class="kd">extends</span> <span class="n">Number</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Byte</span><span class="o">&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><code>Byte</code>类带有关键字<code>final</code>，也就是<strong>不可以继承的</strong>，另外继承了<code>Number</code>类，实现了<code>Comparable</code>接口，也就是可以进行比较。</p>
+
+<h2 id="属性">属性</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span>   <span class="n">MIN_VALUE</span> <span class="o">=</span> <span class="o">-</span><span class="n">128</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span>   <span class="n">MAX_VALUE</span> <span class="o">=</span> <span class="n">127</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>定义了<code>Byte</code>的范围大小，由于补码的关系，负数会比正数多一个值，<code>MIN_VALUE</code>能取的值为 <code>-2**8</code>，而<code>MAX_VALUE</code>能取的值为<code>2**8 - 1</code>，具体原码和补码的逻辑，可以参考下<a href="https://www.zhihu.com/question/20159860/answer/71256667">原码、反码、补码的产生、应用以及优缺点有哪些？ - 知乎用户的回答 - 知乎</a>，个人觉得讲解的不错。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SIZE</span> <span class="o">=</span> <span class="n">8</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>定义了<code>byte</code>值的二进制补码格式的<code>bit</code>位数，固定8位。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">BYTES</span> <span class="o">=</span> <span class="n">SIZE</span> <span class="o">/</span> <span class="n">Byte</span><span class="o">.</span><span class="na">SIZE</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>定义了<code>byte</code>值的二进制补码格式的字节数，计算值固定为1。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Byte</span><span class="o">&gt;</span>     <span class="n">TYPE</span> <span class="o">=</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">Byte</span><span class="o">&gt;)</span> <span class="n">Class</span><span class="o">.</span><span class="na">getPrimitiveClass</span><span class="o">(</span><span class="s">&#34;byte&#34;</span><span class="o">);</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>获取<code>Byte</code>的类信息，<code>Byte.TYPE == byte.class</code>，两者是等价的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">value</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><code>Byte</code>因为是<code>byte</code>的包装类，所以这里包含了对应的<code>byte</code>基本类型数据的变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="n">7183698231559129828L</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="内部类">内部类</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ByteCache</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nf">ByteCache</span><span class="o">(){}</span>
+
+  <span class="kd">static</span> <span class="kd">final</span> <span class="n">Byte</span> <span class="n">cache</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Byte</span><span class="o">[-(-</span><span class="n">128</span><span class="o">)</span> <span class="o">+</span> <span class="n">127</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+
+  <span class="kd">static</span> <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cache</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+      <span class="n">cache</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Byte</span><span class="o">((</span><span class="kt">byte</span><span class="o">)(</span><span class="n">i</span> <span class="o">-</span> <span class="n">128</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这里定义了一个静态的嵌套类，内部定义了一个数组，大小为<code>-(-128)+127+1=256</code>，包含了-128～127之间的值。静态块中初始化了数组的值。这里补充一个知识点，Java类的加载顺序，<code>静态变量/代码块 -&gt; 非静态变量/代码块 -&gt; 构造方法</code>，相同部分里面是按照代码顺序进行加载，详细的内容可以自行搜索学习。</p>
+
+<p>关于内部类的相关说明，可以参考官方的文档 <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html">Nested Classes</a> 进行进一步的了解学习。</p>
+
+<h2 id="方法">方法</h2>
+
+<h3 id="构造方法">构造方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">Byte</span><span class="o">(</span><span class="kt">byte</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="nf">Byte</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">parseByte</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>存在两个对应的构造方法，一个传入<code>byte</code>值，一个是传入字符串解析，转换成10进制整数处理（注意的是这个方法可能会抛出异常，需要注意处理），对应的解析方法下面介绍。</p>
+
+<h3 id="parsebyte-方法">parseByte 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">byte</span> <span class="nf">parseByte</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span>
+  <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">radix</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">MIN_VALUE</span> <span class="o">||</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">MAX_VALUE</span><span class="o">)</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span>
+    <span class="s">&#34;Value out of range. Value:\&#34;&#34;</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span> <span class="s">&#34;\&#34; Radix:&#34;</span> <span class="o">+</span> <span class="n">radix</span><span class="o">);</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span><span class="n">i</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>传入字符串和进制数，调用了<code>Integer.parseInt</code>方法获取转换后的整数，判断整数范围是否符合<code>Byte</code>的范围。如果是，强制转换<code>byte</code>类型返回；否，抛出<code>NumberFormatException</code>异常。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">byte</span> <span class="nf">parseByte</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">parseByte</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>存在一个单参数的<code>parseByte</code>方法，通过调用上面的方法实现，默认10进制数。</p>
+
+<h3 id="tostring-方法">toString 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(</span><span class="kt">byte</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">b</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>直接将<code>byte</code>类型值强制转换成<code>int</code>，然后调用了<code>Integer.toString</code>方法进行操作。</p>
+
+<h3 id="valueof-方法">valueOf 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Byte</span> <span class="nf">valueOf</span><span class="o">(</span><span class="kt">byte</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">128</span><span class="o">;</span>
+  <span class="k">return</span> <span class="n">ByteCache</span><span class="o">.</span><span class="na">cache</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span><span class="n">b</span> <span class="o">+</span> <span class="n">offset</span><span class="o">];</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>对于<code>byte</code>类型参数，直接通过计算偏移量，读取<code>ByteCache</code>内部类的静态变量数组对应值来操作，提升了对应的空间和时间性能。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Byte</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span>
+  <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">valueOf</span><span class="o">(</span><span class="n">parseByte</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">radix</span><span class="o">));</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">Byte</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">valueOf</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这两个方法是针对<code>string</code>类型参数的，只是进制设定的问题。使用<code>parseByte</code>方法将字符串转换成<code>byte</code>类型值，然后直接使用第一个<code>valueOf</code>方法操作。</p>
+
+<h3 id="decode-方法">decode 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Byte</span> <span class="nf">decode</span><span class="o">(</span><span class="n">String</span> <span class="n">nm</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">nm</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">MIN_VALUE</span> <span class="o">||</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">MAX_VALUE</span><span class="o">)</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span>
+    <span class="s">&#34;Value &#34;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&#34; out of range from input &#34;</span> <span class="o">+</span> <span class="n">nm</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">valueOf</span><span class="o">((</span><span class="kt">byte</span><span class="o">)</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>针对字符串解码，将字符串转换成<code>Byte</code>类型值。主要逻辑是调用了<code>Integer.decode</code>方法获取解码后的数字，然后判断对应返回是否符合<code>byte</code>要求，调用<code>valueOf</code>返回最终结果。</p>
+
+<p>除去<code>+/-</code>符号，会根据实际情况进行特定的解码，默认会处理成十进制。<code>0x,0X,#</code>开头的会处理成16进制，<code>0</code>开头的会处理成8进制。</p>
+
+<h3 id="xxxvalue-方法">xxxValue 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">byte</span> <span class="nf">byteValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">short</span> <span class="nf">shortValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">intValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">long</span> <span class="nf">longValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">float</span> <span class="nf">floatValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">double</span> <span class="nf">doubleValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>通过强制类型转换，扩大了原有值类型范围，返回结果。</p>
+
+<h3 id="hashcode-方法">hashCode 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Byte</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">(</span><span class="kt">byte</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>直接返回了对应的<code>int</code>类型值，作为其hashCode。</p>
+
+<h3 id="equals-方法">equals 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Byte</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="o">((</span><span class="n">Byte</span><span class="o">)</span><span class="n">obj</span><span class="o">).</span><span class="na">byteValue</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>首先判断传入参数obj是不是<code>Byte</code>的实例，是的话比较两者的值是否相等；否则直接返回<code>false</code>。从这里可以看出来，我们在使用时也不需要对传入参数进行<code>null == obj</code>的判断，可以忽略。</p>
+
+<h3 id="compare-方法">compare 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">byte</span> <span class="n">x</span><span class="o">,</span> <span class="kt">byte</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>比较两者的值，x小于y时返回负数，x等于y时返回0，x大于y时返回正数。</p>
+
+<h3 id="compareto-方法">compareTo 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Byte</span> <span class="n">anotherByte</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">,</span> <span class="n">anotherByte</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>内部调用<code>compare</code>方法。</p>
+
+<h3 id="tounsignedint-方法">toUnsignedInt 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">toUnsignedInt</span><span class="o">(</span><span class="kt">byte</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">((</span><span class="kt">int</span><span class="o">)</span> <span class="n">x</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xff</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>将<code>byte</code>转换成无符号整数。x强制转换成<code>int</code>类型值，通过与<code>0xff</code>进行位运算，保留低8位值，高24位设置成0。整体结果，0和正数保持不变，负数等于原来的值 + 2**8。</p>
+
+<h3 id="tounsignedlong-方法">toUnsignedLong 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">toUnsignedLong</span><span class="o">(</span><span class="kt">byte</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">x</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xffL</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>过程同上，只是<code>long</code>为64位，低8位保持原值，高56位设置成0。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>通过阅读源码发现，<code>Byte</code>类大量使用了<code>Integer</code>的方法，另外使用了内部类、位运算等方式进行了一定的逻辑优化。自己在看的过程对于内部类，补码，类的加载顺序也加深了了解，继续加油！</p>
+    </div>
+
+    <div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java%E6%BA%90%E7%A0%81/">Java源码</a>
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/java%E6%BA%90%E7%A0%81boolean/">
+            <span class="next-text nav-default">[Java源码]Boolean</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="utter-container"></div>
+        <script src="https://utteranc.es/client.js"
+            repo= 'renyijiu/hugo_blog'
+            issue-term= "title"
+            theme= 'github-light'
+            crossorigin= "anonymous"
+            async>
+        </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2014 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+
+
+
+
+</body>
+</html>
