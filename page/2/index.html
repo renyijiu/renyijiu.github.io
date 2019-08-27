@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.renyijiu.com/" />
 
-<meta property="og:updated_time" content="2019-08-22T16:48:19&#43;08:00"/>
+<meta property="og:updated_time" content="2019-08-26T16:40:13&#43;08:00"/>
 
 <meta itemprop="name" content="Blog - renyijiu">
 <meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽">
@@ -113,6 +113,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/rails%E4%B8%ADscope%E9%97%AE%E9%A2%98%E8%B8%A9%E5%9D%91/">Rails中scope问题踩坑</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-12-13 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%97%A5%E5%B8%B8%E8%B8%A9%E5%9D%91/"> 日常踩坑 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>最近在错误系统中突然发现了一个<code>undefined method 'first_tags' for #&lt;Wisdom::Tag::ActiveRecord_Relation:...&gt;</code>的错误，其中<code>first_tags</code>是<code>wisdom_tags</code>这张表中的一个字段，开始以为是其中使用的<code>scope</code>的语法问题，但是仔细探究下来发现并不是，是自己以前没有注意的问题，所以记录一下。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/rails%E4%B8%ADscope%E9%97%AE%E9%A2%98%E8%B8%A9%E5%9D%91/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/rails%E6%B5%8B%E8%AF%95%E4%B8%ADapp%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98/">Rails测试中@app变量问题</a></h1>
@@ -298,27 +319,6 @@
     </div>
     <div class="read-more">
       <a href="/post/rails%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%8A%E5%9B%9E%E8%B0%83%E9%A1%BA%E5%BA%8F%E8%B8%A9%E5%9D%91/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/">Stimulus踩坑记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-03-31 </span>
-      <div class="post-category">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>上一篇在介绍Stimulus时，有说到部分插件会使用<code>data-target</code>类的属性值导致与Stimulus产生冲突，导致功能失效或者是报错，下面就介绍下两种自己的处理方法。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
