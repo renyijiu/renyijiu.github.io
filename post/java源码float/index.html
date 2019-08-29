@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-08-27T11:35:06&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-27T11:35:06&#43;08:00" />
-<meta itemprop="wordCount" content="5330">
+<meta itemprop="wordCount" content="5614">
 
 
 
@@ -153,7 +153,7 @@
 <ul>
 <li>sign: 符号位，<code>1</code>位。0表示正数，1表示负数。</li>
 <li>exponent: 指数位，<code>8</code>位。单精度的指数部分是−126～+127加上偏移值127，指数值的大小从1～254（0和255是特殊值）</li>
-<li>fraction: 位数位，<code>23位</code>。在二进制中，第一个有效数字必定是1，因此这个1不会存储，即有24位，log 2**24=7.22，表示了可以保证<code>7</code>位的有效数字精度。</li>
+<li>fraction: 尾数位，<code>23位</code>。</li>
 </ul>
 
 <p>举个简单的例子，现在有个&rdquo;01000001001100010100011110101110&rdquo;字符串进行简单的分析：</p>
@@ -166,6 +166,14 @@
 </ol>
 
 <p>更加详细的说明可以自行搜索，或者查看官方文档 <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.2.3">Floating-Point Types, Formats, and Values</a></p>
+
+<h3 id="规约形式的浮点数">规约形式的浮点数</h3>
+
+<p>如果浮点数中指数域的编码值在<code>0 &lt; exponent &lt;= 2^e - 2</code>，且在科学表示法的表示方式下，尾数部分的最高有效位为1，那么这个浮点数称为<code>规约形式的浮点数</code>。在这种情况下，尾数有一位隐含的二进制有效数字1。</p>
+
+<h3 id="非规约形式的浮点数">非规约形式的浮点数</h3>
+
+<p>如果浮点数的指数部分的编码值为0，尾数部分不为0，那么这个浮点数被称为<code>非规约形式的浮点数</code>。一般是某个数字相当接近于0时才会使用非规约形式来表示。</p>
 
 <h2 id="类定义">类定义</h2>
 <div class="highlight"><div class="chroma">
@@ -866,6 +874,18 @@
 <h2 id="总结">总结</h2>
 
 <p>从文章各种说明也可以看出来，<code>Float</code>代码比前两次相对来说复杂多了。其中比较重要的是<code>IEEE 754</code>标准，因为实际代码中很多都是根据标准而来，如果对标准有所了解整体思路理解起来就会简单很多。另外其中一些方法的计算（如<code>compare</code>，<code>equals</code>）等也是比较有意思的，看了代码你就了解了为什么<code>new Float(0.0f).equals(new Float(-0.0f))</code>是不成立的。</p>
+
+<p>另外中间因为考虑浮点数的有效位数这个问题，网上搜索了很久的资料，五花八门的，各种答案都有，不过还是看英文资料叙述的详细，有兴趣的可以看看下面提供的参考资料，<strong>强烈推荐！！！</strong></p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<ol>
+<li><a href="https://zh.wikipedia.org/wiki/IEEE_754">维基百科</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">Single-precision_floating-point_format</a></li>
+<li><a href="https://stackoverflow.com/questions/30688422/is-the-most-significant-decimal-digits-precision-that-can-be-converted-to-binary">Is the most significant decimal digits precision that can be converted to binary and back to decimal without loss of significance 6 or 7.225?</a></li>
+<li><a href="https://stackoverflow.com/questions/47123510/whats-the-reason-why-text-float-text-guarantee-6-digit-but-float-text-float">What&rsquo;s the reason why “text-float-text” guarantee 6 digit but “float-text-float” does 9?</a></li>
+<li><a href="https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/">Decimal Precision of Binary Floating-Point Numbers</a></li>
+</ol>
     </div>
 
     <div class="post-reward">
