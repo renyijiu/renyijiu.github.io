@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Integer on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/tags/integer/</link>
+    <description>Recent content in Integer on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Mon, 02 Sep 2019 11:06:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/tags/integer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Java源码]Integer</title>
+      <link>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81integer/</link>
+      <pubDate>Mon, 02 Sep 2019 11:06:51 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81integer/</guid>
+      <description>&lt;p&gt;这次我们来看看&lt;code&gt;Integer&lt;/code&gt;的源代码，基于  &lt;em&gt;jdk1.8.0_181.jdk&lt;/em&gt; 版本，如有错误，欢迎联系指出。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

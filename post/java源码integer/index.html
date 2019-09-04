@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[Java源码]Integer - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" /><meta name="description" content="Java源码 - Integer" /><meta name="keywords" content="Java源码, Java, Integer" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81integer/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[Java源码]Integer" />
+<meta property="og:description" content="Java源码 - Integer" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81integer/" />
+<meta property="article:published_time" content="2019-09-02T11:06:51&#43;08:00"/>
+<meta property="article:modified_time" content="2019-09-02T11:06:51&#43;08:00"/>
+
+<meta itemprop="name" content="[Java源码]Integer">
+<meta itemprop="description" content="Java源码 - Integer">
+
+
+<meta itemprop="datePublished" content="2019-09-02T11:06:51&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-02T11:06:51&#43;08:00" />
+<meta itemprop="wordCount" content="8924">
+
+
+
+<meta itemprop="keywords" content="Java源码,Integer," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Java源码]Integer"/>
+<meta name="twitter:description" content="Java源码 - Integer"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[Java源码]Integer</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-02 </span>
+        <div class="post-category">
+            <a href="/categories/java%E6%BA%90%E7%A0%81/"> Java源码 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p>这次我们来看看<code>Integer</code>的源代码，基于  <em>jdk1.8.0_181.jdk</em> 版本，如有错误，欢迎联系指出。</p>
+
+<h2 id="类定义">类定义</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Integer</span> <span class="kd">extends</span> <span class="n">Number</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>带有<code>final</code>标识，也就是说<strong>不可继承的</strong>。另外继承了<code>Number</code>类，而<code>Number</code>类实现了<code>Serializable</code>接口，所以<code>Integer</code>也是可以序列化的；实现了<code>Comparable</code>接口。</p>
+
+<h2 id="属性">属性</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Native</span> <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span>   <span class="n">MIN_VALUE</span> <span class="o">=</span> <span class="n">0x80000000</span><span class="o">;</span>
+
+<span class="nd">@Native</span> <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span>   <span class="n">MAX_VALUE</span> <span class="o">=</span> <span class="n">0x7fffffff</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li><code>MIN_VALUE</code> 表示了<code>Integer</code>最小值，对应为<code>-2^31</code></li>
+<li><code>MAX_VALUE</code> 表示了<code>Integer</code>最大值，对应为<code>2^31 - 1</code></li>
+</ul>
+
+<p>这里的两个常量都带有<code>@Native</code>注解，表示这两个常量值字段可以被native代码引用。当native代码和Java代码都需要维护相同的变量时，如果Java代码使用了<code>@Native</code>标记常量字段时，编译时可以生成对应的native代码的头文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Native</span> <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SIZE</span> <span class="o">=</span> <span class="n">32</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>表示了<code>Integer</code>的bit数，32位。也使用了<code>@Native</code>注解，这里有个比较有意思的问题，<a href="https://stackoverflow.com/questions/28770822/why-is-the-size-constant-only-native-for-integer-and-long">Why is the SIZE constant only @Native for Integer and Long?</a> 可以进行深入阅读了解。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">BYTES</span> <span class="o">=</span> <span class="n">SIZE</span> <span class="o">/</span> <span class="n">Byte</span><span class="o">.</span><span class="na">SIZE</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>表示了<code>Integer</code>的字节数，计算值固定为4</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span>  <span class="n">TYPE</span> <span class="o">=</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;)</span> <span class="n">Class</span><span class="o">.</span><span class="na">getPrimitiveClass</span><span class="o">(</span><span class="s">&#34;int&#34;</span><span class="o">);</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>获取类信息，<code>Integer.TYPE == int.class</code>，两者是等价的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kd">static</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">digits</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="sc">&#39;0&#39;</span> <span class="o">,</span> <span class="sc">&#39;1&#39;</span> <span class="o">,</span> <span class="sc">&#39;2&#39;</span> <span class="o">,</span> <span class="sc">&#39;3&#39;</span> <span class="o">,</span> <span class="sc">&#39;4&#39;</span> <span class="o">,</span> <span class="sc">&#39;5&#39;</span> <span class="o">,</span>
+  <span class="sc">&#39;6&#39;</span> <span class="o">,</span> <span class="sc">&#39;7&#39;</span> <span class="o">,</span> <span class="sc">&#39;8&#39;</span> <span class="o">,</span> <span class="sc">&#39;9&#39;</span> <span class="o">,</span> <span class="sc">&#39;a&#39;</span> <span class="o">,</span> <span class="sc">&#39;b&#39;</span> <span class="o">,</span>
+  <span class="sc">&#39;c&#39;</span> <span class="o">,</span> <span class="sc">&#39;d&#39;</span> <span class="o">,</span> <span class="sc">&#39;e&#39;</span> <span class="o">,</span> <span class="sc">&#39;f&#39;</span> <span class="o">,</span> <span class="sc">&#39;g&#39;</span> <span class="o">,</span> <span class="sc">&#39;h&#39;</span> <span class="o">,</span>
+  <span class="sc">&#39;i&#39;</span> <span class="o">,</span> <span class="sc">&#39;j&#39;</span> <span class="o">,</span> <span class="sc">&#39;k&#39;</span> <span class="o">,</span> <span class="sc">&#39;l&#39;</span> <span class="o">,</span> <span class="sc">&#39;m&#39;</span> <span class="o">,</span> <span class="sc">&#39;n&#39;</span> <span class="o">,</span>
+  <span class="sc">&#39;o&#39;</span> <span class="o">,</span> <span class="sc">&#39;p&#39;</span> <span class="o">,</span> <span class="sc">&#39;q&#39;</span> <span class="o">,</span> <span class="sc">&#39;r&#39;</span> <span class="o">,</span> <span class="sc">&#39;s&#39;</span> <span class="o">,</span> <span class="sc">&#39;t&#39;</span> <span class="o">,</span>
+  <span class="sc">&#39;u&#39;</span> <span class="o">,</span> <span class="sc">&#39;v&#39;</span> <span class="o">,</span> <span class="sc">&#39;w&#39;</span> <span class="o">,</span> <span class="sc">&#39;x&#39;</span> <span class="o">,</span> <span class="sc">&#39;y&#39;</span> <span class="o">,</span> <span class="sc">&#39;z&#39;</span>
+<span class="o">};</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>代表了所有可能字符。因为允许二进制至36进制，所有必须有36个字符代表所有可能情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kd">static</span> <span class="kt">char</span> <span class="o">[]</span> <span class="n">DigitTens</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+<span class="o">}</span> <span class="o">;</span>
+
+<span class="kd">final</span> <span class="kd">static</span> <span class="kt">char</span> <span class="o">[]</span> <span class="n">DigitOnes</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+  <span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">,</span>
+<span class="o">}</span> <span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>定义了两个数组，<code>DigitTens</code>存放了0~99之间的数字的十位数字符；<code>DigitOnes</code>存放了0~99之间的数字的个位数字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="o">[]</span> <span class="n">sizeTable</span> <span class="o">=</span> <span class="o">{</span> <span class="n">9</span><span class="o">,</span> <span class="n">99</span><span class="o">,</span> <span class="n">999</span><span class="o">,</span> <span class="n">9999</span><span class="o">,</span> <span class="n">99999</span><span class="o">,</span> <span class="n">999999</span><span class="o">,</span> <span class="n">9999999</span><span class="o">,</span>
+                                 <span class="n">99999999</span><span class="o">,</span> <span class="n">999999999</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">};</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>数组，存放了范围各位数整数的最大值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><code>Integer</code>是<code>int</code>的包装类，这里就是存放了<code>int</code>类型对应的数据值信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Native</span> <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1360826667806852920L</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="内部类">内部类</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">IntegerCache</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="o">-</span><span class="n">128</span><span class="o">;</span>
+  <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">high</span><span class="o">;</span>
+  <span class="kd">static</span> <span class="kd">final</span> <span class="n">Integer</span> <span class="n">cache</span><span class="o">[];</span>
+
+  <span class="kd">static</span> <span class="o">{</span>
+    <span class="c1">// high value may be configured by property
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">127</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">integerCacheHighPropValue</span> <span class="o">=</span>
+      <span class="n">sun</span><span class="o">.</span><span class="na">misc</span><span class="o">.</span><span class="na">VM</span><span class="o">.</span><span class="na">getSavedProperty</span><span class="o">(</span><span class="s">&#34;java.lang.Integer.IntegerCache.high&#34;</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">integerCacheHighPropValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">parseInt</span><span class="o">(</span><span class="n">integerCacheHighPropValue</span><span class="o">);</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">127</span><span class="o">);</span>
+        <span class="c1">// Maximum array size is Integer.MAX_VALUE
+</span><span class="c1"></span>        <span class="n">h</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">-</span> <span class="o">(-</span><span class="n">low</span><span class="o">)</span> <span class="o">-</span><span class="n">1</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">catch</span><span class="o">(</span> <span class="n">NumberFormatException</span> <span class="n">nfe</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// If the property cannot be parsed into an int, ignore it.
+</span><span class="c1"></span>      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">h</span><span class="o">;</span>
+
+    <span class="n">cache</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">[(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">low</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">cache</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+      <span class="n">cache</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="n">j</span><span class="o">++);</span>
+
+    <span class="c1">// range [-128, 127] must be interned (JLS7 5.1.7)
+</span><span class="c1"></span>    <span class="k">assert</span> <span class="n">IntegerCache</span><span class="o">.</span><span class="na">high</span> <span class="o">&gt;=</span> <span class="n">127</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="nf">IntegerCache</span><span class="o">()</span> <span class="o">{}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><code>IntegerCache</code>是<code>Integer</code>的静态内部类，内部定义了一个数组，用于缓存常用的数值范围，避免后续使用时重新实例化，提升性能。其默认缓存的范围是-128～127，我们可以通过<code>-XX:AutoBoxCacheMax=&lt;size&gt;</code>选项自行配置缓存最大值，但是必须要大于等于127。</p>
+
+<h2 id="方法">方法</h2>
+
+<h3 id="构造方法">构造方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">Integer</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="nf">Integer</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>存在两个构造方法，一个参数为<code>int</code>类型，一个为<code>String</code>类型；参数为<code>String</code>对象时，内部调用了<code>parseInt</code>方法使用十进制进行处理。</p>
+
+<h3 id="parseint-方法">parseInt 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">parseInt</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="n">10</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">parseInt</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span>
+  <span class="kd">throws</span> <span class="n">NumberFormatException</span>
+    <span class="o">{</span>
+      <span class="cm">/*
+</span><span class="cm">      * 注意：这个方法在VM初始化时可能会早于 IntegerCache 的初始化过程，所以值得注意的是不要使用 valueOf 方法 
+</span><span class="cm">      */</span>
+      
+        <span class="c1">// 判断空值
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span><span class="s">&#34;null&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+				
+        <span class="c1">// Character.MIN_RADIX = 2
+</span><span class="c1"></span>        <span class="c1">// 判断最小进制
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">radix</span> <span class="o">&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MIN_RADIX</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span><span class="s">&#34;radix &#34;</span> <span class="o">+</span> <span class="n">radix</span> <span class="o">+</span>
+                                            <span class="s">&#34; less than Character.MIN_RADIX&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Character.MAX_RADIX = 36
+</span><span class="c1"></span>        <span class="c1">// 判断最大进制
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">radix</span> <span class="o">&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MAX_RADIX</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span><span class="s">&#34;radix &#34;</span> <span class="o">+</span> <span class="n">radix</span> <span class="o">+</span>
+                                            <span class="s">&#34; greater than Character.MAX_RADIX&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">negative</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="o">-</span><span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">multmin</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">digit</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">char</span> <span class="n">firstChar</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">firstChar</span> <span class="o">&lt;</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 第一个字符可能是&#34;+&#34; or &#34;-&#34;
+</span><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">firstChar</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">negative</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                    <span class="n">limit</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">firstChar</span> <span class="o">!=</span> <span class="sc">&#39;+&#39;</span><span class="o">)</span>
+                    <span class="k">throw</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span> <span class="c1">// 不能单独只存在 &#34;+&#34; or &#34;-&#34;
+</span><span class="c1"></span>                    <span class="k">throw</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+                <span class="n">i</span><span class="o">++;</span>
+            <span class="o">}</span>
+            <span class="n">multmin</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">/</span> <span class="n">radix</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// Character.digit 返回对应字符对应进制的数字值，如果输入进制不在范围内或者字符无效，返回-1                
+</span><span class="c1"></span>                <span class="n">digit</span> <span class="o">=</span> <span class="n">Character</span><span class="o">.</span><span class="na">digit</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">++),</span><span class="n">radix</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">digit</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">throw</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="c1">// 判断结果是否溢出
+</span><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="n">multmin</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">throw</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="n">result</span> <span class="o">*=</span> <span class="n">radix</span><span class="o">;</span>
+                <span class="c1">// 判断增加当前位后的计算结果是否溢出
+</span><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="n">limit</span> <span class="o">+</span> <span class="n">digit</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">throw</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="c1">// 采用了负数的形式存放结果
+</span><span class="c1"></span>                <span class="n">result</span> <span class="o">-=</span> <span class="n">digit</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">negative</span> <span class="o">?</span> <span class="n">result</span> <span class="o">:</span> <span class="o">-</span><span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>存在两个<code>parseInt</code>方法，第一个内部调用了第二个方法实现，所以具体来看看第二个方法的实现。相关的代码已经增加了注释，不重复介绍了。这里存在一个比较有意思的地方，代码逻辑上通过计算负数，然后结果判断符号位的逻辑进行运算，这样子可以避免正负逻辑分开处理。另外具体不采用正数逻辑应该是<code>Integer.MIN_VALUE</code>转换成正数时会产生溢出，需要单独处理。</p>
+
+<h3 id="parseunsignedint-方法">parseUnsignedInt 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">parseUnsignedInt</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">parseUnsignedInt</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">parseUnsignedInt</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span>
+  <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="c1">// null空值判断
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span><span class="s">&#34;null&#34;</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">char</span> <span class="n">firstChar</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+    <span class="c1">// 判断第一个字符，无符号字符串处理，出现了非法符号‘-’
+</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">firstChar</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span>
+        <span class="n">NumberFormatException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;Illegal leading minus sign &#34;</span> <span class="o">+</span>
+                                            <span class="s">&#34;on unsigned string %s.&#34;</span><span class="o">,</span> <span class="n">s</span><span class="o">));</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">&lt;=</span> <span class="n">5</span> <span class="o">||</span> <span class="c1">// Integer.MAX_VALUE以36进制形式表示为6位字符
+</span><span class="c1"></span>          <span class="o">(</span><span class="n">radix</span> <span class="o">==</span> <span class="n">10</span> <span class="o">&amp;&amp;</span> <span class="n">len</span> <span class="o">&lt;=</span> <span class="n">9</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span> <span class="c1">// Integer.MAX_VALUE以十进制表示为10位字符
+</span><span class="c1"></span>        <span class="c1">// 这个范围内，完全确保在int的数值范围
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">radix</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">ell</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">radix</span><span class="o">);</span>
+        <span class="c1">// 判断是不是超过32bit的范围
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">((</span><span class="n">ell</span> <span class="o">&amp;</span> <span class="n">0xffff_ffff_0000_0000L</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">ell</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="k">throw</span> <span class="k">new</span>
+            <span class="n">NumberFormatException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;String value %s exceeds &#34;</span> <span class="o">+</span>
+                                                <span class="s">&#34;range of unsigned int.&#34;</span><span class="o">,</span> <span class="n">s</span><span class="o">));</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>存在两个<code>parseUnsignedInt</code>方法，第一个方法内部调用了第二个方法实现。我们来看看第二个方法，首先判断字符串是否符合格式要求；然后判断范围，在int范围内的使用<code>parseInt</code>处理，否则使用<code>Long.parseLong</code>处理，再强制转成int数据类型返回对应结果。</p>
+
+<h3 id="getchars-方法">getChars 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">getChars</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">buf</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">q</span><span class="o">,</span> <span class="n">r</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">charPos</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span>
+  <span class="kt">char</span> <span class="n">sign</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+  <span class="c1">// 不支持Integer.MIN_VALUE，转换成正数时会产生溢出
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">sign</span> <span class="o">=</span> <span class="sc">&#39;-&#39;</span><span class="o">;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="n">i</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="c1">// 每次循环，处理两位数字
+</span><span class="c1"></span>  <span class="c1">// 从低位开始，所以索引是在向前走，从后往前
+</span><span class="c1"></span>  <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">65536</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">100</span><span class="o">;</span>
+    <span class="c1">// 相当于 r = i - (q * 100);
+</span><span class="c1"></span>    <span class="n">r</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="o">((</span><span class="n">q</span> <span class="o">&lt;&lt;</span> <span class="n">6</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">q</span> <span class="o">&lt;&lt;</span> <span class="n">5</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">q</span> <span class="o">&lt;&lt;</span> <span class="n">2</span><span class="o">));</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="o">;</span>
+    <span class="n">buf</span> <span class="o">[--</span><span class="n">charPos</span><span class="o">]</span> <span class="o">=</span> <span class="n">DigitOnes</span><span class="o">[</span><span class="n">r</span><span class="o">];</span>
+    <span class="n">buf</span> <span class="o">[--</span><span class="n">charPos</span><span class="o">]</span> <span class="o">=</span> <span class="n">DigitTens</span><span class="o">[</span><span class="n">r</span><span class="o">];</span>
+  <span class="o">}</span>
+
+  <span class="c1">// 对于小于等于 65536 的数字，采用快速下降模式
+</span><span class="c1"></span>  <span class="c1">// assert(i &lt;= 65536, i);
+</span><span class="c1"></span>  <span class="k">for</span> <span class="o">(;;)</span> <span class="o">{</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">52429</span><span class="o">)</span> <span class="o">&gt;&gt;&gt;</span> <span class="o">(</span><span class="n">16</span><span class="o">+</span><span class="n">3</span><span class="o">);</span>
+    <span class="c1">// 相当于 r = i - (q * 10)
+</span><span class="c1"></span>    <span class="n">r</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="o">((</span><span class="n">q</span> <span class="o">&lt;&lt;</span> <span class="n">3</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">q</span> <span class="o">&lt;&lt;</span> <span class="n">1</span><span class="o">));</span>
+    <span class="n">buf</span> <span class="o">[--</span><span class="n">charPos</span><span class="o">]</span> <span class="o">=</span> <span class="n">digits</span> <span class="o">[</span><span class="n">r</span><span class="o">];</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">sign</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">buf</span> <span class="o">[--</span><span class="n">charPos</span><span class="o">]</span> <span class="o">=</span> <span class="n">sign</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>该方法主要的逻辑就是将输入<code>int</code>类型数据转换成字符形式放入char数组中，<strong>不支持 Integer.MIN_VALUE</strong>。</p>
+
+<p>当输入值大于65536时，每次处理两位数字，进行效率的提升；另外中间乘法操作也都使用位移运算来替代。</p>
+
+<p>这里比较有意思的是当数字小于等于65536时的计算逻辑，中间计算使用了<strong>52429</strong>这个数字，那么为什么是它呢？这里说一下我的看法，仅个人观点，如有错误欢迎指出。先看下代码的注释信息：</p>
+
+<blockquote>
+<p>// I use the &ldquo;invariant division by multiplication&rdquo; trick to</p>
+
+<p>// accelerate Integer.toString.  In particular we want to</p>
+
+<p>// avoid division by 10.</p>
+
+<p>//</p>
+
+<p>// The &ldquo;trick&rdquo; has roughly the same performance characteristics</p>
+
+<p>// as the &ldquo;classic&rdquo; Integer.toString code on a non-JIT VM.</p>
+
+<p>// The trick avoids .rem and .div calls but has a longer code</p>
+
+<p>// path and is thus dominated by dispatch overhead.  In the</p>
+
+<p>// JIT case the dispatch overhead doesn&rsquo;t exist and the</p>
+
+<p>// &ldquo;trick&rdquo; is considerably faster than the classic code.</p>
+
+<p>//</p>
+
+<p>// TODO-FIXME: convert (x * 52429) into the equiv shift-add</p>
+
+<p>// sequence.</p>
+
+<p>//</p>
+
+<p>// RE:  Division by Invariant Integers using Multiplication</p>
+
+<p>//      T Gralund, P Montgomery</p>
+
+<p>//      ACM PLDI 1994</p>
+
+<p>//</p>
+</blockquote>
+
+<ol>
+<li><code>52429 / 2^(16+3) = 0.10000038146972656</code>，实际这里的操作就是除以10的逻辑。</li>
+<li>主要是使用乘法和移位操作来代替除法操作，提升性能。具体原理说明可以参考论文<a href="https://gmplib.org/~tege/divcnst-pldi94.pdf"> Division by Invariant Integers using Multiplication</a></li>
+<li>这里为什么选择<code>65536</code>作为界限说实话自己也没有看明白，各处都没有看到相关的说明。如果你了解，欢迎评论指出。</li>
+<li>我们要确保乘法操作之后不能溢出，因为上面逻辑中<code>i</code>已经进行负数判断，所有<code>i</code>必定为正数，我们可以认为乘积是个无符号整数，最大值为2^32（后续的无符号右移可以对应）；也就是对应的乘数必须小于 2^32 / 65536，即65536。</li>
+<li><code>(i * 52429) &gt;&gt;&gt; (16+3);</code>其中<code>52429</code>为乘数，设为a，<code>16+3</code>为指数，设为b。也就是<code>a / (2^b) = 0.1</code>，即<code>a = 2^b / 10</code>。但是呢这样可能会<strong>由于除数向下取整，导致结果错误</strong>的问题，举个例子：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">1120</span> <span class="o">*</span> <span class="n">52428</span><span class="o">)</span> <span class="o">&gt;&gt;&gt;</span> <span class="o">(</span><span class="n">16</span><span class="o">+</span><span class="n">3</span><span class="o">));</span> <span class="c1">// 111
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">1120</span> <span class="o">*</span> <span class="n">52429</span><span class="o">)</span> <span class="o">&gt;&gt;&gt;</span> <span class="o">(</span><span class="n">16</span><span class="o">+</span><span class="n">3</span><span class="o">));</span> <span class="o">//</span> <span class="n">112</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>所以进行修正，改成<code>a = 2^b / 10 + 1</code>，避免向下取整可能带来的问题</p>
+
+<ol>
+<li>然后进行多组数据测试</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-reStructuredText" data-lang="reStructuredText"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-reStructuredText" data-lang="reStructuredText">乘数<span class="nc">: 2, 指数：4, 除法:</span> <span class="nf">2 / 16.0 = 0.125</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 4, 指数：5, 除法:</span> <span class="nf">4 / 32.0 = 0.125</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 7, 指数：6, 除法:</span> <span class="nf">7 / 64.0 = 0.109375</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 13, 指数：7, 除法:</span> <span class="nf">13 / 128.0 = 0.1015625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 26, 指数：8, 除法:</span> <span class="nf">26 / 256.0 = 0.1015625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 52, 指数：9, 除法:</span> <span class="nf">52 / 512.0 = 0.1015625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 103, 指数：10, 除法:</span> <span class="nf">103 / 1024.0 = 0.1005859375</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 205, 指数：11, 除法:</span> <span class="nf">205 / 2048.0 = 0.10009765625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 410, 指数：12, 除法:</span> <span class="nf">410 / 4096.0 = 0.10009765625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 820, 指数：13, 除法:</span> <span class="nf">820 / 8192.0 = 0.10009765625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 1639, 指数：14, 除法:</span> <span class="nf">1639 / 16384.0 = 0.10003662109375</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 3277, 指数：15, 除法:</span> <span class="nf">3277 / 32768.0 = 0.100006103515625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 6554, 指数：16, 除法:</span> <span class="nf">6554 / 65536.0 = 0.100006103515625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 13108, 指数：17, 除法:</span> <span class="nf">13108 / 131072.0 = 0.100006103515625</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 26215, 指数：18, 除法:</span> <span class="nf">26215 / 262144.0 = 0.10000228881835938</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 52429, 指数：19, 除法:</span> <span class="nf">52429 / 524288.0 = 0.10000038146972656</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 104858, 指数：20, 除法:</span> <span class="nf">104858 / 1048576.0 = 0.10000038146972656</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 209716, 指数：21, 除法:</span> <span class="nf">209716 / 2097152.0 = 0.10000038146972656</span><span class="err">
+</span><span class="err"></span>乘数<span class="nc">: 419431, 指数：22, 除法:</span> <span class="nf">419431 / 4194304.0 = 0.10000014305114746</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看出来，<code>52429</code>是这个范围内精度最大的值，所以选择这个值。另外从结果看当指数大于19时，精度的提升已经很小，所以猜测可能选定了这个指数后确定了<code>65536</code>的范围，当然也只是猜测。</p>
+
+<p>上面的说明大致介绍了代码逻辑，但这也是出于时代的原因（当时的机器设备性能等），从<a href="http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/65464a307408/src/java.base/share/classes/java/lang/Integer.java#l485">jdk9</a>的源代码来看，这里的代码已经进行了重构，改成了简单易理解的除法操作。具体的这里有个对应的<a href="https://bugs.openjdk.java.net/browse/JDK-8136500">issue</a>，从目前现状来看两者的性能差距几乎可以忽略不计吧。</p>
+
+<h3 id="stringsize-方法">stringSize 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="kt">int</span> <span class="nf">stringSize</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">sizeTable</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
+      <span class="k">return</span> <span class="n">i</span><span class="o">+</span><span class="n">1</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>获取对应数据的字符串长度，通过<code>sizeTable</code>去遍历查询；从逻辑可以看出，<strong>只支持正数</strong>，负数的结果是错误的。</p>
+
+<h3 id="tostring-方法">toString 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">)</span>
+    <span class="k">return</span> <span class="s">&#34;-2147483648&#34;</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">stringSize</span><span class="o">(-</span><span class="n">i</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span> <span class="o">:</span> <span class="n">stringSize</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+  <span class="n">getChars</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="n">buf</span><span class="o">);</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>输入<code>int</code>数据类型的参数，对于<code>Integer.MIN_VALUE</code>进行了特殊判断，相等就返回固定字符串<code>&quot;-2147483648&quot;</code>，这里的逻辑是因为后续的<code>getChars</code>方法不支持<code>Integer.MIN_VALUE</code>。判断正负数，负数的数组大小比正数多1，用于存放<code>-</code>符号。最后调用的<code>String</code>的构造方法，返回结果字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">toString</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>直接调用了上面的<code>toString</code>方法进行处理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// 判断进制范围，不在范围内，默认设为十进制
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">radix</span> <span class="o">&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MIN_RADIX</span> <span class="o">||</span> <span class="n">radix</span> <span class="o">&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MAX_RADIX</span><span class="o">)</span>
+    <span class="n">radix</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+
+  <span class="c1">// 如果是十进制，调用上面的toString方法返回结果
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">radix</span> <span class="o">==</span> <span class="n">10</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">toString</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">char</span> <span class="n">buf</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">33</span><span class="o">];</span>
+  <span class="kt">boolean</span> <span class="n">negative</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">charPos</span> <span class="o">=</span> <span class="n">32</span><span class="o">;</span>
+
+  <span class="c1">// 正数转换成负数，统一后续处理逻辑
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(!</span><span class="n">negative</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="n">i</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">radix</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">buf</span><span class="o">[</span><span class="n">charPos</span><span class="o">--]</span> <span class="o">=</span> <span class="n">digits</span><span class="o">[-(</span><span class="n">i</span> <span class="o">%</span> <span class="n">radix</span><span class="o">)];</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">radix</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">buf</span><span class="o">[</span><span class="n">charPos</span><span class="o">]</span> <span class="o">=</span> <span class="n">digits</span><span class="o">[-</span><span class="n">i</span><span class="o">];</span>
+
+  <span class="k">if</span> <span class="o">(</span><span class="n">negative</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">buf</span><span class="o">[--</span><span class="n">charPos</span><span class="o">]</span> <span class="o">=</span> <span class="sc">&#39;-&#39;</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">charPos</span><span class="o">,</span> <span class="o">(</span><span class="n">33</span> <span class="o">-</span> <span class="n">charPos</span><span class="o">));</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这个方法带了进制信息，若进制不在设定范围内，默认使用十进制进行处理。然后转换成对应的字符串，代码逻辑比较简单。</p>
+
+<h3 id="tounsignedlong-方法">toUnsignedLong 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">toUnsignedLong</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">x</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xffffffffL</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>转换成无符号的<code>long</code>类型数据，保留低32位bit数据，高32位设为0。0和正数等于其自身，负数等于输入加上2^32。</p>
+
+<h3 id="divideunsigned-方法">divideUnsigned 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divideUnsigned</span><span class="o">(</span><span class="kt">int</span> <span class="n">dividend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">divisor</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// In lieu of tricky code, for now just use long arithmetic.
+</span><span class="c1"></span>  <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">toUnsignedLong</span><span class="o">(</span><span class="n">dividend</span><span class="o">)</span> <span class="o">/</span> <span class="n">toUnsignedLong</span><span class="o">(</span><span class="n">divisor</span><span class="o">));</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>转换成无符号<code>long</code>类型数据相除，返回无符号整数结果。</p>
+
+<h3 id="remainderunsigned-方法">remainderUnsigned 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">remainderUnsigned</span><span class="o">(</span><span class="kt">int</span> <span class="n">dividend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">divisor</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// In lieu of tricky code, for now just use long arithmetic.
+</span><span class="c1"></span>  <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">toUnsignedLong</span><span class="o">(</span><span class="n">dividend</span><span class="o">)</span> <span class="o">%</span> <span class="n">toUnsignedLong</span><span class="o">(</span><span class="n">divisor</span><span class="o">));</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>转换成无符号<code>long</code>类型数据，进行取余操作，返回无符号整数结果。</p>
+
+<h3 id="numberofleadingzeros-方法">numberOfLeadingZeros 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">numberOfLeadingZeros</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// HD, Figure 5-6
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+    <span class="k">return</span> <span class="n">32</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">16</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">+=</span> <span class="n">16</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;&lt;=</span> <span class="n">16</span><span class="o">;</span> <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">24</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">+=</span>  <span class="n">8</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;&lt;=</span>  <span class="n">8</span><span class="o">;</span> <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">28</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">+=</span>  <span class="n">4</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;&lt;=</span>  <span class="n">4</span><span class="o">;</span> <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">30</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">+=</span>  <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;&lt;=</span>  <span class="n">2</span><span class="o">;</span> <span class="o">}</span>
+  <span class="n">n</span> <span class="o">-=</span> <span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">31</span><span class="o">;</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// 类似二分查找的思想，通过左右移位缩小1所在bit位置的范围。举个例子看下
+</span><span class="c1">// 开始输入          i = 00000000 00000000 00000000 00000001      n = 1
+</span><span class="c1">// i &gt;&gt;&gt; 16 == 0，  i = 00000000 00000001 00000000 00000000      n = 17
+</span><span class="c1">// i &gt;&gt;&gt; 24 == 0，  i = 00000001 00000000 00000000 00000000      n = 25
+</span><span class="c1">// i &gt;&gt;&gt; 28 == 0,   i = 00010000 00000000 00000000 00000000      n = 29
+</span><span class="c1">// i &gt;&gt;&gt; 30 == 0,   i = 01000000 00000000 00000000 00000000      n = 31
+</span><span class="c1"></span><span class="o">//</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">31</span><span class="o">,</span> <span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">31</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">所以n</span> <span class="o">=</span> <span class="n">31</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>判断二进制格式下，最高位的1左边存在多少个0。这里使用了二分查找的思想，通过左右移位的操作一步步缩小1所在的bit位置范围，最后通过简单计算获取0的个数。开始增加了对特殊值0的判断。</p>
+
+<h3 id="numberoftrailingzeros-方法">numberOfTrailingZeros 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">numberOfTrailingZeros</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// HD, Figure 5-14
+</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">32</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">31</span><span class="o">;</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&lt;&lt;</span><span class="n">16</span><span class="o">;</span> <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span><span class="n">16</span><span class="o">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span> <span class="o">}</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">8</span><span class="o">;</span> <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">8</span><span class="o">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span> <span class="o">}</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">4</span><span class="o">;</span> <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">4</span><span class="o">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span> <span class="o">}</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">2</span><span class="o">;</span> <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span> <span class="o">}</span>
+  <span class="k">return</span> <span class="n">n</span> <span class="o">-</span> <span class="o">((</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">1</span><span class="o">)</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">31</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 类似二分查找的思想，通过左移缩小0所在bit位置的范围。举个例子看下
+</span><span class="c1">// 开始输入          i = 11111111 11111111 11111111 11111111    n = 31
+</span><span class="c1">// i &lt;&lt; 16 != 0，   i = 11111111 11111111 00000000 00000000    n = 15
+</span><span class="c1">// i &lt;&lt; 8 != 0，    i = 11111111 00000000 00000000 00000000    n = 7
+</span><span class="c1">// i &lt;&lt; 4 != 0,     i = 11110000 00000000 00000000 00000000    n = 3
+</span><span class="c1">// i &lt;&lt; 2 != 0,     i = 11000000 00000000 00000000 00000000    n = 1
+</span><span class="c1">// (i &lt;&lt; 1) &gt;&gt;&gt; 31 =&gt; 00000000 00000000 00000000 00000001 =&gt; 1
+</span><span class="c1"></span><span class="o">//</span> <span class="n">结果为</span> <span class="n">1</span> <span class="o">-</span> <span class="n">1</span> <span class="o">=</span> <span class="n">0</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>与上面的<code>numberOfLeadingZeros</code>方法对应，获取二进制格式下尾部的0的个数。具体逻辑与上面类似，就不再赘述了。</p>
+
+<h3 id="formatunsignedint-方法">formatUnsignedInt 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 将无符号整数转换成字符数组
+</span><span class="cm">* @param val 无符号整数
+</span><span class="cm">* @param shift 基于log2计算， (4 对应十六进制, 3 对应八进制, 1 对应二进制)
+</span><span class="cm">* @param buf 字符写入数组
+</span><span class="cm">* @param offset 数组起始位置偏移量
+</span><span class="cm">* @param len 字符长度
+</span><span class="cm">* @return 字符写入数组后对应的起始位置
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">formatUnsignedInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">,</span> <span class="kt">int</span> <span class="n">shift</span><span class="o">,</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">buf</span><span class="o">,</span> <span class="kt">int</span> <span class="n">offset</span><span class="o">,</span> <span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">charPos</span> <span class="o">=</span> <span class="n">len</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">radix</span> <span class="o">=</span> <span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">shift</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">radix</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+  <span class="k">do</span> <span class="o">{</span>
+    <span class="c1">// val &amp; mask，获取最后一位数字值
+</span><span class="c1"></span>    <span class="n">buf</span><span class="o">[</span><span class="n">offset</span> <span class="o">+</span> <span class="o">--</span><span class="n">charPos</span><span class="o">]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">digits</span><span class="o">[</span><span class="n">val</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="o">];</span>
+		
+    <span class="c1">// 移位去除最后一位数字，类似于十进制除10逻辑
+</span><span class="c1"></span>    <span class="n">val</span> <span class="o">&gt;&gt;&gt;=</span> <span class="n">shift</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">val</span> <span class="o">!=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">charPos</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">);</span>
+
+  <span class="k">return</span> <span class="n">charPos</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>将无符号整数转换成字符串写入对应的数组位置，返回写入数组后的起始位置。</p>
+
+<h3 id="tounsignedstring-方法">toUnsignedString 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toUnsignedString</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Long</span><span class="o">.</span><span class="na">toUnsignedString</span><span class="o">(</span><span class="n">toUnsignedLong</span><span class="o">(</span><span class="n">i</span><span class="o">),</span> <span class="n">radix</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>将输入整数按进制转换成无符号的字符串，内部调用了<code>toUnsignedLong</code>获取无符号的long类型数据，然后转换成对应的字符串。</p>
+
+<h3 id="toxxxstring-方法">toXxxString 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toHexString</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">toUnsignedString0</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toOctalString</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">toUnsignedString0</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toBinaryString</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">toUnsignedString0</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toUnsignedString0</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">,</span> <span class="kt">int</span> <span class="n">shift</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// assert shift &gt; 0 &amp;&amp; shift &lt;=5 : &#34;Illegal shift value&#34;;
+</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">mag</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">SIZE</span> <span class="o">-</span> <span class="n">Integer</span><span class="o">.</span><span class="na">numberOfLeadingZeros</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">chars</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(((</span><span class="n">mag</span> <span class="o">+</span> <span class="o">(</span><span class="n">shift</span> <span class="o">-</span> <span class="n">1</span><span class="o">))</span> <span class="o">/</span> <span class="n">shift</span><span class="o">),</span> <span class="n">1</span><span class="o">);</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">chars</span><span class="o">];</span>
+
+  <span class="c1">// 调用formatUnsignedInt，获取对应字符串数组信息
+</span><span class="c1"></span>  <span class="n">formatUnsignedInt</span><span class="o">(</span><span class="n">val</span><span class="o">,</span> <span class="n">shift</span><span class="o">,</span> <span class="n">buf</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">chars</span><span class="o">);</span>
+
+  <span class="c1">// Use special constructor which takes over &#34;buf&#34;.
+</span><span class="c1"></span>  <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><code>toHexString, toOctalString, toBinaryString</code>三个方法如名字一样获取不同进制的字符串，内部调用了<code>toUnsignedString0</code>方法进行处理，传入了不用的进制数参数。</p>
+
+<h3 id="valueof-方法">valueOf 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">10</span><span class="o">));</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="n">radix</span><span class="o">));</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">valueOf</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">IntegerCache</span><span class="o">.</span><span class="na">low</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">IntegerCache</span><span class="o">.</span><span class="na">high</span><span class="o">)</span>
+    <span class="k">return</span> <span class="n">IntegerCache</span><span class="o">.</span><span class="na">cache</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="o">(-</span><span class="n">IntegerCache</span><span class="o">.</span><span class="na">low</span><span class="o">)];</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>存在三个<code>valueOf</code>方法，主要看看第三个方法。当参数在缓存范围内时，直接从缓存数组中获取对应的<code>Integer</code>对象；超出范围时，实例化对应的参数对象返回结果。</p>
+
+<h3 id="xxxvalue-方法">xxxValue 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">byte</span> <span class="nf">byteValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">short</span> <span class="nf">shortValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">intValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">long</span> <span class="nf">longValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">float</span> <span class="nf">floatValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">double</span> <span class="nf">doubleValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>直接进行强制类型转换，返回对应的结果</p>
+
+<h3 id="hashcode">hashCode</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>对应的值作为其hashCode。</p>
+
+<h3 id="equals-方法">equals 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Integer</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">obj</span><span class="o">).</span><span class="na">intValue</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>判断obj是不是<code>Integer</code>的实例对象，然后判断两者的值是否相等。这里可以看出来，我们可以不需要对obj进行null判断。</p>
+
+<h3 id="decode-方法">decode 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">decode</span><span class="o">(</span><span class="n">String</span> <span class="n">nm</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">radix</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+  <span class="kt">boolean</span> <span class="n">negative</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+  <span class="n">Integer</span> <span class="n">result</span><span class="o">;</span>
+
+  <span class="k">if</span> <span class="o">(</span><span class="n">nm</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span><span class="s">&#34;Zero length string&#34;</span><span class="o">);</span>
+  <span class="kt">char</span> <span class="n">firstChar</span> <span class="o">=</span> <span class="n">nm</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+  <span class="c1">// 判断负数
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">firstChar</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">negative</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="n">index</span><span class="o">++;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">firstChar</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="o">)</span>
+    <span class="n">index</span><span class="o">++;</span>
+
+  <span class="c1">// 判断十六进制
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">nm</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;0x&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">)</span> <span class="o">||</span> <span class="n">nm</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;0X&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="n">2</span><span class="o">;</span>
+    <span class="n">radix</span> <span class="o">=</span> <span class="n">16</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="c1">// 判断十六进制
+</span><span class="c1"></span>  <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nm</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;#&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">index</span> <span class="o">++;</span>
+    <span class="n">radix</span> <span class="o">=</span> <span class="n">16</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="c1">// 判断八进制
+</span><span class="c1"></span>  <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nm</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;0&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">nm</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">1</span> <span class="o">+</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">index</span> <span class="o">++;</span>
+    <span class="n">radix</span> <span class="o">=</span> <span class="n">8</span><span class="o">;</span>
+  <span class="o">}</span>
+	
+  <span class="c1">// 字符串格式不合法
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">nm</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;-&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">)</span> <span class="o">||</span> <span class="n">nm</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;+&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">))</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">NumberFormatException</span><span class="o">(</span><span class="s">&#34;Sign character in wrong position&#34;</span><span class="o">);</span>
+
+  <span class="k">try</span> <span class="o">{</span>
+    <span class="c1">// 如果是 Integer.MIN_VALUE，转换成正数会溢出抛出异常
+</span><span class="c1"></span>    <span class="n">result</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">nm</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">index</span><span class="o">),</span> <span class="n">radix</span><span class="o">);</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">negative</span> <span class="o">?</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(-</span><span class="n">result</span><span class="o">.</span><span class="na">intValue</span><span class="o">())</span> <span class="o">:</span> <span class="n">result</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 处理 数字是 Integer.MIN_VALUE的异常错误信息，如果存在错误，会继续抛出异常
+</span><span class="c1"></span>    <span class="n">String</span> <span class="n">constant</span> <span class="o">=</span> <span class="n">negative</span> <span class="o">?</span> <span class="o">(</span><span class="s">&#34;-&#34;</span> <span class="o">+</span> <span class="n">nm</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">index</span><span class="o">))</span>
+      <span class="o">:</span> <span class="n">nm</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">constant</span><span class="o">,</span> <span class="n">radix</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>将对应的字符串转换成整数，支持十进制，<code>0x, 0X, #</code>开头的十六进制数，<code>0</code>开头的八进制数。</p>
+
+<h3 id="getinteger-方法">getInteger 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 返回对应数值或者null
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">getInteger</span><span class="o">(</span><span class="n">String</span> <span class="n">nm</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getInteger</span><span class="o">(</span><span class="n">nm</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 返回对应的数值或者val默认值
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">getInteger</span><span class="o">(</span><span class="n">String</span> <span class="n">nm</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">Integer</span> <span class="n">result</span> <span class="o">=</span> <span class="n">getInteger</span><span class="o">(</span><span class="n">nm</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+  <span class="k">return</span> <span class="o">(</span><span class="n">result</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">val</span><span class="o">)</span> <span class="o">:</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">getInteger</span><span class="o">(</span><span class="n">String</span> <span class="n">nm</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">String</span> <span class="n">v</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="k">try</span> <span class="o">{</span>
+    <span class="c1">// 获取对应的系统配置信息
+</span><span class="c1"></span>    <span class="n">v</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">nm</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="o">|</span> <span class="n">NullPointerException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">v</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">val</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>三个<code>getInteger</code>方法，主要是最后一个方法。传入一个配置的key以及默认值，获取对应的系统配置值，若为空或者为null，返回对应的默认值。</p>
+
+<h3 id="compare-方法">compare 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="o">)</span> <span class="o">?</span> <span class="o">-</span><span class="n">1</span> <span class="o">:</span> <span class="o">((</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">)</span> <span class="o">?</span> <span class="n">0</span> <span class="o">:</span> <span class="n">1</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>比较两个整数，<code>x &lt; y</code> 返回-1，<code>x == y</code> 返回0，<code>x &gt; y</code> 返回1</p>
+
+<h3 id="compareto-方法">compareTo 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Integer</span> <span class="n">anotherInteger</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">,</span> <span class="n">anotherInteger</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>内部调用<code>compare</code>方法实现具体逻辑</p>
+
+<h3 id="compareunsigned-方法">compareUnsigned 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compareUnsigned</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">compare</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">MIN_VALUE</span><span class="o">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">MIN_VALUE</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>两个输入数当作无符号整数进行比较，这里通过加上<code>MIN_VALUE</code>确保在范围内。有个小技巧，-1加上<code>MIN_VALUE</code>后会变成最大正数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((-</span><span class="n">1</span> <span class="o">+</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">)</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span> <span class="o">//</span> <span class="kc">true</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="highestonebit-方法">highestOneBit 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">highestOneBit</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// HD, Figure 3-1
+</span><span class="c1"></span>  <span class="n">i</span> <span class="o">|=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span>  <span class="n">1</span><span class="o">);</span>
+  <span class="n">i</span> <span class="o">|=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span>  <span class="n">2</span><span class="o">);</span>
+  <span class="n">i</span> <span class="o">|=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span>  <span class="n">4</span><span class="o">);</span>
+  <span class="n">i</span> <span class="o">|=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span>  <span class="n">8</span><span class="o">);</span>
+  <span class="n">i</span> <span class="o">|=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="n">16</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">i</span> <span class="o">-</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">1</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 移位或逻辑，保证1+2+4+8+16=31位最后都为1，相减最后保留最高位1
+</span><span class="c1">// 输入              00010000 00000000 00000000 00000001
+</span><span class="c1">// i |= (i &gt;&gt;  1)   00011000 00000000 00000000 00000000
+</span><span class="c1">// i |= (i &gt;&gt;  2)   00011110 00000000 00000000 00000000
+</span><span class="c1">// i |= (i &gt;&gt;  4)   00011111 11100000 00000000 00000000
+</span><span class="c1">// i |= (i &gt;&gt;  8)   00011111 11111111 11100000 00000000
+</span><span class="c1">// i |= (i &gt;&gt; 16)   00011111 11111111 11111111 11111111
+</span><span class="c1"></span><span class="o">//</span> <span class="n">i</span> <span class="o">-</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">1</span><span class="o">)</span>    <span class="n">00010000</span> <span class="n">00000000</span> <span class="n">00000000</span> <span class="n">00000000</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>获取最高位为1，其余为0的整数值。通过位移或逻辑，将最高位右边1位设为1，然后2倍增长左移或操作，1的位数不断增加，最后1+2+4+8+16=31，可以确保覆盖所有可能性。然后使用<code>i - (i &gt;&gt;&gt; 1)</code>保留最高位1返回结果。</p>
+
+<h3 id="lowestonebit-方法">lowestOneBit 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">lowestOneBit</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// HD, Section 2-1
+</span><span class="c1"></span>  <span class="k">return</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">i</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// 输入 00000000 00000000 00000000 11101010
+</span><span class="c1">// -i  11111111 11111111 11111111 00010110
+</span><span class="c1"></span><span class="o">//</span> <span class="n">结果</span> <span class="n">00000000</span> <span class="n">00000000</span> <span class="n">00000000</span> <span class="n">00000010</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>获取最低位1，其余位为0的值。负数以正数的补码表示，对整数的二进制进行取反码然后加1，得到的结果与输入二进制进行与操作，结果就是最低位1保留，其他位为0。</p>
+
+<h3 id="bitcount-方法">bitCount 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">bitCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// HD, Figure 5-2
+</span><span class="c1"></span>  <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="o">((</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0x55555555</span><span class="o">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">0x33333333</span><span class="o">)</span> <span class="o">+</span> <span class="o">((</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">2</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0x33333333</span><span class="o">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">4</span><span class="o">))</span> <span class="o">&amp;</span> <span class="n">0x0f0f0f0f</span><span class="o">;</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">8</span><span class="o">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">16</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="n">0x3f</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>统计二进制格式下1的数量。代码第一眼看着是懵的，都是位运算，实际里面实现的算法逻辑还是很巧妙的，着实佩服，这里就不介绍了，感兴趣的可以看下别人的具体分析文章 <a href="https://segmentfault.com/a/1190000015763941">java源码Integer.bitCount算法解析，分析原理（统计二进制bit位）</a>这篇文章，我觉得已经说得很清晰了。</p>
+
+<h3 id="rotatexxx-方法">rotateXXX 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">rotateLeft</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">distance</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">distance</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="o">-</span><span class="n">distance</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">rotateRight</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">distance</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">distance</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="n">distance</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>旋转二进制，<code>rotateLeft</code>将特定位数的高位bit放置低位，返回对应的数值；<code>rotateRight</code>将特定位数的低位bit放置高位，返回对应的数值。当<code>distance</code>是负数的时候，<code>rotateLeft(val, -distance) == rotateRight(val, distance)</code>以及<code>rotateRight(val, -distance) == rotateLeft(val, distance)</code>。另外，当<code>distance</code>是32的任意倍数时，实际是没有效果的 ，相当于无操作。</p>
+
+<p>这里需要说一下<code>(i &gt;&gt;&gt; -distance)</code>，<code>diatance</code>为正数时，右移一个负数逻辑相当于<code>i &gt;&gt;&gt; 32+(-distance)</code></p>
+
+<h3 id="reverse-方法">reverse 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">reverse</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// HD, Figure 7-1
+</span><span class="c1"></span>  <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">0x55555555</span><span class="o">)</span> <span class="o">&lt;&lt;</span> <span class="n">1</span> <span class="o">|</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0x55555555</span><span class="o">;</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">0x33333333</span><span class="o">)</span> <span class="o">&lt;&lt;</span> <span class="n">2</span> <span class="o">|</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">2</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0x33333333</span><span class="o">;</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">0x0f0f0f0f</span><span class="o">)</span> <span class="o">&lt;&lt;</span> <span class="n">4</span> <span class="o">|</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">4</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0x0f0f0f0f</span><span class="o">;</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">24</span><span class="o">)</span> <span class="o">|</span> <span class="o">((</span><span class="n">i</span> <span class="o">&amp;</span> <span class="n">0xff00</span><span class="o">)</span> <span class="o">&lt;&lt;</span> <span class="n">8</span><span class="o">)</span> <span class="o">|</span>
+    <span class="o">((</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">8</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xff00</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">24</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">i</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>看着是不是和<code>bitCount</code>有点类似，其实核心逻辑相似。先是交换相邻1位bit的顺序，然后再交换相邻2位bit顺序，再继续交换相邻4位bit顺序，这样子每一个byte内的bit流顺序已经翻转过来了，然后采用和<code>reverseBytes</code>一样的逻辑，将对应bit位按字节为单位翻转，这样子就完成了所有bit的翻转操作，甚是绝妙。</p>
+
+<h3 id="signum-方法">signum 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">signum</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// HD, Section 2-7
+</span><span class="c1"></span>  <span class="k">return</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="n">31</span><span class="o">)</span> <span class="o">|</span> <span class="o">(-</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">31</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 输入 1      00000000 00000000 00000000 00000001
+</span><span class="c1">// i &gt;&gt; 31    00000000 00000000 00000000 00000000
+</span><span class="c1">// -i         11111111 11111111 11111111 11111111
+</span><span class="c1">// -i &gt;&gt;&gt; 31  00000000 00000000 00000000 00000001
+</span><span class="c1"></span><span class="o">//</span> <span class="n">结果返回1</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>获取符号数，若为负数，返回-1；若为0则返回0；为正数，则返回1。</p>
+
+<h3 id="reversebytes-方法">reverseBytes 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">reverseBytes</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">((</span><span class="n">i</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">24</span><span class="o">)</span>           <span class="o">)</span> <span class="o">|</span>
+    <span class="o">((</span><span class="n">i</span> <span class="o">&gt;&gt;</span>   <span class="n">8</span><span class="o">)</span> <span class="o">&amp;</span>   <span class="n">0xFF00</span><span class="o">)</span> <span class="o">|</span>
+    <span class="o">((</span><span class="n">i</span> <span class="o">&lt;&lt;</span>   <span class="n">8</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xFF0000</span><span class="o">)</span> <span class="o">|</span>
+    <span class="o">((</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">24</span><span class="o">));</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>按照输入参数二进制格式，以字节为单位翻转，返回对应的结果数值。<code>(i &gt;&gt;&gt; 24) | (i &lt;&lt; 24)</code>交换最高8位和最低8位bit位置。<code>((i &gt;&gt; 8) &amp; 0xFF00) | ((i &lt;&lt; 8) &amp; 0xFF0000)</code>为交换中间16位bit位置的逻辑。</p>
+
+<h3 id="sum-max-min方法">sum、max、min方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">sum</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">min</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这个就不说了，很简单的方法。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>由于存在很多的位运算逻辑，第一眼感觉代码逻辑是比较复杂的，但是当慢慢品味时，发现代码思路甚是奇妙，算法之神奇，只能拍手称赞👏。为了性能，所做的各种小优化也是体现其中，不过部分这个比较hack的值设定缺乏完整的注释理解也是比较困难。总而言之，只能感慨代码实现之奇妙。</p>
+    </div>
+
+    <div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java%E6%BA%90%E7%A0%81/">Java源码</a>
+          <a href="/tags/integer/">Integer</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/java%E6%BA%90%E7%A0%81double/">
+            <span class="next-text nav-default">[Java源码]Double</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="utter-container"></div>
+        <script src="https://utteranc.es/client.js"
+            repo= 'renyijiu/hugo_blog'
+            issue-term= "title"
+            theme= 'github-light'
+            crossorigin= "anonymous"
+            async>
+        </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2014 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?e0abcfc0d888305fec49b5dffdb3b780";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+</body>
+</html>
