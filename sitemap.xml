@@ -3,42 +3,55 @@
   
   <url>
     <loc>https://blog.renyijiu.com/</loc>
-    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/</loc>
-    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/tags/integer/</loc>
-    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/java%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/java%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/post/</loc>
-    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/short/</loc>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/</loc>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81short/</loc>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/integer/</loc>
     <lastmod>2019-09-02T11:06:51+08:00</lastmod>
     <priority>0</priority>
   </url>
