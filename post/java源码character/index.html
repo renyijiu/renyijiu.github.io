@@ -1,0 +1,2953 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[Java源码]Character - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" /><meta name="description" content="Java源码 - Character" /><meta name="keywords" content="Java源码, Charecter" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81character/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[Java源码]Character" />
+<meta property="og:description" content="Java源码 - Character" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81character/" />
+<meta property="article:published_time" content="2019-10-16T17:04:16&#43;08:00"/>
+<meta property="article:modified_time" content="2019-11-10T17:04:16&#43;08:00"/>
+
+<meta itemprop="name" content="[Java源码]Character">
+<meta itemprop="description" content="Java源码 - Character">
+
+
+<meta itemprop="datePublished" content="2019-10-16T17:04:16&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-10T17:04:16&#43;08:00" />
+<meta itemprop="wordCount" content="9955">
+
+
+
+<meta itemprop="keywords" content="Java源码,Character," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Java源码]Character"/>
+<meta name="twitter:description" content="Java源码 - Character"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[Java源码]Character</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-16 </span>
+        <div class="post-category">
+            <a href="/categories/java%E6%BA%90%E7%A0%81/"> Java源码 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p>这次来看看<code>Character</code>的源代码，基于 <em>jdk1.8.0_181.jdk</em> 版本，如有错误，欢迎联系指出。这也是Java的8个基础数据类型的最后一篇解析了，如果你还没看过其他的，可以去文章列表查看下其他的源码分析文章。</p>
+
+<h2 id="前言">前言</h2>
+
+<p><code>Character</code>是<code>char</code>基础数据类型的包装类，提供了大小写转换、字符类型检测等方法。<code>char</code>数据类型基于原始的<code>Unicode</code>规范，将字符定义为<strong>固定宽度</strong>的16位实体。(Unicode规范也在发展更新，目前已经允许超过16位表示，具体的介绍可以参考<a href="https://zh.wikipedia.org/wiki/Unicode">Unicode - 维基百科</a>。因为16位范围的限定，所以<code>char</code>只支持<code>U+0000 to U+FFFF</code>的<code>Basic Multilingual Plane(BMP)</code>，具体的介绍可以参考<a href="https://zh.wikipedia.org/wiki/Unicode字符平面映射">Unicode字符平面映射</a>，另外这篇博客有些概念讲的也还不错 <a href="https://github.com/creeperyang/blog/issues/4">编码简介：utf8,utf16以及其它</a>。因为源码中存在大量的常量定义字符集之类的逻辑，后续可能会省略部分介绍。</p>
+
+<h2 id="类定义">类定义</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Character</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span><span class="o">,</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>带有<code>final</code>标识，也就是说是<strong>不可继承的</strong>。另外实现了<code>Serializable</code>接口，所以是可以序列化的；实现了<code>Comparable</code>接口，可以进行比较。</p>
+
+<h2 id="属性">属性</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MIN_RADIX</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MIN_RADIX</span> <span class="o">=</span> <span class="n">36</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li><code>MIN_RADIX</code>定义了最小进制数，为2</li>
+<li><code>MIN_RADIX</code>定义了最大进制数，为36</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MIN_VALUE</span> <span class="o">=</span> <span class="sc">&#39;\u0000&#39;</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MAX_VALUE</span> <span class="o">=</span> <span class="sc">&#39;\uFFFF&#39;</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li><code>MIN_VALUE</code>定义了最小字符，为<code>'\u0000'</code></li>
+<li><code>MAX_VALUE</code>定义了最大字符，为<code>'\uFFFF'</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">TYPE</span> <span class="o">=</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;)</span> <span class="n">Class</span><span class="o">.</span><span class="na">getPrimitiveClass</span><span class="o">(</span><span class="s">&#34;char&#34;</span><span class="o">);</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>获取类信息，<code>Character.TYPE == char.class</code>两者是等价的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SIZE</span> <span class="o">=</span> <span class="n">16</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>表示了<code>Character</code>的bit数，为16位</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">BYTES</span> <span class="o">=</span> <span class="n">SIZE</span> <span class="o">/</span> <span class="n">Byte</span><span class="o">.</span><span class="na">SIZE</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>表示了<code>Character</code>的字节数，计算值固定为2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">UNASSIGNED</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+<span class="o">......</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">FINAL_QUOTE_PUNCTUATION</span> <span class="o">=</span> <span class="n">30</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>定义各个字符类型的常量值，如为分配字符、大写字符、小写字符等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ERROR</span> <span class="o">=</span> <span class="n">0xFFFFFFFF</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>错误标志，使用<code>int</code>(code point)以避免与<code>U+FFFF</code>混淆。</p>
+
+<p>任何文字在<code>Unicode</code>中都对应一个数字编号，这个编号就称为<code>code point</code>。<code>code point</code>的值写作U+XXXX的格式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 未定义的双向字符类型，未定义的char值在Unicode规范中具有不确定的方向性。
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">DIRECTIONALITY_UNDEFINED</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* Unicode规范中的强双向字符类型“ L”。
+</span><span class="cm">* LRM，大多数字母，音节，汉字表意文字，非欧洲或非阿拉伯数字，......
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">DIRECTIONALITY_LEFT_TO_RIGHT</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+<span class="o">......</span>
+  
+<span class="cm">/**
+</span><span class="cm">* Unicode规范中的强双向字符类型“ RLO”。
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE</span> <span class="o">=</span> <span class="n">17</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* Unicode规范中的弱双向字符类型“ PDF”。
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">byte</span> <span class="n">DIRECTIONALITY_POP_DIRECTIONAL_FORMAT</span> <span class="o">=</span> <span class="n">18</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>定义了一些双向字符类型的常量值。相关介绍可以参考<a href="https://zh.wikipedia.org/wiki/雙向文稿">双向文稿</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* UTF-16的高位代理(前导代理)，表示的最小值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MIN_HIGH_SURROGATE</span> <span class="o">=</span> <span class="sc">&#39;\uD800&#39;</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* UTF-16的高位代理(前导代理)，表示的最大值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MAX_HIGH_SURROGATE</span> <span class="o">=</span> <span class="sc">&#39;\uDBFF&#39;</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* UTF-16的低位代理(后尾代理)，表示的最小值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MIN_LOW_SURROGATE</span>  <span class="o">=</span> <span class="sc">&#39;\uDC00&#39;</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* UTF-16的低位代理(后尾代理)，表示的最大值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MAX_LOW_SURROGATE</span>  <span class="o">=</span> <span class="sc">&#39;\uDFFF&#39;</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* UTF-16编码增补码表示的最小char值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MIN_SURROGATE</span> <span class="o">=</span> <span class="n">MIN_HIGH_SURROGATE</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* UTF-16编码增补码表示的最大char值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="n">MAX_SURROGATE</span> <span class="o">=</span> <span class="n">MAX_LOW_SURROGATE</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* 辅助平面的最小的code point
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MIN_SUPPLEMENTARY_CODE_POINT</span> <span class="o">=</span> <span class="n">0x010000</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* 最小的code point
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MIN_CODE_POINT</span> <span class="o">=</span> <span class="n">0x000000</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm">* 最大的code point
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MAX_CODE_POINT</span> <span class="o">=</span> <span class="n">0X10FFFF</span><span class="o">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="内部类">内部类</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Subset</span>  <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 创建新实例
+</span><span class="cm">    */</span>
+    <span class="kd">protected</span> <span class="nf">Subset</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          	<span class="k">throw</span> <span class="k">new</span> <span class="n">NullPointerException</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * equals
+</span><span class="cm">    * 这个方法只是为了确保所有的Subset类中存在 equals() 方法
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+      	<span class="k">return</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">obj</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 调用 Object#hashCode，返回对应的值
+</span><span class="cm">    * 这个方法只是为了确保所有的Subset类中存在 hashCode() 方法
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+      	<span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+      	<span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这个类的实例表示Unicode字符集的特定子集。Character类定义的子集集合是<code>UnicodeBlock</code>，Java API的其他部分可能会为了自身的使用定义其他的子集。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">UnicodeBlock</span> <span class="kd">extends</span> <span class="n">Subset</span> <span class="o">{</span>
+    <span class="cm">/**
+</span><span class="cm">    * 定义初始大小为256的HashMap
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">UnicodeBlock</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="n">256</span><span class="o">);</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 根据指定的标识符创建UnicodeBlock，这个标识符必须与块标识符一致
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="nf">UnicodeBlock</span><span class="o">(</span><span class="n">String</span> <span class="n">idName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">idName</span><span class="o">);</span>
+        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">idName</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 根据指定的标识符和别名创建UnicodeBlock
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="nf">UnicodeBlock</span><span class="o">(</span><span class="n">String</span> <span class="n">idName</span><span class="o">,</span> <span class="n">String</span> <span class="n">alias</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">idName</span><span class="o">);</span>
+        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">alias</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 根据指定的标识符和一系列别名创建UnicodeBlock
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="nf">UnicodeBlock</span><span class="o">(</span><span class="n">String</span> <span class="n">idName</span><span class="o">,</span> <span class="n">String</span><span class="o">...</span> <span class="n">aliases</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">idName</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">alias</span> <span class="o">:</span> <span class="n">aliases</span><span class="o">)</span>
+          <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">alias</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 定义各类字符块，中间略过，有兴趣的可以自行查看
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">UnicodeBlock</span>  <span class="n">BASIC_LATIN</span> <span class="o">=</span>
+        <span class="k">new</span> <span class="n">UnicodeBlock</span><span class="o">(</span><span class="s">&#34;BASIC_LATIN&#34;</span><span class="o">,</span>
+                         <span class="s">&#34;BASIC LATIN&#34;</span><span class="o">,</span>
+                         <span class="s">&#34;BASICLATIN&#34;</span><span class="o">);</span>
+    <span class="c1">// ......
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">UnicodeBlock</span> <span class="n">ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS</span> <span class="o">=</span>
+        <span class="k">new</span> <span class="n">UnicodeBlock</span><span class="o">(</span><span class="s">&#34;ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS&#34;</span><span class="o">,</span>
+                         <span class="s">&#34;ARABIC MATHEMATICAL ALPHABETIC SYMBOLS&#34;</span><span class="o">,</span>
+                         <span class="s">&#34;ARABICMATHEMATICALALPHABETICSYMBOLS&#34;</span><span class="o">);</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 对应的各个Unicode块的起始位置
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">blockStarts</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="n">0x0000</span><span class="o">,</span>   <span class="c1">// 0000..007F; Basic Latin
+</span><span class="c1"></span>        <span class="n">0x0080</span><span class="o">,</span>   <span class="c1">// 0080..00FF; Latin-1 Supplement
+</span><span class="c1"></span>        <span class="n">0x0100</span><span class="o">,</span>   <span class="c1">// 0100..017F; Latin Extended-A
+</span><span class="c1"></span>        <span class="c1">// ......
+</span><span class="c1"></span>        <span class="n">0xE01F0</span><span class="o">,</span>  <span class="c1">//               unassigned
+</span><span class="c1"></span>        <span class="n">0xF0000</span><span class="o">,</span>  <span class="c1">// F0000..FFFFF; Supplementary Private Use Area-A
+</span><span class="c1"></span>        <span class="n">0x100000</span>  <span class="c1">// 100000..10FFFF; Supplementary Private Use Area-B
+</span><span class="c1"></span>    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * UnicodeBlock集合，部分位置为空，未使用
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">UnicodeBlock</span><span class="o">[]</span> <span class="n">blocks</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="n">BASIC_LATIN</span><span class="o">,</span>
+        <span class="n">LATIN_1_SUPPLEMENT</span><span class="o">,</span>
+        <span class="c1">// ......
+</span><span class="c1"></span>        <span class="kc">null</span><span class="o">,</span>
+        <span class="n">SUPPLEMENTARY_PRIVATE_USE_AREA_A</span><span class="o">,</span>
+        <span class="n">SUPPLEMENTARY_PRIVATE_USE_AREA_B</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 返回包含指定字符的Unicode block，存在null的可能性
+</span><span class="cm">    * 此方法不能处理增补码字符
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">UnicodeBlock</span> <span class="nf">of</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+	      <span class="k">return</span> <span class="n">of</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">c</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 返回包含指定字符的Unicode block，存在null的可能性
+</span><span class="cm">    * 支持所有的Unicode字符
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">UnicodeBlock</span> <span class="nf">of</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">isValidCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">{</span>
+          	<span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">top</span><span class="o">,</span> <span class="n">bottom</span><span class="o">,</span> <span class="n">current</span><span class="o">;</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">blockStarts</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">top</span><span class="o">/</span><span class="n">2</span><span class="o">;</span>
+
+        <span class="c1">// 二分查找法
+</span><span class="c1"></span>        <span class="c1">// invariant: top &gt; current &gt;= bottom &amp;&amp; codePoint &gt;= unicodeBlockStarts[bottom]
+</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">top</span> <span class="o">-</span> <span class="n">bottom</span> <span class="o">&gt;</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">codePoint</span> <span class="o">&gt;=</span> <span class="n">blockStarts</span><span class="o">[</span><span class="n">current</span><span class="o">])</span> <span class="o">{</span>
+              	<span class="n">bottom</span> <span class="o">=</span> <span class="n">current</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              	<span class="n">top</span> <span class="o">=</span> <span class="n">current</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="o">(</span><span class="n">top</span> <span class="o">+</span> <span class="n">bottom</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">blocks</span><span class="o">[</span><span class="n">current</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 返回具有给定名称的UnicodeBlock。块名称由Unicode标准确定。
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">UnicodeBlock</span> <span class="nf">forName</span><span class="o">(</span><span class="n">String</span> <span class="n">blockName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">UnicodeBlock</span> <span class="n">block</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">blockName</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">));</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">block</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          	<span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">block</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这个类继承了<code>Subset</code>，代表了Unicode规范中字符块的字符子集集合。字符块通常定义用于特定脚本或者目的的字符。一个字符最多只会在一个字符块中出现存在。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">CharacterCache</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nf">CharacterCache</span><span class="o">(){}</span>
+
+    <span class="kd">static</span> <span class="kd">final</span> <span class="n">Character</span> <span class="n">cache</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Character</span><span class="o">[</span><span class="n">127</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cache</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="n">cache</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Character</span><span class="o">((</span><span class="kt">char</span><span class="o">)</span><span class="n">i</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>定义了CharacterCache缓存类，缓存了从0～127的128个字符实例。</p>
+
+<h2 id="enum">Enum</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* UnicodeScript枚举值，一系列表示字符脚本的字符子集。
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">enum</span> <span class="n">UnicodeScript</span> <span class="o">{</span>
+    <span class="n">COMMON</span><span class="o">,</span>
+    <span class="c1">// ......
+</span><span class="c1"></span>    <span class="n">MIAO</span><span class="o">,</span>
+    <span class="n">UNKNOWN</span><span class="o">;</span>
+  
+  	<span class="cm">/**
+</span><span class="cm">    * UnicodeScript对应的起始位数组
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">scriptStarts</span> <span class="o">=</span> <span class="o">{</span>
+      <span class="n">0x0000</span><span class="o">,</span>   <span class="c1">// 0000..0040; COMMON
+</span><span class="c1"></span>      <span class="n">0x0041</span><span class="o">,</span>   <span class="c1">// 0041..005A; LATIN
+</span><span class="c1"></span>      <span class="c1">// ......
+</span><span class="c1"></span>      <span class="n">0xE0100</span><span class="o">,</span>  <span class="c1">// E0100..E01EF; INHERITED
+</span><span class="c1"></span>      <span class="n">0xE01F0</span>   <span class="c1">// E01F0..10FFFF; UNKNOWN
+</span><span class="c1"></span>    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * UnicodeScript的数组
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">UnicodeScript</span><span class="o">[]</span> <span class="n">scripts</span> <span class="o">=</span> <span class="o">{</span>
+      <span class="n">COMMON</span><span class="o">,</span>
+      <span class="n">LATIN</span><span class="o">,</span>
+      <span class="c1">// ......
+</span><span class="c1"></span>      <span class="n">INHERITED</span><span class="o">,</span>
+      <span class="n">UNKNOWN</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * UnicodeScript对应的别名map
+</span><span class="cm">    */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Character</span><span class="o">.</span><span class="na">UnicodeScript</span><span class="o">&gt;</span> <span class="n">aliases</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="o">{</span>
+      <span class="n">aliases</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="n">128</span><span class="o">);</span>
+      <span class="n">aliases</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;ARAB&#34;</span><span class="o">,</span> <span class="n">ARABIC</span><span class="o">);</span>
+      <span class="n">aliases</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;ARMI&#34;</span><span class="o">,</span> <span class="n">IMPERIAL_ARAMAIC</span><span class="o">);</span>
+      <span class="c1">// ......
+</span><span class="c1"></span>      <span class="n">aliases</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;ZYYY&#34;</span><span class="o">,</span> <span class="n">COMMON</span><span class="o">);</span>
+      <span class="n">aliases</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;ZZZZ&#34;</span><span class="o">,</span> <span class="n">UNKNOWN</span><span class="o">);</span>
+    <span class="o">}</span>
+  
+  	<span class="cm">/**
+</span><span class="cm">  	* 返回给定字符所属的Unicode script的枚举常量
+</span><span class="cm">  	*/</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">UnicodeScript</span> <span class="nf">of</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">isValidCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span>
+          	<span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">type</span> <span class="o">=</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+        <span class="c1">// leave SURROGATE and PRIVATE_USE for table lookup
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">UNASSIGNED</span><span class="o">)</span>
+	          <span class="k">return</span> <span class="n">UNKNOWN</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">binarySearch</span><span class="o">(</span><span class="n">scriptStarts</span><span class="o">,</span> <span class="n">codePoint</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span>
+  	        <span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="n">index</span> <span class="o">-</span> <span class="n">2</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">scripts</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+    <span class="o">}</span>
+  
+  	<span class="cm">/**
+</span><span class="cm">  	* 通过给定的 Unicode script名称或者别名返回对应的UnicodeScript枚举常量
+</span><span class="cm">  	*/</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">UnicodeScript</span> <span class="nf">forName</span><span class="o">(</span><span class="n">String</span> <span class="n">scriptName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">scriptName</span> <span class="o">=</span> <span class="n">scriptName</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>
+        <span class="c1">//.replace(&#39; &#39;, &#39;_&#39;));
+</span><span class="c1"></span>        <span class="n">UnicodeScript</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">aliases</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">scriptName</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">sc</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+          	<span class="k">return</span> <span class="n">sc</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">valueOf</span><span class="o">(</span><span class="n">scriptName</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="方法">方法</h2>
+
+<h3 id="valueof-方法">valueOf 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Character</span> <span class="nf">valueOf</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="n">127</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// must cache
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">CharacterCache</span><span class="o">.</span><span class="na">cache</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span><span class="n">c</span><span class="o">];</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Character</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>字符小于等于127时，从<code>CharacterCache</code>中获取缓存结果，避免重新实例化；大于127时，实例化返回结果。</p>
+
+<h3 id="charvalue-方法">charValue 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">char</span> <span class="nf">charValue</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>返回对应字符的值。</p>
+
+<h3 id="hashcode-方法">hashCode 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+  	<span class="k">return</span> <span class="n">Character</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">(</span><span class="kt">char</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+  	<span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>将字符转换成对应的int值作为hashCode结果返回。</p>
+
+<h3 id="equals-方法">equals 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Character</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="o">((</span><span class="n">Character</span><span class="o">)</span><span class="n">obj</span><span class="o">).</span><span class="na">charValue</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>判断输入参数是否为<code>Character</code>的实例，然后判断其对应的值是否相等。</p>
+
+<h3 id="tostring-方法">toString 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span><span class="n">value</span><span class="o">};</span>
+  <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">buf</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>两个方法，一个为静态方法，调用String的方法转换成字符格式，比较简单。</p>
+
+<h3 id="isvalidcodepoint-方法">isValidCodePoint 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isValidCodePoint</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// Optimized form of:
+</span><span class="c1"></span>  <span class="c1">//     codePoint &gt;= MIN_CODE_POINT &amp;&amp; codePoint &lt;= MAX_CODE_POINT
+</span><span class="c1"></span>  <span class="c1">//     codePoint &gt;= 0x000000 &amp;&amp; codePoint &lt;= 0X10FFFF
+</span><span class="c1"></span>  <span class="c1">// 左边16为从0000～FFFF，必定在范围内，比较无意义，直接忽略
+</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">plane</span> <span class="o">=</span> <span class="n">codePoint</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">16</span><span class="o">;</span>
+  <span class="k">return</span> <span class="n">plane</span> <span class="o">&lt;</span> <span class="o">((</span><span class="n">MAX_CODE_POINT</span> <span class="o">+</span> <span class="n">1</span><span class="o">)</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">16</span><span class="o">);</span> <span class="c1">// plane &lt; 0X11
+</span><span class="c1"></span><span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>判断字符的codePoint是否有效。</p>
+
+<h3 id="isbmpcodepoint-方法">isBmpCodePoint 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 确定指定的代码点是否是一个BMP代码点
+</span><span class="cm">* 这样的代码点能够以一个单独的char表示
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isBmpCodePoint</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// 范围为0x0000～0xFFFF，优化后的判断逻辑
+</span><span class="c1"></span>  <span class="k">return</span> <span class="n">codePoint</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">16</span> <span class="o">==</span> <span class="n">0</span><span class="o">;</span>
+  <span class="c1">// Optimized form of:
+</span><span class="c1"></span>  <span class="c1">//     codePoint &gt;= MIN_VALUE &amp;&amp; codePoint &lt;= MAX_VALUE
+</span><span class="c1"></span>  <span class="c1">// We consistently use logical shift (&gt;&gt;&gt;) to facilitate
+</span><span class="c1"></span>  <span class="c1">// additional runtime optimizations.
+</span><span class="c1"></span><span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="issupplementarycodepoint-方法">isSupplementaryCodePoint 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isSupplementaryCodePoint</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// 0x10000~0x10FFFF范围
+</span><span class="c1"></span>  <span class="k">return</span> <span class="n">codePoint</span> <span class="o">&gt;=</span> <span class="n">MIN_SUPPLEMENTARY_CODE_POINT</span>
+    <span class="o">&amp;&amp;</span> <span class="n">codePoint</span> <span class="o">&lt;</span>  <span class="n">MAX_CODE_POINT</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>判断指定的代码点是否是补充代码点（即不是BMP代码点）。</p>
+
+<h3 id="isxxxsurrogate-方法">isXXXSurrogate 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 输入参数是否是一个Unicode高位代理代码单元
+</span><span class="cm">* 这样的值不代表他们自己的字符，被用来表示UTF-16的补充字符
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isHighSurrogate</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// Help VM constant-fold; MAX_HIGH_SURROGATE + 1 == MIN_LOW_SURROGATE
+</span><span class="c1"></span>  <span class="k">return</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="n">MIN_HIGH_SURROGATE</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">MAX_HIGH_SURROGATE</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 输入参数是否是一个Unicode低位代理代码单元
+</span><span class="cm">* 这样的值不代表他们自己的字符，被用来表示UTF-16的补充字符
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isLowSurrogate</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="n">MIN_LOW_SURROGATE</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">MAX_LOW_SURROGATE</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 输入参数是否是一个Unicode代理代码单元
+</span><span class="cm">* 这样的值不代表他们自己的字符，被用来代表UTF-16的补充字符
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isSurrogate</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="n">MIN_SURROGATE</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">MAX_SURROGATE</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 输入的两个字符参数是否是有效的Unicode代理对
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isSurrogatePair</span><span class="o">(</span><span class="kt">char</span> <span class="n">high</span><span class="o">,</span> <span class="kt">char</span> <span class="n">low</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">high</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">low</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="codepointxxx-方法">codePointXXX 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 返回seq中指定下标的char的codePoint
+</span><span class="cm">* 如果c1在高位代理范围内，并且随后的字符在低位代理的范围内，返回增补代码点
+</span><span class="cm">* 否则直接返回对应index的值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointAt</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">seq</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">char</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">c1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">++</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">seq</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>
+    <span class="kt">char</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">c2</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">toCodePoint</span><span class="o">(</span><span class="n">c1</span><span class="o">,</span> <span class="n">c2</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">c1</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 内部调用codePointAtImpl实现
+</span><span class="cm">* 参数改为字符数组和下标
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointAt</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">codePointAtImpl</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 内部调用codePointAtImpl实现
+</span><span class="cm">* 参数为字符数组、index和limit限制
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointAt</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">)</span> <span class="o">{</span>
+	<span class="c1">// 对index增加了limit参数限制
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">limit</span> <span class="o">||</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">limit</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">codePointAtImpl</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">limit</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 与codePointAt(CharSequence seq, int index)实现逻辑一致
+</span><span class="cm">* 返回字符数组中指定下标的char的codePoint
+</span><span class="cm">* 如果c1在高位代理范围内，并且随后的字符在低位代理的范围内，返回增补代码点
+</span><span class="cm">* 否则直接返回对应index的值
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointAtImpl</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">char</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">c1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">++</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">char</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">c2</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">toCodePoint</span><span class="o">(</span><span class="n">c1</span><span class="o">,</span> <span class="n">c2</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">c1</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 与codePointAt逻辑类似，返回指定坐标的前一个字符；如果前一个是增补代码点，则返回完整的字符codePoint
+</span><span class="cm">* 如果index-1的c2在低位代理范围内，并且index-2的c1字符在高位代理的范围内，返回增补代码点
+</span><span class="cm">* 否则直接返回对应index前一位的值
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointBefore</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">seq</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">char</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(--</span><span class="n">index</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">c2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">char</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(--</span><span class="n">index</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">c1</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">toCodePoint</span><span class="o">(</span><span class="n">c1</span><span class="o">,</span> <span class="n">c2</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">c2</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 内部调用codePointBeforeImpl实现
+</span><span class="cm">* 参数为字符数组和定位
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointBefore</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">codePointBeforeImpl</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 内部调用codePointBeforeImpl实现
+</span><span class="cm">* 参数为字符数组，定位和起始位置，增加了对于index的限制判断
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointBefore</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;=</span> <span class="n">start</span> <span class="o">||</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">start</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">codePointBeforeImpl</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">start</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 与codePointBefore(CharSequence seq, int index)实现逻辑一致
+</span><span class="cm">* 如果index-1的c2在低位代理范围内，并且index-2的c1字符在高位代理的范围内，返回增补代码点
+</span><span class="cm">* 否则直接返回对应index前一位的值
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointBeforeImpl</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">char</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">a</span><span class="o">[--</span><span class="n">index</span><span class="o">];</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">c2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">char</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">a</span><span class="o">[--</span><span class="n">index</span><span class="o">];</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">c1</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">toCodePoint</span><span class="o">(</span><span class="n">c1</span><span class="o">,</span> <span class="n">c2</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">c2</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="charcount-方法">charCount 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 获取代码点的字符数；如果是增补代码返回2，否则返回1
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">charCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">codePoint</span> <span class="o">&gt;=</span> <span class="n">MIN_SUPPLEMENTARY_CODE_POINT</span> <span class="o">?</span> <span class="n">2</span> <span class="o">:</span> <span class="n">1</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="tocodepoint-方法">toCodePoint 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 将输入的代理对转换成对应的补充代码点
+</span><span class="cm">* 这个方法不会校验输入参数的有效性，需要自己调用 isSurrogatePair(char, char) 进行判断
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">toCodePoint</span><span class="o">(</span><span class="kt">char</span> <span class="n">high</span><span class="o">,</span> <span class="kt">char</span> <span class="n">low</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// Optimized form of:
+</span><span class="c1"></span>  <span class="c1">// return ((high - MIN_HIGH_SURROGATE) &lt;&lt; 10)
+</span><span class="c1"></span>  <span class="c1">//         + (low - MIN_LOW_SURROGATE)
+</span><span class="c1"></span>  <span class="c1">//         + MIN_SUPPLEMENTARY_CODE_POINT;
+</span><span class="c1"></span>  <span class="k">return</span> <span class="o">((</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="n">10</span><span class="o">)</span> <span class="o">+</span> <span class="n">low</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">MIN_SUPPLEMENTARY_CODE_POINT</span>
+                                 <span class="o">-</span> <span class="o">(</span><span class="n">MIN_HIGH_SURROGATE</span> <span class="o">&lt;&lt;</span> <span class="n">10</span><span class="o">)</span>
+                                 <span class="o">-</span> <span class="n">MIN_LOW_SURROGATE</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="xxxsurrogate-方法">XXXSurrogate 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 返回指定字符在UTF-16编码中的高位代理
+</span><span class="cm">* 如果输入参数不是一个增补代码，则返回一个未定义的char
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">highSurrogate</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">((</span><span class="n">codePoint</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">10</span><span class="o">)</span>
+                 <span class="o">+</span> <span class="o">(</span><span class="n">MIN_HIGH_SURROGATE</span> <span class="o">-</span> <span class="o">(</span><span class="n">MIN_SUPPLEMENTARY_CODE_POINT</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">10</span><span class="o">)));</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 返回指定字符在UTF-16编码中的低位代理
+</span><span class="cm">* 如果输入参数不是一个增补代码，则返回一个未定义的char
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">lowSurrogate</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">((</span><span class="n">codePoint</span> <span class="o">&amp;</span> <span class="n">0x3ff</span><span class="o">)</span> <span class="o">+</span> <span class="n">MIN_LOW_SURROGATE</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="tochars-方法">toChars 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 将指定的unicode code point转换成对应的UTF-16表示形式
+</span><span class="cm">* 如果是输入参数BMP，则将结果放在指定的dstIndex处，结果返回1
+</span><span class="cm">* 如果是增补代码，则结果放在dstIndex和dstIndex+1，结果返回2
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">toChars</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">,</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">dst</span><span class="o">,</span> <span class="kt">int</span> <span class="n">dstIndex</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">isBmpCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">dst</span><span class="o">[</span><span class="n">dstIndex</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="n">codePoint</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">1</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">isValidCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">toSurrogates</span><span class="o">(</span><span class="n">codePoint</span><span class="o">,</span> <span class="n">dst</span><span class="o">,</span> <span class="n">dstIndex</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">2</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 逻辑与 toChars(int codePoint, char[] dst, int dstIndex) 一致
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span><span class="o">[]</span> <span class="nf">toChars</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">isBmpCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[]</span> <span class="o">{</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="n">codePoint</span> <span class="o">};</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">isValidCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">{</span>
+    <span class="kt">char</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">2</span><span class="o">];</span>
+    <span class="n">toSurrogates</span><span class="o">(</span><span class="n">codePoint</span><span class="o">,</span> <span class="n">result</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 处理增补代码逻辑，高位代理放在index，低位代理放在index+1
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="nf">toSurrogates</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">,</span> <span class="kt">char</span><span class="o">[]</span> <span class="n">dst</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// We write elements &#34;backwards&#34; to guarantee all-or-nothing
+</span><span class="c1"></span>  <span class="n">dst</span><span class="o">[</span><span class="n">index</span><span class="o">+</span><span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">lowSurrogate</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+  <span class="n">dst</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">highSurrogate</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="codepointcount-方法">codePointCount 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 计算指定范围内的字符序列的长度
+</span><span class="cm">* 此方法与String.length存在一定的差别，由于增补代码，String.length返回2，而此方法返回1
+</span><span class="cm">* 例如：𠮷，这个字符使用String.length结果为2，而对于此方法结果为1
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointCount</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">seq</span><span class="o">,</span> <span class="kt">int</span> <span class="n">beginIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">endIndex</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">beginIndex</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">endIndex</span> <span class="o">&gt;</span> <span class="n">length</span> <span class="o">||</span> <span class="n">beginIndex</span> <span class="o">&gt;</span> <span class="n">endIndex</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">endIndex</span> <span class="o">-</span> <span class="n">beginIndex</span><span class="o">;</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">beginIndex</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">endIndex</span><span class="o">;</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">++))</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">endIndex</span> <span class="o">&amp;&amp;</span>
+        <span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)))</span> <span class="o">{</span>
+      <span class="n">n</span><span class="o">--;</span>
+      <span class="n">i</span><span class="o">++;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 内部调用codePointCountImpl实现
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointCount</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">offset</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">offset</span> <span class="o">||</span> <span class="n">offset</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">codePointCountImpl</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">offset</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 实现逻辑与 codePointCount(CharSequence seq, int beginIndex, int endIndex) 一致
+</span><span class="cm">* 注意点也一致
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">codePointCountImpl</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">offset</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">endIndex</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">count</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">count</span><span class="o">;</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">offset</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">endIndex</span><span class="o">;</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">++])</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">endIndex</span> <span class="o">&amp;&amp;</span>
+        <span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="o">{</span>
+      <span class="n">n</span><span class="o">--;</span>
+      <span class="n">i</span><span class="o">++;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="offsetbycodepoints-方法">offsetByCodePoints 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 返回字符序列按照输入index点进行一定偏移量操作后的索引位置
+</span><span class="cm">* 主要考虑增补代码的原因，增补代码会出现2位的偏移量，导致结果可能不是你所预期的那样
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">offsetByCodePoints</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">seq</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">,</span>                                     
+                                     <span class="kt">int</span> <span class="n">codePointOffset</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">codePointOffset</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">codePointOffset</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">x</span><span class="o">++))</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span>
+          <span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">x</span><span class="o">)))</span> <span class="o">{</span>
+        <span class="n">x</span><span class="o">++;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">codePointOffset</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="c1">// 负偏移量处理，向前偏移
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">codePointOffset</span><span class="o">;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(--</span><span class="n">x</span><span class="o">))</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">0</span> <span class="o">&amp;&amp;</span>
+          <span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">seq</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="n">1</span><span class="o">)))</span> <span class="o">{</span>
+        <span class="n">x</span><span class="o">--;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 内部调用offsetByCodePointsImpl实现逻辑
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">offsetByCodePoints</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">,</span>
+                                     <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">codePointOffset</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="n">start</span> <span class="o">||</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">0</span>
+      <span class="o">||</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">start</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="n">start</span><span class="o">+</span><span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">offsetByCodePointsImpl</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">count</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">codePointOffset</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 具体实现和offsetByCodePoints一致
+</span><span class="cm">* 返回字符数组按照输入index点进行一定偏移量操作后的索引位置
+</span><span class="cm">* 主要考虑增补代码的原因，增补代码会出现2位的偏移量，导致结果可能不是你所预期的那样
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">offsetByCodePointsImpl</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span><span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">,</span>
+                                  <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">codePointOffset</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">codePointOffset</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">count</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">limit</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">codePointOffset</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">x</span><span class="o">++])</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">limit</span> <span class="o">&amp;&amp;</span>
+          <span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">x</span><span class="o">]))</span> <span class="o">{</span>
+        <span class="n">x</span><span class="o">++;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">codePointOffset</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">codePointOffset</span><span class="o">;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">isLowSurrogate</span><span class="o">(</span><span class="n">a</span><span class="o">[--</span><span class="n">x</span><span class="o">])</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="o">&amp;&amp;</span>
+          <span class="n">isHighSurrogate</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">x</span><span class="o">-</span><span class="n">1</span><span class="o">]))</span> <span class="o">{</span>
+        <span class="n">x</span><span class="o">--;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="isxxx-方法">isXXX 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 是否是小写字符（不能处理增补代码情况）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isLowerCase</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">return</span> <span class="n">isLowerCase</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 是否是小写字符（可以处理增补代码情况）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isLowerCase</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">)</span> <span class="o">==</span> <span class="n">Character</span><span class="o">.</span><span class="na">LOWERCASE_LETTER</span> <span class="o">||</span>
+    <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isOtherLowercase</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 是否是大写字符（不能处理增补代码情况）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUpperCase</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isUpperCase</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 是否是大写字符（可以处理增补代码情况）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUpperCase</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">)</span> <span class="o">==</span> <span class="n">Character</span><span class="o">.</span><span class="na">UPPERCASE_LETTER</span> <span class="o">||</span>
+    <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isOtherUppercase</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断是不是标题字符（主要针对一些特殊字符，不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isTitleCase</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isTitleCase</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断是不是标题字符（可以处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isTitleCase</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">)</span> <span class="o">==</span> <span class="n">Character</span><span class="o">.</span><span class="na">TITLECASE_LETTER</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断是不是数字（不可以处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isDigit</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isDigit</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断是不是数字（可以处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isDigit</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">)</span> <span class="o">==</span> <span class="n">Character</span><span class="o">.</span><span class="na">DECIMAL_DIGIT_NUMBER</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isDefined</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isDefined</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断字符是不是在Unicode中定义（不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isDefined</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isDefined</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isDefined</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">)</span> <span class="o">!=</span> <span class="n">Character</span><span class="o">.</span><span class="na">UNASSIGNED</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断是不是字母，包含大写字符、小写字母、标题字母、变换字母、其他字母
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isLetter</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isLetter</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isLetter</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">((((</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">UPPERCASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">LOWERCASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">TITLECASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MODIFIER_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">OTHER_LETTER</span><span class="o">))</span> <span class="o">&gt;&gt;</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">&amp;</span> <span class="n">1</span><span class="o">)</span>
+    <span class="o">!=</span> <span class="n">0</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断是不是字母或者数字（不能处理增补代码情况）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isLetterOrDigit</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isLetterOrDigit</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isLetterOrDigit</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">((((</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">UPPERCASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">LOWERCASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">TITLECASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MODIFIER_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">OTHER_LETTER</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">DECIMAL_DIGIT_NUMBER</span><span class="o">))</span> <span class="o">&gt;&gt;</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">&amp;</span> <span class="n">1</span><span class="o">)</span>
+    <span class="o">!=</span> <span class="n">0</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断指定的字符是否允许作为Java标识符中的第一个字符
+</span><span class="cm">*/</span>
+<span class="nd">@Deprecated</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isJavaLetter</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isJavaIdentifierStart</span><span class="o">(</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断指定的字符是否可能是Java标识符的一部分，而不是第一个字符
+</span><span class="cm">* （这个命名感觉很不符合含义啊！问号脸）
+</span><span class="cm">*/</span>
+<span class="nd">@Deprecated</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isJavaLetterOrDigit</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isJavaIdentifierPart</span><span class="o">(</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 确定指定的字符（Unicode code point）是否为字母。
+</span><span class="cm">* 包含大写字符、小写字符、标题字符、变化字符、其他字符、字母数字
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isAlphabetic</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(((((</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">UPPERCASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+             <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">LOWERCASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+             <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">TITLECASE_LETTER</span><span class="o">)</span> <span class="o">|</span>
+             <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MODIFIER_LETTER</span><span class="o">)</span> <span class="o">|</span>
+             <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">OTHER_LETTER</span><span class="o">)</span> <span class="o">|</span>
+             <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">LETTER_NUMBER</span><span class="o">))</span> <span class="o">&gt;&gt;</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">&amp;</span> <span class="n">1</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">||</span>
+    <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isOtherAlphabetic</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断字母（Unicode code point）是否为中文、日文、韩文或者越南文
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isIdeographic</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isIdeographic</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断指定的字符是否允许作为Java标识符中的第一个字符（不能处理增补代码）
+</span><span class="cm">* 代替 isJavaLetter 方法
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isJavaIdentifierStart</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isJavaIdentifierStart</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isJavaIdentifierStart</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isJavaIdentifierStart</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 确定指定的字符是否可能是Java标识符的一部分，而不是第一个字符（不能处理增补代码）
+</span><span class="cm">* 代替 isJavaLetterOrDigit 方法
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isJavaIdentifierPart</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isJavaIdentifierPart</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isJavaIdentifierPart</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isJavaIdentifierPart</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 输入的字符是否允许作为Unicode标识符中的第一个字符（不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUnicodeIdentifierStart</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isUnicodeIdentifierStart</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUnicodeIdentifierStart</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isUnicodeIdentifierStart</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 输入的字符是否可能是Unicode标识符的一部分，而不是第一个字符（不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUnicodeIdentifierPart</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isUnicodeIdentifierPart</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isUnicodeIdentifierPart</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isUnicodeIdentifierPart</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断输入的字符是不是在Java标识符或者Unicode标识符中可以视为可忽略符号（不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isIdentifierIgnorable</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isIdentifierIgnorable</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isIdentifierIgnorable</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isIdentifierIgnorable</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断输入字符是不是属于 ISO-LATIN-1下的空包字符
+</span><span class="cm">* 只有为&#39;\t&#39;, &#39;\n&#39;, &#39;\f&#39;, &#39;\r&#39;, &#39; &#39;中的一个时，返回true
+</span><span class="cm">*/</span>
+<span class="nd">@Deprecated</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isSpace</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="n">ch</span> <span class="o">&lt;=</span> <span class="n">0x0020</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+    <span class="o">(((((</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">0x0009</span><span class="o">)</span> <span class="o">|</span>
+        <span class="o">(</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">0x000A</span><span class="o">)</span> <span class="o">|</span>
+        <span class="o">(</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">0x000C</span><span class="o">)</span> <span class="o">|</span>
+        <span class="o">(</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">0x000D</span><span class="o">)</span> <span class="o">|</span>
+        <span class="o">(</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">0x0020</span><span class="o">))</span> <span class="o">&gt;&gt;</span> <span class="n">ch</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">1L</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断字符是否为Unicode空格字符
+</span><span class="cm">* 当且仅当Unicode标准将其指定为空格字符时，才将其视为空格字符。
+</span><span class="cm">* SPACE_SEPARATOR、LINE_SEPARATOR、PARAGRAPH_SEPARATOR其中一个时才为true
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isSpaceChar</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isSpaceChar</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isSpaceChar</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">((((</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">SPACE_SEPARATOR</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">LINE_SEPARATOR</span><span class="o">)</span> <span class="o">|</span>
+            <span class="o">(</span><span class="n">1</span> <span class="o">&lt;&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">PARAGRAPH_SEPARATOR</span><span class="o">))</span> <span class="o">&gt;&gt;</span> <span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">&amp;</span> <span class="n">1</span><span class="o">)</span>
+    <span class="o">!=</span> <span class="n">0</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断字符是否是java中的空白字符，只有以下的情况才会返回ture
+</span><span class="cm">* &lt;li&gt; It is a Unicode space character ({@code SPACE_SEPARATOR},
+</span><span class="cm">*      {@code LINE_SEPARATOR}, or {@code PARAGRAPH_SEPARATOR})
+</span><span class="cm">*      but is not also a non-breaking space ({@code &#39;\u005Cu00A0&#39;},
+</span><span class="cm">*      {@code &#39;\u005Cu2007&#39;}, {@code &#39;\u005Cu202F&#39;}).
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Ct&#39;}, U+0009 HORIZONTAL TABULATION.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cn&#39;}, U+000A LINE FEED.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cu000B&#39;}, U+000B VERTICAL TABULATION.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cf&#39;}, U+000C FORM FEED.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cr&#39;}, U+000D CARRIAGE RETURN.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cu001C&#39;}, U+001C FILE SEPARATOR.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cu001D&#39;}, U+001D GROUP SEPARATOR.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cu001E&#39;}, U+001E RECORD SEPARATOR.
+</span><span class="cm">* &lt;li&gt; It is {@code &#39;\u005Cu001F&#39;}, U+001F UNIT SEPARATOR.
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isWhitespace</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isWhitespace</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isWhitespace</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isWhitespace</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断输入字符是不是ISO控制字符
+</span><span class="cm">* 在&#39;\u005Cu0000&#39; ～ &#39;\u005Cu001F&#39;或者&#39;\u005Cu007F&#39; ～ &#39;\u005Cu009F&#39;之间的字符为ISO控制字符
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isISOControl</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isISOControl</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isISOControl</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// Optimized form of:
+</span><span class="c1"></span>  <span class="c1">//     (codePoint &gt;= 0x00 &amp;&amp; codePoint &lt;= 0x1F) ||
+</span><span class="c1"></span>  <span class="c1">//     (codePoint &gt;= 0x7F &amp;&amp; codePoint &lt;= 0x9F);
+</span><span class="c1"></span>  <span class="k">return</span> <span class="n">codePoint</span> <span class="o">&lt;=</span> <span class="n">0x9F</span> <span class="o">&amp;&amp;</span>
+    <span class="o">(</span><span class="n">codePoint</span> <span class="o">&gt;=</span> <span class="n">0x7F</span> <span class="o">||</span> <span class="o">(</span><span class="n">codePoint</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">5</span> <span class="o">==</span> <span class="n">0</span><span class="o">));</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 判断根据Unicode标准，输入字符是不是镜像的
+</span><span class="cm">* 当以从右到左的文本显示时，镜像字符的字形应水平镜像。
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isMirrored</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isMirrored</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isMirrored</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">isMirrored</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="toxxx-方法">toXXX 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 转换成小写字符（不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">toLowerCase</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="n">toLowerCase</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">toLowerCase</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">toLowerCase</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 转换成大写字母（不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">toUpperCase</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="n">toUpperCase</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">toUpperCase</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 转换成标题字符；如果对应的字符不存在，会返回大写字符作为对应的结果；
+</span><span class="cm">* 如果输入参数已经是标题字母，则返回其本身作为结果
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">toTitleCase</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="n">toTitleCase</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">toTitleCase</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">toTitleCase</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 使用UnicodeData文件中的信息，将字符转换成对应的大写字符
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">toUpperCaseEx</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">assert</span> <span class="n">isValidCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">toUpperCaseEx</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 使用Unicode规范中SpecialCasing文件的信息，将字符转换成大写字符数组返回
+</span><span class="cm">*/</span>
+<span class="kd">static</span> <span class="kt">char</span><span class="o">[]</span> <span class="nf">toUpperCaseCharArray</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// As of Unicode 6.0, 1:M uppercasings only happen in the BMP.
+</span><span class="c1"></span>  <span class="k">assert</span> <span class="n">isBmpCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">toUpperCaseCharArray</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="digit-方法">digit 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 返回在对应的进制下字符对应的数值
+</span><span class="cm">* 如果进制不在返回内或者参数字符对应的值不属于对应进制内的有效值，结果返回-1
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">digit</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">digit</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">,</span> <span class="n">radix</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">digit</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">digit</span><span class="o">(</span><span class="n">codePoint</span><span class="o">,</span> <span class="n">radix</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="getxxxx-方法">getXXXX 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 返回字符对应的数值
+</span><span class="cm">* 如果输入字符无对应的数值，则返回-1
+</span><span class="cm">* 如果输入字符无法使用一个非负数进行表示，则返回-2
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getNumericValue</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getNumericValue</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getNumericValue</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">getNumericValue</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 返回表示字符常规类别的值（不能处理增补代码）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getType</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getType</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getType</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 返回给定字符的Unicode方向性属性
+</span><span class="cm">* 字符的方向性用于计算文本的视觉顺序
+</span><span class="cm">* 不能处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">byte</span> <span class="nf">getDirectionality</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">getDirectionality</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ch</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 同上，可以处理增补代码
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">byte</span> <span class="nf">getDirectionality</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">CharacterData</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">getDirectionality</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 返回指定字符的Unicode名称，如果codePoint是未分配的，返回null
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">(</span><span class="kt">int</span> <span class="n">codePoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(!</span><span class="n">isValidCodePoint</span><span class="o">(</span><span class="n">codePoint</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">CharacterName</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">getType</span><span class="o">(</span><span class="n">codePoint</span><span class="o">)</span> <span class="o">==</span> <span class="n">UNASSIGNED</span><span class="o">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="n">UnicodeBlock</span> <span class="n">block</span> <span class="o">=</span> <span class="n">UnicodeBlock</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">codePoint</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">block</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="k">return</span> <span class="n">block</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">replace</span><span class="o">(</span><span class="sc">&#39;_&#39;</span><span class="o">,</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34; &#34;</span>
+    <span class="o">+</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toHexString</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>
+  <span class="c1">// should never come here
+</span><span class="c1"></span>  <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toHexString</span><span class="o">(</span><span class="n">codePoint</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="fordigit-方法">forDigit 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 判断指定数值和进制参数的字符表示形式。如果不存在，则返回null字符（‘\u005Cu0000&#39;）
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">forDigit</span><span class="o">(</span><span class="kt">int</span> <span class="n">digit</span><span class="o">,</span> <span class="kt">int</span> <span class="n">radix</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">((</span><span class="n">digit</span> <span class="o">&gt;=</span> <span class="n">radix</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">digit</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="sc">&#39;\0&#39;</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">((</span><span class="n">radix</span> <span class="o">&lt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MIN_RADIX</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">radix</span> <span class="o">&gt;</span> <span class="n">Character</span><span class="o">.</span><span class="na">MAX_RADIX</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="sc">&#39;\0&#39;</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">digit</span> <span class="o">&lt;</span> <span class="n">10</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="sc">&#39;0&#39;</span> <span class="o">+</span> <span class="n">digit</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="sc">&#39;a&#39;</span> <span class="o">-</span> <span class="n">10</span> <span class="o">+</span> <span class="n">digit</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="compare-方法">compare 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 比较两个字符大小，内部调用compare方法实现
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Character</span> <span class="n">anotherCharacter</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">,</span> <span class="n">anotherCharacter</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+</span><span class="cm">* 直接进行相减，返回对应的结果
+</span><span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">char</span> <span class="n">x</span><span class="o">,</span> <span class="kt">char</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="reversebytes-方法">reverseBytes 方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">reverseBytes</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">(((</span><span class="n">ch</span> <span class="o">&amp;</span> <span class="n">0xFF00</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="n">8</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">ch</span> <span class="o">&lt;&lt;</span> <span class="n">8</span><span class="o">));</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>按字节进行逆序，因为只有两个字节，所以比较简单；高8位和低8位进行位置调换即可。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>Character的源码非常的长，中间存在了许多的常量定义以及一些相关的方法。从自己的角度来说，因为主要是Unicode标准的实现，如果日常工作中不涉及这部分，实际上用的还是很少的，所以日常有个了解即可，待涉及相关内容再详细的学习。</p>
+    </div>
+
+    <div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java%E6%BA%90%E7%A0%81/">Java源码</a>
+          <a href="/tags/character/">Character</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/java%E6%BA%90%E7%A0%81long/">
+            <span class="next-text nav-default">[Java源码]Long</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="utter-container"></div>
+        <script src="https://utteranc.es/client.js"
+            repo= 'renyijiu/hugo_blog'
+            issue-term= "title"
+            theme= 'github-light'
+            crossorigin= "anonymous"
+            async>
+        </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2014 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?e0abcfc0d888305fec49b5dffdb3b780";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+</body>
+</html>

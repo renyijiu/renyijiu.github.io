@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Character on Blog - renyijiu</title>
+    <link>https://blog.renyijiu.com/tags/character/</link>
+    <description>Recent content in Character on Blog - renyijiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Live For Dream, Dream For Love.</copyright>
+    <lastBuildDate>Wed, 16 Oct 2019 17:04:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.renyijiu.com/tags/character/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Java源码]Character</title>
+      <link>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81character/</link>
+      <pubDate>Wed, 16 Oct 2019 17:04:16 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81character/</guid>
+      <description>&lt;p&gt;这次来看看&lt;code&gt;Character&lt;/code&gt;的源代码，基于 &lt;em&gt;jdk1.8.0_181.jdk&lt;/em&gt; 版本，如有错误，欢迎联系指出。这也是Java的8个基础数据类型的最后一篇解析了，如果你还没看过其他的，可以去文章列表查看下其他的源码分析文章。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
