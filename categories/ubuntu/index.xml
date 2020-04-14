@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ubuntu on Blog - renyijiu</title>
@@ -19,14 +19,8 @@
       
       <guid>https://blog.renyijiu.com/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>&lt;p&gt;本文主要记录下在Ubuntu下搭建LAMP服务器的大致流程&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;    LAMP = Linux + Apache + Mysql + PHP&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
+&lt;pre&gt;&lt;code&gt;    LAMP = Linux + Apache + Mysql + PHP
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/" />
@@ -36,7 +36,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -44,13 +45,9 @@
 <meta property="og:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.renyijiu.com/" />
-
-<meta property="og:updated_time" content="2019-10-16T17:04:16&#43;08:00"/>
-
+<meta property="og:updated_time" content="2020-04-14T14:27:18+08:00" />
 <meta itemprop="name" content="Blog - renyijiu">
-<meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Blog - renyijiu"/>
 <meta name="twitter:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽"/>
 
@@ -113,6 +110,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/redis%E4%B8%AD%E7%9A%84hset%E8%BF%94%E5%9B%9E%E5%80%BC/">Redis中的hset返回值</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-12-05 </span>
+      <div class="post-category">
+          <a href="/categories/rails/"> Rails </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      问题起源 有一个简单的需求，当用户购买相关的服务后，用户对应的预算热量会采用新的算法进行，服务结束后恢复原来的热量。由于预算热量在各个业务系统
+    </div>
+    <div class="read-more">
+      <a href="/post/redis%E4%B8%AD%E7%9A%84hset%E8%BF%94%E5%9B%9E%E5%80%BC/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/rails-controller%E4%B8%AD%E7%9A%84concerns%E6%B5%8B%E8%AF%95%E7%BC%96%E5%86%99/">Rails Controller中的concerns测试编写</a></h1>
@@ -274,7 +292,6 @@
   <div class="post-content">
     <div class="post-summary">
       <p>Stimulus是2018年年初Basecamp开源的一个新的前端框架，是一个轻量级的框架（所做的事情很简洁）。</p>
-
 <p>从官方介绍可以看出，它的出现是Basecamp目前对于Rails服务端渲染中如何优雅的组织Javascript代码的一种实践，这也表明了它与目前的前端三大框架（Vue、React、Angular）完全不是一个路子，毕竟诞生原因和目标都不一样。这一点在<a href="https://stimulusjs.org/handbook/origin">origin</a>详细地说明了，有兴趣的可以看一看。</p>
     </div>
     <div class="read-more">
@@ -304,27 +321,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2017%E5%B9%B4%E6%80%BB%E7%BB%93/">2017年总结</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-01-14 </span>
-      <div class="post-category">
-          <a href="/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/"> 生活杂谈 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>这是一篇晚到的总结，在元旦结束后就准备写一篇回顾总结，但是中间因为各种事情向后推了一段时间，不过该写的还是要写的。回顾一下对自己的成长也是有益的。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/2017%E5%B9%B4%E6%80%BB%E7%BB%93/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -339,6 +335,7 @@
   </nav>
         </div>
         
+
       </div>
     </main>
 
@@ -361,12 +358,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -381,9 +376,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -395,6 +393,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

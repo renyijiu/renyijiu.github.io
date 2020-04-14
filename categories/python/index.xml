@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Blog - renyijiu</title>
@@ -19,7 +19,6 @@
       
       <guid>https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%BA%8C-%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</guid>
       <description>&lt;h2 id=&#34;八皇后问题&#34;&gt;八皇后问题&lt;/h2&gt;
-
 &lt;p&gt;在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？&lt;/p&gt;</description>
     </item>
     

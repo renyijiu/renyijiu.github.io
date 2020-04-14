@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Blog - renyijiu</title>
@@ -7,10 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Wed, 16 Oct 2019 17:04:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2020 14:27:18 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java延时任务方案</title>
+      <link>https://blog.renyijiu.com/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Tue, 14 Apr 2020 14:27:18 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;延时任务在日常业务中的使用是比较常见的。例如对于电商而言常见的场景：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当订单一直处于未支付的状态，需要在一定时间后关闭订单，退还库存。&lt;/li&gt;
+&lt;li&gt;订单完成15天后未评价自动评价等等&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;对于我们目前的业务而言，主要的应用场景是与外部系统接口的对接使用上，例如风控、大数据、信审等系统（大部分都是异步逻辑，调用 -&amp;gt; 等待回调）。因为我们要保证流程最大成功率的流转（当然谁也没法保证100%的成功），防止用户流程停滞产生卡单。但是由于网络环境的不可控性，短时间内可能存在波动，如果使用简单的立即重试逻辑，经常出现连续的失败，且可能对目标系统产生一定的负载压力。对此种情况，可能简单的延时30秒后重试就成功了。所以延时任务的需求就出来了，那么有哪些常见的方案呢？&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>[Java源码]Character</title>
@@ -118,7 +133,6 @@
       
       <guid>https://blog.renyijiu.com/post/spring-boot%E6%95%B0%E6%8D%AE%E5%BA%93insert%E9%94%99%E8%AF%AF/</guid>
       <description>&lt;p&gt;开始写Java也有两个多月了，虽然深度参与了一个项目（基于spring-boot对一个Ruby项目进行重构，使用Java重新实现），但是因为基础框架是同事搭建的，所以可能对框架其中的一些东西不甚了解，更加偏向于业务的深度。所以就决定自己从零写一个小项目，尝试去体验spring-boot的整体开发流程。&lt;/p&gt;
-
 &lt;p&gt;当然一开始就碰到了各种小问题，也都通过查资料等解决了，所以决定记录一下，大部分问题可能都很简单，但可能其他人在开始学习时也会遇到一样的问题呢，留个思路在网上，万一帮助了其他新人也是极好的。&lt;/p&gt;</description>
     </item>
     
@@ -264,7 +278,6 @@
       
       <guid>https://blog.renyijiu.com/post/stimulus%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/</guid>
       <description>&lt;p&gt;Stimulus是2018年年初Basecamp开源的一个新的前端框架，是一个轻量级的框架（所做的事情很简洁）。&lt;/p&gt;
-
 &lt;p&gt;从官方介绍可以看出，它的出现是Basecamp目前对于Rails服务端渲染中如何优雅的组织Javascript代码的一种实践，这也表明了它与目前的前端三大框架（Vue、React、Angular）完全不是一个路子，毕竟诞生原因和目标都不一样。这一点在&lt;a href=&#34;https://stimulusjs.org/handbook/origin&#34;&gt;origin&lt;/a&gt;详细地说明了，有兴趣的可以看一看。&lt;/p&gt;</description>
     </item>
     
@@ -312,7 +325,7 @@
       <guid>https://blog.renyijiu.com/post/codewars-stringy-strings/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
@@ -323,9 +336,9 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;write me a function stringy that takes a size and returns a string of alternating &amp;#39;1s&amp;#39; and &amp;#39;0s&amp;#39;.
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;write me a function stringy that takes a size and returns a string of alternating &amp;#39;1s&amp;#39; and &amp;#39;0s&amp;#39;.
 
 the string should start with a 1.
 
@@ -335,7 +348,8 @@ with size 4 should return : &amp;#39;1010&amp;#39;.
 
 with size 12 should return : &amp;#39;101010101010&amp;#39;.
 
-The size will always be positive and will only use whole numbers.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+The size will always be positive and will only use whole numbers.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
     </item>
@@ -410,14 +424,8 @@ The size will always be positive and will only use whole numbers.&lt;/pre&gt;&lt
       
       <guid>https://blog.renyijiu.com/post/ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAlamp%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>&lt;p&gt;本文主要记录下在Ubuntu下搭建LAMP服务器的大致流程&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;    LAMP = Linux + Apache + Mysql + PHP&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
+&lt;pre&gt;&lt;code&gt;    LAMP = Linux + Apache + Mysql + PHP
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -427,7 +435,6 @@ The size will always be positive and will only use whole numbers.&lt;/pre&gt;&lt
       
       <guid>https://blog.renyijiu.com/post/python%E5%AD%A6%E4%B9%A0-%E4%BA%8C-%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</guid>
       <description>&lt;h2 id=&#34;八皇后问题&#34;&gt;八皇后问题&lt;/h2&gt;
-
 &lt;p&gt;在8*8的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法？&lt;/p&gt;</description>
     </item>
     
@@ -464,7 +471,7 @@ The size will always be positive and will only use whole numbers.&lt;/pre&gt;&lt
       <pubDate>Sun, 05 Oct 2014 20:36:53 +0000</pubDate>
       
       <guid>https://blog.renyijiu.com/post/the-beginning/</guid>
-      <description>&lt;p&gt;这个博客有了大致的样子，对于这些框架和主题，我只是个使用者，(&lt;strong&gt;这是本博客使用参考的主题&lt;/strong&gt;&amp;mdash;-&lt;a href=&#34;https://github.com/daisygao/hexo-themes-cover&#34;&gt;daisygao的github&lt;/a&gt;,&lt;strong&gt;感谢下这些奉献的人&lt;/strong&gt;）但对于一个我这种对前端完全没有知识储备的小白也是一个艰难的过程。这几天的不断的百度，不断的谷歌&lt;strong&gt;（&lt;/strong&gt;这里不得不夸下&lt;strong&gt;google浏览器&lt;/strong&gt;，这真是浏览器的王者，使用体验非常好。顺带说下，翻墙真的太爽了，外面的世界很精彩&lt;strong&gt;）&lt;/strong&gt;，慢慢的也都有所了解了，也大致知道了自己后面需要做的。毕竟刚刚开始，后面自己会学着慢慢的增加一些功能。&lt;/p&gt;</description>
+      <description>&lt;p&gt;这个博客有了大致的样子，对于这些框架和主题，我只是个使用者，(&lt;strong&gt;这是本博客使用参考的主题&lt;/strong&gt;&amp;mdash;-&lt;a href=&#34;https://github.com/daisygao/hexo-themes-cover&#34;&gt;daisygao的github&lt;/a&gt;,&lt;strong&gt;感谢下这些奉献的人&lt;/strong&gt;）但对于一个我这种对前端完全没有知识储备的小白也是一个艰难的过程。这几天的不断的百度，不断的谷歌**（**这里不得不夸下**google浏览器**，这真是浏览器的王者，使用体验非常好。顺带说下，翻墙真的太爽了，外面的世界很精彩**）**，慢慢的也都有所了解了，也大致知道了自己后面需要做的。毕竟刚刚开始，后面自己会学着慢慢的增加一些功能。&lt;/p&gt;</description>
     </item>
     
   </channel>

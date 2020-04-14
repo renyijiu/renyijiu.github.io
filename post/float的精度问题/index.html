@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="最近在写测试时，某一个数据随机生成了一个很大的值，然后跑测试发现一直不过，后面仔细排查发现数据存入数据库前与读取出来的值不一致，最后确定应该是对应数据类型设置为Float导致精度不准的问题，这里回顾下float的精度问题。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" />
-<meta property="article:published_time" content="2018-05-22T17:40:53&#43;08:00"/>
-<meta property="article:modified_time" content="2018-05-22T17:40:53&#43;08:00"/>
-
+<meta property="article:published_time" content="2018-05-22T17:40:53+08:00" />
+<meta property="article:modified_time" content="2018-05-22T17:40:53+08:00" />
 <meta itemprop="name" content="Float的精度问题">
 <meta itemprop="description" content="最近在写测试时，某一个数据随机生成了一个很大的值，然后跑测试发现一直不过，后面仔细排查发现数据存入数据库前与读取出来的值不一致，最后确定应该是对应数据类型设置为Float导致精度不准的问题，这里回顾下float的精度问题。">
-
-
 <meta itemprop="datePublished" content="2018-05-22T17:40:53&#43;08:00" />
 <meta itemprop="dateModified" content="2018-05-22T17:40:53&#43;08:00" />
 <meta itemprop="wordCount" content="1023">
 
 
 
-<meta itemprop="keywords" content="ruby," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="ruby," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Float的精度问题"/>
 <meta name="twitter:description" content="最近在写测试时，某一个数据随机生成了一个很大的值，然后跑测试发现一直不过，后面仔细排查发现数据存入数据库前与读取出来的值不一致，最后确定应该是对应数据类型设置为Float导致精度不准的问题，这里回顾下float的精度问题。"/>
 
@@ -137,82 +134,59 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#范围">范围</a></li>
-<li><a href="#精度">精度</a></li>
-<li><a href="#总结">总结</a></li>
-<li><a href="#参考资料">参考资料</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#范围">范围</a></li>
+        <li><a href="#精度">精度</a></li>
+        <li><a href="#总结">总结</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>最近在写测试时，某一个数据随机生成了一个很大的值，然后跑测试发现一直不过，后面仔细排查发现数据存入数据库前与读取出来的值不一致，最后确定应该是对应数据类型设置为Float导致精度不准的问题，这里回顾下float的精度问题。</p>
-
 <p>ruby中的float精度不准确这个应该是很容易了解的，官方文档中开头位置的就有说明。不过自己脑中一直认为小数为0的浮点数应该是准确的，这次的问题让自己明白了这个想法的错误。</p>
-
 <blockquote>
 <p><a href="https://ruby-doc.org/core-2.3.1/Float.html">Float</a> objects represent inexact real numbers using the native architecture&rsquo;s double-precision floating point representation.</p>
 </blockquote>
-
 <p>双精度浮点数(double)使用64位（8字节）来存储一个浮点数。64位又可以分为三个部分：</p>
-
 <ul>
 <li>符号位S：第一位是正负数符号位（sign），0代表正数，1代表负数。</li>
 <li>指数位E：中间的11位数存储指数（exponent），用来表示次方。</li>
 <li>尾数位M：最后的52位是尾数（mantissa）。</li>
 </ul>
-
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/General_double_precision_float.png" alt="" /></p>
-
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/General_double_precision_float.png" alt=""></p>
 <h3 id="范围">范围</h3>
-
 <p>单精度（32位）和双精度（64位）的范围是由指数的位数来决定的。分布如下：</p>
-
 <p>单精度：1bit（符号位）    8bits（指数位）    23bits（尾数位）</p>
-
 <p>双精度：1bit（符号位）    11bits（指数位）    52bits（尾数位）</p>
-
 <p>科学计数法中的指数也可以为负数，一种方法是指数位部分也设置一个符号位，第二种是IEEE754采取的方式，设置一个偏移，使指数部分永远表现为一个非负数，然后减去某个偏移值才是真实的指数。</p>
-
 <p>64bits浮点数设置的偏移值为1023，即范围为-2^1024 ~ +2^1024，也就是-1.79E+308 ~ +1.79E+308。</p>
-
 <p>单精度的范围为-2^128 ~ +2^128，即-3.40E+38 ~ +3.40E+38。</p>
-
 <h3 id="精度">精度</h3>
-
 <p>浮点数的精度是由尾数部分控制的。对于二进制的科学计数法，整数部分默认是1，默认不占用位置，因此尾数部分就存储了小数点后面的部分。</p>
-
 <p>单精度：2^23 = 8388608，一共七位，这意味着最多能有7位有效数字，但绝对能保证的为6位，也就是单精度浮点数为6~7位有效数字。</p>
-
 <p>双精度：2^52 = 4503599627370496，一共16位，同理，双精度浮点数的有效数字为15~16位。</p>
-
 <p>当数字超过对应的有效数字位数时就会出现一定的偏差。</p>
-
 <h3 id="总结">总结</h3>
-
 <ul>
 <li>指数和尾数的长度有限制，即对应的浮点数大小及精度有限制。</li>
 <li>符号位决定正负，指数域决定数量级，尾数域决定精度。</li>
 </ul>
-
 <p>这里写的比较简单，主要是为了解决自己的疑惑（浮点数对应的精度问题），有兴趣的可以看看下面的两篇参考资料，写的比较详细，更加的深入，感觉不错！</p>
-
 <h3 id="参考资料">参考资料</h3>
-
 <ul>
 <li><a href="https://segmentfault.com/a/1190000009084877">该死的IEEE-754浮点数</a></li>
 <li><a href="https://github.com/camsong/blog/issues/9">JavaScript 浮点数陷阱及解法</a></li>
 </ul>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -222,7 +196,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -245,14 +219,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -275,12 +247,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -295,9 +265,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -309,6 +282,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

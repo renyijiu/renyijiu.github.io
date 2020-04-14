@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/java%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2/" />
@@ -34,7 +34,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -42,21 +43,17 @@
 <meta property="og:description" content="Java中字符串的正则替换" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/java%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2/" />
-<meta property="article:published_time" content="2019-08-26T16:40:13&#43;08:00"/>
-<meta property="article:modified_time" content="2019-08-26T16:40:13&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-08-26T16:40:13+08:00" />
+<meta property="article:modified_time" content="2019-08-26T16:40:13+08:00" />
 <meta itemprop="name" content="Java中字符串的正则替换">
 <meta itemprop="description" content="Java中字符串的正则替换">
-
-
 <meta itemprop="datePublished" content="2019-08-26T16:40:13&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-26T16:40:13&#43;08:00" />
 <meta itemprop="wordCount" content="1117">
 
 
 
-<meta itemprop="keywords" content="Java,正则表达式," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Java,正则表达式," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中字符串的正则替换"/>
 <meta name="twitter:description" content="Java中字符串的正则替换"/>
 
@@ -135,11 +132,10 @@
     
     <div class="post-content">
       <p>最近有个需求中间过程比较复杂，再三考虑决定使用正则表达式替换逻辑去简化复杂度，但是在处理的过程中发现正则表达式全局替换特定匹配组并没有很好的现成方法，所以记录下自己的解决方案。</p>
-
 <h2 id="问题描述">问题描述</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -147,31 +143,28 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-json" data-lang="json"><span class="p">[</span>
-  <span class="p">{</span><span class="nt">&#34;category&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="nt">&#34;relation&#34;</span><span class="p">:</span> <span class="s2">&#34;不等于&#34;</span><span class="p">,</span><span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
-  <span class="p">{</span><span class="nt">&#34;category&#34;</span><span class="p">:</span> <span class="s2">&#34;ruby&#34;</span><span class="p">,</span> <span class="nt">&#34;pattern_id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nt">&#34;relation&#34;</span><span class="p">:</span> <span class="s2">&#34;不缺失&#34;</span><span class="p">,</span> <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+  <span class="p">{</span><span class="nt">&#34;category&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="nt">&#34;relation&#34;</span><span class="p">:</span> <span class="s2">&#34;不等于&#34;</span><span class="p">,</span><span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span><span class="p">,</span>
+  <span class="p">{</span><span class="nt">&#34;category&#34;</span><span class="p">:</span> <span class="s2">&#34;ruby&#34;</span><span class="p">,</span> <span class="nt">&#34;pattern_id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nt">&#34;relation&#34;</span><span class="p">:</span> <span class="s2">&#34;不缺失&#34;</span><span class="p">,</span> <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span><span class="p">,</span>
   <span class="p">{</span><span class="nt">&#34;category&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span><span class="nt">&#34;card_id&#34;</span><span class="p">:</span> <span class="mi">66</span><span class="p">,</span><span class="nt">&#34;relation&#34;</span><span class="p">:</span> <span class="s2">&#34;缺失&#34;</span><span class="p">,</span><span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="nt">&#34;card_version&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-<span class="p">]</span></code></pre></td></tr></table>
+<span class="p">]</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>存在一个格式类似于上面示例的json字符串模块数据，由于实际json的格式存在层级嵌套，所需的数据存在于最深的层级，另一个嵌套中还存在多种类型的数据，每类数据格式之间的细微差别导致难以进行统一读取处理，综合考虑使用正则表达式进行处理。通过编写正则表达式，全局提取出符合要求格式中的ID值数据，使用对应的数据进行替换。</p>
-
+</div><p>存在一个格式类似于上面示例的json字符串模块数据，由于实际json的格式存在层级嵌套，所需的数据存在于最深的层级，另一个嵌套中还存在多种类型的数据，每类数据格式之间的细微差别导致难以进行统一读取处理，综合考虑使用正则表达式进行处理。通过编写正则表达式，全局提取出符合要求格式中的ID值数据，使用对应的数据进行替换。</p>
 <h2 id="解决方案">解决方案</h2>
-
 <p>考虑为每一个类型编写一个正则表达式，分离正则表达式的复杂度，其中一个类型示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">REG</span> <span class="o">=</span> <span class="s">&#34;\\{.*?[\&#34;&#39;]category[\&#34;&#39;]:\\s*[\&#34;&#39;]%s[\&#34;&#39;][^\\}\\]]*?[\&#34;&#39;]id[\&#34;&#39;]:\\s*(%s).*?\\}&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">REG</span> <span class="o">=</span> <span class="s">&#34;\\{.*?[\&#34;&#39;]category[\&#34;&#39;]:\\s*[\&#34;&#39;]%s[\&#34;&#39;][^\\}\\]]*?[\&#34;&#39;]id[\&#34;&#39;]:\\s*(%s).*?\\}&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这是个正则模版，<code>category</code>和<code>id</code>数据是通过<code>String.format</code>进行传递的，正则的内容就是匹配符合要求类型以及ID的字符串，提取出对应的ID数据，方便进行后续的替换操作。</p>
-
+</div><p>这是个正则模版，<code>category</code>和<code>id</code>数据是通过<code>String.format</code>进行传递的，正则的内容就是匹配符合要求类型以及ID的字符串，提取出对应的ID数据，方便进行后续的替换操作。</p>
 <p>另外由于需求上需要记录替换字符串的位置方便后续的逻辑操作，这个要求也就排除了自带提供的<code>replaceAll(String regex, String replacement)</code>方法，因为我们无法通过这个方法获取到替换的位置。然后网络上搜索了一下，也没有现成方法去全局的搜索替换特定的匹配组数据，所以就需要自己写一个方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -201,28 +194,27 @@
 </span><span class="cm">* @return: replaced string
 </span><span class="cm">*/</span>
 <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">replaceMatchId</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="n">String</span> <span class="n">source</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">compareMap</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">StringBuilder</span> <span class="n">stringBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">source</span><span class="o">);</span>
-  <span class="n">Matcher</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="n">regex</span><span class="o">).</span><span class="na">matcher</span><span class="o">(</span><span class="n">source</span><span class="o">);</span>
-  <span class="k">while</span> <span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">find</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;string group: {}, start: {}, end: {}&#34;</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">),</span> <span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">1</span><span class="o">),</span> <span class="n">m</span><span class="o">.</span><span class="na">end</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
+  <span class="n">StringBuilder</span> <span class="n">stringBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">source</span><span class="o">)</span><span class="o">;</span>
+  <span class="n">Matcher</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="n">regex</span><span class="o">)</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">source</span><span class="o">)</span><span class="o">;</span>
+  <span class="k">while</span> <span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;string group: {}, start: {}, end: {}&#34;</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">end</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 
-    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">))</span> <span class="o">||</span> <span class="s">&#34;null&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">)))</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span> <span class="o">|</span><span class="o">|</span> <span class="s">&#34;null&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">)</span> <span class="o">{</span>
       <span class="k">continue</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="n">Integer</span> <span class="n">id</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
-    <span class="n">Integer</span> <span class="n">newId</span> <span class="o">=</span> <span class="o">(</span><span class="n">compareMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">id</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">id</span> <span class="o">:</span> <span class="n">compareMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-    <span class="n">stringBuilder</span> <span class="o">=</span> <span class="n">stringBuilder</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">1</span><span class="o">),</span> <span class="n">m</span><span class="o">.</span><span class="na">end</span><span class="o">(</span><span class="n">1</span><span class="o">),</span> <span class="n">newId</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="n">Integer</span> <span class="n">id</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+    <span class="n">Integer</span> <span class="n">newId</span> <span class="o">=</span> <span class="o">(</span><span class="n">compareMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">id</span><span class="o">)</span> <span class="o">=</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">id</span> <span class="o">:</span> <span class="n">compareMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">id</span><span class="o">)</span><span class="o">;</span>
+    <span class="n">stringBuilder</span> <span class="o">=</span> <span class="n">stringBuilder</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">end</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">,</span> <span class="n">newId</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
   <span class="o">}</span>
-  <span class="k">return</span> <span class="n">stringBuilder</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="k">return</span> <span class="n">stringBuilder</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>方法的大致逻辑就是，正则匹配获取各个匹配项，循环去替换对应匹配位置的id数据（忽略了记录位置的逻辑）。这个方法一定情况下是可以正确运行的，但是当一次测试时，原有ID与替换ID的位数不一致，例如<code>{100 -&gt; 10001}</code>时，问题就出来了。在第一次替换完成后，由于位数的不一致，导致字符串的位置发生了偏移，导致了后续的数据替换产生了错误。因为在原来位置的数据偏移后并不是我们原来提取的id数据，直接替换后会产生各种问题，最直接的就是无法正确的反序列化成json格式数据，产生报错。</p>
-
+</div><p>方法的大致逻辑就是，正则匹配获取各个匹配项，循环去替换对应匹配位置的id数据（忽略了记录位置的逻辑）。这个方法一定情况下是可以正确运行的，但是当一次测试时，原有ID与替换ID的位数不一致，例如<code>{100 -&gt; 10001}</code>时，问题就出来了。在第一次替换完成后，由于位数的不一致，导致字符串的位置发生了偏移，导致了后续的数据替换产生了错误。因为在原来位置的数据偏移后并不是我们原来提取的id数据，直接替换后会产生各种问题，最直接的就是无法正确的反序列化成json格式数据，产生报错。</p>
 <p>所以这个方法是无法使用的，修改逻辑，代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -236,26 +228,25 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">String</span> <span class="nf">replaceAll</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="n">String</span> <span class="n">source</span><span class="o">,</span> <span class="kt">int</span> <span class="n">groupToReplace</span><span class="o">,</span> <span class="n">String</span> <span class="n">replacement</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">StringBuffer</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
-  <span class="n">Matcher</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="n">regex</span><span class="o">).</span><span class="na">matcher</span><span class="o">(</span><span class="n">source</span><span class="o">);</span>
-  <span class="k">while</span> <span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">find</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">StringBuilder</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">());</span>
-    <span class="n">buf</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">groupToReplace</span><span class="o">)</span> <span class="o">-</span> <span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(),</span> <span class="n">m</span><span class="o">.</span><span class="na">end</span><span class="o">(</span><span class="n">groupToReplace</span><span class="o">)</span> <span class="o">-</span> <span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(),</span> <span class="n">replacement</span><span class="o">);</span>
-    <span class="n">m</span><span class="o">.</span><span class="na">appendReplacement</span><span class="o">(</span><span class="n">sb</span><span class="o">,</span> <span class="n">buf</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+  <span class="n">StringBuffer</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+  <span class="n">Matcher</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="n">regex</span><span class="o">)</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">source</span><span class="o">)</span><span class="o">;</span>
+  <span class="k">while</span> <span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">StringBuilder</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+    <span class="n">buf</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">groupToReplace</span><span class="o">)</span> <span class="o">-</span> <span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="o">)</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">end</span><span class="o">(</span><span class="n">groupToReplace</span><span class="o">)</span> <span class="o">-</span> <span class="n">m</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="o">)</span><span class="o">,</span> <span class="n">replacement</span><span class="o">)</span><span class="o">;</span>
+    <span class="n">m</span><span class="o">.</span><span class="na">appendReplacement</span><span class="o">(</span><span class="n">sb</span><span class="o">,</span> <span class="n">buf</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
   <span class="o">}</span>
-  <span class="n">m</span><span class="o">.</span><span class="na">appendTail</span><span class="o">(</span><span class="n">sb</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="n">m</span><span class="o">.</span><span class="na">appendTail</span><span class="o">(</span><span class="n">sb</span><span class="o">)</span><span class="o">;</span>
+  <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>通过字符串的拼接操作替代原有的直接替换对应位置数据的逻辑，这样子即可。</p>
-
+</div><p>通过字符串的拼接操作替代原有的直接替换对应位置数据的逻辑，这样子即可。</p>
 <h2 id="总结">总结</h2>
-
 <p>考虑问题还是需要多思考边界的正确性，这样才能保证程序的健壮性。</p>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -265,7 +256,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -289,14 +280,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -319,12 +308,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -339,9 +326,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -353,6 +343,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

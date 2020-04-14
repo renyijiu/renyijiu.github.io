@@ -3,44 +3,51 @@
   
   <url>
     <loc>https://blog.renyijiu.com/</loc>
-    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-04-14T14:27:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/</loc>
-    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-04-14T14:27:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/character/</loc>
-    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/categories/java/</loc>
+    <lastmod>2020-04-14T14:27:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/categories/java%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/tags/java/</loc>
+    <lastmod>2020-04-14T14:27:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/java%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2020-04-14T14:27:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/post/</loc>
-    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-04-14T14:27:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/</loc>
-    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-04-14T14:27:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -51,9 +58,24 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/long/</loc>
-    <lastmod>2019-09-30T15:06:52+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/tags/character/</loc>
+    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/categories/java%E6%BA%90%E7%A0%81/</loc>
+    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/java%E6%BA%90%E7%A0%81/</loc>
+    <lastmod>2019-11-10T17:04:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -64,9 +86,10 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/short/</loc>
-    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/tags/long/</loc>
+    <lastmod>2019-09-30T15:06:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -77,9 +100,10 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/integer/</loc>
-    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/tags/short/</loc>
+    <lastmod>2019-09-10T18:50:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -90,9 +114,10 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/double/</loc>
-    <lastmod>2019-08-30T11:02:48+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/tags/integer/</loc>
+    <lastmod>2019-09-02T11:06:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -103,9 +128,10 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/float/</loc>
-    <lastmod>2019-08-27T11:35:06+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/tags/double/</loc>
+    <lastmod>2019-08-30T11:02:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -116,15 +142,10 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/categories/java/</loc>
-    <lastmod>2019-08-26T16:40:13+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/tags/java/</loc>
-    <lastmod>2019-08-26T16:40:13+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.renyijiu.com/tags/float/</loc>
+    <lastmod>2019-08-27T11:35:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -137,7 +158,8 @@
   <url>
     <loc>https://blog.renyijiu.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
     <lastmod>2019-08-26T16:40:13+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -148,19 +170,21 @@
   </url>
   
   <url>
+    <loc>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81boolean/</loc>
+    <lastmod>2019-08-20T16:37:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/tags/boolean/</loc>
     <lastmod>2019-08-20T16:37:12+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/java%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2019-08-20T16:37:12+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81boolean/</loc>
     <lastmod>2019-08-20T16:37:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -176,13 +200,15 @@
   <url>
     <loc>https://blog.renyijiu.com/tags/excel/</loc>
     <lastmod>2019-08-18T20:30:10+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/spring-boot/</loc>
     <lastmod>2019-08-18T20:30:10+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -200,7 +226,7 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/post/go%E6%8C%87%E5%8D%97%E7%BB%83%E4%B9%A0%E9%A2%98/</loc>
+    <loc>https://blog.renyijiu.com/tags/go/</loc>
     <lastmod>2019-03-24T21:14:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -209,29 +235,33 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/go/</loc>
     <lastmod>2019-03-24T21:14:03+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/go/</loc>
+    <loc>https://blog.renyijiu.com/post/go%E6%8C%87%E5%8D%97%E7%BB%83%E4%B9%A0%E9%A2%98/</loc>
     <lastmod>2019-03-24T21:14:03+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/dup%E5%92%8Cclone%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2019-01-08T16:21:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/rails/</loc>
     <lastmod>2019-01-08T16:21:39+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/rails/</loc>
-    <lastmod>2019-01-08T16:21:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/post/dup%E5%92%8Cclone%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     <lastmod>2019-01-08T16:21:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -247,35 +277,26 @@
   <url>
     <loc>https://blog.renyijiu.com/tags/%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2019-01-04T17:54:50+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2019-01-04T17:54:50+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2019-01-04T17:54:50+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/gui/</loc>
-    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/tags/ruby/</loc>
-    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.renyijiu.com/post/ruby%E7%9A%84gui%E7%BC%96%E7%A8%8B%E5%B0%9D%E8%AF%95/</loc>
     <lastmod>2018-12-16T19:54:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -284,7 +305,22 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/ruby/</loc>
     <lastmod>2018-12-16T19:54:22+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/tags/ruby/</loc>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.renyijiu.com/post/ruby%E7%9A%84gui%E7%BC%96%E7%A8%8B%E5%B0%9D%E8%AF%95/</loc>
+    <lastmod>2018-12-16T19:54:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -297,7 +333,8 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/%E6%97%A5%E5%B8%B8%E8%B8%A9%E5%9D%91/</loc>
     <lastmod>2018-12-13T11:56:48+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -324,7 +361,8 @@
   <url>
     <loc>https://blog.renyijiu.com/tags/%E6%97%A5%E5%B8%B8%E8%B8%A9%E5%9D%91/</loc>
     <lastmod>2018-12-05T09:21:07+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -337,13 +375,15 @@
   <url>
     <loc>https://blog.renyijiu.com/tags/test/</loc>
     <lastmod>2018-08-24T09:58:12+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/tags/hash/</loc>
     <lastmod>2018-08-01T16:40:58+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -356,7 +396,8 @@
   <url>
     <loc>https://blog.renyijiu.com/tags/rake/</loc>
     <lastmod>2018-07-21T17:47:53+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -388,6 +429,13 @@
   </url>
   
   <url>
+    <loc>https://blog.renyijiu.com/tags/stimulus/</loc>
+    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.renyijiu.com/post/stimulus%E8%B8%A9%E5%9D%91%E8%AE%B0/</loc>
     <lastmod>2018-03-31T11:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -395,15 +443,10 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/stimulus/</loc>
-    <lastmod>2018-03-31T11:14:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.renyijiu.com/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2018-03-31T11:14:00+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -449,22 +492,24 @@
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/post/codewars-stringy-strings/</loc>
+    <loc>https://blog.renyijiu.com/categories/codewars/</loc>
     <lastmod>2018-01-14T21:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/categories/codewars/</loc>
+    <loc>https://blog.renyijiu.com/tags/codewars/</loc>
     <lastmod>2018-01-14T21:01:23+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://blog.renyijiu.com/tags/codewars/</loc>
+    <loc>https://blog.renyijiu.com/post/codewars-stringy-strings/</loc>
     <lastmod>2018-01-14T21:01:23+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -477,13 +522,15 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/%E6%80%9D%E8%80%83/</loc>
     <lastmod>2018-01-14T21:02:51+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/javascript/</loc>
     <lastmod>2018-01-14T20:54:12+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -531,13 +578,15 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2018-01-14T20:25:00+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blog.renyijiu.com/categories/ubuntu/</loc>
     <lastmod>2018-01-14T20:58:38+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -550,7 +599,8 @@
   <url>
     <loc>https://blog.renyijiu.com/categories/python/</loc>
     <lastmod>2018-01-14T20:56:37+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>

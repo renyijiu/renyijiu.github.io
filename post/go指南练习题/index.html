@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/go%E6%8C%87%E5%8D%97%E7%BB%83%E4%B9%A0%E9%A2%98/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="这是自己在学习Go 指南时其中的练习题，自己编写的代码。若有问题，欢迎指正。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/go%E6%8C%87%E5%8D%97%E7%BB%83%E4%B9%A0%E9%A2%98/" />
-<meta property="article:published_time" content="2019-03-24T21:14:03&#43;08:00"/>
-<meta property="article:modified_time" content="2019-03-24T21:14:03&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-03-24T21:14:03+08:00" />
+<meta property="article:modified_time" content="2019-03-24T21:14:03+08:00" />
 <meta itemprop="name" content="Go指南练习题">
 <meta itemprop="description" content="这是自己在学习Go 指南时其中的练习题，自己编写的代码。若有问题，欢迎指正。">
-
-
 <meta itemprop="datePublished" content="2019-03-24T21:14:03&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-24T21:14:03&#43;08:00" />
 <meta itemprop="wordCount" content="1605">
 
 
 
-<meta itemprop="keywords" content="go," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="go," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go指南练习题"/>
 <meta name="twitter:description" content="这是自己在学习Go 指南时其中的练习题，自己编写的代码。若有问题，欢迎指正。"/>
 
@@ -136,11 +133,10 @@
     
     <div class="post-content">
       <p>这是自己在学习<a href="http://go-tour-zh.appspot.com/list">Go 指南</a>时其中的练习题，自己编写的代码。若有问题，欢迎指正。</p>
-
-<h3 id="练习-循环和函数">练习：循环和函数</h3>
+<h3 id="练习循环和函数">练习：循环和函数</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -190,16 +186,16 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nf">Sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nf">Sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-slice">练习：slice</h3>
+</div><h3 id="练习slice">练习：slice</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -229,15 +225,15 @@
 
 <span class="kn">import</span> <span class="s">&#34;code.google.com/p/go-tour/pic&#34;</span>
 
-<span class="kd">func</span> <span class="nf">Pic</span><span class="p">(</span><span class="nx">dx</span><span class="p">,</span> <span class="nx">dy</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[][]</span><span class="kt">uint8</span> <span class="p">{</span>
-	<span class="nx">a</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">uint8</span><span class="p">,</span> <span class="nx">dy</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">Pic</span><span class="p">(</span><span class="nx">dx</span><span class="p">,</span> <span class="nx">dy</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[</span><span class="p">]</span><span class="p">[</span><span class="p">]</span><span class="kt">uint8</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="p">[</span><span class="p">]</span><span class="p">[</span><span class="p">]</span><span class="kt">uint8</span><span class="p">,</span> <span class="nx">dy</span><span class="p">)</span>
 
 	<span class="k">for</span> <span class="nx">y</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
-		<span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">uint8</span><span class="p">,</span> <span class="nx">dx</span><span class="p">)</span>
+		<span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="p">[</span><span class="p">]</span><span class="kt">uint8</span><span class="p">,</span> <span class="nx">dx</span><span class="p">)</span>
 
 		<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">b</span> <span class="p">{</span>
 
-			<span class="nx">b</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">=</span> <span class="nb">uint8</span><span class="p">((</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+			<span class="nx">b</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">=</span> <span class="nb">uint8</span><span class="p">(</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 		<span class="p">}</span>
 
 		<span class="nx">a</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span> <span class="p">=</span> <span class="nx">b</span>
@@ -246,15 +242,15 @@
 	<span class="k">return</span> <span class="nx">a</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">pic</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="nx">Pic</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-map">练习：map</h3>
+</div><h3 id="练习map">练习：map</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -293,15 +289,15 @@
 	<span class="k">return</span> <span class="nx">m</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">wc</span><span class="p">.</span><span class="nf">Test</span><span class="p">(</span><span class="nx">WordCount</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-斐波纳契闭包">练习：斐波纳契闭包</h3>
+</div><h3 id="练习斐波纳契闭包">练习：斐波纳契闭包</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -330,10 +326,10 @@
 <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
 
 <span class="c1">// fibonacci 函数会返回一个返回 int 的函数
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">fibonacci</span><span class="p">()</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="p">)</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 
-	<span class="k">return</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 		<span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="p">=</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="o">+</span><span class="nx">y</span>
 
 		<span class="k">return</span> <span class="nx">x</span>
@@ -341,18 +337,18 @@
 
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">f</span> <span class="o">:=</span> <span class="nf">fibonacci</span><span class="p">()</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">f</span> <span class="o">:=</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="p">)</span>
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">f</span><span class="p">())</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-stringers">练习：Stringers</h3>
+</div><h3 id="练习stringers">练习：Stringers</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -379,25 +375,25 @@
 
 <span class="kd">type</span> <span class="nx">IPAddr</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="kt">byte</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">IPAddr</span><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%v.%v.%v.%v\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nx">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">v</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">IPAddr</span><span class="p">)</span> <span class="nf">String</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%v.%v.%v.%v\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="nx">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="nx">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">,</span> <span class="nx">v</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">addrs</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">IPAddr</span><span class="p">{</span>
-		<span class="s">&#34;loopback&#34;</span><span class="p">:</span>  <span class="p">{</span><span class="mi">127</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span>
-		<span class="s">&#34;googleDNS&#34;</span><span class="p">:</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">},</span>
+		<span class="s">&#34;loopback&#34;</span><span class="p">:</span>  <span class="p">{</span><span class="mi">127</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span><span class="p">,</span>
+		<span class="s">&#34;googleDNS&#34;</span><span class="p">:</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span><span class="p">,</span>
 	<span class="p">}</span>
 	<span class="k">for</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">a</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">addrs</span> <span class="p">{</span>
 		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%v: %v\n&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-错误">练习：错误</h3>
+</div><h3 id="练习错误">练习：错误</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -446,8 +442,8 @@
 
 <span class="kd">type</span> <span class="nx">ErrNegativeSqrt</span> <span class="kt">float64</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="nx">ErrNegativeSqrt</span><span class="p">)</span> <span class="nf">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;cannot Sqrt negative number: %v&#34;</span><span class="p">,</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="nx">ErrNegativeSqrt</span><span class="p">)</span> <span class="nf">Error</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;cannot Sqrt negative number: %v&#34;</span><span class="p">,</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">Sqrt</span><span class="p">(</span><span class="nx">x</span> <span class="kt">float64</span><span class="p">)</span> <span class="p">(</span><span class="kt">float64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
@@ -471,16 +467,16 @@
 
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">Sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-reader">练习：Reader</h3>
+</div><h3 id="练习reader">练习：Reader</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -505,27 +501,27 @@
 
 <span class="kn">import</span> <span class="s">&#34;golang.org/x/tour/reader&#34;</span>
 
-<span class="kd">type</span> <span class="nx">MyReader</span> <span class="kd">struct</span><span class="p">{}</span>
+<span class="kd">type</span> <span class="nx">MyReader</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span>
 
 <span class="c1">// TODO: 给 MyReader 添加一个 Read([]byte) (int, error) 方法
 </span><span class="c1"></span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">MyReader</span><span class="p">)</span> <span class="nf">Read</span><span class="p">(</span><span class="nx">b</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">MyReader</span><span class="p">)</span> <span class="nf">Read</span><span class="p">(</span><span class="nx">b</span> <span class="p">[</span><span class="p">]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">b</span> <span class="p">{</span>
 		<span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="sc">&#39;A&#39;</span>
 	<span class="p">}</span>
 
-	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">),</span> <span class="kc">nil</span>
+	<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span><span class="p">,</span> <span class="kc">nil</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">reader</span><span class="p">.</span><span class="nf">Validate</span><span class="p">(</span><span class="nx">MyReader</span><span class="p">{})</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">reader</span><span class="p">.</span><span class="nf">Validate</span><span class="p">(</span><span class="nx">MyReader</span><span class="p">{</span><span class="p">}</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-rot13reader">练习：rot13Reader</h3>
+</div><h3 id="练习rot13reader">练习：rot13Reader</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -582,11 +578,11 @@
 	<span class="nx">r</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="nx">rot13Reader</span><span class="p">)</span> <span class="nf">Read</span><span class="p">(</span><span class="nx">b</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="nx">rot13Reader</span><span class="p">)</span> <span class="nf">Read</span><span class="p">(</span><span class="nx">b</span> <span class="p">[</span><span class="p">]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">length</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">r</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
 
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">b</span> <span class="p">{</span>
-		<span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nf">rot13</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+		<span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nf">rot13</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span>
 	<span class="p">}</span>
 
 	<span class="k">return</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">err</span>
@@ -608,17 +604,17 @@
 
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">s</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="s">&#34;Lbh penpxrq gur pbqr!&#34;</span><span class="p">)</span>
 	<span class="nx">r</span> <span class="o">:=</span> <span class="nx">rot13Reader</span><span class="p">{</span><span class="nx">s</span><span class="p">}</span>
 	<span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">r</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-http处理">练习：HTTP处理</h3>
+</div><h3 id="练习http处理">练习：HTTP处理</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -683,19 +679,19 @@
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Greeting</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Punct</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Who</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="c1">// your http.Handle calls here
-</span><span class="c1"></span>	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/string&#34;</span><span class="p">,</span> <span class="nf">String</span><span class="p">(</span><span class="s">&#34;I&#39;m a frayed knot.&#34;</span><span class="p">))</span>
-	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/struct&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">Struct</span><span class="p">{</span><span class="s">&#34;Hello&#34;</span><span class="p">,</span> <span class="s">&#34;:&#34;</span><span class="p">,</span> <span class="s">&#34;Gophers!&#34;</span><span class="p">})</span>
+</span><span class="c1"></span>	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/string&#34;</span><span class="p">,</span> <span class="nf">String</span><span class="p">(</span><span class="s">&#34;I&#39;m a frayed knot.&#34;</span><span class="p">)</span><span class="p">)</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/struct&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">Struct</span><span class="p">{</span><span class="s">&#34;Hello&#34;</span><span class="p">,</span> <span class="s">&#34;:&#34;</span><span class="p">,</span> <span class="s">&#34;Gophers!&#34;</span><span class="p">}</span><span class="p">)</span>
 
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:4000&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
-<span class="p">}</span></code></pre></td></tr></table>
+	<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;localhost:4000&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-图片">练习：图片</h3>
+</div><h3 id="练习图片">练习：图片</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -739,28 +735,28 @@
 	<span class="nx">Height</span> <span class="kt">int</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="nx">Image</span><span class="p">)</span> <span class="nf">ColorModel</span><span class="p">()</span> <span class="nx">color</span><span class="p">.</span><span class="nx">Model</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="nx">Image</span><span class="p">)</span> <span class="nf">ColorModel</span><span class="p">(</span><span class="p">)</span> <span class="nx">color</span><span class="p">.</span><span class="nx">Model</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">color</span><span class="p">.</span><span class="nx">RGBAModel</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="nx">Image</span><span class="p">)</span> <span class="nf">Bounds</span><span class="p">()</span> <span class="nx">image</span><span class="p">.</span><span class="nx">Rectangle</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="nx">Image</span><span class="p">)</span> <span class="nf">Bounds</span><span class="p">(</span><span class="p">)</span> <span class="nx">image</span><span class="p">.</span><span class="nx">Rectangle</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">image</span><span class="p">.</span><span class="nf">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Width</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Height</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="nx">Image</span><span class="p">)</span> <span class="nf">At</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">color</span><span class="p">.</span><span class="nx">Color</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nx">color</span><span class="p">.</span><span class="nx">RGBA</span><span class="p">{</span><span class="nb">uint8</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span> <span class="nb">uint8</span><span class="p">(</span><span class="nx">y</span><span class="p">),</span> <span class="nb">uint8</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span> <span class="nb">uint8</span><span class="p">(</span><span class="mi">255</span><span class="p">)}</span>
+	<span class="k">return</span> <span class="nx">color</span><span class="p">.</span><span class="nx">RGBA</span><span class="p">{</span><span class="nb">uint8</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="p">,</span> <span class="nb">uint8</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span><span class="p">,</span> <span class="nb">uint8</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="p">,</span> <span class="nb">uint8</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">m</span> <span class="o">:=</span> <span class="nx">Image</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">}</span>
 	<span class="nx">pic</span><span class="p">.</span><span class="nf">ShowImage</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-等价二叉树">练习：等价二叉树</h3>
+</div><h3 id="练习等价二叉树">练习：等价二叉树</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -854,20 +850,20 @@
 	<span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">t1</span> <span class="o">:=</span> <span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 	<span class="nx">t2</span> <span class="o">:=</span> <span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 	<span class="nx">t3</span> <span class="o">:=</span> <span class="nx">tree</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">IsSame</span><span class="p">(</span><span class="nx">t1</span><span class="p">,</span> <span class="nx">t2</span><span class="p">))</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">IsSame</span><span class="p">(</span><span class="nx">t1</span><span class="p">,</span> <span class="nx">t3</span><span class="p">))</span>
-<span class="p">}</span></code></pre></td></tr></table>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">IsSame</span><span class="p">(</span><span class="nx">t1</span><span class="p">,</span> <span class="nx">t2</span><span class="p">)</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">IsSame</span><span class="p">(</span><span class="nx">t1</span><span class="p">,</span> <span class="nx">t3</span><span class="p">)</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="练习-web爬虫">练习：Web爬虫</h3>
+</div><h3 id="练习web爬虫">练习：Web爬虫</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -1004,15 +1000,15 @@
 <span class="kd">var</span> <span class="nx">urlCounter</span> <span class="nx">UrlCounter</span>
 
 <span class="kd">func</span> <span class="nf">SetValue</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">count</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
-	<span class="k">defer</span> <span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+	<span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
+	<span class="k">defer</span> <span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span>
 
 	<span class="nx">urlCounter</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">count</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">HasRead</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-	<span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
-	<span class="k">defer</span> <span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+	<span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
+	<span class="k">defer</span> <span class="nx">urlCounter</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span>
 
 	<span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">urlCounter</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span>
 	<span class="k">return</span> <span class="nx">ok</span>
@@ -1020,7 +1016,7 @@
 
 <span class="kd">type</span> <span class="nx">Fetcher</span> <span class="kd">interface</span> <span class="p">{</span>
 	<span class="c1">// Fetch 返回 URL 的 body 内容，并且将在这个页面上找到的 URL 放到一个 slice 中。
-</span><span class="c1"></span>	<span class="nf">Fetch</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">body</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">urls</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</span><span class="c1"></span>	<span class="nf">Fetch</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">body</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">urls</span> <span class="p">[</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1">// Crawl 使用 fetcher 从某个 URL 开始递归的爬取页面，直到达到最大深度。
@@ -1047,7 +1043,7 @@
 		<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 			<span class="nf">Crawl</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">depth</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">)</span>
 			<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
-		<span class="p">}(</span><span class="nx">u</span><span class="p">)</span>
+		<span class="p">}</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span>
 	<span class="p">}</span>
 
 	<span class="k">for</span> <span class="k">range</span> <span class="nx">urls</span> <span class="p">{</span>
@@ -1056,8 +1052,8 @@
 	<span class="k">return</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">urlCounter</span> <span class="p">=</span> <span class="nx">UrlCounter</span><span class="p">{</span><span class="nx">list</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)}</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">urlCounter</span> <span class="p">=</span> <span class="nx">UrlCounter</span><span class="p">{</span><span class="nx">list</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="p">}</span>
 	<span class="nf">Crawl</span><span class="p">(</span><span class="s">&#34;http://golang.org/&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nx">fetcher</span><span class="p">)</span>
 <span class="p">}</span>
 
@@ -1066,11 +1062,11 @@
 
 <span class="kd">type</span> <span class="nx">fakeResult</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">body</span> <span class="kt">string</span>
-	<span class="nx">urls</span> <span class="p">[]</span><span class="kt">string</span>
+	<span class="nx">urls</span> <span class="p">[</span><span class="p">]</span><span class="kt">string</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">fakeFetcher</span><span class="p">)</span> <span class="nf">Fetch</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">[</span><span class="nx">url</span><span class="p">];</span> <span class="nx">ok</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">fakeFetcher</span><span class="p">)</span> <span class="nf">Fetch</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="p">[</span><span class="p">]</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span><span class="p">;</span> <span class="nx">ok</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">urls</span><span class="p">,</span> <span class="kc">nil</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;not found: %s&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
@@ -1080,40 +1076,42 @@
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">fetcher</span> <span class="p">=</span> <span class="nx">fakeFetcher</span><span class="p">{</span>
 	<span class="s">&#34;http://golang.org/&#34;</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">fakeResult</span><span class="p">{</span>
 		<span class="s">&#34;The Go Programming Language&#34;</span><span class="p">,</span>
-		<span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+		<span class="p">[</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
 			<span class="s">&#34;http://golang.org/pkg/&#34;</span><span class="p">,</span>
 			<span class="s">&#34;http://golang.org/cmd/&#34;</span><span class="p">,</span>
-		<span class="p">},</span>
-	<span class="p">},</span>
+		<span class="p">}</span><span class="p">,</span>
+	<span class="p">}</span><span class="p">,</span>
 	<span class="s">&#34;http://golang.org/pkg/&#34;</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">fakeResult</span><span class="p">{</span>
 		<span class="s">&#34;Packages&#34;</span><span class="p">,</span>
-		<span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+		<span class="p">[</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
 			<span class="s">&#34;http://golang.org/&#34;</span><span class="p">,</span>
 			<span class="s">&#34;http://golang.org/cmd/&#34;</span><span class="p">,</span>
 			<span class="s">&#34;http://golang.org/pkg/fmt/&#34;</span><span class="p">,</span>
 			<span class="s">&#34;http://golang.org/pkg/os/&#34;</span><span class="p">,</span>
-		<span class="p">},</span>
-	<span class="p">},</span>
+		<span class="p">}</span><span class="p">,</span>
+	<span class="p">}</span><span class="p">,</span>
 	<span class="s">&#34;http://golang.org/pkg/fmt/&#34;</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">fakeResult</span><span class="p">{</span>
 		<span class="s">&#34;Package fmt&#34;</span><span class="p">,</span>
-		<span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+		<span class="p">[</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
 			<span class="s">&#34;http://golang.org/&#34;</span><span class="p">,</span>
 			<span class="s">&#34;http://golang.org/pkg/&#34;</span><span class="p">,</span>
-		<span class="p">},</span>
-	<span class="p">},</span>
+		<span class="p">}</span><span class="p">,</span>
+	<span class="p">}</span><span class="p">,</span>
 	<span class="s">&#34;http://golang.org/pkg/os/&#34;</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">fakeResult</span><span class="p">{</span>
 		<span class="s">&#34;Package os&#34;</span><span class="p">,</span>
-		<span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+		<span class="p">[</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
 			<span class="s">&#34;http://golang.org/&#34;</span><span class="p">,</span>
 			<span class="s">&#34;http://golang.org/pkg/&#34;</span><span class="p">,</span>
-		<span class="p">},</span>
-	<span class="p">},</span>
-<span class="p">}</span></code></pre></td></tr></table>
+		<span class="p">}</span><span class="p">,</span>
+	<span class="p">}</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -1123,7 +1121,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -1147,6 +1145,7 @@
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -1169,12 +1168,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -1189,9 +1186,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -1203,6 +1203,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/node-js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
-<meta property="article:published_time" content="2017-04-05T11:15:35&#43;00:00"/>
-<meta property="article:modified_time" content="2018-01-14T20:54:12&#43;08:00"/>
-
+<meta property="article:published_time" content="2017-04-05T11:15:35+00:00" />
+<meta property="article:modified_time" content="2018-01-14T20:54:12+08:00" />
 <meta itemprop="name" content="Node Js开发指南 学习笔记">
 <meta itemprop="description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。">
-
-
 <meta itemprop="datePublished" content="2017-04-05T11:15:35&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-14T20:54:12&#43;08:00" />
 <meta itemprop="wordCount" content="731">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Node Js开发指南 学习笔记"/>
 <meta name="twitter:description" content="前面在看node.js开发指南学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。"/>
 
@@ -137,43 +134,23 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#运行">运行</a></li>
-<li><a href="#模板">模板</a></li>
-<li><a href="#报错信息">报错信息</a>
-<ul>
-<li>
-<ul>
-<li><a href="#1-typeerror">1. TypeError</a></li>
-<li><a href="#2-mongo-error">2. Mongo Error</a></li>
-<li><a href="#3-form">3. Form</a></li>
-<li><a href="#4-helpers">4. Helpers</a></li>
-<li><a href="#5-mongo-port">5. Mongo Port</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#结语">结语</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>前面在看<code>node.js开发指南</code>学习的时候，发现书中的版本比较旧了，一些代码在新的版本上存在一些不一致，会出现报错情况，下面是自己在跟随书本编写时遇到的一些问题及解决办法。</p>
-
 <h4 id="运行">运行</h4>
-
 <p>书中写的<code>npm app.js</code>，这个按照<code>express 4</code>的文档应该是<code>npm start</code>，另外在<code>package.json</code>中也有定义</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
@@ -183,53 +160,44 @@
   <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>所以也可以使用<code>node ./bin/www</code></p>
-
+</div><p>所以也可以使用<code>node ./bin/www</code></p>
 <h4 id="模板">模板</h4>
-
 <p>在<code>express 4</code>中<code>&lt;%- body %&gt;</code>这种模板直接使用会报错误，可以使用<code>&lt;%- include .... %&gt;</code>的方式，</p>
-
 <p>如果需要使用原来的方法，可以使用<code>express-ejs-layouts</code>这个包.</p>
-
 <h4 id="报错信息">报错信息</h4>
-
 <h6 id="1-typeerror">1. TypeError</h6>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">TypeError</span><span class="o">:</span> <span class="nx">Cannot</span> <span class="nx">read</span> <span class="nx">property</span> <span class="s1">&#39;Store&#39;</span> <span class="k">of</span> <span class="kc">undefined</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>如果遇到这个报错信息，可以使用下面的代码方式解决</p>
+</div><p>如果遇到这个报错信息，可以使用下面的代码方式解决</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">expressSession</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express-session&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">MongoStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;connect-mongo&#39;</span><span class="p">)(</span><span class="nx">expressSession</span><span class="p">);</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">expressSession</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express-session&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">MongoStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;connect-mongo&#39;</span><span class="p">)</span><span class="p">(</span><span class="nx">expressSession</span><span class="p">)</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h6 id="2-mongo-error">2. Mongo Error</h6>
+</div><h6 id="2-mongo-error">2. Mongo Error</h6>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Error</span><span class="o">:</span> <span class="nx">Connection</span> <span class="nx">strategy</span> <span class="nx">not</span> <span class="nx">found</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>书中<code>connect-mongo</code>使用的是旧的写法建立新的连接，改成下列方式</p>
+</div><p>书中<code>connect-mongo</code>使用的是旧的写法建立新的连接，改成下列方式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -237,25 +205,21 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">expressSession</span><span class="p">({</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">expressSession</span><span class="p">(</span><span class="p">{</span>
     <span class="nx">secret</span><span class="o">:</span> <span class="nx">setting</span><span class="p">.</span><span class="nx">cookieSecret</span><span class="p">,</span>
-    <span class="nx">store</span><span class="o">:</span> <span class="k">new</span> <span class="nx">MongoStore</span><span class="p">({</span>
+    <span class="nx">store</span><span class="o">:</span> <span class="k">new</span> <span class="nx">MongoStore</span><span class="p">(</span><span class="p">{</span>
       <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;mongodb://localhost/microblog&#39;</span>
-    <span class="p">})</span>
-<span class="p">}));</span>
+    <span class="p">}</span><span class="p">)</span>
+<span class="p">}</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h6 id="3-form">3. Form</h6>
-
+</div><h6 id="3-form">3. Form</h6>
 <p>POST的表单数据为空，纠结了自己好久才发现，表单<code>input</code>的<code>name</code>属性没有填写，所以导致了<code>POST</code>过来的数据一直为空</p>
-
 <h6 id="4-helpers">4. Helpers</h6>
-
 <p>新版本的Express已经不支持<code>app.dynamicHelpers</code>方法，需要使用<code>locals</code>来代替</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -268,30 +232,25 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s2">&#34;success&#34;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s2">&#34;success&#34;</span><span class="p">)</span><span class="p">;</span>
 
   <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="nx">err</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">err</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="nx">success</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">success</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
-  <span class="nx">next</span><span class="p">();</span>
-<span class="p">});</span>
+  <span class="nx">next</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>另外，需要将上述代码放在路由定义之前，不然在页面上中是无法获取到<code>user, error, success</code>参数的。</p>
-
+</div><p>另外，需要将上述代码放在路由定义之前，不然在页面上中是无法获取到<code>user, error, success</code>参数的。</p>
 <h6 id="5-mongo-port">5. Mongo Port</h6>
-
-<p><code>Cannot read property 'DEFAULT_PORT' of undefined。</code></p>
-
+<p><code> Cannot read property 'DEFAULT_PORT' of undefined。</code></p>
 <p>需要将这个直接替换成mongodb的端口，一般默认是<code>27017</code>；但推荐是写在配置文件中引入。</p>
-
 <h4 id="结语">结语</h4>
-
 <p>上面是在这本书学习过程中遇到的几个主要的问题，写出来也算为后来的学习者提供点资料吧，因为在自己的查询过程中，发现这个错误信息的资料，尤其是中文资料真的不多，对新手不是很友好。</p>
     </div>
 
-    <footer class="post-footer">
+    
+<footer class="post-footer">
       
       <nav class="post-nav">
         <a class="prev" href="/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
@@ -308,14 +267,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -338,12 +295,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -358,9 +313,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -372,6 +330,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

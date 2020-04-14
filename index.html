@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/" />
@@ -36,7 +36,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -44,13 +45,9 @@
 <meta property="og:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.renyijiu.com/" />
-
-<meta property="og:updated_time" content="2019-10-16T17:04:16&#43;08:00"/>
-
+<meta property="og:updated_time" content="2020-04-14T14:27:18+08:00" />
 <meta itemprop="name" content="Blog - renyijiu">
-<meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Blog - renyijiu"/>
 <meta name="twitter:description" content="个人博客，记录日常开发遇到的问题以及感想，时不时吐槽"/>
 
@@ -113,6 +110,33 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/">Java延时任务方案</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-04-14 </span>
+      <div class="post-category">
+          <a href="/categories/java/"> Java </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h2 id="背景">背景</h2>
+<p>延时任务在日常业务中的使用是比较常见的。例如对于电商而言常见的场景：</p>
+<ol>
+<li>当订单一直处于未支付的状态，需要在一定时间后关闭订单，退还库存。</li>
+<li>订单完成15天后未评价自动评价等等&hellip;</li>
+</ol>
+<p>对于我们目前的业务而言，主要的应用场景是与外部系统接口的对接使用上，例如风控、大数据、信审等系统（大部分都是异步逻辑，调用 -&gt; 等待回调）。因为我们要保证流程最大成功率的流转（当然谁也没法保证100%的成功），防止用户流程停滞产生卡单。但是由于网络环境的不可控性，短时间内可能存在波动，如果使用简单的立即重试逻辑，经常出现连续的失败，且可能对目标系统产生一定的负载压力。对此种情况，可能简单的延时30秒后重试就成功了。所以延时任务的需求就出来了，那么有哪些常见的方案呢？</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/java%E6%BA%90%E7%A0%81character/">[Java源码]Character</a></h1>
@@ -302,27 +326,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/spring-boot%E8%AF%BB%E5%8F%96excel%E6%96%87%E4%BB%B6/">[Spring Boot]读取Excel文件</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-08-18 </span>
-      <div class="post-category">
-          <a href="/categories/java/"> Java </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>最近有一个需求，需要读取上传的Excel然后批量导入相关的数据，因为在Java上开始也没有接触过如何处理Excel文件，另外在处理这个需求的时候也碰到了一些稀奇的问题，所以记录一下。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/spring-boot%E8%AF%BB%E5%8F%96excel%E6%96%87%E4%BB%B6/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -334,6 +337,7 @@
   </nav>
         </div>
         
+
       </div>
     </main>
 
@@ -356,12 +360,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -376,9 +378,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -390,6 +395,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/markdown%E7%9A%84%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="写这篇文章主要是博客需要用到这种语言，所以就参考网上的一些资料，记录下来方便自己用到时的查阅和学习，不过看着这个写东西确实方便，觉得值得一学。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/markdown%E7%9A%84%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/" />
-<meta property="article:published_time" content="2014-10-06T16:17:43&#43;00:00"/>
-<meta property="article:modified_time" content="2018-01-14T20:52:31&#43;08:00"/>
-
+<meta property="article:published_time" content="2014-10-06T16:17:43+00:00" />
+<meta property="article:modified_time" content="2018-01-14T20:52:31+08:00" />
 <meta itemprop="name" content="Markdown的语法说明">
 <meta itemprop="description" content="写这篇文章主要是博客需要用到这种语言，所以就参考网上的一些资料，记录下来方便自己用到时的查阅和学习，不过看着这个写东西确实方便，觉得值得一学。">
-
-
 <meta itemprop="datePublished" content="2014-10-06T16:17:43&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-14T20:52:31&#43;08:00" />
-<meta itemprop="wordCount" content="752">
+<meta itemprop="wordCount" content="741">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Markdown的语法说明"/>
 <meta name="twitter:description" content="写这篇文章主要是博客需要用到这种语言，所以就参考网上的一些资料，记录下来方便自己用到时的查阅和学习，不过看着这个写东西确实方便，觉得值得一学。"/>
 
@@ -134,185 +131,119 @@
     
     <div class="post-content">
       <p>写这篇文章主要是博客需要用到这种语言，所以就参考网上的一些资料，记录下来方便自己用到时的查阅和学习，不过看着这个写东西确实方便，觉得值得一学。</p>
-
 <h3 id="1-斜体和粗体"><strong>1. 斜体和粗体</strong></h3>
-
 <p>使用* 和 ** 表示斜体和粗体。</p>
-
 <p>示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    *斜体*   和   **粗体**</pre></td></tr></table>
-</div>
-</div>
-<p>是 *斜体*，这是 <strong>粗体</strong>。</p>
-
+<pre><code>    *斜体*   和   **粗体**
+</code></pre>
+<p>是 <em>斜体</em>，这是 <strong>粗体</strong>。</p>
 <h3 id="2-分级标题"><strong>2. 分级标题</strong></h3>
-
 <p>使用 === 表示一级标题，使用 &mdash; 表示二级标题。</p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">这是一个一级标题
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">这是一个一级标题
 ============================
 
 这是一个二级标题
 --------------------------------------------------
 
-这是一个三级标题</pre></td></tr></table>
+这是一个三级标题
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>你也可以选择在行首加井号表示不同级别的标题 (H1-H6)，例如：</p>
+</div><p>你也可以选择在行首加井号表示不同级别的标题 (H1-H6)，例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">#一级标题
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#一级标题
 ##二级标题
 ###三级标题
 ####四级标题
 #####五级标题
-######六级标题</pre></td></tr></table>
+######六级标题
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="3-外链接"><strong>3. 外链接</strong></h3>
-
+</div><h3 id="3-外链接"><strong>3. 外链接</strong></h3>
 <p>使用[描述](链接地址) 为文字增加外链接。</p>
-
 <p>示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    [本人微博](http://weibo.com/u/5318074256)</pre></td></tr></table>
-</div>
-</div>
+<pre><code>    [本人微博](http://weibo.com/u/5318074256)
+</code></pre>
 <p>这是去往 <a href="http://weibo.com/u/5318074256">本人微博</a> 的链接。</p>
-
 <h3 id="4-无序列表"><strong>4. 无序列表</strong></h3>
-
 <p>使用 *，+，- 表示无序列表。</p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">- 无序列表项 一
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">- 无序列表项 一
 - 无序列表项 二
-- 无序列表项 三</pre></td></tr></table>
+- 无序列表项 三
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>无序列表项 一</li>
 <li>无序列表项 二</li>
 <li>无序列表项 三</li>
 </ul>
-
 <h3 id="5-有序列表"><strong>5. 有序列表</strong></h3>
-
 <p>使用数字和点,空格表示有序列表。</p>
-
-<p>示例：
-1. 有序列表项 一
-2. 有序列表项 二
-3. 有序列表项 三</p>
-
-<h3 id="6-文字引用"><strong>6. 文字引用</strong></h3>
-
-<p>使用 &gt; 表示文字引用。</p>
-
 <p>示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    &gt; 野火烧不尽，春风吹又生。</pre></td></tr></table>
-</div>
-</div>
+<ol>
+<li>有序列表项 一</li>
+<li>有序列表项 二</li>
+<li>有序列表项 三</li>
+</ol>
+<h3 id="6-文字引用"><strong>6. 文字引用</strong></h3>
+<p>使用 &gt; 表示文字引用。</p>
+<p>示例：</p>
+<pre><code>    &gt; 野火烧不尽，春风吹又生。
+</code></pre>
 <blockquote>
 <p>野火烧不尽，春风吹又生。</p>
 </blockquote>
-
 <h3 id="7-行内代码块"><strong>7. 行内代码块</strong></h3>
-
 <p>使用  `代码`  表示行内代码块。</p>
-
 <p>示例：让我们聊聊 <code>html</code>。</p>
-
-<h3 id="8-代码块"><strong>8.  代码块</strong></h3>
-
+<h3 id="8--代码块"><strong>8.  代码块</strong></h3>
 <p>使用 四个缩进空格 表示代码块。</p>
-
 <p>示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">这是一个代码块，此行左侧有四个不可见的空格。</pre></td></tr></table>
-</div>
-</div>
-<h3 id="9-插入图像"><strong>9.  插入图像</strong></h3>
-
+<pre><code>这是一个代码块，此行左侧有四个不可见的空格。
+</code></pre>
+<h3 id="9--插入图像"><strong>9.  插入图像</strong></h3>
 <p>使用 ![描述](图片链接地址) 插入图像。</p>
-
 <p>示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    ![美图](https://i.loli.net/2018/01/19/5a620f42aa3b5.jpg)</pre></td></tr></table>
-</div>
-</div>
-<p><img src="https://i.loli.net/2018/01/19/5a620f42aa3b5.jpg" alt="美图" /></p>
-
+<pre><code>    ![美图](https://i.loli.net/2018/01/19/5a620f42aa3b5.jpg)
+</code></pre>
+<p><img src="https://i.loli.net/2018/01/19/5a620f42aa3b5.jpg" alt="美图"></p>
 <h3 id="10-分割线"><strong>10. 分割线</strong></h3>
-
 <p>三个或更多-_*，必须单独一行，可含空格</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma"> ----</pre></td></tr></table>
-</div>
-</div>
+<pre><code> ----
+</code></pre>
 <h3 id="11-删除线"><strong>11. 删除线</strong></h3>
-
 <p>使用 ~~ 表示删除线。</p>
-
 <p><del>这是一段错误的文本。</del>    (制定计划表时可用，挺好的)</p>
-
 <h3 id="12-表格支持"><strong>12. 表格支持</strong></h3>
-
 <p>示例：</p>
-
 <table>
 <thead>
 <tr>
@@ -321,20 +252,17 @@
 <th align="center">数量</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>计算机</td>
 <td align="right">$1600</td>
 <td align="center">5</td>
 </tr>
-
 <tr>
 <td>手机</td>
 <td align="right">$12</td>
 <td align="center">12</td>
 </tr>
-
 <tr>
 <td>管线</td>
 <td align="right">$1</td>
@@ -342,22 +270,21 @@
 </tr>
 </tbody>
 </table>
-
 <h3 id="13-自动链接"><strong>13. 自动链接</strong></h3>
-
 <p>尖括号</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">&lt;http://yijiu.ren&gt;</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;http://yijiu.ren&gt;
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><a href="http://yijiu.ren">http://yijiu.ren</a></p>
+</div><p><a href="http://yijiu.ren">http://yijiu.ren</a></p>
     </div>
 
-    <footer class="post-footer">
+    
+<footer class="post-footer">
       
       <nav class="post-nav">
         <a class="prev" href="/post/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
@@ -375,6 +302,7 @@
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -397,12 +325,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -417,9 +343,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -431,6 +360,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

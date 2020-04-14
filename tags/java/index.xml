@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on Blog - renyijiu</title>
@@ -7,10 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>
-    <lastBuildDate>Mon, 26 Aug 2019 16:40:13 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2020 14:27:18 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.renyijiu.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java延时任务方案</title>
+      <link>https://blog.renyijiu.com/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Tue, 14 Apr 2020 14:27:18 +0800</pubDate>
+      
+      <guid>https://blog.renyijiu.com/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;延时任务在日常业务中的使用是比较常见的。例如对于电商而言常见的场景：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当订单一直处于未支付的状态，需要在一定时间后关闭订单，退还库存。&lt;/li&gt;
+&lt;li&gt;订单完成15天后未评价自动评价等等&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;对于我们目前的业务而言，主要的应用场景是与外部系统接口的对接使用上，例如风控、大数据、信审等系统（大部分都是异步逻辑，调用 -&amp;gt; 等待回调）。因为我们要保证流程最大成功率的流转（当然谁也没法保证100%的成功），防止用户流程停滞产生卡单。但是由于网络环境的不可控性，短时间内可能存在波动，如果使用简单的立即重试逻辑，经常出现连续的失败，且可能对目标系统产生一定的负载压力。对此种情况，可能简单的延时30秒后重试就成功了。所以延时任务的需求就出来了，那么有哪些常见的方案呢？&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Java中字符串的正则替换</title>

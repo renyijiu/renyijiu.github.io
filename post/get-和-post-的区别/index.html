@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="写这篇文章的原因是因为在面试时被问到了这个问题，结果因为自己只了解了一点，被深入询问时就彻底的崩盘了*（心态真的很重要啊）*，然后就不知道说什么了，所以结束后就自己查询了下资料，记录下来，也算是在这个过程中学到了一些东西。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB/" />
-<meta property="article:published_time" content="2015-05-14T22:43:49&#43;00:00"/>
-<meta property="article:modified_time" content="2018-01-14T20:25:00&#43;08:00"/>
-
+<meta property="article:published_time" content="2015-05-14T22:43:49+00:00" />
+<meta property="article:modified_time" content="2018-01-14T20:25:00+08:00" />
 <meta itemprop="name" content="GET 和 POST 的区别">
 <meta itemprop="description" content="写这篇文章的原因是因为在面试时被问到了这个问题，结果因为自己只了解了一点，被深入询问时就彻底的崩盘了*（心态真的很重要啊）*，然后就不知道说什么了，所以结束后就自己查询了下资料，记录下来，也算是在这个过程中学到了一些东西。">
-
-
 <meta itemprop="datePublished" content="2015-05-14T22:43:49&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-14T20:25:00&#43;08:00" />
-<meta itemprop="wordCount" content="895">
+<meta itemprop="wordCount" content="889">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GET 和 POST 的区别"/>
 <meta name="twitter:description" content="写这篇文章的原因是因为在面试时被问到了这个问题，结果因为自己只了解了一点，被深入询问时就彻底的崩盘了*（心态真的很重要啊）*，然后就不知道说什么了，所以结束后就自己查询了下资料，记录下来，也算是在这个过程中学到了一些东西。"/>
 
@@ -136,67 +133,64 @@
     
     <div class="post-content">
       <p>写这篇文章的原因是因为在面试时被问到了这个问题，结果因为自己只了解了一点，被深入询问时就彻底的崩盘了*（心态真的很重要啊）*，然后就不知道说什么了，所以结束后就自己查询了下资料，记录下来，也算是在这个过程中学到了一些东西。</p>
-
 <h2 id="简单定义">简单定义</h2>
-
 <p>在 Http 中定义了与服务器交互的不同方式，最基本的方法有4种，一般是GET，POST，PUT，DELETE 。 URL全称为统一资源定位符，一个URL地址对应着网上的一个资源，而HTTP的GET，POST，PUT，DELETE则分别对应着 <strong>查</strong>，<strong>改</strong>，<strong>增</strong>，<strong>删</strong> 的4个操作，这个概念个人觉得还是比较容易理解和记忆的。</p>
-
 <blockquote>
 <p>GET 一般用于 获取/查询 资源信息，POST一般用于 更改 资源信息。</p>
 </blockquote>
-
-<hr />
-
-<p>★   *一般在浏览器中输入网址访问资源都是通过 <strong>get</strong> 的方式*</p>
-
-<hr />
-
+<hr>
+<p>★   <em>一般在浏览器中输入网址访问资源都是通过 <strong>get</strong> 的方式</em></p>
+<hr>
 <h2 id="概念区别">概念区别</h2>
-
 <ol>
-<li><p>根据HTTP规范，GET用于<strong>信息获取</strong>，而且应该是 <em>安全</em> 的和 <em>幂等</em> 的</p>
-
+<li>
+<p>根据HTTP规范，GET用于<strong>信息获取</strong>，而且应该是 <em>安全</em> 的和 <em>幂等</em> 的</p>
 <ol>
 <li>所谓安全的意味着该操作用于获取信息而非修改信息。换句话说，GET操作请求一般不会产生不良后果。就是说，他仅仅是获取资源信息，就像数据库查询一样，不会修改、增加数据，不会影响资源的状态。</li>
 <li>幂等的意味着对于同一URL的多个请求应该返回同样的结果。</li>
-</ol></li>
-
-<li><p>根据HTTP规范，POST表示可能会 <strong>修改</strong> 服务器上资源的请求</p></li>
 </ol>
-
+</li>
+<li>
+<p>根据HTTP规范，POST表示可能会 <strong>修改</strong> 服务器上资源的请求</p>
+</li>
+</ol>
 <h2 id="提交方式的区别">提交方式的区别</h2>
-
 <ul>
-<li><p>GET提交：请求的数据会附在URL之后（就是把数据放置在请求行（request line）      中），以?分割URL和传输数据，多个参数用&amp;连接；例如：
+<li>
+<p>GET提交：请求的数据会附在URL之后（就是把数据放置在请求行（request line）      中），以?分割URL和传输数据，多个参数用&amp;连接；例如：
 login.action? name=suiyi&amp;password=idontknow&amp;verify=%E4%BD%A0 %E5。
-URL的编码格式采用的是ASCII码，而不是Unicode。</p></li>
-
-<li><p>POST提交：把提交的数据放置在HTTP包的包体中。</p></li>
+URL的编码格式采用的是ASCII码，而不是Unicode。</p>
+</li>
+<li>
+<p>POST提交：把提交的数据放置在HTTP包的包体中。</p>
+</li>
 </ul>
-
-<p><strong>因此</strong>，GET提交的数据会*在地址栏中显示出来*，而POST提交时，*地址栏不会的改变*。</p>
-
+<p><strong>因此</strong>，GET提交的数据会<em>在地址栏中显示出来</em>，而POST提交时，<em>地址栏不会的改变</em>。</p>
 <ul>
-<li><p>GET : 特定浏览器和数据对URL长度有限制，传输数据就会受到URL长度的限制。</p></li>
-
-<li><p>POST：由于不是通过URL传值，理论上数据不受限。</p></li>
+<li>
+<p>GET : 特定浏览器和数据对URL长度有限制，传输数据就会受到URL长度的限制。</p>
+</li>
+<li>
+<p>POST：由于不是通过URL传值，理论上数据不受限。</p>
+</li>
 </ul>
-
 <h2 id="post的安全性比get的安全性要高">POST的安全性比GET的安全性要高</h2>
-
 <ol>
-<li><p>通过GET提交数据，用户名和密码将明文出现在URL上</p>
-
+<li>
+<p>通过GET提交数据，用户名和密码将明文出现在URL上</p>
 <ol>
 <li>登录页面可能被浏览器缓存</li>
 <li>其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了</li>
-</ol></li>
-
-<li><p>POST是将表单中的数据放在form的数据体中，按照变量和值相对应的方式，传递到action所指向URL。</p></li>
+</ol>
+</li>
+<li>
+<p>POST是将表单中的数据放在form的数据体中，按照变量和值相对应的方式，传递到action所指向URL。</p>
+</li>
 </ol>
     </div>
 
-    <footer class="post-footer">
+    
+<footer class="post-footer">
       
       <nav class="post-nav">
         <a class="prev" href="/post/%E5%86%99%E5%9C%A8%E6%AF%95%E4%B8%9A%E4%B9%8B%E9%99%85/">
@@ -213,14 +207,12 @@ URL的编码格式采用的是ASCII码，而不是Unicode。</p></li>
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -243,12 +235,10 @@ URL的编码格式采用的是ASCII码，而不是Unicode。</p></li>
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -263,9 +253,12 @@ URL的编码格式采用的是ASCII码，而不是Unicode。</p></li>
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -277,6 +270,7 @@ URL的编码格式采用的是ASCII码，而不是Unicode。</p></li>
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

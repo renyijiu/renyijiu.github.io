@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81double/" />
@@ -34,7 +34,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -42,21 +43,17 @@
 <meta property="og:description" content="Java源码 - Double" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81double/" />
-<meta property="article:published_time" content="2019-08-30T11:02:48&#43;08:00"/>
-<meta property="article:modified_time" content="2019-08-30T11:02:48&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-08-30T11:02:48+08:00" />
+<meta property="article:modified_time" content="2019-08-30T11:02:48+08:00" />
 <meta itemprop="name" content="[Java源码]Double">
 <meta itemprop="description" content="Java源码 - Double">
-
-
 <meta itemprop="datePublished" content="2019-08-30T11:02:48&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-30T11:02:48&#43;08:00" />
-<meta itemprop="wordCount" content="4070">
+<meta itemprop="wordCount" content="4052">
 
 
 
-<meta itemprop="keywords" content="Java源码,Double," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Java源码,Double," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Java源码]Double"/>
 <meta name="twitter:description" content="Java源码 - Double"/>
 
@@ -135,36 +132,29 @@
     
     <div class="post-content">
       <p>这次来看看<code>Double</code>的源代码，基于  <em>jdk1.8.0_181.jdk</em> 版本，如有错误，欢迎联系指出。</p>
-
 <h2 id="前言">前言</h2>
-
-<p><code>Double</code>是<code>double</code>基础数据类型的包装类，而<code>double</code>是<code>IEEE 754</code>标准的<strong>双精度 64bit</strong> 的浮点数，具体<code>IEEE 754</code>标准的一些信息这里就不再详细的介绍了，建议可以看看我的上一篇文章 [<a href="https://blog.renyijiu.com/post/java源码float/">Java源码]Float</a> 对此有个大致的了解，两者的逻辑基本是一致的。Java中对于十进制浮点数，<code>double</code>是默认的类型。</p>
-
-<h3 id="双精度-64-bit">双精度（64 bit）</h3>
-
-<p>继续使用类似的图说明下，<img src="../../img/double.jpg" alt="" /></p>
-
+<p><code>Double</code>是<code>double</code>基础数据类型的包装类，而<code>double</code>是<code>IEEE 754</code>标准的<strong>双精度 64bit</strong> 的浮点数，具体<code>IEEE 754</code>标准的一些信息这里就不再详细的介绍了，建议可以看看我的上一篇文章 [<a href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81float/">Java源码]Float</a> 对此有个大致的了解，两者的逻辑基本是一致的。Java中对于十进制浮点数，<code>double</code>是默认的类型。</p>
+<h3 id="双精度64-bit">双精度（64 bit）</h3>
+<p>继续使用类似的图说明下，<img src="../../img/double.jpg" alt=""></p>
 <ul>
 <li>sign: 符号位，<code>1</code>位。0表示正数，1表示负数。</li>
 <li>exponent: 指数位，<code>11</code>位。双精度的指数部分是−1022～+1024加上偏移值1023，指数值的大小从1～2046（0和2047是特殊值）</li>
 <li>fraction: 尾数位，<code>52</code>位。</li>
 </ul>
-
 <h2 id="类信息">类信息</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Double</span> <span class="kd">extends</span> <span class="n">Number</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Double</span> <span class="kd">extends</span> <span class="n">Number</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>定义中带有<code>final</code>标识，表示是<code>不可继承的</code>，另外继承了<code>Number</code>类，实现了<code>Comparable</code>接口</p>
-
+</div><p>定义中带有<code>final</code>标识，表示是<code>不可继承的</code>，另外继承了<code>Number</code>类，实现了<code>Comparable</code>接口</p>
 <h2 id="属性">属性</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -175,17 +165,17 @@
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">NEGATIVE_INFINITY</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">.</span><span class="na">0</span> <span class="o">/</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">NaN</span> <span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">0d</span> <span class="o">/</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">;</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">NaN</span> <span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">0d</span> <span class="o">/</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>POSITIVE_INFINITY</code> 表示正无穷，值为<code>0x7ff0000000000000L</code>；<strong>标准定义指数域全为1，尾数域全为0</strong></li>
 <li><code>NEGATIVE_INFINITY</code> 表示负无穷，值为<code>0xfff0000000000000L</code>；<strong>标准定义指数域全为1，尾数域全为0</strong></li>
-<li><code>NaN</code> 英文缩写，<code>Not-a-Number</code>，<strong>标准定义为 指数域全为1，尾数域不全为0</strong></li>
+<li><code>NaN</code> 英文缩写，<code>Not-a-Number </code>，<strong>标准定义为 指数域全为1，尾数域不全为0</strong></li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -196,82 +186,81 @@
 </span><span class="c1"></span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">MIN_NORMAL</span> <span class="o">=</span> <span class="n">0x1</span><span class="o">.</span><span class="na">0p</span><span class="o">-</span><span class="n">1022</span><span class="o">;</span> <span class="c1">// 2.2250738585072014E-308
 </span><span class="c1"></span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">MIN_VALUE</span> <span class="o">=</span> <span class="n">0x0</span><span class="o">.</span><span class="na">0000000000001P</span><span class="o">-</span><span class="n">1022</span><span class="o">;</span> <span class="o">//</span> <span class="n">4</span><span class="o">.</span><span class="na">9e</span><span class="o">-</span><span class="n">324</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">MIN_VALUE</span> <span class="o">=</span> <span class="n">0x0</span><span class="o">.</span><span class="na">0000000000001P</span><span class="o">-</span><span class="n">1022</span><span class="o">;</span> <span class="c1">// 4.9e-324
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>MAX_VALUE</code> 最大规约数为<code>0x1.fffffffffffffP+1023</code>，这里是十六进制浮点数表示，也就是<code>0x7fefffffffffffffL</code>，也是<code>(2 - Math.pow(2, -52) * Math.pow(2, 1023))</code>，计算值为<code>1.7976931348623157e+308</code></li>
 <li><code>MIN_NORMAL</code> 最小的规约数为<code>0x1.0p-1022</code>，这里是十六进制浮点数表示，也就是<code>0x0010000000000000L</code>，也是<code>Math.pow(2, -1022)</code>，计算值为<code>2.2250738585072014E-308</code></li>
 <li><code>MIN_VALUE</code> 最小非规约数为<code>0x0.0000000000001P-1022</code>，这里是十六进制浮点数表示，也就是<code>0x1L</code>，也是<code>Math.pow(2, -1074)</code>，计算值为<code>4.9e-324</code></li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MAX_EXPONENT</span> <span class="o">=</span> <span class="n">1023</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MIN_EXPONENT</span> <span class="o">=</span> <span class="o">-</span><span class="n">1022</span><span class="o">;</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MIN_EXPONENT</span> <span class="o">=</span> <span class="o">-</span><span class="n">1022</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>MAX_EXPONENT</code> 表示了最大的指数值，为1023</li>
 <li><code>MIN_EXPONENT</code> 表示了最小的指数值，为<code>-1022</code></li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SIZE</span> <span class="o">=</span> <span class="n">64</span><span class="o">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SIZE</span> <span class="o">=</span> <span class="n">64</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>定义了 <code>bit</code> 位数</p>
+</div><p>定义了 <code>bit</code> 位数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">BYTES</span> <span class="o">=</span> <span class="n">SIZE</span> <span class="o">/</span> <span class="n">Byte</span><span class="o">.</span><span class="na">SIZE</span><span class="o">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">BYTES</span> <span class="o">=</span> <span class="n">SIZE</span> <span class="o">/</span> <span class="n">Byte</span><span class="o">.</span><span class="na">SIZE</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>定义了<code>Double</code>对象的字节数，计算值固定为8</p>
+</div><p>定义了<code>Double</code>对象的字节数，计算值固定为8</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span>   <span class="n">TYPE</span> <span class="o">=</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;)</span> <span class="n">Class</span><span class="o">.</span><span class="na">getPrimitiveClass</span><span class="o">(</span><span class="s">&#34;double&#34;</span><span class="o">);</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span>   <span class="n">TYPE</span> <span class="o">=</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="o">)</span> <span class="n">Class</span><span class="o">.</span><span class="na">getPrimitiveClass</span><span class="o">(</span><span class="s">&#34;double&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>获取类信息，<code>Double.TYPE == double.class</code>两者是等价的</p>
+</div><p>获取类信息，<code>Double.TYPE == double.class</code>两者是等价的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">value</span><span class="o">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">value</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>Double</code>是<code>double</code>的包装类，这里存放了对应的<code>double</code>数据值</p>
+</div><p><code>Double</code>是<code>double</code>的包装类，这里存放了对应的<code>double</code>数据值</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="n">9172774392245257468L</span><span class="o">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="n">9172774392245257468L</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="方法">方法</h2>
-
+</div><h2 id="方法">方法</h2>
 <h3 id="构造方法">构造方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -285,46 +274,43 @@
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="nf">Double</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
-  <span class="n">value</span> <span class="o">=</span> <span class="n">parseDouble</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="n">value</span> <span class="o">=</span> <span class="n">parseDouble</span><span class="o">(</span><span class="n">s</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>可以传入<code>double</code>或者<code>String</code>类型参数，<code>String</code>参数的构造方法内部会调用<code>parseDouble</code>方法进行处理。</p>
-
+</div><p>可以传入<code>double</code>或者<code>String</code>类型参数，<code>String</code>参数的构造方法内部会调用<code>parseDouble</code>方法进行处理。</p>
 <h3 id="parsedouble-方法">parseDouble 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">parseDouble</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">FloatingDecimal</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="k">return</span> <span class="n">FloatingDecimal</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">s</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>内部调用了<code>FloatingDecimal.parseDouble</code>实现具体逻辑，其中具体的处理过程和<code>Float</code>类似，可以查看 <a href="https://blog.renyijiu.com/post/java源码float/#parsefloat-方法">parsefloat 方法</a> 了解，这里就不再重复叙述了。结果返回对应的<code>double</code>类型数据值。</p>
-
+</div><p>内部调用了<code>FloatingDecimal.parseDouble</code>实现具体逻辑，其中具体的处理过程和<code>Float</code>类似，可以查看 <a href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81float/#parsefloat-%E6%96%B9%E6%B3%95">parsefloat 方法</a> 了解，这里就不再重复叙述了。结果返回对应的<code>double</code>类型数据值。</p>
 <h3 id="tostring-方法">toString 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(</span><span class="kt">double</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">FloatingDecimal</span><span class="o">.</span><span class="na">toJavaFormatString</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="k">return</span> <span class="n">FloatingDecimal</span><span class="o">.</span><span class="na">toJavaFormatString</span><span class="o">(</span><span class="n">d</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>依然是调用了<code>FloatingDecimal.toJavaFormatString</code>的方法，处理过程和<code>Float</code>也基本一致，结果返回对应的字符串格式。</p>
-
+</div><p>依然是调用了<code>FloatingDecimal.toJavaFormatString</code>的方法，处理过程和<code>Float</code>也基本一致，结果返回对应的字符串格式。</p>
 <h3 id="tohexstring-方法">toHexString 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -381,26 +367,26 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">toHexString</span><span class="o">(</span><span class="kt">double</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
 	<span class="c1">// 判断是否是有限数值
-</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(!</span><span class="n">isFinite</span><span class="o">(</span><span class="n">d</span><span class="o">)</span> <span class="o">)</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="o">!</span><span class="n">isFinite</span><span class="o">(</span><span class="n">d</span><span class="o">)</span> <span class="o">)</span>
     <span class="c1">// 对于 infinity 和 NaN, 直接调用 toString 返回
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">Double</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">Double</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">d</span><span class="o">)</span><span class="o">;</span>
   <span class="k">else</span> <span class="o">{</span>
     <span class="c1">// 使用最大输出长度初始化StringBuilder容量
-</span><span class="c1"></span>    <span class="n">StringBuilder</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">24</span><span class="o">);</span>
+</span><span class="c1"></span>    <span class="n">StringBuilder</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">24</span><span class="o">)</span><span class="o">;</span>
 		
     <span class="c1">// 负数，增加符号标识
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">copySign</span><span class="o">(</span><span class="n">1</span><span class="o">.</span><span class="na">0</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="n">1</span><span class="o">.</span><span class="na">0</span><span class="o">)</span>
-      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;-&#34;</span><span class="o">);</span>            
+</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">copySign</span><span class="o">(</span><span class="n">1</span><span class="o">.</span><span class="na">0</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">.</span><span class="na">0</span><span class="o">)</span>
+      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;-&#34;</span><span class="o">)</span><span class="o">;</span>            
 
-    <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;0x&#34;</span><span class="o">);</span>
+    <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;0x&#34;</span><span class="o">)</span><span class="o">;</span>
 
-    <span class="n">d</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">d</span><span class="o">)</span><span class="o">;</span>
 		<span class="c1">// 如果是0.0，直接输出返回
-</span><span class="c1"></span>    <span class="k">if</span><span class="o">(</span><span class="n">d</span> <span class="o">==</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;0.0p0&#34;</span><span class="o">);</span>
+</span><span class="c1"></span>    <span class="k">if</span><span class="o">(</span><span class="n">d</span> <span class="o">=</span><span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;0.0p0&#34;</span><span class="o">)</span><span class="o">;</span>
     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
       <span class="c1">// 判断是否为非规约数
-</span><span class="c1"></span>      <span class="kt">boolean</span> <span class="n">subnormal</span> <span class="o">=</span> <span class="o">(</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">MIN_NORMAL</span><span class="o">);</span>
+</span><span class="c1"></span>      <span class="kt">boolean</span> <span class="n">subnormal</span> <span class="o">=</span> <span class="o">(</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">MIN_NORMAL</span><span class="o">)</span><span class="o">;</span>
 
       <span class="c1">// DoubleConsts.SIGNIF_BIT_MASK = 0x000FFFFFFFFFFFFFL
 </span><span class="c1"></span>      <span class="c1">// &amp; 操作保留尾数位数据
@@ -410,36 +396,35 @@
         <span class="n">0x1000000000000000L</span><span class="o">;</span>
 	
       <span class="c1">// 规约数为1.开头，非规约数为0.开头
-</span><span class="c1"></span>      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">subnormal</span> <span class="o">?</span> <span class="s">&#34;0.&#34;</span> <span class="o">:</span> <span class="s">&#34;1.&#34;</span><span class="o">);</span>
+</span><span class="c1"></span>      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">subnormal</span> <span class="o">?</span> <span class="s">&#34;0.&#34;</span> <span class="o">:</span> <span class="s">&#34;1.&#34;</span><span class="o">)</span><span class="o">;</span>
 
       <span class="c1">// 使用Long.toHexString获取十六进制字符串，提取尾数位对应的字符串信息
 </span><span class="c1"></span>      <span class="c1">// 判断如果全为0，使用一个0替换
 </span><span class="c1"></span>      <span class="c1">// 如若不是，去除字符串尾部的所有0
-</span><span class="c1"></span>      <span class="n">String</span> <span class="n">signif</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">toHexString</span><span class="o">(</span><span class="n">signifBits</span><span class="o">).</span><span class="na">substring</span><span class="o">(</span><span class="n">3</span><span class="o">,</span><span class="n">16</span><span class="o">);</span>
+</span><span class="c1"></span>      <span class="n">String</span> <span class="n">signif</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">toHexString</span><span class="o">(</span><span class="n">signifBits</span><span class="o">)</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">3</span><span class="o">,</span><span class="n">16</span><span class="o">)</span><span class="o">;</span>
       <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">signif</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;0000000000000&#34;</span><span class="o">)</span> <span class="o">?</span> <span class="c1">// 13 zeros
 </span><span class="c1"></span>                    <span class="s">&#34;0&#34;</span><span class="o">:</span>
-                    <span class="n">signif</span><span class="o">.</span><span class="na">replaceFirst</span><span class="o">(</span><span class="s">&#34;0{1,12}$&#34;</span><span class="o">,</span> <span class="s">&#34;&#34;</span><span class="o">));</span>
+                    <span class="n">signif</span><span class="o">.</span><span class="na">replaceFirst</span><span class="o">(</span><span class="s">&#34;0{1,12}$&#34;</span><span class="o">,</span> <span class="s">&#34;&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 
-      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="sc">&#39;p&#39;</span><span class="o">);</span>
+      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="sc">&#39;p&#39;</span><span class="o">)</span><span class="o">;</span>
 			
       <span class="c1">// DoubleConsts.MIN_EXPONENT = -1022
 </span><span class="c1"></span>      <span class="c1">// 如果是非规约数，使用最小的指数位替换
 </span><span class="c1"></span>      <span class="c1">// 规约数，获取对应的指数值替代
 </span><span class="c1"></span>      <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">subnormal</span> <span class="o">?</span>
                     <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">MIN_EXPONENT</span><span class="o">:</span>
-                    <span class="n">Math</span><span class="o">.</span><span class="na">getExponent</span><span class="o">(</span><span class="n">d</span><span class="o">));</span>
+                    <span class="n">Math</span><span class="o">.</span><span class="na">getExponent</span><span class="o">(</span><span class="n">d</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
   <span class="o">}</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>整体的逻辑在代码注释中进行了说明，清晰且简单，结果返回对应的十六进制字符串。</p>
-
+</div><p>整体的逻辑在代码注释中进行了说明，清晰且简单，结果返回对应的十六进制字符串。</p>
 <h3 id="valueof-方法">valueOf 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -449,20 +434,19 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Double</span> <span class="nf">valueOf</span><span class="o">(</span><span class="kt">double</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">d</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="n">Double</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NumberFormatException</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">parseDouble</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">parseDouble</span><span class="o">(</span><span class="n">s</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>存在两个<code>valueOf</code>方法，当参数为<code>double</code>类型时，直接<code>new Double(d)</code> 然后返回；对于字符串参数，调用<code>parseDouble</code>转换成<code>double</code>数据值，然后new一个新对象返回。</p>
-
+</div><p>存在两个<code>valueOf</code>方法，当参数为<code>double</code>类型时，直接<code>new Double(d)</code> 然后返回；对于字符串参数，调用<code>parseDouble</code>转换成<code>double</code>数据值，然后new一个新对象返回。</p>
 <h3 id="isnan-方法">isNaN 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -472,20 +456,19 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isNaN</span><span class="o">(</span><span class="kt">double</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="o">(</span><span class="n">v</span> <span class="o">!=</span> <span class="n">v</span><span class="o">);</span>
+  <span class="k">return</span> <span class="o">(</span><span class="n">v</span> <span class="o">!</span><span class="o">=</span> <span class="n">v</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNaN</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">isNaN</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNaN</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isNaN</span><span class="o">(</span><span class="n">value</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>判断是否是<code>NaN</code>，使用<code>(v != v)</code>判断；具体<code>NaN</code>的规则描述可以参考 <a href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81float/#isnan-%E6%96%B9%E6%B3%95">isNaN 方法</a></p>
-
+</div><p>判断是否是<code>NaN</code>，使用<code>(v != v)</code>判断；具体<code>NaN</code>的规则描述可以参考 <a href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81float/#isnan-%E6%96%B9%E6%B3%95">isNaN 方法</a></p>
 <h3 id="isinfinite-方法">isInfinite 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -495,35 +478,33 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isInfinite</span><span class="o">(</span><span class="kt">double</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">POSITIVE_INFINITY</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">NEGATIVE_INFINITY</span><span class="o">);</span>
+  <span class="k">return</span> <span class="o">(</span><span class="n">v</span> <span class="o">=</span><span class="o">=</span> <span class="n">POSITIVE_INFINITY</span><span class="o">)</span> <span class="o">|</span><span class="o">|</span> <span class="o">(</span><span class="n">v</span> <span class="o">=</span><span class="o">=</span> <span class="n">NEGATIVE_INFINITY</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isInfinite</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">isInfinite</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isInfinite</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">isInfinite</span><span class="o">(</span><span class="n">value</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>判断是不是无穷数，包含正无穷和负无穷</p>
-
+</div><p>判断是不是无穷数，包含正无穷和负无穷</p>
 <h3 id="isfinite-方法">isFinite 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isFinite</span><span class="o">(</span><span class="kt">double</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">d</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">d</span><span class="o">)</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>通过输入参数绝对值是否小于<code>double</code>类型的最大值，判断是不是有限数</p>
-
+</div><p>通过输入参数绝对值是否小于<code>double</code>类型的最大值，判断是不是有限数</p>
 <h3 id="xxxvalue-方法">xxxValue 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -548,37 +529,36 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">byte</span> <span class="nf">byteValue</span><span class="o">()</span> <span class="o">{</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">byte</span> <span class="nf">byteValue</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kt">short</span> <span class="nf">shortValue</span><span class="o">()</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kt">short</span> <span class="nf">shortValue</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kt">int</span> <span class="nf">intValue</span><span class="o">()</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">intValue</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kt">long</span> <span class="nf">longValue</span><span class="o">()</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kt">long</span> <span class="nf">longValue</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kt">float</span> <span class="nf">floatValue</span><span class="o">()</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kt">float</span> <span class="nf">floatValue</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">value</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kt">double</span> <span class="nf">doubleValue</span><span class="o">()</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kt">double</span> <span class="nf">doubleValue</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>返回对应类型的值，直接进行强制类型转换</p>
-
+</div><p>返回对应类型的值，直接进行强制类型转换</p>
 <h3 id="hashcode-方法">hashCode 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -590,54 +570,53 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">Double</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Double</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">value</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-  <span class="kt">long</span> <span class="n">bits</span> <span class="o">=</span> <span class="n">doubleToLongBits</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-  <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">bits</span> <span class="o">^</span> <span class="o">(</span><span class="n">bits</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">32</span><span class="o">));</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="kt">long</span> <span class="n">bits</span> <span class="o">=</span> <span class="n">doubleToLongBits</span><span class="o">(</span><span class="n">value</span><span class="o">)</span><span class="o">;</span>
+  <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="o">(</span><span class="n">bits</span> <span class="o">^</span> <span class="o">(</span><span class="n">bits</span> <span class="o">&gt;</span><span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">32</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>&gt;&gt;&gt;</code>为无符号右移，高位以0补齐。<code>(bits ^ (bits &gt;&gt;&gt; 32))</code>逻辑为高32位与低32位异或计算返回<code>int</code>整数值作为hashCode</p>
-
+</div><p><code>&gt;&gt;&gt;</code>为无符号右移，高位以0补齐。<code>(bits ^ (bits &gt;&gt;&gt; 32))</code>逻辑为高32位与低32位异或计算返回<code>int</code>整数值作为hashCode</p>
 <h3 id="longbitstodouble-方法">longBitsToDouble 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="kt">double</span> <span class="nf">longBitsToDouble</span><span class="o">(</span><span class="kt">long</span> <span class="n">bits</span><span class="o">);</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="kt">double</span> <span class="nf">longBitsToDouble</span><span class="o">(</span><span class="kt">long</span> <span class="n">bits</span><span class="o">)</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>longBitsToDouble</code>是个<code>native</code>方法，由c代码实现。返回对应<code>double</code>数据值</p>
-
+</div><p><code>longBitsToDouble</code>是个<code>native</code>方法，由c代码实现。返回对应<code>double</code>数据值</p>
 <ul>
-<li><p>参数为<code>0x7ff0000000000000L</code>时，结果为正无穷</p></li>
-
-<li><p>参数为<code>0xfff0000000000000L</code>时，结果为负无穷</p></li>
-
-<li><p>参数在<code>0x7ff0000000000001L ~ 0x7fffffffffffffffL</code>或者<code>0xfff0000000000001L ~ 0xffffffffffffffffL</code>之间时，结果为<code>NaN</code>。</p></li>
+<li>
+<p>参数为<code>0x7ff0000000000000L</code>时，结果为正无穷</p>
+</li>
+<li>
+<p>参数为<code>0xfff0000000000000L</code>时，结果为负无穷</p>
+</li>
+<li>
+<p>参数在<code>0x7ff0000000000001L ~ 0x7fffffffffffffffL</code>或者<code>0xfff0000000000001L ~ 0xffffffffffffffffL</code>之间时，结果为<code>NaN</code>。</p>
+</li>
 </ul>
-
 <h3 id="doubletorawlongbits-方法">doubleToRawLongBits 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="kt">long</span> <span class="nf">doubleToRawLongBits</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">);</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="kt">long</span> <span class="nf">doubleToRawLongBits</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">)</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>doubleToRawLongBits</code>是个<code>native</code>方法，由对应的c代码实现。</p>
-
+</div><p><code>doubleToRawLongBits </code>是个<code>native</code>方法，由对应的c代码实现。</p>
 <p>结果会保留<code>NaN</code>值，正无穷结果为<code>0x7ff0000000000000L</code>；负无穷结果为<code>0xfff0000000000000L</code>；当参数为<code>NaN</code>时，结果会是输入参数对应的实际整数值，该方法不会像<code>doubleToLongBits</code>，对<code>NaN</code>进行统一的返回值处理</p>
-
 <h3 id="doubletolongbits-方法">doubleToLongBits 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -648,21 +627,20 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">doubleToLongBits</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-  <span class="kt">long</span> <span class="n">result</span> <span class="o">=</span> <span class="n">doubleToRawLongBits</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-  <span class="k">if</span> <span class="o">(</span> <span class="o">((</span><span class="n">result</span> <span class="o">&amp;</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">EXP_BIT_MASK</span><span class="o">)</span> <span class="o">==</span>
-        <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">EXP_BIT_MASK</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
-      <span class="o">(</span><span class="n">result</span> <span class="o">&amp;</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">SIGNIF_BIT_MASK</span><span class="o">)</span> <span class="o">!=</span> <span class="n">0L</span><span class="o">)</span>
+  <span class="kt">long</span> <span class="n">result</span> <span class="o">=</span> <span class="n">doubleToRawLongBits</span><span class="o">(</span><span class="n">value</span><span class="o">)</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span> <span class="o">(</span><span class="o">(</span><span class="n">result</span> <span class="o">&amp;</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">EXP_BIT_MASK</span><span class="o">)</span> <span class="o">=</span><span class="o">=</span>
+        <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">EXP_BIT_MASK</span><span class="o">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
+      <span class="o">(</span><span class="n">result</span> <span class="o">&amp;</span> <span class="n">DoubleConsts</span><span class="o">.</span><span class="na">SIGNIF_BIT_MASK</span><span class="o">)</span> <span class="o">!</span><span class="o">=</span> <span class="n">0L</span><span class="o">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">0x7ff8000000000000L</span><span class="o">;</span>
   <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>基本与<code>doubleToRawLongBits</code>方法一致，只是增加了对<code>NaN</code>的判断。若是<code>NaN</code>则直接返回<code>0x7ff8000000000000L</code>(<strong>对所有的<code>NaN</code>值进行了统一返回值处理</strong>)。这里识别<code>NaN</code>的逻辑符合<strong>指数域全为1，尾数域不全为0</strong>的标准规范，具体说明可以参考 <a href="https://blog.renyijiu.com/post/java源码float/#floattointbits-方法">floatToIntBits 方法</a> 说明。</p>
-
+</div><p>基本与<code>doubleToRawLongBits</code>方法一致，只是增加了对<code>NaN</code>的判断。若是<code>NaN</code>则直接返回<code>0x7ff8000000000000L</code>(<strong>对所有的<code>NaN</code>值进行了统一返回值处理</strong>)。这里识别<code>NaN</code>的逻辑符合<strong>指数域全为1，尾数域不全为0</strong>的标准规范，具体说明可以参考 <a href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81float/#floattointbits-%E6%96%B9%E6%B3%95">floatToIntBits 方法</a> 说明。</p>
 <h3 id="equals-方法">equals 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -671,26 +649,26 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Double</span><span class="o">)</span>
-    <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">doubleToLongBits</span><span class="o">(((</span><span class="n">Double</span><span class="o">)</span><span class="n">obj</span><span class="o">).</span><span class="na">value</span><span class="o">)</span> <span class="o">==</span>
-        <span class="n">doubleToLongBits</span><span class="o">(</span><span class="n">value</span><span class="o">));</span>
-<span class="o">}</span></code></pre></td></tr></table>
+    <span class="o">&amp;</span><span class="o">&amp;</span> <span class="o">(</span><span class="n">doubleToLongBits</span><span class="o">(</span><span class="o">(</span><span class="o">(</span><span class="n">Double</span><span class="o">)</span><span class="n">obj</span><span class="o">)</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">=</span><span class="o">=</span>
+        <span class="n">doubleToLongBits</span><span class="o">(</span><span class="n">value</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>首先判断是不是<code>Double</code>对象实例，然后通过<code>doubleToLongBits</code>获取两个对应的长整型数，判断两者是否一致；值得注意的是一些特殊值的判断逻辑。</p>
+</div><p>首先判断是不是<code>Double</code>对象实例，然后通过<code>doubleToLongBits</code>获取两个对应的长整型数，判断两者是否一致；值得注意的是一些特殊值的判断逻辑。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">0d</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(-</span><span class="n">0</span><span class="o">.</span><span class="na">0d</span><span class="o">)));</span> <span class="c1">// false
-</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">Double</span><span class="o">.</span><span class="na">NaN</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(-</span><span class="n">Double</span><span class="o">.</span><span class="na">NaN</span><span class="o">)));</span> <span class="o">//</span> <span class="kc">true</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">0d</span><span class="o">)</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">0d</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">;</span> <span class="c1">// false
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">Double</span><span class="o">.</span><span class="na">NaN</span><span class="o">)</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="o">-</span><span class="n">Double</span><span class="o">.</span><span class="na">NaN</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">;</span> <span class="c1">// true
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="compare-方法">compare 方法</h3>
+</div><h3 id="compare-方法">compare 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -711,7 +689,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Double</span> <span class="n">anotherDouble</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">Double</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">anotherDouble</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">Double</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">anotherDouble</span><span class="o">.</span><span class="na">value</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">double</span> <span class="n">d1</span><span class="o">,</span> <span class="kt">double</span> <span class="n">d2</span><span class="o">)</span> <span class="o">{</span>
@@ -721,21 +699,20 @@
     <span class="k">return</span> <span class="n">1</span><span class="o">;</span>            <span class="c1">// Neither val is NaN, thisVal is larger
 </span><span class="c1"></span>
   <span class="c1">// Cannot use doubleToRawLongBits because of possibility of NaNs.
-</span><span class="c1"></span>  <span class="kt">long</span> <span class="n">thisBits</span>    <span class="o">=</span> <span class="n">Double</span><span class="o">.</span><span class="na">doubleToLongBits</span><span class="o">(</span><span class="n">d1</span><span class="o">);</span>
-  <span class="kt">long</span> <span class="n">anotherBits</span> <span class="o">=</span> <span class="n">Double</span><span class="o">.</span><span class="na">doubleToLongBits</span><span class="o">(</span><span class="n">d2</span><span class="o">);</span>
+</span><span class="c1"></span>  <span class="kt">long</span> <span class="n">thisBits</span>    <span class="o">=</span> <span class="n">Double</span><span class="o">.</span><span class="na">doubleToLongBits</span><span class="o">(</span><span class="n">d1</span><span class="o">)</span><span class="o">;</span>
+  <span class="kt">long</span> <span class="n">anotherBits</span> <span class="o">=</span> <span class="n">Double</span><span class="o">.</span><span class="na">doubleToLongBits</span><span class="o">(</span><span class="n">d2</span><span class="o">)</span><span class="o">;</span>
 
-  <span class="k">return</span> <span class="o">(</span><span class="n">thisBits</span> <span class="o">==</span> <span class="n">anotherBits</span> <span class="o">?</span>  <span class="n">0</span> <span class="o">:</span> <span class="c1">// Values are equal
+  <span class="k">return</span> <span class="o">(</span><span class="n">thisBits</span> <span class="o">=</span><span class="o">=</span> <span class="n">anotherBits</span> <span class="o">?</span>  <span class="n">0</span> <span class="o">:</span> <span class="c1">// Values are equal
 </span><span class="c1"></span>          <span class="o">(</span><span class="n">thisBits</span> <span class="o">&lt;</span> <span class="n">anotherBits</span> <span class="o">?</span> <span class="o">-</span><span class="n">1</span> <span class="o">:</span> <span class="c1">// (-0.0, 0.0) or (!NaN, NaN)
-</span><span class="c1"></span>           <span class="n">1</span><span class="o">));</span>                          <span class="c1">// (0.0, -0.0) or (NaN, !NaN)
-</span><span class="c1"></span><span class="o">}</span></code></pre></td></tr></table>
+</span><span class="c1"></span>           <span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>                          <span class="c1">// (0.0, -0.0) or (NaN, !NaN)
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>与<code>Float</code>一致，可以参考 <a href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81float/#compare-%E6%96%B9%E6%B3%95">compare方法</a> 段落说明，需要注意的依然是<code>-0.0</code>，<code>0.0</code>，<code>Double.NaN</code>和<code>-Double.NaN</code>这类的特殊值，可以自行编写几个进行测试一下。</p>
-
-<h3 id="sum-min-max方法">sum、min、max方法</h3>
+</div><p>与<code>Float</code>一致，可以参考 <a href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81float/#compare-%E6%96%B9%E6%B3%95">compare方法</a> 段落说明，需要注意的依然是<code>-0.0</code>，<code>0.0</code>，<code>Double.NaN</code>和<code>-Double.NaN</code>这类的特殊值，可以自行编写几个进行测试一下。</p>
+<h3 id="summinmax方法">sum、min、max方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -753,50 +730,36 @@
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">max</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">min</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>逻辑很简单，依旧需要注意的是<code>-0.0</code>，<code>0.0</code>，<code>Double.NaN</code>和<code>-Double.NaN</code>这类的特殊值，可以自行测试下结果，也许会出乎你的意料哦。</p>
-
+</div><p>逻辑很简单，依旧需要注意的是<code>-0.0</code>，<code>0.0</code>，<code>Double.NaN</code>和<code>-Double.NaN</code>这类的特殊值，可以自行测试下结果，也许会出乎你的意料哦。</p>
 <h2 id="特别说明">特别说明</h2>
-
 <p>因为<code>double</code>是64bit，需要注意下<code>double</code>的原子性逻辑，这里是官方文档的具体说明<a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html#jls-17.7">Non-Atomic Treatment of <code>double</code>and <code>long</code></a>，引用解释一下：</p>
-
 <blockquote>
 <p>For the purposes of the Java programming language memory model, a single write to a non-volatile <code>long</code>or<code>double</code>value is treated as two separate writes: one to each 32-bit half. This can result in a situation where a thread sees the first 32 bits of a 64-bit value from one write, and the second 32 bits from another write.</p>
-
 <p>Writes and reads of volatile<code>long</code>and <code>double</code>values are always atomic.</p>
-
 <p>Writes to and reads of references are always atomic, regardless of whether they are implemented as 32-bit or 64-bit values.</p>
-
 <p>Some implementations may find it convenient to divide a single write action on a 64-bit <code>long</code>or <code>double</code>value into two write actions on adjacent 32-bit values. For efficiency&rsquo;s sake, this behavior is implementation-specific; an implementation of the Java Virtual Machine is free to perform writes to <code>long</code>and <code>double</code>values atomically or in two parts.</p>
-
 <p>Implementations of the Java Virtual Machine are encouraged to avoid splitting 64-bit values where possible. Programmers are encouraged to declare shared 64-bit values as <code>volatile</code>or synchronize their programs correctly to avoid possible complications.</p>
 </blockquote>
-
 <p>出于Java编程语言内存模型的原因，对于没有<code>volatile</code>修饰的<code>long</code>或者<code>double</code>的单个写操作，会被分成两次写操作，每次对32位操作。因此可能会导致线程会读到来自不同线程写入的32位数据组合的错误结果。</p>
-
 <p>对于<code>volatile</code>修饰的<code>long</code>和<code>double</code>而言，写和读操作都是原子的。</p>
-
 <p>对于引用的读写，不管是32位或者64的数据值，都是原子操作。</p>
-
 <p>一些实现方案中也许会发现将64位数据的单次写操作分成两次相邻32位数据的写操作很方便。出于效率的缘故，这种是比较特殊的实现；JVM的实现可以自由的选择对<code>long</code>和<code>value</code>的写入采用原子逻辑或者分成两步。</p>
-
 <p>鼓励JVM的实现在可能的情况下避免拆分64位的逻辑。对于程序员而言，鼓励在共享的64位值上添加<code>volatile</code>或者<code>synchronize</code>的声明修饰，避免复杂问题的出现。</p>
-
 <p>从上面的描述可以看出来，原子性的问题是可能存在的。不过对于现在绝大部分的64位的机器以及使用64位的JVM时，这个问题一般是忽略的。但是当你使用的环境不符合要求时，<strong>请注意这个问题的存在</strong>。</p>
-
 <h2 id="总结">总结</h2>
-
 <p>总的代码逻辑来看，<code>Double</code>和<code>Float</code>的逻辑基本一致，因为都是<code>IEEE 754</code>标准的浮点数，主要还是使用的bit数不同带来的一些差距。如果你已经了解了<code>float</code>，那再理解这个其实很简单。</p>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -806,7 +769,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -830,14 +793,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -860,12 +821,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -880,9 +839,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -894,6 +856,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

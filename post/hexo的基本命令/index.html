@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="这个博客使用的就是hexo，一些命令可能随时间会有部分遗忘，所以写一篇文章记录下来方便自己下次查询。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" />
-<meta property="article:published_time" content="2014-10-28T21:39:13&#43;00:00"/>
-<meta property="article:modified_time" content="2018-01-14T20:45:36&#43;08:00"/>
-
+<meta property="article:published_time" content="2014-10-28T21:39:13+00:00" />
+<meta property="article:modified_time" content="2018-01-14T20:45:36+08:00" />
 <meta itemprop="name" content="Hexo的基本命令">
 <meta itemprop="description" content="这个博客使用的就是hexo，一些命令可能随时间会有部分遗忘，所以写一篇文章记录下来方便自己下次查询。">
-
-
 <meta itemprop="datePublished" content="2014-10-28T21:39:13&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-14T20:45:36&#43;08:00" />
-<meta itemprop="wordCount" content="534">
+<meta itemprop="wordCount" content="527">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hexo的基本命令"/>
 <meta name="twitter:description" content="这个博客使用的就是hexo，一些命令可能随时间会有部分遗忘，所以写一篇文章记录下来方便自己下次查询。"/>
 
@@ -134,126 +131,80 @@
     
     <div class="post-content">
       <p>这个博客使用的就是hexo，一些命令可能随时间会有部分遗忘，所以写一篇文章记录下来方便自己下次查询。</p>
-
 <h2 id="新建博文">新建博文</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    hexo new [layout] &#34;postName&#34;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>    hexo new [layout] &quot;postName&quot;
+</code></pre>
 <p>其中layout是可选参数，默认值为post。</p>
-
 <h2 id="新建页面">新建页面</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    hexo new page &#34;about&#34;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>    hexo new page &quot;about&quot;
+</code></pre>
 <p>在hexo\source\下会生成about目录，里面有个index.md，直接编辑就可以了，然后在主题的_config.yml中在menu中添加下相对路径。</p>
-
 <h2 id="read-more功能">read more功能</h2>
-
 <p>编辑博文时可以添加这个以显示在页面你想显示的摘要类内容，可以自己控制长度，当然长度须在主题允许的长度内，也可更改主题内限制长度达到相同的效果。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    &lt;!--more--&gt;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>    &lt;!--more--&gt;
+</code></pre>
 <h2 id="清除">清除</h2>
-
 <p>有时直接生成会出现一些未知的错误，例如自己写的东西推送不上去，或者生成的内容不对，这时可能就需要清空下。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    hexo clean</pre></td></tr></table>
-</div>
-</div>
+<pre><code>    hexo clean
+</code></pre>
 <h2 id="生成静态页面">生成静态页面</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    hexo generate</pre></td></tr></table>
-</div>
-</div>
+<pre><code>    hexo generate
+</code></pre>
 <h2 id="本地启动">本地启动</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    hexo server</pre></td></tr></table>
-</div>
-</div>
-<p>执行这个命令，启动本地服务，进行文章预览，根据显示效果在根据自己的需求进行修改。浏览器输入  <a href="http://localhost:4000">http://localhost:4000</a>  可以查看</p>
-
+<pre><code>    hexo server
+</code></pre>
+<p>执行这个命令，启动本地服务，进行文章预览，根据显示效果在根据自己的需求进行修改。浏览器输入  http://localhost:4000  可以查看</p>
 <h2 id="上传更新">上传更新</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">    hexo deploy</pre></td></tr></table>
-</div>
-</div>
+<pre><code>    hexo deploy
+</code></pre>
 <h2 id="常用命令">常用命令</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">hexo new &#34;postName&#34; #新建文章
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">hexo new &#34;postName&#34; #新建文章
 hexo new page &#34;pageName&#34; #新建页面
 hexo generate #生成静态页面至public目录
 hexo server #开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）
-hexo deploy #将.deploy目录部署到GitHub</pre></td></tr></table>
+hexo deploy #将.deploy目录部署到GitHub
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="常用复合命令">常用复合命令</h2>
+</div><h2 id="常用复合命令">常用复合命令</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">hexo deploy -g
-hexo server -g</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">hexo deploy -g
+hexo server -g
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="命令简写">命令简写</h2>
+</div><h2 id="命令简写">命令简写</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">hexo n == hexo new
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">hexo n == hexo new
 hexo g == hexo generate
 hexo s == hexo server
-hexo d == hexo deploy</pre></td></tr></table>
+hexo d == hexo deploy
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
 
-    <footer class="post-footer">
+    
+<footer class="post-footer">
       
       <nav class="post-nav">
         <a class="prev" href="/post/python%E5%AD%A6%E4%B9%A0-%E4%B8%80-%E9%80%92%E5%BD%92/">
@@ -271,6 +222,7 @@ hexo d == hexo deploy</pre></td></tr></table>
   </article>
         </div>
         
+
       </div>
     </main>
 
@@ -293,12 +245,10 @@ hexo d == hexo deploy</pre></td></tr></table>
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -313,9 +263,12 @@ hexo d == hexo deploy</pre></td></tr></table>
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -327,6 +280,7 @@ hexo d == hexo deploy</pre></td></tr></table>
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/javascript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
-<meta property="article:published_time" content="2017-04-15T17:58:24&#43;00:00"/>
-<meta property="article:modified_time" content="2018-01-14T20:50:47&#43;08:00"/>
-
+<meta property="article:published_time" content="2017-04-15T17:58:24+00:00" />
+<meta property="article:modified_time" content="2018-01-14T20:50:47+08:00" />
 <meta itemprop="name" content="JavaScript 学习笔记">
 <meta itemprop="description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。">
-
-
 <meta itemprop="datePublished" content="2017-04-15T17:58:24&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-14T20:50:47&#43;08:00" />
-<meta itemprop="wordCount" content="3301">
+<meta itemprop="wordCount" content="3299">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaScript 学习笔记"/>
 <meta name="twitter:description" content="这个是自己在跟着廖雪峰的JavaScript教程学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。"/>
 
@@ -137,134 +134,93 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#数据类型和变量">数据类型和变量</a></li>
-<li><a href="#字符串">字符串</a></li>
-<li><a href="#数组">数组</a></li>
-<li><a href="#对象">对象</a></li>
-<li><a href="#条件判断">条件判断</a></li>
-<li><a href="#循环">循环</a></li>
-<li><a href="#函数">函数</a></li>
-<li><a href="#方法">方法</a></li>
-<li><a href="#map">map</a></li>
-<li><a href="#sort">sort</a></li>
-<li><a href="#包装对象">包装对象</a></li>
-<li><a href="#箭头函数">箭头函数</a></li>
-<li><a href="#面向对象编程">面向对象编程</a></li>
-<li><a href="#创建对象">创建对象</a></li>
-<li><a href="#原型继承">原型继承</a></li>
-<li><a href="#浏览器对象">浏览器对象</a>
-<ul>
-<li><a href="#location">location</a></li>
-</ul></li>
-<li><a href="#扩展">扩展</a>
-<ul>
-<li><a href="#编写jquery插件">编写jQuery插件</a></li>
-</ul></li>
-<li><a href="#模块">模块</a></li>
-<li><a href="#stream">Stream</a></li>
-<li><a href="#http">HTTP</a></li>
-<li><a href="#mvvm">MVVM</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>这个是自己在跟着<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">廖雪峰的JavaScript教程</a>学习时记录的一些笔记，这里整理一下，也算方便自己后面进行知识回顾。个人感觉这个教程作为入门了解一些专业名词和基础知识还是可以的，但是由于教程的内容包含的内容较为广，跨度较大，一些知识只是简单的叙述了一下，深入的理解和学习还是需要去查阅其他更详细的资料。</p>
-
 <h4 id="数据类型和变量">数据类型和变量</h4>
-
 <ol>
-<li>&ldquo;use strict&rdquo;，在strict模式下运行的JavaScript代码，强制使用<code>var</code>申明变量，未使用<code>var</code>申明变量就使用的，将会导致运行错误；未声明可能导致成为全局变量，污染全局变量环境。</li>
-</ol>
+<li>
+<p>&ldquo;use strict&rdquo;，在strict模式下运行的JavaScript代码，强制使用<code>var</code>申明变量，未使用<code>var</code>申明变量就使用的，将会导致运行错误；未声明可能导致成为全局变量，污染全局变量环境。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="nx">ReferenceError</span><span class="o">:</span> <span class="nx">xxx</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">defined</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">ReferenceError</span><span class="o">:</span> <span class="nx">xxx</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">defined</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="字符串">字符串</h4>
-
-<ol>
-<li>ES6新增了一种模板字符串（若不支持，使用<code>+</code>连接字符串）</li>
+</div></li>
 </ol>
+<h4 id="字符串">字符串</h4>
+<ol>
+<li>
+<p>ES6新增了一种模板字符串（若不支持，使用<code>+</code>连接字符串）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
-   <span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;2017-01-01&#39;</span><span class="p">;</span>
-   <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, 今天是</span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
-   <span class="nx">alert</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span> <span class="c1">// hello world, 今天是2017-01-01!
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="s1">&#39;2017-01-01&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, 今天是</span><span class="si">${</span><span class="nx">time</span><span class="si">}</span><span class="sb">!</span><span class="sb">`</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span><span class="p">;</span> <span class="c1">// hello world, 今天是2017-01-01!
 </span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ol>
 <h4 id="数组">数组</h4>
-
 <ol>
 <li>直接给<code>Array</code>的<code>length</code>赋值，可能会导致<code>Array</code>大小的改变</li>
 <li>通过索引赋值时，当索引超出数组大小时，同样会引起<code>Array</code>大小的改变</li>
 </ol>
-
 <h4 id="对象">对象</h4>
-
 <ol>
 <li>判断对象是否拥有某一属性，使用<code>in</code>操作符</li>
 <li>使用<code>in</code>判断某一属性是否存在时，属性不一定是对象本身的，可能是继承得到的</li>
 <li>判断一个属性是否是对象自身拥有的，而不是继承得到的，可以使用<code>hasOwnProperty()</code>方法</li>
 </ol>
-
 <h4 id="条件判断">条件判断</h4>
-
 <ol>
 <li>Javascript把<code>null</code>、<code>undefined</code>、<code>0</code>、<code>NaN</code>和空字符串<code>''</code>视为<code>false</code>，其他值均为<code>true</code></li>
 </ol>
-
 <h4 id="循环">循环</h4>
-
 <ol>
 <li><code>for...in</code>对<code>Array</code>的循环得到的是<code>String</code>而不是<code>Number</code></li>
 </ol>
-
 <h4 id="函数">函数</h4>
-
 <ol>
 <li>JavaScript函数允许传入任意个数的参数而不影响调用</li>
 <li>关键字<code>arguments</code>只在函数内部起作用，可以获取到当前函数调用者传入的所有参数</li>
 </ol>
-
 <h4 id="方法">方法</h4>
-
 <ol>
-<li><p>在一个方法内部，<code>this</code>是一个特殊变量，始终指向当前对象</p></li>
-
-<li><p>单独调用一个函数，此时，高函数的<code>this</code>指向全局变量，也就是<code>window</code></p></li>
-
-<li><p>使用apply()和call()对<code>this</code>的指向进行控制，防止产生错误</p></li>
-
-<li><p>利用apply()动态的改变函数的行为</p></li>
-</ol>
-
+<li>
+<p>在一个方法内部，<code>this</code>是一个特殊变量，始终指向当前对象</p>
+</li>
+<li>
+<p>单独调用一个函数，此时，高函数的<code>this</code>指向全局变量，也就是<code>window</code></p>
+</li>
+<li>
+<p>使用apply()和call()对<code>this</code>的指向进行控制，防止产生错误</p>
+</li>
+<li>
+<p>利用apply()动态的改变函数的行为</p>
 <p>假定我们想统计一下代码一共调用了多少次<code>parseInt()</code>，可以把所有的调用都找出来，然后手动加上<code>count += 1</code>，不过这样做太傻了。最佳方案是用我们自己的函数替换掉默认的<code>parseInt()</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -279,26 +235,27 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-   <span class="kd">var</span> <span class="nx">oldParseInt</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">;</span> <span class="c1">// 保存原函数
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">oldParseInt</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">;</span> <span class="c1">// 保存原函数
 </span><span class="c1"></span>
-   <span class="nb">window</span><span class="p">.</span><span class="nb">parseInt</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-       <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-       <span class="k">return</span> <span class="nx">oldParseInt</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="c1">// 调用原函数
-</span><span class="c1"></span>   <span class="p">};</span>
+<span class="nb">window</span><span class="p">.</span><span class="nb">parseInt</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">oldParseInt</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 调用原函数
+</span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
 
-   <span class="c1">// 测试:
-</span><span class="c1"></span>   <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">);</span>
-   <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;20&#39;</span><span class="p">);</span>
-   <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;30&#39;</span><span class="p">);</span>
-   <span class="nx">count</span><span class="p">;</span> <span class="c1">// 3
+<span class="c1">// 测试:
+</span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;20&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;30&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">count</span><span class="p">;</span> <span class="c1">// 3
 </span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ol>
 <h4 id="map">map</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -307,26 +264,23 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
-<span class="nx">r</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">);</span>
+<span class="nx">r</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">)</span><span class="p">;</span>
 
 <span class="c1">// 结果返回为[1, NaN, NaN]
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>原因是在调用<code>arr.map(parseInt)</code>的时候，传给<code>map</code>的参数为三个：</p>
-
+</div><p>原因是在调用<code>arr.map(parseInt)</code>的时候，传给<code>map</code>的参数为三个：</p>
 <ul>
 <li>当前的值(currentValue)  <code>// 依次是'1','2','3'</code></li>
 <li>当前值的索引(currentIndex)  <code>// 依次是0，1，2</code></li>
 <li>当前的数组(currentArray) <code>// 都是['1','2','3']</code></li>
 </ul>
-
 <p>而每次调用parseInt函数时，函数接受两个参数，因此只传入了两个值(<code>currentValue, currentIndex</code>)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
@@ -336,23 +290,18 @@
 </span><span class="c1"></span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// NaN
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>所以有效的写法是<code>arr.map(function(x) { return parseInt(x)});</code></p>
-
+</div><p>所以有效的写法是<code>arr.map(function(x) { return parseInt(x)});</code></p>
 <h4 id="sort">sort</h4>
-
 <ol>
 <li><code>Array</code>的<code>sort()</code>方法默认把所有元素先转换成<code>String</code>后再进行排序</li>
 </ol>
-
 <h4 id="包装对象">包装对象</h4>
-
 <ol>
-<li>包装对象看上去和原来的值一样，但是他们的类型已经发生了改变，变成了<code>object</code>，并且使用<code>===</code>与原始值比较会返回<code>false</code></li>
-</ol>
+<li>
+<p>包装对象看上去和原来的值一样，但是他们的类型已经发生了改变，变成了<code>object</code>，并且使用<code>===</code>与原始值比较会返回<code>false</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -362,23 +311,23 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="k">typeof</span> <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span> <span class="c1">// &#39;object&#39;
-</span><span class="c1"></span>   <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="o">===</span> <span class="mi">123</span><span class="p">;</span> <span class="c1">// false
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">typeof</span> <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span><span class="p">;</span> <span class="c1">// &#39;object&#39;
+</span><span class="c1"></span><span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="o">===</span> <span class="mi">123</span><span class="p">;</span> <span class="c1">// false
 </span><span class="c1"></span>
-   <span class="k">typeof</span> <span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// &#39;object&#39;
-</span><span class="c1"></span>   <span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="o">===</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// false
+<span class="k">typeof</span> <span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="p">;</span> <span class="c1">// &#39;object&#39;
+</span><span class="c1"></span><span class="k">new</span> <span class="nb">Boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="o">===</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// false
 </span><span class="c1"></span>
-   <span class="k">typeof</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">);</span> <span class="c1">// &#39;object&#39;
-</span><span class="c1"></span>   <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;str&#39;</span><span class="p">;</span> <span class="c1">// false
+<span class="k">typeof</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">// &#39;object&#39;
+</span><span class="c1"></span><span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;str&#39;</span><span class="p">;</span> <span class="c1">// false
 </span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ol>
 <h4 id="箭头函数">箭头函数</h4>
-
 <p>易犯的错误：<strong>箭头函数没有自己的<code>this</code></strong>，总是指向定义时所在的作用域的<code>this</code>值</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -388,25 +337,21 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">foo</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">bar</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">)</span>
+  <span class="nx">bar</span><span class="o">:</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">()</span>  <span class="c1">//undefined
+<span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">(</span><span class="p">)</span>  <span class="c1">//undefined
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>上述代码中，箭头函数中的<code>this</code>并不是指向<code>a</code>这个对象的，<strong>使用的是词法作用域内的this</strong>；对象<code>a</code>并不能构建自身的作用域，不能够新建自己的<code>this</code>值，所以向上查找到达全局作用域，<code>this</code>就是指向全局作用域，而全局作用域不存在相应的属性值，因此为<code>undefined</code></p>
-
+</div><p>上述代码中，箭头函数中的<code>this</code>并不是指向<code>a</code>这个对象的，<strong>使用的是词法作用域内的this</strong>；对象<code>a</code>并不能构建自身的作用域，不能够新建自己的<code>this</code>值，所以向上查找到达全局作用域，<code>this</code>就是指向全局作用域，而全局作用域不存在相应的属性值，因此为<code>undefined</code></p>
 <p>下述代码中，如果使用普通函数时，输出结果就是符合预期的，这是因为</p>
-
 <blockquote>
 <p>在函数运行时，this关键字并不会指向正在运行的函数本身，而是指向调用该函数的对象</p>
 </blockquote>
-
 <p>也就是<code>a.bar()</code>函数执行时作用域绑到了<code>a</code>对象，<code>this</code>就是指向了<code>a</code>对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -419,36 +364,32 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">foo</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">bar</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">)</span> <span class="p">}</span>
+  <span class="nx">bar</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">foo</span><span class="p">)</span> <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">()</span>  <span class="c1">// 1
+<span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">(</span><span class="p">)</span>  <span class="c1">// 1
 </span><span class="c1"></span>
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">bar</span><span class="p">;</span>
-<span class="nx">c</span><span class="p">();</span> <span class="c1">// undefined
+<span class="nx">c</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// undefined
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>此时调用函数<code>bar</code>的是<code>window</code>对象，所以函数<code>bar</code>的<code>this</code>被指向了<code>window</code>，而<code>window</code>不存在<code>foo</code>属性，所以结果是<code>undefined</code></p>
-
+</div><p>此时调用函数<code>bar</code>的是<code>window</code>对象，所以函数<code>bar</code>的<code>this</code>被指向了<code>window</code>，而<code>window</code>不存在<code>foo</code>属性，所以结果是<code>undefined</code></p>
 <h4 id="面向对象编程">面向对象编程</h4>
-
 <ol>
 <li>JavaScript的原型链和Java的Class的区别是，JavaScript没有<code>Class</code>的概念，所有的对象都是实例，所谓的<strong>继承关系不过是把一个对象的原型指向另外一个对象而已</strong>。</li>
 <li><code>prototype</code>是<strong>函数</strong>的一个属性(每个函数都有一个<code>prototype</code>属性)，这个属性是一个指针，指向一个对象。它是显示修改对象的原型的属性。</li>
 <li><code>__proto__</code>是一个对象拥有的内置属性，(<strong>请注意：<code>prototype</code>是函数的内置属性，<code>__proto__</code>是对象的内置属性</strong>)，是JS内部使用寻找原型链的属性。</li>
 </ol>
-
 <h4 id="创建对象">创建对象</h4>
-
 <ol>
-<li><p>如果原型链很长，那么访问一个对象的属性就会因为花更多的时间查找而变慢，所以不要把原型链搞得太长</p></li>
-
-<li><p>使用<code>new</code>，变成了一个构造函数，他绑定的<code>this</code>指向新创建的对象，并默认返回<code>this</code></p></li>
-</ol>
+<li>
+<p>如果原型链很长，那么访问一个对象的属性就会因为花更多的时间查找而变慢，所以不要把原型链搞得太长</p>
+</li>
+<li>
+<p>使用<code>new</code>，变成了一个构造函数，他绑定的<code>this</code>指向新创建的对象，并默认返回<code>this</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -460,21 +401,21 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">function</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-       <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-       <span class="k">this</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-           <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello, &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">);</span>
-       <span class="p">}</span>
-   <span class="p">}</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello, &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-   <span class="kd">var</span> <span class="nx">xiaoming</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s1">&#39;小明&#39;</span><span class="p">)</span><span class="err">；</span>
-   <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// &#34;小明&#34;
-</span><span class="c1"></span>   <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span><span class="p">();</span> <span class="c1">// &#34;Hello,小明!&#34;
+<span class="kd">var</span> <span class="nx">xiaoming</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s1">&#39;小明&#39;</span><span class="p">)</span><span class="err">；</span>
+<span class="nx">xiaoming</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// &#34;小明&#34;
+</span><span class="c1"></span><span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// &#34;Hello,小明!&#34;
 </span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -483,22 +424,20 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">var</span> <span class="nx">xiaohong</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s2">&#34;小红&#34;</span><span class="p">)</span><span class="err">；</span>
-   <span class="nx">xiaohong</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// &#34;小红&#34;
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">xiaohong</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="s2">&#34;小红&#34;</span><span class="p">)</span><span class="err">；</span>
+<span class="nx">xiaohong</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// &#34;小红&#34;
 </span><span class="c1"></span>
-   <span class="c1">// 注意这里
-</span><span class="c1"></span>   <span class="nx">xiaohong</span><span class="p">.</span><span class="nx">hello</span><span class="p">;</span> <span class="c1">// function Student/this.hello()
-</span><span class="c1"></span>   <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span><span class="p">;</span> <span class="c1">// function Student/this.hello()
-</span><span class="c1"></span>   <span class="nx">xiaohong</span><span class="p">.</span><span class="nx">hello</span> <span class="o">===</span> <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span> <span class="c1">// false
+<span class="c1">// 注意这里
+</span><span class="c1"></span><span class="nx">xiaohong</span><span class="p">.</span><span class="nx">hello</span><span class="p">;</span> <span class="c1">// function Student/this.hello()
+</span><span class="c1"></span><span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span><span class="p">;</span> <span class="c1">// function Student/this.hello()
+</span><span class="c1"></span><span class="nx">xiaohong</span><span class="p">.</span><span class="nx">hello</span> <span class="o">===</span> <span class="nx">xiaoming</span><span class="p">.</span><span class="nx">hello</span> <span class="c1">// false
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>从上述代码可以看出，<code>xiaoming.hello</code>和<code>xiaohong.hello</code>都是函数，但是它们是不同的函数，虽然函数名称和代码是相同的！</p>
-
+</div><p>从上述代码可以看出，<code>xiaoming.hello</code>和<code>xiaohong.hello</code>都是函数，但是它们是不同的函数，虽然函数名称和代码是相同的！</p>
 <p>所以，当我们通过<code>new Student()</code>创建了较多对象时，每个对象都有一个自己的<code>hello</code>函数，这样子来说是比较耗费内存的，实际上只需要共享同一个函数就可以了，这样子可以节省资源。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -507,49 +446,40 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="kd">function</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-   <span class="p">}</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
 
-   <span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-     <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Hello,&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&#34;!&#34;</span><span class="p">);</span>
-   <span class="p">};</span>
+<span class="nx">Student</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Hello,&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&#34;!&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p><em>为了区分普通函数和构造函数，按照约定，构造函数首字母应该大写，而普通函数首字母应该小写</em></p>
-
+</div><p><em>为了区分普通函数和构造函数，按照约定，构造函数首字母应该大写，而普通函数首字母应该小写</em></p>
+</li>
+</ol>
 <h4 id="原型继承">原型继承</h4>
-
 <ol>
-<li>定义新的构造函数，并在内部用<code>call()</code>调用希望&rdquo;继承&rdquo;的构造函数，动态修改<code>this</code></li>
+<li>定义新的构造函数，并在内部用<code>call()</code>调用希望&quot;继承&quot;的构造函数，动态修改<code>this</code></li>
 <li>借助中间函数<code>F</code>实现原型链继承（可以通过封装的<code>inherits</code>函数完成）</li>
 <li>继续在新的构造函数上的原型上定义新的方法</li>
 </ol>
-
 <h4 id="浏览器对象">浏览器对象</h4>
-
 <h5 id="location">location</h5>
-
 <ol>
 <li><code>location</code>对象表示当前页面的URL信息</li>
 <li>加载一个新页面，可以调用<code>location.assign()</code></li>
 <li>重新加载当前页面，调用<code>location.reload()</code></li>
 </ol>
-
 <h4 id="扩展">扩展</h4>
-
 <h5 id="编写jquery插件">编写jQuery插件</h5>
-
 <ol>
 <li>给<code>$.fn</code>绑定函数，实现插件的代码逻辑</li>
 <li>插件函数最后要<code>return this</code>，以实现链式调用</li>
 <li>插件函数要有默认值，绑定在<code>$.fn.&lt;pluginNane&gt;.defaults</code>上</li>
 <li>用户在调用时可以传入设定值以覆盖默认值</li>
 </ol>
-
 <h4 id="模块">模块</h4>
-
 <ol>
 <li>在Node环境中，一个.js文件就称为一个模块(module)</li>
 <li>提高了代码的可维护性</li>
@@ -557,23 +487,17 @@
 <li>模块中对外输出变量，用<code>module.exports = variable;</code></li>
 <li>引入其他模块输出的对象，用<code>var foo = require('other_module');</code></li>
 </ol>
-
 <h4 id="stream">Stream</h4>
-
 <ol>
 <li>流的特点是数据是有序的，而且必须是依次读取，或者依次写入</li>
 <li><code>pipe()</code>把一个文件流和另一个文件流串起来，这样子源文件的所有数据就自动写入到目标文件了</li>
 </ol>
-
 <h4 id="http">HTTP</h4>
-
 <ol>
 <li><code>request</code>对象封装了HTTP请求，调用<code>request</code>对象的属性和方法就可以拿到所有的HTTP请求的信息</li>
 <li><code>response</code>对象封装了HTTP响应，操作<code>response</code>对象的方法，就可以把HTTP响应返回给浏览器</li>
 </ol>
-
 <h4 id="mvvm">MVVM</h4>
-
 <ol>
 <li>关注Model的变化，让MVVM框架取去自动更新DOM的状态</li>
 <li>单向绑定：把Model绑定到View，当我们使用JavaScript代码更新Model时，View会自动更新</li>
@@ -583,7 +507,8 @@
 </ol>
     </div>
 
-    <footer class="post-footer">
+    
+<footer class="post-footer">
       
       <nav class="post-nav">
         <a class="prev" href="/post/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/">
@@ -600,14 +525,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -630,12 +553,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -650,9 +571,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -664,6 +588,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/net-http%E7%9A%84encode_www_form%E9%97%AE%E9%A2%98/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="最近业务又涉及到了支付宝小程序，所以需要更新alipay_mini这个gem包，增加一个创建订单的接口，去实现支付宝支付的功能模块。因为包里使用的是ruby自带的net/http进行网络请求，当测试的时候发现阿里那边接口返回的一直是签名验证不一致，但是测试其他接口却是正常的，能够获取到相关的信息。于是开始了排查之路，毕竟刚写的接口，肯定是哪里出了问题，于是与阿里返回的验证字符串进行了比较，慢慢的发现了问题所在。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/net-http%E7%9A%84encode_www_form%E9%97%AE%E9%A2%98/" />
-<meta property="article:published_time" content="2018-12-06T18:29:07&#43;08:00"/>
-<meta property="article:modified_time" content="2018-12-06T18:29:07&#43;08:00"/>
-
+<meta property="article:published_time" content="2018-12-06T18:29:07+08:00" />
+<meta property="article:modified_time" content="2018-12-06T18:29:07+08:00" />
 <meta itemprop="name" content="Net Http的encode_www_form问题">
 <meta itemprop="description" content="最近业务又涉及到了支付宝小程序，所以需要更新alipay_mini这个gem包，增加一个创建订单的接口，去实现支付宝支付的功能模块。因为包里使用的是ruby自带的net/http进行网络请求，当测试的时候发现阿里那边接口返回的一直是签名验证不一致，但是测试其他接口却是正常的，能够获取到相关的信息。于是开始了排查之路，毕竟刚写的接口，肯定是哪里出了问题，于是与阿里返回的验证字符串进行了比较，慢慢的发现了问题所在。">
-
-
 <meta itemprop="datePublished" content="2018-12-06T18:29:07&#43;08:00" />
 <meta itemprop="dateModified" content="2018-12-06T18:29:07&#43;08:00" />
-<meta itemprop="wordCount" content="991">
+<meta itemprop="wordCount" content="994">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Net Http的encode_www_form问题"/>
 <meta name="twitter:description" content="最近业务又涉及到了支付宝小程序，所以需要更新alipay_mini这个gem包，增加一个创建订单的接口，去实现支付宝支付的功能模块。因为包里使用的是ruby自带的net/http进行网络请求，当测试的时候发现阿里那边接口返回的一直是签名验证不一致，但是测试其他接口却是正常的，能够获取到相关的信息。于是开始了排查之路，毕竟刚写的接口，肯定是哪里出了问题，于是与阿里返回的验证字符串进行了比较，慢慢的发现了问题所在。"/>
 
@@ -136,13 +133,11 @@
     
     <div class="post-content">
       <p>最近业务又涉及到了支付宝小程序，所以需要更新<a href="https://github.com/renyijiu/alipay_mini">alipay_mini</a>这个gem包，增加一个创建订单的接口，去实现支付宝支付的功能模块。因为包里使用的是ruby自带的<code>net/http</code>进行网络请求，当测试的时候发现阿里那边接口返回的一直是<code>签名验证不一致</code>，但是测试其他接口却是正常的，能够获取到相关的信息。于是开始了排查之路，毕竟刚写的接口，肯定是哪里出了问题，于是与阿里返回的验证字符串进行了比较，慢慢的发现了问题所在。</p>
-
 <h3 id="问题描述">问题描述</h3>
-
 <p>当一个单层的hash值使用<code>net/http</code>去构建成url的query字符串时，我们发现结果是正常的，如下面代码所示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -155,19 +150,19 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span><span class="ss">hello</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="ss">language</span><span class="p">:</span> <span class="s1">&#39;ruby&#39;</span><span class="p">}</span>
   <span class="p">{</span>
-    <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="s2">&#34;world&#34;</span><span class="p">,</span>
-    <span class="ss">:language</span> <span class="o">=&gt;</span> <span class="s2">&#34;ruby&#34;</span>
+    <span class="ss">:hello</span> <span class="o">=</span><span class="o">&gt;</span> <span class="s2">&#34;</span><span class="s2">world</span><span class="s2">&#34;</span><span class="p">,</span>
+    <span class="ss">:language</span> <span class="o">=</span><span class="o">&gt;</span> <span class="s2">&#34;</span><span class="s2">ruby</span><span class="s2">&#34;</span>
   <span class="p">}</span>
 
 <span class="c1"># 输出结果</span>
 <span class="o">&gt;</span> <span class="no">URI</span><span class="o">.</span><span class="n">encode_www_form</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
-  <span class="s2">&#34;hello=world&amp;language=ruby&#34;</span></code></pre></td></tr></table>
+  <span class="s2">&#34;</span><span class="s2">hello=world&amp;language=ruby</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>但是呢当一个多层的hash使用相同的方式进行操作时问题就出来了，代码如下：</p>
+</div><p>但是呢当一个多层的hash使用相同的方式进行操作时问题就出来了，代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -180,59 +175,59 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span><span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="ss">language</span><span class="p">:</span> <span class="ss">:ruby</span><span class="p">,</span> <span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="nb">name</span><span class="p">:</span> <span class="ss">:renyijiu</span><span class="p">}}}</span>
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span><span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="ss">language</span><span class="p">:</span> <span class="ss">:ruby</span><span class="p">,</span> <span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="nb">name</span><span class="p">:</span> <span class="ss">:renyijiu</span><span class="p">}</span><span class="p">}</span><span class="p">}</span>
   <span class="p">{</span>
-    <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="ss">:language</span> <span class="o">=&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
-      <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="ss">:renyijiu</span>
+    <span class="ss">:hello</span> <span class="o">=</span><span class="o">&gt;</span> <span class="p">{</span>
+      <span class="ss">:language</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
+      <span class="ss">:hello</span> <span class="o">=</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="ss">:name</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:renyijiu</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
 
 <span class="c1"># 输出结果</span>
 <span class="o">&gt;</span> <span class="no">URI</span><span class="o">.</span><span class="n">encode_www_form</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
-  <span class="s2">&#34;hello=%7B%3Alanguage%3D%3E%3Aruby%2C+%3Ahello%3D%3E%7B%3Aname%3D%3E%3Arenyijiu%7D%7D&#34;</span></code></pre></td></tr></table>
+  <span class="s2">&#34;</span><span class="s2">hello=%7B%3Alanguage%3D%3E%3Aruby%2C+%3Ahello%3D%3E%7B%3Aname%3D%3E%3Arenyijiu%7D%7D</span><span class="s2">&#34;</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这样子可能无法直观的看出问题，我们将输出的字符串进行解码：</p>
+</div><p>这样子可能无法直观的看出问题，我们将输出的字符串进行解码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="s2">&#34;hello=%7B%3Alanguage%3D%3E%3Aruby%2C+%3Ahello%3D%3E%7B%3Aname%3D%3E%3Arenyijiu%7D%7D&#34;</span> 
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="s2">&#34;</span><span class="s2">hello=%7B%3Alanguage%3D%3E%3Aruby%2C+%3Ahello%3D%3E%7B%3Aname%3D%3E%3Arenyijiu%7D%7D</span><span class="s2">&#34;</span> 
 
 <span class="c1"># 对应的是：</span>
-<span class="s2">&#34;hello={:language=&gt;:ruby, :hello=&gt;{:name=&gt;:renyijiu}}&#34;</span></code></pre></td></tr></table>
+<span class="s2">&#34;</span><span class="s2">hello={:language=&gt;:ruby, :hello=&gt;{:name=&gt;:renyijiu}}</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>现在可以发现的是，<strong>多层级的hash值其较深的层次在<code>urlencode</code>时并没有达到转换的效果，只有最外层的hash是成功处理的</strong>。</p>
-
+</div><p>现在可以发现的是，<strong>多层级的hash值其较深的层次在<code>urlencode</code>时并没有达到转换的效果，只有最外层的hash是成功处理的</strong>。</p>
 <h3 id="问题解决">问题解决</h3>
-
 <p>确定了问题的原因，那就开始解决问题了。当然如果我们使用<code>rails</code>时，其提供了几个对应的方法可以去达到效果，例如</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">hash</span><span class="o">.</span><span class="n">to_query</span>
 
-<span class="nb">hash</span><span class="o">.</span><span class="n">to_param</span></code></pre></td></tr></table>
+<span class="nb">hash</span><span class="o">.</span><span class="n">to_param</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>但是由于这次是在写一个gem包，我们不能依赖于<code>rails</code>的语法糖，只能靠自己去处理了，所以需要编写一个函数，去把多层的<code>hash</code>转换成单层的，然后再去使用<code>encode_www_form</code>就可以解决这个问题了。</p>
+</div><p>但是由于这次是在写一个gem包，我们不能依赖于<code>rails</code>的语法糖，只能靠自己去处理了，所以需要编写一个函数，去把多层的<code>hash</code>转换成单层的，然后再去使用<code>encode_www_form</code>就可以解决这个问题了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -250,14 +245,17 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">to_query</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">out_hash</span> <span class="o">=</span> <span class="p">{})</span>
+<pre class="chroma"><code class="language-ruby" data-lang="ruby">
+<span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">to_query</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">out_hash</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span>
   <span class="k">case</span> <span class="n">value</span>
   <span class="k">when</span> <span class="no">Hash</span>
-    <span class="n">value</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">to_query</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">append_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">out_hash</span><span class="p">)</span> <span class="p">}</span>  
+    <span class="n">value</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">to_query</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">append_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span><span class="p">,</span> <span class="n">out_hash</span><span class="p">)</span> <span class="p">}</span>  
   <span class="k">when</span> <span class="nb">Array</span>
-    <span class="n">value</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">to_query</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2">[]&#34;</span><span class="p">,</span> <span class="n">out_hash</span><span class="p">)</span> <span class="p">}</span>    
+    <span class="n">value</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">to_query</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2">[]</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">out_hash</span><span class="p">)</span> <span class="p">}</span>    
   <span class="k">when</span> <span class="kp">nil</span>
     <span class="s1">&#39;&#39;</span>
   <span class="k">else</span>
@@ -267,15 +265,16 @@
   <span class="n">out_hash</span>
 <span class="k">end</span>
 
-<span class="k">def</span> <span class="nf">append_key</span><span class="p">(</span><span class="n">root_key</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-  <span class="n">root_key</span><span class="o">.</span><span class="n">nil?</span> <span class="p">?</span> <span class="ss">:&#34;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="ss">&#34;</span> <span class="p">:</span> <span class="ss">:&#34;</span><span class="si">#{</span><span class="n">root_key</span><span class="si">}</span><span class="ss">[</span><span class="si">#{</span><span class="n">key</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="ss">]&#34;</span>
-<span class="k">end</span></code></pre></td></tr></table>
+<span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">append_key</span><span class="p">(</span><span class="n">root_key</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+  <span class="n">root_key</span><span class="o">.</span><span class="n">nil?</span> <span class="p">?</span> <span class="ss">:&#34;</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="ss">&#34;</span> <span class="p">:</span> <span class="ss">:&#34;</span><span class="si">#{</span><span class="n">root_key</span><span class="si">}</span><span class="ss">[</span><span class="si">#{</span><span class="n">key</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="ss">]</span><span class="ss">&#34;</span>
+<span class="k">end</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>测试下实际的效果，看看能否达到的效果：</p>
+</div><p>测试下实际的效果，看看能否达到的效果：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -293,12 +292,12 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span><span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="ss">language</span><span class="p">:</span> <span class="ss">:ruby</span><span class="p">,</span> <span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="nb">name</span><span class="p">:</span> <span class="ss">:renyijiu</span><span class="p">}}}</span>
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span><span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="ss">language</span><span class="p">:</span> <span class="ss">:ruby</span><span class="p">,</span> <span class="ss">hello</span><span class="p">:</span> <span class="p">{</span><span class="nb">name</span><span class="p">:</span> <span class="ss">:renyijiu</span><span class="p">}</span><span class="p">}</span><span class="p">}</span>
   <span class="p">{</span>
-    <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="ss">:language</span> <span class="o">=&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
-      <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="ss">:renyijiu</span>
+    <span class="ss">:hello</span> <span class="o">=</span><span class="o">&gt;</span> <span class="p">{</span>
+      <span class="ss">:language</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
+      <span class="ss">:hello</span> <span class="o">=</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="ss">:name</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:renyijiu</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -306,15 +305,15 @@
 <span class="c1"># 使用函数转换</span>
 <span class="o">&gt;</span> <span class="n">to_query</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="ss">:&#34;hello[language]&#34;</span> <span class="o">=&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
-    <span class="ss">:&#34;hello[hello][name]&#34;</span> <span class="o">=&gt;</span> <span class="ss">:renyijiu</span>
-  <span class="p">}</span></code></pre></td></tr></table>
+    <span class="ss">:&#34;</span><span class="ss">hello[language]</span><span class="ss">&#34;</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
+    <span class="ss">:&#34;</span><span class="ss">hello[hello][name]</span><span class="ss">&#34;</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:renyijiu</span>
+  <span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>可以看出来，我们将多层嵌套的<code>hash</code>转换成了单层级，然后使用<code>encode_www_form</code>去转化成<code>url</code>格式：</p>
+</div><p>可以看出来，我们将多层嵌套的<code>hash</code>转换成了单层级，然后使用<code>encode_www_form</code>去转化成<code>url</code>格式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -324,22 +323,21 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="ss">:&#34;hello[language]&#34;</span> <span class="o">=&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
-    <span class="ss">:&#34;hello[hello][name]&#34;</span> <span class="o">=&gt;</span> <span class="ss">:renyijiu</span>
+    <span class="ss">:&#34;</span><span class="ss">hello[language]</span><span class="ss">&#34;</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:ruby</span><span class="p">,</span>
+    <span class="ss">:&#34;</span><span class="ss">hello[hello][name]</span><span class="ss">&#34;</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:renyijiu</span>
   <span class="p">}</span>
 
 <span class="o">&gt;</span> <span class="no">URI</span><span class="o">.</span><span class="n">encode_www_form</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
-  <span class="s2">&#34;hello%5Blanguage%5D=ruby&amp;hello%5Bhello%5D%5Bname%5D=renyijiu&#34;</span></code></pre></td></tr></table>
+  <span class="s2">&#34;</span><span class="s2">hello%5Blanguage%5D=ruby&amp;hello%5Bhello%5D%5Bname%5D=renyijiu</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>现在这样子问题就顺利解决了，参数验证也通过了。</p>
-
+</div><p>现在这样子问题就顺利解决了，参数验证也通过了。</p>
 <h3 id="结语">结语</h3>
-
 <p>这个问题自己也是第一次遇到，以前都是使用<code>rails</code>或者是其他的方案，可能在深层次已经帮你解决了这个问题，并对你隐藏了这个问题的存在，这次的实践让自己发现了这个问题，所以记录下提醒自己哈。</p>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -349,7 +347,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -370,14 +368,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -400,12 +396,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -420,9 +414,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -434,6 +431,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

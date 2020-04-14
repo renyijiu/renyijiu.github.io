@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="这篇文章拖了有点久，今天终于想起来把它写完了。记录一次生产环境的事故，也算是对自己的警示吧！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/" />
-<meta property="article:published_time" content="2018-06-05T18:17:53&#43;08:00"/>
-<meta property="article:modified_time" content="2018-06-05T18:17:53&#43;08:00"/>
-
+<meta property="article:published_time" content="2018-06-05T18:17:53+08:00" />
+<meta property="article:modified_time" content="2018-06-05T18:17:53+08:00" />
 <meta itemprop="name" content="记一次生产环境事故">
 <meta itemprop="description" content="这篇文章拖了有点久，今天终于想起来把它写完了。记录一次生产环境的事故，也算是对自己的警示吧！">
-
-
 <meta itemprop="datePublished" content="2018-06-05T18:17:53&#43;08:00" />
 <meta itemprop="dateModified" content="2018-06-05T18:17:53&#43;08:00" />
 <meta itemprop="wordCount" content="1259">
 
 
 
-<meta itemprop="keywords" content="rails," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="rails," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="记一次生产环境事故"/>
 <meta name="twitter:description" content="这篇文章拖了有点久，今天终于想起来把它写完了。记录一次生产环境的事故，也算是对自己的警示吧！"/>
 
@@ -137,29 +134,25 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#起因">起因</a></li>
-<li><a href="#过程">过程</a></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#起因">起因</a></li>
+        <li><a href="#过程">过程</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>这篇文章拖了有点久，今天终于想起来把它写完了。记录一次生产环境的事故，也算是对自己的警示吧！</p>
-
 <h3 id="起因">起因</h3>
-
 <p>前段时间自己对一个Rails项目后台管理部分的前端代码进行了重构（这里补充下项目情况，我们的后台管理界面采用Rails的服务端渲染，用户端产品部分使用前后端分离方案，后端提供API模式）。在修改的过程中因为一些原因就考虑学习现代前端方案去按页面自动加载对应的js和css代码文件（Rails的实践是使用Asset Pipeline连接静态资源文件，形成一个对应的主文件，当然如果代码较多，合并的主文件就会很大，首次加载会比较耗时），所以自己写了一个helper方法，去判断当前页面是否存在对应的js以及css文件，如果存在就加载对应文件，判断逻辑大致如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -173,73 +166,67 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby">  <span class="k">def</span> <span class="nf">asset_exists?</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">type</span><span class="p">)</span>
+<pre class="chroma"><code class="language-ruby" data-lang="ruby">  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">asset_exists?</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">type</span><span class="p">)</span>
     <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="ss">accept</span><span class="p">:</span> <span class="n">type</span><span class="p">)</span><span class="o">.</span><span class="n">present?</span>
   <span class="k">end</span>
 
-  <span class="k">def</span> <span class="nf">javascript_exists?</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
-    <span class="n">extensions</span> <span class="o">=</span> <span class="sx">%w(.js .es6 .coffee)</span> <span class="o">+</span> <span class="o">[</span><span class="s2">&#34;&#34;</span><span class="o">]</span>
+  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">javascript_exists?</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+    <span class="n">extensions</span> <span class="o">=</span> <span class="sx">%w(</span><span class="sx">.js .es6 .coffee</span><span class="sx">)</span> <span class="o">+</span> <span class="o">[</span><span class="s2">&#34;</span><span class="s2">&#34;</span><span class="o">]</span>
     <span class="n">extensions</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">truth</span><span class="p">,</span> <span class="n">extension</span><span class="o">|</span>
       <span class="n">default_path</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">controller_path</span><span class="si">}</span><span class="s2">/application</span><span class="si">#{</span><span class="n">extension</span><span class="si">}</span><span class="s2">&#34;</span>
 
       <span class="n">truth</span> <span class="o">||</span> <span class="n">asset_exists?</span><span class="p">(</span><span class="n">path</span> <span class="o">||</span> <span class="n">default_path</span><span class="p">,</span> <span class="s1">&#39;application/javascript&#39;</span><span class="p">)</span>
     <span class="k">end</span>
-  <span class="k">end</span></code></pre></td></tr></table>
+  <span class="k">end</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="过程">过程</h3>
-
+</div><h3 id="过程">过程</h3>
 <p>代码逻辑上没有什么问题，在测试环境中测试的时候也是一切顺利，于是就发布了。发布完立马就有同事反馈说后台打不开了（因为这个判断逻辑放在了后台页面的layout中），然后马上进行了发布回滚对问题进行排查。查了一下发现 <strong><code>生产环境下Rails.application.assets为nil</code></strong> ，判断出错导致页面无法打开。</p>
-
 <p>找到了问题那就解决呗，搜了一下发现问题比较常见，方案也比较多，但是像这种<code>config.assets.compile = true</code>修改生产环境配置的操作就忽略了，然后看到了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">Sprockets</span><span class="o">::</span><span class="no">Railtie</span><span class="o">.</span><span class="n">build_environment</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">Sprockets</span><span class="o">::</span><span class="no">Railtie</span><span class="o">.</span><span class="n">build_environment</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这个代替方案，因为着急解决问题，另外看到这条回答下很多人点赞也就信任采用了，代码修改如下：</p>
+</div><p>这个代替方案，因为着急解决问题，另外看到这条回答下很多人点赞也就信任采用了，代码修改如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">asset_exists?</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-  <span class="no">Sprockets</span><span class="o">::</span><span class="no">Railtie</span><span class="o">.</span><span class="n">build_environment</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span><span class="o">[</span><span class="n">path</span><span class="o">].</span><span class="n">present?</span>
-<span class="k">end</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">asset_exists?</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+  <span class="no">Sprockets</span><span class="o">::</span><span class="no">Railtie</span><span class="o">.</span><span class="n">build_environment</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span><span class="o">[</span><span class="n">path</span><span class="o">]</span><span class="o">.</span><span class="n">present?</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>组长对此也没有深究就合并上线了，发布后页面正常访问了，但是监控系统开始显示后台页面访问速度变慢（大概3倍），另外系统内存也开始泄漏，内存逐渐上涨，回溯下提交记录判定应该是这行代码所引起的，然后就开始查看具体这行代码做了什么操作。</p>
-
+</div><p>组长对此也没有深究就合并上线了，发布后页面正常访问了，但是监控系统开始显示后台页面访问速度变慢（大概3倍），另外系统内存也开始泄漏，内存逐渐上涨，回溯下提交记录判定应该是这行代码所引起的，然后就开始查看具体这行代码做了什么操作。</p>
 <p>仔细的看了下<a href="https://github.com/rails/sprockets-rails/blob/857e781998c10e4f429699da1d47ef251844991f/lib/sprockets/railtie.rb#L167">sprockets-rails</a>对应函数的源代码，发现对应的也是设置了<code>config.assets.compile=true</code>，打开了实时编译的选项。在实时编译模式下，Asset Pipeline中的所有静态文件都由Sprockets直接处理，静态资源文件会在首次请求时被编译和缓存。因此可见问题的原因就在于此，导致了页面访问变慢，而线上编译导致服务器内存占用飙升。</p>
-
 <p>最后的解决方案代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">asset_exists?</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-  <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">assets_manifest</span><span class="o">.</span><span class="n">assets</span><span class="o">[</span><span class="n">path</span><span class="o">].</span><span class="n">present?</span>
-<span class="k">end</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">asset_exists?</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+  <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">assets_manifest</span><span class="o">.</span><span class="n">assets</span><span class="o">[</span><span class="n">path</span><span class="o">]</span><span class="o">.</span><span class="n">present?</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>通过预编译静态资源文件时生成的manifest文件进行判断，避免实时编译的性能问题。</p>
-
+</div><p>通过预编译静态资源文件时生成的manifest文件进行判断，避免实时编译的性能问题。</p>
 <h3 id="总结">总结</h3>
-
 <p>回顾下整个问题过程，开始是因为生产环境的配置不一样，导致测试没有发现问题然后发布时进行了代码回滚操作。第二次时在查找解决方案时，因为自己急着解决问题，未对相关代码进行深入了解（另外可能由于测试服务器性能原本就较差，未明显发现性能问题），导致出现了性能问题（唯一庆幸的是只是后台管理页面受到了影响），然后第三次才完全解决了相关问题。</p>
-
 <p>这一次的事情提醒了自己，心急吃不了热豆腐，解决问题还是要稳着来，另外对于不了解的代码还是需要再三的确认，了解下大致原理，不能盲目的相信他人！</p>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -249,7 +236,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -272,14 +259,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -302,12 +287,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -322,9 +305,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -336,6 +322,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

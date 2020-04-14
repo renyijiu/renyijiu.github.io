@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81boolean/" />
@@ -34,7 +34,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -42,21 +43,17 @@
 <meta property="og:description" content="Java源码分析 - Boolean" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/java%E6%BA%90%E7%A0%81boolean/" />
-<meta property="article:published_time" content="2019-08-20T16:37:12&#43;08:00"/>
-<meta property="article:modified_time" content="2019-08-20T16:37:12&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-08-20T16:37:12+08:00" />
+<meta property="article:modified_time" content="2019-08-20T16:37:12+08:00" />
 <meta itemprop="name" content="[Java源码]Boolean">
 <meta itemprop="description" content="Java源码分析 - Boolean">
-
-
 <meta itemprop="datePublished" content="2019-08-20T16:37:12&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-20T16:37:12&#43;08:00" />
-<meta itemprop="wordCount" content="2401">
+<meta itemprop="wordCount" content="2398">
 
 
 
-<meta itemprop="keywords" content="Java源码分析,Boolean," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Java源码分析,Boolean," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Java源码]Boolean"/>
 <meta name="twitter:description" content="Java源码分析 - Boolean"/>
 
@@ -135,72 +132,66 @@
     
     <div class="post-content">
       <p>因为业务发展关系，前段时间将一个风控平台从Ruby语言迁移到了Java平台，基于Spring进行了重构，写了一段时间Java后，自己发现竟然还挺喜欢的（可能因为那段时间真的深深体会了 <strong>动态语言一时爽，重构火葬场</strong> 的玩笑）。所以后续决定阅读部分源码进行深入提升Java水平，网上搜索了一番，看到了很多的推荐，例如<code>Spring</code>框架的源码之类的，还有一些其他的开源组件项目，但是后面想想还是先从Java基础入手吧，于是就有了这篇文章，从最简单的Boolean开始。</p>
-
 <p>源代码基于 <em>jdk1.8.0_181.jdk</em> 版本。水平有限，第一次看相关代码，也第一次写😂如有建议和意见，欢迎联系指出。</p>
-
 <h2 id="概要">概要</h2>
-
 <p>Java的<code>Boolean</code>对象是对<code>boolean</code>基本数据类型的封装，有着一个字段存放对应的<code>boolean</code>数据值，提供了许多方法方便对<code>boolean</code>进行操作。</p>
-
 <h2 id="类定义">类定义</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Boolean</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span><span class="o">,</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Boolean</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span><span class="o">,</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>因为带有<code>final</code>关键字，也就是<strong>不可继承</strong>，另外实现了<code>Serializable</code>和<code>Comparable</code>接口，也就是可以进行序列化和比较的。</p>
-
+</div><p>因为带有<code>final</code>关键字，也就是<strong>不可继承</strong>，另外实现了<code>Serializable</code>和<code>Comparable</code>接口，也就是可以进行序列化和比较的。</p>
 <h2 id="属性">属性</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Boolean</span> <span class="n">TRUE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Boolean</span> <span class="n">TRUE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Boolean</span> <span class="n">FALSE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Boolean</span> <span class="n">FALSE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>TRUE</code>和<code>FALSE</code>定义了两个静态常量，代表着<code>boolean</code>中的<code>true</code>和<code>false</code>。</p>
+</div><p><code>TRUE</code>和<code>FALSE</code>定义了两个静态常量，代表着<code>boolean</code>中的<code>true</code>和<code>false</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">TYPE</span> <span class="o">=</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;)</span> <span class="n">Class</span><span class="o">.</span><span class="na">getPrimitiveClass</span><span class="o">(</span><span class="s">&#34;boolean&#34;</span><span class="o">);</span></code></pre></td></tr></table>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">TYPE</span> <span class="o">=</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span><span class="o">)</span> <span class="n">Class</span><span class="o">.</span><span class="na">getPrimitiveClass</span><span class="o">(</span><span class="s">&#34;boolean&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>获取类信息，<code>Boolean.TYPE == boolean.class</code>两者是等价的。</p>
+</div><p>获取类信息，<code>Boolean.TYPE == boolean.class</code>两者是等价的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">value</span><span class="o">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">value</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>Boolean</code>因为是<code>boolean</code>的包装类，所以这里就是包含了对应的boolean基本类型的变量</p>
+</div><p><code>Boolean</code>因为是<code>boolean</code>的包装类，所以这里就是包含了对应的boolean基本类型的变量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="n">3665804199014368530L</span><span class="o">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="n">3665804199014368530L</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="方法">方法</h2>
-
+</div><h2 id="方法">方法</h2>
 <h3 id="构造方法">构造方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -214,29 +205,28 @@
  <span class="o">}</span>
 
 <span class="kd">public</span> <span class="nf">Boolean</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">(</span><span class="n">parseBoolean</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
-<span class="o">}</span></code></pre></td></tr></table>
+    <span class="k">this</span><span class="o">(</span><span class="n">parseBoolean</span><span class="o">(</span><span class="n">s</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>存在两个构造方法，一个是传入boolean类型值，一个是传入字符串解析，而对应的解析方法如下：</p>
+</div><p>存在两个构造方法，一个是传入boolean类型值，一个是传入字符串解析，而对应的解析方法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">parseBoolean</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="o">((</span><span class="n">s</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&#34;true&#34;</span><span class="o">));</span>
-<span class="o">}</span></code></pre></td></tr></table>
+    <span class="k">return</span> <span class="o">(</span><span class="o">(</span><span class="n">s</span> <span class="o">!</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&#34;true&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这里就很直白的告诉了你，只有<code>true</code>（忽略大小写）格式的字符串才会返回<code>true</code>，其余的都为<code>false</code>。这里自己因此还踩过坑，一直以为字符串存在时就是真值，还是和Ruby不一样的。</p>
-
+</div><p>这里就很直白的告诉了你，只有<code>true</code>（忽略大小写）格式的字符串才会返回<code>true</code>，其余的都为<code>false</code>。这里自己因此还踩过坑，一直以为字符串存在时就是真值，还是和Ruby不一样的。</p>
 <h3 id="valueof-方法">valueOf 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -246,35 +236,33 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Boolean</span> <span class="nf">valueOf</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="o">(</span><span class="n">b</span> <span class="o">?</span> <span class="n">TRUE</span> <span class="o">:</span> <span class="n">FALSE</span><span class="o">);</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">b</span> <span class="o">?</span> <span class="n">TRUE</span> <span class="o">:</span> <span class="n">FALSE</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="n">Boolean</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">parseBoolean</span><span class="o">(</span><span class="n">s</span><span class="o">)</span> <span class="o">?</span> <span class="n">TRUE</span> <span class="o">:</span> <span class="n">FALSE</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>我们通过<code>Boolean b = new Boolean(true);</code>时会获得一个新的实例对象，当你并不需要这个新实例而只要对应的值时，就应该采用这里的静态方法，直接返回了上面定义的静态变量，节省了一点内存又避免了创建一个新实例的时间开销。</p>
-
+</div><p>我们通过<code>Boolean b = new Boolean(true);</code>时会获得一个新的实例对象，当你并不需要这个新实例而只要对应的值时，就应该采用这里的静态方法，直接返回了上面定义的静态变量，节省了一点内存又避免了创建一个新实例的时间开销。</p>
 <h3 id="booleanvalue-方法">booleanValue 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">booleanValue</span><span class="o">()</span> <span class="o">{</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">booleanValue</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>获取对应的boolean类型值。</p>
-
+</div><p>获取对应的boolean类型值。</p>
 <h3 id="tostring-方法">toString 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -287,17 +275,16 @@
     <span class="k">return</span> <span class="n">b</span> <span class="o">?</span> <span class="s">&#34;true&#34;</span> <span class="o">:</span> <span class="s">&#34;false&#34;</span><span class="o">;</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">value</span> <span class="o">?</span> <span class="s">&#34;true&#34;</span> <span class="o">:</span> <span class="s">&#34;false&#34;</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>返回对应布尔值的String对象。如果为<code>true</code>则返回&rdquo;true&rdquo;字符串，否则就是&rdquo;false&rdquo;。</p>
-
+</div><p>返回对应布尔值的String对象。如果为<code>true</code>则返回&quot;true&quot;字符串，否则就是&quot;false&rdquo;。</p>
 <h3 id="hashcode-方法">hashcode 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -308,29 +295,29 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
-  	<span class="k">return</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+  	<span class="k">return</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">value</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
   	<span class="k">return</span> <span class="n">value</span> <span class="o">?</span> <span class="n">1231</span> <span class="o">:</span> <span class="n">1237</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>其中重写了<code>hashcode</code>方法，返回值调用了静态方法<code>hashcode</code>，而静态方法返回值：当<code>true</code>时返回1231，<code>false</code>返回1237。这里很有意思的是这两个固定的数字，很好奇为什么是这两个值，所以网上搜索了下，有两篇回答可以参考一下。</p>
-
+</div><p>其中重写了<code>hashcode</code>方法，返回值调用了静态方法<code>hashcode</code>，而静态方法返回值：当<code>true</code>时返回1231，<code>false</code>返回1237。这里很有意思的是这两个固定的数字，很好奇为什么是这两个值，所以网上搜索了下，有两篇回答可以参考一下。</p>
 <ol>
-<li><p><a href="https://stackoverflow.com/questions/3912303/boolean-hashcode">Boolean.hashCode()</a></p></li>
-
-<li><p><a href="https://www.quora.com/Why-does-Javas-Boolean-hashCode-map-the-values-true-and-false-to-1237-and-1231-instead-of-1-and-0">Why does Java&rsquo;s Boolean.hashCode() map the values &lsquo;true&rsquo; and &lsquo;false&rsquo; to 1237 and 1231 instead of 1 and 0?</a></p></li>
+<li>
+<p><a href="https://stackoverflow.com/questions/3912303/boolean-hashcode">Boolean.hashCode()</a></p>
+</li>
+<li>
+<p><a href="https://www.quora.com/Why-does-Javas-Boolean-hashCode-map-the-values-true-and-false-to-1237-and-1231-instead-of-1-and-0">Why does Java&rsquo;s Boolean.hashCode() map the values &lsquo;true&rsquo; and &lsquo;false&rsquo; to 1237 and 1231 instead of 1 and 0?</a></p>
+</li>
 </ol>
-
 <p>大致意思是，主要这两个是较大的质数（实际上其他较大的质数也可以），至于较大质数的原因是可以有效减少Hash碰撞冲突的发生。而Boolean是一个很常用的对象，会经常在其他里面使用，这么做有助于提升效率。</p>
-
 <h3 id="equals-方法">equals 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -340,18 +327,17 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
 	  <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">Boolean</span><span class="o">)</span> <span class="o">{</span>
-  	  	<span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="o">((</span><span class="n">Boolean</span><span class="o">)</span><span class="n">obj</span><span class="o">).</span><span class="na">booleanValue</span><span class="o">();</span>
+  	  	<span class="k">return</span> <span class="n">value</span> <span class="o">=</span><span class="o">=</span> <span class="o">(</span><span class="o">(</span><span class="n">Boolean</span><span class="o">)</span><span class="n">obj</span><span class="o">)</span><span class="o">.</span><span class="na">booleanValue</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
   	<span class="o">}</span>
   	<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>首先判断传入的<code>obj</code>是不是<code>Boolean</code>的实例，然后比较两者的值是否相等。从这里可以发现，如果我们习惯于在判断前增加<code>if (null == obj)</code>的逻辑，其实在这里是可以忽略的，因为<code>null</code>肯定不是<code>Boolean</code>的实例，会直接返回<code>false</code>。</p>
-
+</div><p>首先判断传入的<code>obj</code>是不是<code>Boolean</code>的实例，然后比较两者的值是否相等。从这里可以发现，如果我们习惯于在判断前增加<code>if (null == obj)</code>的逻辑，其实在这里是可以忽略的，因为<code>null</code>肯定不是<code>Boolean</code>的实例，会直接返回<code>false</code>。</p>
 <h3 id="getboolean-方法">getBoolean 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -364,19 +350,18 @@
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">getBoolean</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">boolean</span> <span class="n">result</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
     <span class="k">try</span> <span class="o">{</span>
-      	<span class="n">result</span> <span class="o">=</span> <span class="n">parseBoolean</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">name</span><span class="o">));</span>
+      	<span class="n">result</span> <span class="o">=</span> <span class="n">parseBoolean</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">name</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalArgumentException</span> <span class="o">|</span> <span class="n">NullPointerException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="o">}</span>
     <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>从代码上看，这个方法<strong>并不是</strong>将输入字符串转换成<code>boolean</code>类型的方法。而是当且仅当 <em>系统属性</em> 中存在着对应名称的属性，且它的值为“true”（忽略大小写）时，返回<code>true</code>类型，否则返回<code>false</code>。</p>
-
+</div><p>从代码上看，这个方法<strong>并不是</strong>将输入字符串转换成<code>boolean</code>类型的方法。而是当且仅当 <em>系统属性</em> 中存在着对应名称的属性，且它的值为“true”（忽略大小写）时，返回<code>true</code>类型，否则返回<code>false</code>。</p>
 <h3 id="compare-方法">compare 方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -386,20 +371,19 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-  	<span class="k">return</span> <span class="n">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">,</span> <span class="n">b</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+  	<span class="k">return</span> <span class="n">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">,</span> <span class="n">b</span><span class="o">.</span><span class="na">value</span><span class="o">)</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">x</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
-  	<span class="k">return</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">)</span> <span class="o">?</span> <span class="n">0</span> <span class="o">:</span> <span class="o">(</span><span class="n">x</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="o">-</span><span class="n">1</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+  	<span class="k">return</span> <span class="o">(</span><span class="n">x</span> <span class="o">=</span><span class="o">=</span> <span class="n">y</span><span class="o">)</span> <span class="o">?</span> <span class="n">0</span> <span class="o">:</span> <span class="o">(</span><span class="n">x</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>比较两个Boolean实例对象或者boolean类型值，当相等时，返回0；否则根据第一个值进行判断，第一个值为<code>true</code>时返回1，否则返回-1。</p>
-
+</div><p>比较两个Boolean实例对象或者boolean类型值，当相等时，返回0；否则根据第一个值进行判断，第一个值为<code>true</code>时返回1，否则返回-1。</p>
 <h3 id="logical-比较方法">logical 比较方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -414,39 +398,33 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">logicalAnd</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">a</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="n">a</span> <span class="o">&amp;&amp;</span> <span class="n">b</span><span class="o">;</span>
+		<span class="k">return</span> <span class="n">a</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">b</span><span class="o">;</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">logicalOr</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">a</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">||</span> <span class="n">b</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">|</span><span class="o">|</span> <span class="n">b</span><span class="o">;</span>
 <span class="o">}</span>
 
 
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">logicalXor</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">a</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="o">;</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>提供了三个静态方法，对于两个<code>boolean</code>类型值进行与、或、异或操作，返回对应的判断结果值。</p>
-
+</div><p>提供了三个静态方法，对于两个<code>boolean</code>类型值进行与、或、异或操作，返回对应的判断结果值。</p>
 <h2 id="boolean类型">boolean类型</h2>
-
 <p>在看代码的过程中，想知道boolean到底是个啥东西，然后去看了下 <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">oracle</a> 的官方文档，突然学到了一点小知识，顺带记录一下。</p>
-
 <p>在Java的八种基本数据类型中，除了<code>boolean</code>其它7种都有明确的字节数长度，只有<code>boolean</code>没有给出具体的字节数长度定义，详细的介绍如下：</p>
-
 <blockquote>
 <p><strong>boolean</strong>: The <code>boolean</code> data type has only two possible values: <code>true</code> and <code>false</code>. Use this data type for simple flags that track true/false conditions. This data type represents one bit of information, but its &ldquo;size&rdquo; isn&rsquo;t something that&rsquo;s precisely defined.</p>
 </blockquote>
-
 <p><code>boolean</code>只存在<code>true</code>和<code>false</code>两个值，这个数据类型也是用于跟踪真/假条件的简单标志。这个数据类型代表了1bit的信息，但是它的大小并没有明确的定义。由此搜索了一下，发现具体的应该是由Java虚拟机规范定义的。官方的文档  <a href="https://docs.oracle.com/javase/specs/jvms/se8/html/index.html">Java Virtual Machine Specification</a> 有这个相关的说明，<code>boolean</code>类型值会被编译使用<code>int</code>类型进行替换，也就是4字节的大小；而<code>boolean</code>类型数组，jvm并不是直接支持的，而是通过<code>byte[]</code>实现，其中也就是占用1字节。具体的说明可以查看提供的原文链接，也是非常有意思的信息。</p>
-
 <h2 id="总结">总结</h2>
-
 <p>整体的源代码是很简单的，但是这次查看源码的过程中也学到了很多的东西，平时一些可能完全不会关注的点，在这次过程中也都学习到了，例如有些情况下应该使用<code>Boolean.valueOf(true)</code>替换<code>new Boolean(true)</code>，<code>hashCode</code>的值，<code>boolean</code>的相关文档定义等等，魔鬼藏在细节里，继续加油。</p>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -456,7 +434,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -480,14 +458,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -510,12 +486,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -530,9 +504,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -544,6 +521,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 

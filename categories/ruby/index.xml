@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ruby on Blog - renyijiu</title>
+    <title>Ruby on Blog - renyijiu</title>
     <link>https://blog.renyijiu.com/categories/ruby/</link>
-    <description>Recent content in ruby on Blog - renyijiu</description>
+    <description>Recent content in Ruby on Blog - renyijiu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Live For Dream, Dream For Love.</copyright>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java延时任务方案 - Blog - renyijiu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="renyijiu" /><meta name="description" content="Java延时任务方案" /><meta name="keywords" content="Java, 延时任务" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.renyijiu.com/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java延时任务方案" />
+<meta property="og:description" content="Java延时任务方案" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.renyijiu.com/post/java%E5%BB%B6%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%B9%E6%A1%88/" />
+<meta property="article:published_time" content="2020-04-14T14:27:18+08:00" />
+<meta property="article:modified_time" content="2020-04-14T14:27:18+08:00" />
+<meta itemprop="name" content="Java延时任务方案">
+<meta itemprop="description" content="Java延时任务方案">
+<meta itemprop="datePublished" content="2020-04-14T14:27:18&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-14T14:27:18&#43;08:00" />
+<meta itemprop="wordCount" content="6559">
+
+
+
+<meta itemprop="keywords" content="Java," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java延时任务方案"/>
+<meta name="twitter:description" content="Java延时任务方案"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Renyijiu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Renyijiu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java延时任务方案</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-14 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+        
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <h2 id="背景">背景</h2>
+<p>延时任务在日常业务中的使用是比较常见的。例如对于电商而言常见的场景：</p>
+<ol>
+<li>当订单一直处于未支付的状态，需要在一定时间后关闭订单，退还库存。</li>
+<li>订单完成15天后未评价自动评价等等&hellip;</li>
+</ol>
+<p>对于我们目前的业务而言，主要的应用场景是与外部系统接口的对接使用上，例如风控、大数据、信审等系统（大部分都是异步逻辑，调用 -&gt; 等待回调）。因为我们要保证流程最大成功率的流转（当然谁也没法保证100%的成功），防止用户流程停滞产生卡单。但是由于网络环境的不可控性，短时间内可能存在波动，如果使用简单的立即重试逻辑，经常出现连续的失败，且可能对目标系统产生一定的负载压力。对此种情况，可能简单的延时30秒后重试就成功了。所以延时任务的需求就出来了，那么有哪些常见的方案呢？</p>
+<h2 id="概要">概要</h2>
+<p><img src="../../img/image-20200405143113614.png" alt="image-20200405143113614"></p>
+<p>我个人的理解是三个模块，当然这只是最核心的东西。</p>
+<p>存储：保存任务的相关信息，常见的保存数据ID、重试次数、重试时间等信息</p>
+<p>定时器：用于计时，判断任务是否到达时间</p>
+<p>执行器：用于执行延时到期后相关的任务</p>
+<h2 id="方案分析">方案分析</h2>
+<h3 id="1-线程池">1. 线程池</h3>
+<p>我们可以使用<code>CompletableFuture + 自定义线程池 + sleep(time)</code>组合，对此可以实现简易的延时操作。</p>
+<p>优点：</p>
+<ol>
+<li>最为简单，均为<code>Java</code>内置提供的操作，无附件组件</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>线程池和<code>sleep</code>操作，不适用于长时间的延时任务</li>
+<li>与业务具体逻辑基本绑定，中间状态无法保证（需要注意处理系统重启之类的问题）</li>
+<li>数据在内存中，需要根据业务使用调整，否则容易造成OOM之类的问题</li>
+<li>任务无法手动管理</li>
+</ol>
+<h3 id="2-delayqueue">2. DelayQueue</h3>
+<p>JDK自带的一个无界阻塞队列，自带方案，无附加成本，但是业务优缺点实际与上述线程池方案差不多，需要考虑自身业务使用。另外不像线程池可以设定队列大小，这个为无界队列，突发数据量容易造成OOM。</p>
+<h3 id="3-数据库">3. 数据库</h3>
+<p>增加单独的数据表或者扩展已有的表数据，记录任务的重试时间、重试次数等数据，然后线程定时扫描表数据，取出符合条件的数据放入到执行队列或者线程池中进行处理。</p>
+<p>优点：</p>
+<ol>
+<li>简单，数据库基本为必备系统，扩展压力小</li>
+<li>相对上面的方案，任务可以进行管理，有必要可以手动修改处理</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>定时任务扫描表数据，粒度过小，对数据库负载压力大；粒度过大，任务延时精度较差，存在一定的偏移误差</li>
+<li>多实例节点获取数据，需要考虑并发扫描加锁之类的限制，避免重复执行等操作</li>
+</ol>
+<h3 id="4-redis">4. Redis</h3>
+<p>得益于Redis的高性能以及自身的持久化方案，对于数据库方案的缺点，Redis基本可以进行替代形成一个高效的方案。</p>
+<h4 id="1zset">（1）zset</h4>
+<p>有序集合是Redis提供的一种数据结构，具有<code>set</code>和<code>hash</code>的特性，每个<code>key</code>是唯一的，也能够类似<code>hash</code>一样通过<code>key</code>取到对应的<code>value</code>。每个对应的<code>value</code>也称为<code>score</code>，值限定为浮点数，并且数据是以这个<code>score</code>进行排序。</p>
+<p>基本实现方案：</p>
+<ol>
+<li>将延迟任务放进对应的<code>zset</code>数据中，<code>key</code>可以为数据ID或者UUID，value设置为对应的过期时间。若为UUID，还需另外单独设置<code>key</code>为相同的UUID，值为具体数据或者是数据ID的缓存。</li>
+<li>启动一个线程，定时的使用<code>ZRANGEBYSCORE</code>方法获取符合条件的数据</li>
+<li>若存在数据，则添加到相关的任务至执行队列中；然后移除这个任务</li>
+<li>否则，休眠一段时间后重新尝试拉取对应的数据</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>Redis基本也是必备系统，额外开销小，还可以带来较好的性能体验</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>定时任务的粒度，无法保障过小的延时粒度，否则对于Redis本身是一种压力；但对比数据库方案，性能空间更大</li>
+<li>对Redis使用上有存储性质，数据的丢失与否依赖于Redis的备份方案，存在丢失的可能性</li>
+<li>分布式场景处理不当容易引起多个节点读取到相同的任务（分布式锁、lua脚本原子操作）</li>
+</ol>
+<p>目前这个方案在社区中使用还是较为成熟的，下面是看到的两个样例：</p>
+<h5 id="有赞方案">有赞方案</h5>
+<p>有赞在他们的博客上有文章介绍过他们内部延迟队列的设计方案，具体可以查看 <a href="https://tech.youzan.com/queuing_delay/">有赞延迟队列设计</a> ，下面是复制的一个他们的设计架构：</p>
+<p><img src="https://tech.youzan.com/content/images/2016/03/delay-queue.png" alt="img"></p>
+<p>图上可以看出，整个延迟队列分为了4个部分：</p>
+<ul>
+<li>Job Pool：用来存放所有Job的元信息。</li>
+<li>Delay Bucket：是一组以时间为维度的有序队列，用来存放所有需要延迟的／已经被reserve的Job（这里只存放Job Id）。</li>
+<li>Timer：负责实时扫描各个Bucket，并将delay时间大于等于当前时间的Job放入到对应的Ready Queue。</li>
+<li>Ready Queue：存放处于Ready状态的Job（这里只存放Job Id），以供消费程序消费。</li>
+</ul>
+<p>Delay Bucket内部核心就是使用了Redis的<code>zset</code>数据结构，Job Pool类似上面所说的数据缓存，整体的核心逻辑是一致的，只是针对业务需求对架构进行了相关的扩展，丰富和提升了可用性。</p>
+<h5 id="美图方案">美图方案</h5>
+<p>美图也有一个相关的<a href="https://github.com/meitu/lmstfy">开源项目</a>，基于Redis实现的任务队列，整体的架构如下图：</p>
+<p><img src="https://raw.githubusercontent.com/meitu/lmstfy/master/doc/job-flow.png" alt="https://raw.githubusercontent.com/meitu/lmstfy/master/doc/job-flow.png"></p>
+<p>使用golang开发，整体的核心逻辑和有赞的方案看起来类似，扩展了各种方便业务的操作接口，作为一个单独的服务存在，有兴趣的可以自行查看下。</p>
+<h4 id="2-expire-event">(2) expire event</h4>
+<p>Redis从 <strong>2.8.0</strong> 版本开始，提供了键空间消息（<code>Redis Keyspace Notifications</code>）的功能，其中就包含了键过期的事件，触发事件后会向特定的<code>channel</code>推送一条过期事件消息。我们可以利用这个特性，配合<code>Pub/Sub</code>机制就可以完成一个简单地延时任务系统。主要的步骤如下：</p>
+<ol>
+<li>需要修改Redis的配置<code>notify-keyspace-events Ex</code>，开启相关功能。具体配置含义可以查看<a href="https://redis.io/topics/notifications">相关文档</a></li>
+<li>业务中使用<code>Redis</code>订阅相关的channel（<code>__keyevent@0__:expired</code>）</li>
+<li>订阅后有事件会触发，然后执行我们编写的逻辑</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>利用了Redis提供的相关功能，直接省略了定时器的业务逻辑，简化逻辑</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>Redis本身提供的<code>Pub/Sub</code>机制是不可靠的，即发即废模式，客户端的断连等会直接导致消息的丢失</li>
+</ol>
+<p>另外查看过期事件触发时机的文档信息可以了解，过期事件不是完全按照设定的过期时间触发的，具体查看下面文档：</p>
+<blockquote>
+<h2 id="timing-of-expired-events">Timing of expired events</h2>
+<p>Keys with a time to live associated are expired by Redis in two ways:</p>
+<ul>
+<li>When the key is accessed by a command and is found to be expired.</li>
+<li>Via a background system that looks for expired keys in  background, incrementally, in order to be able to also collect keys that are never accessed.</li>
+</ul>
+<p>The <code>expired</code> events are generated when a key  is accessed and is found to be expired by one of the above systems, as a result there are no guarantees that the Redis server will be able to  generate the <code>expired</code> event at the time the key time to live reaches the value of zero.</p>
+<p>If no command targets the key constantly, and there are  many keys with a TTL associated, there can be a significant delay  between the time the key time to live drops to zero, and the time the <code>expired</code> event is generated.</p>
+<p>Basically <code>expired</code> events <strong>are generated when the Redis server deletes the key</strong> and not when the time to live theoretically reaches the value of zero.</p>
+</blockquote>
+<p>而相关过期的逻辑操作说明如下：</p>
+<blockquote>
+<h2 id="how-redis-expires-keys">How Redis expires keys</h2>
+<p>Redis keys are expired in two ways: a passive way, and an active way.</p>
+<p>A key is passively expired simply when some client tries to access it, and the key is found to be timed out.</p>
+<p>Of course this is not enough as there are expired keys that will never be accessed again. These keys should be expired anyway, so periodically Redis tests a few keys at random among keys with an expire set. All the keys that are already expired are deleted from the keyspace.</p>
+<p>Specifically this is what Redis does 10 times per second:</p>
+<ol>
+<li>Test 20 random keys from the set of keys with an associated expire.</li>
+<li>Delete all the keys found expired.</li>
+<li>If more than 25% of keys were expired, start again from step 1.</li>
+</ol>
+<p>This is a trivial probabilistic algorithm, basically the assumption is that our sample is representative of the whole key space, and we continue to expire until the percentage of keys that are likely to be expired is under 25%</p>
+<p>This means that at any given moment the maximum amount of keys already expired that are using memory is at max equal to max amount of write operations per second divided by 4.</p>
+</blockquote>
+<ol start="2">
+<li>Redis的过期事件是 <em>当键被删除时触发保证</em> 的，但是过期键的删除操作具体时间是不可保证的，存在延时的可能性。</li>
+</ol>
+<p>从文档角度分析来看，实际第二点产生的影响相对会比较小，因为后台线程频率比较高，延时误差不会太大；但是消息的丢失实际是不可接受的，如果后续Redis能够提供一个可靠的 <em>发布/订阅</em> 机制，那这个方案的实用性会大大提升。</p>
+<h3 id="消息队列">消息队列</h3>
+<p>当你的系统已经使用了消息队列时，那我们可以依赖现有的系统进行一波操作实现特定的延时队列逻辑，但是如果为了单纯的延时队列任务而去引入一个消息队列系统，可能代价会比较高，上面的方案也许更靠谱。下面说下主流的三个消息队列平台上的方案，仅为个人主观意见。</p>
+<h4 id="1-kafka">(1) Kafka</h4>
+<p>我们目前系统中使用的就是Kafka这个消息队列平台，但是Kafka本身是不带有延时队列的功能，所以只能“曲线救国”。目前有看到过两种方案去达到延时任务的目标。</p>
+<p><img src="../../img/image-20200406201901429.png" alt="image-20200406201901429"></p>
+<p>第一种方案就是类似上面的时序图，实际上没有增加额外的开发工作，只是增加了额外的延时判断逻辑。</p>
+<ol>
+<li>生产者投递的消息增加延时时间参数，也可以补充重试次数之类的参数</li>
+<li>消费者消费对应的消息，判断延时时间是否已经过期，否的话则把消息重新投递到Kafka等待再次消费</li>
+<li>不断的循环上述操作直至延时消息被成功消费</li>
+</ol>
+<p>这个方案的优点就是基于消息队列的特性，所有的消息队列系统都可以使用，只是简单的增加延时逻辑判断即可；但是缺点也是极其明显的，在一定时间内这个延时任务的消息会不断的消费再重新投递，产生大量的重复数据，相对来说如果是一个短时间的延时，或许是一个可以接受的方案。另外这个也无法保证延时任务的精度，依赖于队列消费情况。</p>
+<p>第二种的话就是基于Kafka的业务架构上进行一定的开发工作，增加一个延时任务系统。比较好的是增加特定的topic，然后延时任务系统消费这个topic消息，在延时任务过期后系统重新投递至消息对应的topic，由业务进行消费处理，一个大致的时序图如下：</p>
+<p><img src="../../img/image-20200406204136140.png" alt="image-20200406204136140"></p>
+<p>而对应的延时任务系统的设计，你也可以采用上述Redis的方案或者后续介绍的时间轮等更为复杂的方案。目前在网上看到一篇基于Kafka进行扩展的架构介绍（<a href="https://lchml.com/technology/delayq/">延时消息队列</a>），有兴趣可以查看了解一下。</p>
+<h4 id="2-rabbitmq">(2) RabbitMQ</h4>
+<p>RabbitMQ本身也不支持延时任务，但是可以通过它本身的一些特性，死信以及死信路由实现相关的功能。</p>
+<h5 id="死信">死信：</h5>
+<ul>
+<li>消息被消费者拒绝，并且参数设定requeue=false，确保不会重新放进队列</li>
+<li>消息已经过期</li>
+<li>队列达到了最大长度</li>
+</ul>
+<p>RabbitMQ中可以对队列以及消息设置<code>x-message-tt</code>和<code>expiration</code>参数来控制消息的存活时间。如果超时，消息将会变为死信，不会被消费者消费到。单靠死信还不能实现延迟任务，还要靠Dead Letter Exchange。</p>
+<h5 id="死信路由">死信路由：</h5>
+<p>RabbitMQ可以对队列设置<code>x-dead-letter-exchange</code>和<code>x-dead-letter-routing-key</code>两个参数。当消息在一个队列中变成死信后会按照这两个参数进行路由，消息就可以被重新分配消费。</p>
+<h5 id="操作过程">操作过程：</h5>
+<ol>
+<li>创建延迟队列（设置死信路由）</li>
+<li>创建就绪队列</li>
+<li>创建死信路由</li>
+<li>绑定死信路由与就绪队列</li>
+<li>发送延时消息</li>
+<li>消息过期后进入就绪队列，被业务消费</li>
+</ol>
+<p><img src="../../img/image-20200407145756845.png" alt="image-20200407145756845"></p>
+<p>优点：</p>
+<ol>
+<li>基于RabbitMQ本身的特性，可以有效的利用RabbitMQ的分布式、数据持久化等自带的功能保证，减少了许多额外开发</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>一个消息比在同一队列中它前面的消息提前过期，前面的消息没有出队，提前过期的消息也不会优先进入死信队列。</li>
+<li>不支持对已发送的消息进行管理</li>
+</ol>
+<p>对于第一点这个问题，可以采用下面介绍的RocketMQ的方式，设定不同的延时级别，分别为此创建单独的消息队列，虽然略微麻烦，但是也是一个不错的方案，可以满足一定的延时任务需求。</p>
+<p>另外除了上面介绍的方案外，实际RabbitMQ官方提供了一个<a href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange">插件扩展</a>来实现延时任务的功能，但是呢这个我具体没有研究过就不讲解了，有兴趣的可以自行了解下，不过是用Erlang语言开发的，存在一定的门槛。</p>
+<h4 id="3-rocketmq">(3) RocketMQ</h4>
+<p>Apache RocketMQ是阿里开源的一款高性能、高吞吐量的分布式消息中间件。其中开源版本支持了18个级别的延时时间（1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h），这些对于偶尔使用的业务来说已经可以满足需求了，例如对于我们这种主要场景在于延时重试，时间级别优先级并不高。下面看下大致的流程：</p>
+<p><img src="../../img/image-20200407221659773.png" alt="image-20200407221659773"></p>
+<ol>
+<li>生产者产生一条消息，设置delayLevel参数。如果delayLevel大于0，表明这是一条延时消息，在提交commitLog之前Broker会替换掉消息原来的<code>topic</code>以及<code>queueId</code>。</li>
+<li>备份消息原来的<code>topic</code>以及<code>queueId</code>，使用延时消息特定的topic（SCHEDULE_TOPIC_XXXX）以及对应的<code>queueId</code>（延时级别 - 1）进行写入</li>
+<li>每个延时队列有个单独的定时器（DeliverDelayedMessageTimerTask），每秒拉取已经到期需要执行的消息</li>
+<li>从commitLog中获取具体的消息，恢复消息原来的topic、原队列id，清除delayLevel后重新投递，等待消费者消费</li>
+</ol>
+<p>这是RocketMQ开源版本的大致逻辑，如果只是简单的需求，你可以自己定制一下再增加几个延时级别队列也是没有问题的。但如果是复杂的<strong>支持任意延迟</strong>的需求呢？阿里云上提供的消息队列就是支持 **40 天内的任何时刻（单位毫秒）**延时功能，所谓的加钱可得。而它是商业产品，我们看不到具体实现方案，但是社区中也存在相关的方案可以实现类似的效果，当然这里只是介绍下核心思想，商业产品还包含了很多其他的东西，不只是实现就好。</p>
+<h3 id="时间轮">时间轮</h3>
+<p>支持任意延迟的消息队列，意味着需要对任务按照延时时间在服务端进行排序。例如先是产生了一个延时1分钟的消息，然后过了几秒又产生了一条延时5秒的消息，显然延时5秒的消息需要先投递出去。所以在一个新的延时任务进来后，需要对任务按照延时时间进行重新排序。</p>
+<p>但是排序算法的时间复杂度是已知的，而类似于堆排序的插入时间复杂度也有O(logn)，在一个海量的数据以及较低的延时时间背景下，投递一个消息后重新排序的时间可能会远大于延时时间。在上面开源版RocketMQ中，通过设定固定的延时级别，将插入排序操作转换成了O(1)的append操作，完美避开了排序的问题。那么在实现任意延时的方案中，最好也有类似的操作可以避免掉排序操作，从而提升效率。</p>
+<p>所以就要提到<strong>时间轮</strong>这个数据结构，具体是在<a href="http://www.cs.columbia.edu/~nahum/w6998/papers/sosp87-timing-wheels.pdf">《Hashed and hierarchical timing wheels: efficient data structures for implementing a timer facility》</a>这篇论文中，里面详细比较了实现定时器的各个数据结构，并提出了层次化的时间轮等新的结构。下面看下大致的结构特征，这里借用了网络上的图片：</p>
+<p><img src="https://images2017.cnblogs.com/blog/471426/201801/471426-20180101114911565-1021558722.png" alt="img"></p>
+<p>这张图在时间轮的文章中几乎到处都是，从图上我们可以大致看出：</p>
+<ul>
+<li>箭头按照一定方向以固定的频率移动（如手表指针），每一次移动称为一个tick。ticksPerWheel表示一个定时轮上的tick数。每一格后面挂载着需要执行的任务。</li>
+</ul>
+<p>当我们设定最大的延时区间以及对应的延时精度后，我们就可以规划出对应的时间轮。以上面阿里云的数据举例，支持40天的最大时间，精度为1秒，则对应的<code>ticksPerWheel = 40 * 24 * 60 * 60（3,456,000）</code>，这样子就可以对应到40天内任意的秒级延时。但是呢这个数据值过于庞大，中间过多的指针空转都是次要的，在内存中构建如此庞大的数据结构是不可接受的，于是又有了对应的优化方案——层级时间轮。</p>
+<p><img src="https://kirito.iocoder.cn/7f03c027b1de345a0b1e57239d73de74.png" alt="层级时间轮"></p>
+<p>如上图所示，对时间轮按照一定的层级进行拆分，从而缩小每个时间轮的大小。每一层的时间轮插槽表示范围在扩大，随着时间的流逝，高层时间轮中的定时任务会降级重新插入低层的时间轮，直到触发为止。</p>
+<p>大致的概念是这样的，具体的细节原理就不介绍了，感兴趣的可以自行搜索一下，相关的文章极其多。时间轮的应用也是极其的广泛，像<code>Netty</code>中就有<code>HashedWheelTimer</code>的实现，而<code>Kafka</code>中也有多层时间轮的实现。当然传统的时间轮也是存在一些问题的。</p>
+<ol>
+<li>基于内存操作，当数据量过大时，层级时间轮挂载的任务数过多，全部加载依旧会占用大量的内存</li>
+<li>当tick较小（类似Kafka中tick为1ms），底层时间轮任务较少时，时钟轮转大部分空转，效率会比较低</li>
+</ol>
+<p>针对存在的问题，也出现了各种时间轮的变体实现方案，对于某些方面进行了一定的优化用于提升性能或者效率。类似于Kafka通过结合<code>DelayQueue</code>来协助推进时间轮，而不是简单的时钟轮转推进，避免低效等等。</p>
+<h2 id="总结">总结</h2>
+<p>上面介绍了多种我所知的方案，当然也只是方案，没有深入具体的细节原理以及实际场景需要解决的各类问题，另外也许还有其他的方案需要你自行探索，欢迎指出。其中每一个方案都有着自身的优缺点，例如数据库方案对于高精度延时任务是比较难以掌控的；Redis方案存在数据丢失的可能性；消息队列则引入了额外的系统，带来了运维等其他的复杂度；时间轮虽然数据结构极其优秀，但是基于内存，数据持久化以及大数据量内存占用等都需要进行结合其他的操作进行优化。</p>
+<p>总而言之，每一个方案有好有坏，需要结合自身的业务以及现有项目的基础架构选出适合自己的方案，没有银弹。最终大部分的最终方案是结合多个方案优化构建而成的，考虑自身业务以及预留了未来的扩展空间，达到一个均衡的效果。</p>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li><a href="https://www.cnblogs.com/hzmark/p/mq-delay-msg.html">如何在MQ中实现支持任意延迟的消息？</a></li>
+<li><a href="https://www.cnkirito.moe/timer/">定时器的几种实现方式</a></li>
+<li><a href="https://tech.youzan.com/queuing_delay/">有赞延迟队列设计</a></li>
+<li><a href="https://github.com/meitu/lmstfy">lmstfy</a></li>
+<li><a href="https://sq.163yun.com/blog/article/167374378538516480">延迟任务调度系统（技术选型与设计）</a></li>
+</ol>
+    </div>
+
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/java%E6%BA%90%E7%A0%81character/">
+            <span class="next-text nav-default">[Java源码]Character</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:me@renyijiu.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/renyijiu" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.renyijiu.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2014 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Live For Dream, Dream For Love.</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?e0abcfc0d888305fec49b5dffdb3b780";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

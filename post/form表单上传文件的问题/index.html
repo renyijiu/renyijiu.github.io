@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
 <link rel="canonical" href="https://blog.renyijiu.com/post/form%E8%A1%A8%E5%8D%95%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.584a2671.min.css" rel="stylesheet">
+
+<link href="https://blog.renyijiu.com/sass/main.min.ed43bbebd8f9e28be587dd4008838633e46586c59f19a63b5540c6a163e7a59a.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -43,21 +44,17 @@
 <meta property="og:description" content="后台优化时，需要增加一个给用户发送图片消息的功能，为了兼容原有代码，使用了form表单上传图片文件，大致代码如下：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.renyijiu.com/post/form%E8%A1%A8%E5%8D%95%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/" />
-<meta property="article:published_time" content="2017-11-18T22:24:05&#43;08:00"/>
-<meta property="article:modified_time" content="2018-01-14T21:04:03&#43;08:00"/>
-
+<meta property="article:published_time" content="2017-11-18T22:24:05+08:00" />
+<meta property="article:modified_time" content="2018-01-14T21:04:03+08:00" />
 <meta itemprop="name" content="Form表单上传文件的问题">
 <meta itemprop="description" content="后台优化时，需要增加一个给用户发送图片消息的功能，为了兼容原有代码，使用了form表单上传图片文件，大致代码如下：">
-
-
 <meta itemprop="datePublished" content="2017-11-18T22:24:05&#43;08:00" />
 <meta itemprop="dateModified" content="2018-01-14T21:04:03&#43;08:00" />
 <meta itemprop="wordCount" content="852">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Form表单上传文件的问题"/>
 <meta name="twitter:description" content="后台优化时，需要增加一个给用户发送图片消息的功能，为了兼容原有代码，使用了form表单上传图片文件，大致代码如下："/>
 
@@ -136,31 +133,27 @@
     
     <div class="post-content">
       <p>后台优化时，需要增加一个给用户发送图片消息的功能，为了兼容原有代码，使用了form表单上传图片文件，大致代码如下：</p>
-
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="s">%= form_tag test_path, multipart: true, remote: true do %&gt;
-</span><span class="s">	&lt;input id=</span><span class="s2">&#34;message_photo&#34;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&#34;form-control&#34;</span> <span class="n">type</span><span class="o">=</span><span class="s2">&#34;file&#34;</span> <span class="nb">name</span><span class="o">=</span><span class="s2">&#34;message[qiniu_key]&#34;</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&#34;glyphicon glyphicon-picture&#34;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&#34;img-upload-icon&#34;</span><span class="o">&gt;&lt;</span><span class="sr">/span&gt;
-</span><span class="sr">&lt;% end %&gt;</span></code></pre></td></tr></table>
+</span><span class="s">	&lt;input id=</span><span class="s2">&#34;</span><span class="s2">message_photo</span><span class="s2">&#34;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">form-control</span><span class="s2">&#34;</span> <span class="n">type</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">file</span><span class="s2">&#34;</span> <span class="nb">name</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">message[qiniu_key]</span><span class="s2">&#34;</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">glyphicon glyphicon-picture</span><span class="s2">&#34;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">img-upload-icon</span><span class="s2">&#34;</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="sr">/</span><span class="sr">span&gt;
+</span><span class="sr">&lt;% end %&gt;
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>原本预想的是通过添加<code>remote: true</code>，配合js监听事件来达到无刷新上传的效果，但实际测试发现每次文件上传后页面都会整体刷新，下面就分析下这个问题。</p>
-
+</div><p>原本预想的是通过添加<code>remote: true</code>，配合js监听事件来达到无刷新上传的效果，但实际测试发现每次文件上传后页面都会整体刷新，下面就分析下这个问题。</p>
 <h3 id="jquery-ujs">jquery-ujs</h3>
-
 <p>在Rails5.1之前默认是通过依赖jQuery来提供内置ajax的支持（Rails5.1默认已经去除了对于jQuery的依赖，使用原生js进行相关开发实现），所以默认都包含了<code>jquery-rails</code>这个gem包。而这个gem包包含了<code>jquery-ujs</code>从而提供了<code>data-remote</code>等类似的功能方法。</p>
-
 <p>所以查看<code>jquery-ujs</code>中的<a href="https://github.com/rails/jquery-ujs/blob/4b6e30f68ff1244fc0c790641d3408c2695a29bd/src/rails.js#L500">rails.js</a>源代码可以发现，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -181,52 +174,49 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">remote</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">nonBlankFileInputs</span> <span class="o">=</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">nonBlankInputs</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">fileInputSelector</span><span class="p">);</span>
+  <span class="nx">nonBlankFileInputs</span> <span class="o">=</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">nonBlankInputs</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">fileInputSelector</span><span class="p">)</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">nonBlankFileInputs</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Slight timeout so that the submit button gets properly serialized
 </span><span class="c1"></span>    <span class="c1">// (make it easy for event handler to serialize form without disabled values)
-</span><span class="c1"></span>    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">disableFormElements</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span> <span class="p">},</span> <span class="mi">13</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">aborted</span> <span class="o">=</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="s1">&#39;ajax:aborted:file&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">nonBlankFileInputs</span><span class="p">]);</span>
+</span><span class="c1"></span>    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">disableFormElements</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">aborted</span> <span class="o">=</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">form</span><span class="p">,</span> <span class="s1">&#39;ajax:aborted:file&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">nonBlankFileInputs</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
 
     <span class="c1">// Re-enable form elements if event bindings return false (canceling normal form submission)
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">aborted</span><span class="p">)</span> <span class="p">{</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">enableFormElements</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span> <span class="p">},</span> <span class="mi">13</span><span class="p">);</span> <span class="p">}</span>
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">aborted</span><span class="p">)</span> <span class="p">{</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span> <span class="nx">rails</span><span class="p">.</span><span class="nx">enableFormElements</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 
     <span class="k">return</span> <span class="nx">aborted</span><span class="p">;</span>
   <span class="p">}</span>
   
-  <span class="nx">rails</span><span class="p">.</span><span class="nx">handleRemote</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
+  <span class="nx">rails</span><span class="p">.</span><span class="nx">handleRemote</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
   <span class="p">...</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>当使用<code>remote: true</code>时，如果存在非空的<code>type=file</code>的输入框时，代码会进入if判断，然后返回，跳过了<code>rails.handleRemote(form);</code>这个函数的执行过程，这样就回退到浏览器的表单提交，也就是同步提交后刷新页面。</p>
-
+</div><p>当使用<code>remote: true</code>时，如果存在非空的<code>type=file</code>的输入框时，代码会进入if判断，然后返回，跳过了<code>rails.handleRemote(form);</code>这个函数的执行过程，这样就回退到浏览器的表单提交，也就是同步提交后刷新页面。</p>
 <p>上面可以看出，源代码设计就是这样子，无法通过<code>remote: true</code>来异步上传文件。这个是个历史遗留问题，旧浏览器在当时不支持这种通过ajax的方式上传文件，所以没有办法。但是在HTML5中其实是已经支持异步上传文件的，可以通过<code>FormData</code>去实现这个功能（如果不考虑兼容旧浏览器，这是个不错的方法）。</p>
-
 <p>后面发现项目的wiki中也算提供了一种折中的解决方式，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;ajax:aborted:file&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">elements</span><span class="p">){</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;ajax:aborted:file&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">elements</span><span class="p">)</span><span class="p">{</span>
   <span class="c1">// Implement own remote file-transfer handler here for non-blank file inputs passed in `elements`.
 </span><span class="c1"></span>  <span class="c1">// Returning false in this handler tells rails.js to disallow standard form submission
 </span><span class="c1"></span>  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">});</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>提供了一个Hook方式，通过监听这个事件，自己编写添加上传文件的代码。另外<a href="https://os.alfajango.com/remotipart/">Remotipart</a>这个gem包就是通过这个Hook去封装了文件的上传，为开发者提供了便利。</p>
+</div><p>提供了一个Hook方式，通过监听这个事件，自己编写添加上传文件的代码。另外<a href="https://os.alfajango.com/remotipart/">Remotipart</a>这个gem包就是通过这个Hook去封装了文件的上传，为开发者提供了便利。</p>
     </div>
 
-    <div class="post-reward">
+    
+<div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
   <div class="qr-code">
@@ -236,7 +226,7 @@
         <span>微信打赏</span>
       </label>
     <label class="qr-code-image" for="reward">
-        <img class="image" src="/img/reward/alipay.jpg">
+        <img class="image" src="/img/reward/alipay.png">
         <span>支付宝打赏</span>
       </label>
   </div>
@@ -257,14 +247,12 @@
     </footer>
   </article>
         </div>
-        <div id="utter-container"></div>
-        <script src="https://utteranc.es/client.js"
-            repo= 'renyijiu/hugo_blog'
-            issue-term= "title"
-            theme= 'github-light'
-            crossorigin= "anonymous"
-            async>
-        </script>
+        
+
+  
+
+  
+
       </div>
     </main>
 
@@ -287,12 +275,10 @@
 
   
 
-  
-
   <span class="copyright-year">
     &copy; 
     2014 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
@@ -307,9 +293,12 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.ece58db6.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://blog.renyijiu.com/js/main.4d21c1cefdf1cd0b77ef59bab2d1bbe3112fc9d6cc04710bb1f0b1fd7b891f11.js"></script>
 
 <script id="baidu_analytics">
   var _hmt = _hmt || [];
@@ -321,6 +310,7 @@
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
+
 
 
 
